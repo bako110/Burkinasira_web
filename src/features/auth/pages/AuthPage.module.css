@@ -1,0 +1,135 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background-color: var(--color-bg-subtle);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.stepActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.backLink:hover {
+  color: var(--color-text);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  color: var(--color-text-subtle);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+}
+
+.roleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.roleOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.roleOption:hover {
+  border-color: var(--color-brand);
+}
+
+.roleOptionActive {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-surface);
+}
+
+.roleRadio {
+  margin-top: 3px;
+  accent-color: var(--color-brand);
+  flex-shrink: 0;
+}
+
+.roleBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.roleLabel {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+
+.roleDesc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.switch {
+  margin: var(--space-5) 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.switch a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}

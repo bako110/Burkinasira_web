@@ -1,0 +1,151 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flag {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  opacity: 0.92;
+  animation: flagFadeIn 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.flag.subtle {
+  opacity: 0.16;
+  box-shadow: none;
+  filter: grayscale(0.1);
+}
+
+.flagBottomLeft {
+  left: var(--space-4);
+  bottom: var(--space-4);
+  transform: rotate(-8deg);
+  animation-delay: 200ms;
+  animation-name: flagFadeInLeft, flagFloatLeft;
+  animation-duration: 900ms, 6s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-delay: 200ms, 1100ms;
+  animation-fill-mode: both, none;
+}
+
+.flagTopRight {
+  right: var(--space-4);
+  top: var(--space-4);
+  transform: rotate(6deg);
+  animation-name: flagFadeInRight, flagFloatRight;
+  animation-duration: 900ms, 5.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-delay: 400ms, 1300ms;
+  animation-fill-mode: both, none;
+}
+
+@media (min-width: 640px) {
+  .flag {
+    width: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .flag {
+    width: 68px;
+  }
+
+  .flagBottomLeft {
+    left: 3%;
+    bottom: 8%;
+  }
+
+  .flagTopRight {
+    right: 3%;
+    top: 8%;
+  }
+}
+
+@keyframes flagFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(-8deg) scale(0.85);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+}
+
+@keyframes flagFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(6deg) scale(0.85);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(0) rotate(6deg) scale(1);
+  }
+}
+
+.flag.subtle.flagBottomLeft {
+  animation-name: flagFadeInLeftSubtle, flagFloatLeft;
+}
+
+.flag.subtle.flagTopRight {
+  animation-name: flagFadeInRightSubtle, flagFloatRight;
+}
+
+@keyframes flagFadeInLeftSubtle {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(-8deg) scale(0.85);
+  }
+  to {
+    opacity: 0.16;
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+}
+
+@keyframes flagFadeInRightSubtle {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(6deg) scale(0.85);
+  }
+  to {
+    opacity: 0.16;
+    transform: translateY(0) rotate(6deg) scale(1);
+  }
+}
+
+@keyframes flagFloatLeft {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-4deg);
+  }
+}
+
+@keyframes flagFloatRight {
+  0%, 100% {
+    transform: translateY(0) rotate(6deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flag {
+    animation: none;
+    opacity: 0.92;
+  }
+
+  .flag.subtle {
+    opacity: 0.16;
+  }
+}

@@ -1,0 +1,31 @@
+.group {
+  display: inline-flex;
+  padding: 4px;
+  background-color: var(--color-bg-inset);
+  border-radius: var(--radius-full);
+  gap: 2px;
+}
+
+.option,
+.active {
+  border: none;
+  background: transparent;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.active {
+  background-color: var(--color-bg-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.option:hover {
+  color: var(--color-text);
+}

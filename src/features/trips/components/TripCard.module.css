@@ -1,0 +1,93 @@
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.link:hover .card {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status {
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.toneDraft {
+  background-color: var(--color-bg-inset);
+  color: var(--color-text-muted);
+}
+
+.tonePlanned {
+  background-color: rgba(37, 99, 235, 0.12);
+  color: var(--color-info);
+}
+
+.toneInProgress {
+  background-color: rgba(217, 119, 6, 0.14);
+  color: var(--color-warning);
+}
+
+.toneCompleted {
+  background-color: rgba(22, 163, 74, 0.14);
+  color: var(--color-success);
+}
+
+.toneCancelled {
+  background-color: rgba(220, 38, 38, 0.12);
+  color: var(--color-danger);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.themeTag {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}

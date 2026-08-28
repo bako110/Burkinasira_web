@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.card:hover {
+  border-color: var(--color-brand);
+  transform: translateY(-2px);
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.price {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}

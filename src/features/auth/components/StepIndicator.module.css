@@ -1,0 +1,49 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: var(--color-bg);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.dotActive {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.dotDone {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand);
+  color: #fff;
+}
+
+.line {
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-border);
+  margin: 0 4px;
+  transition: background-color var(--transition-fast);
+}
+
+.lineDone {
+  background-color: var(--color-brand);
+}

@@ -1,0 +1,258 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.centerPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex: 1;
+  padding: var(--space-6) var(--space-4);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-7) var(--space-4) var(--space-6);
+  background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+  isolation: isolate;
+}
+
+.heroMesh {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-mesh);
+  opacity: 0.85;
+}
+
+.backBtn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: var(--space-3);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+.status {
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.toneDraft {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.tonePlanned {
+  background-color: rgba(37, 99, 235, 0.25);
+  color: #fff;
+}
+
+.toneInProgress {
+  background-color: rgba(217, 119, 6, 0.3);
+  color: #fff;
+}
+
+.toneCompleted {
+  background-color: rgba(22, 163, 74, 0.3);
+  color: #fff;
+}
+
+.toneCancelled {
+  background-color: rgba(220, 38, 38, 0.3);
+  color: #fff;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-4) var(--space-8);
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.actionsRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addDayRow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.addDayInput {
+  flex: 1;
+  max-width: 220px;
+}
+
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dayCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.dayTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.dayEmpty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-subtle);
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.itemRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-inset);
+}
+
+.itemMain {
+  display: flex;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.itemTime {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.itemType {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.itemNotes {
+  margin: var(--space-1) 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.itemCost {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  border: none;
+  background-color: transparent;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--color-danger);
+}
