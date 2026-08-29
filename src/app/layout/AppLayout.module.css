@@ -209,11 +209,16 @@
   background-color: var(--color-bg-raised);
   box-shadow: var(--shadow-lg);
   transform: translateX(-100%);
-  transition: transform var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transition: transform var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear var(--transition-base);
 }
 
 .drawerOpen {
   transform: translateX(0);
+  visibility: visible;
+  transition: transform var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0s;
 }
 
 @media (min-width: 768px) {
@@ -223,12 +228,16 @@
 }
 
 .drawerHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
   padding: 0 var(--space-4);
   border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
   flex-shrink: 0;
 }
 

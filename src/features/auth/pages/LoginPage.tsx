@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { Button, Card, Input, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { useToastStore } from '../../../store/toast.store';
 import { useLogin } from '../hooks/useLogin';
 import { AuthHeader } from '../components/AuthHeader';
 import { SocialAuthButtons } from '../components/SocialAuthButtons';
@@ -15,6 +16,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { mutate, isPending, error } = useLogin();
+  const push = useToastStore((s) => s.push);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +27,15 @@ export function LoginPage() {
     e.preventDefault();
     mutate(
       { email, password },
-      { onSuccess: (data) => navigate(getPostLoginPath(data.user, from), { replace: true }) },
+      {
+        onSuccess: (data) => {
+          push({
+            variant: 'success',
+            message: t('auth.welcomeBackMessage', { name: data.user.full_name.split(' ')[0] }),
+          });
+          navigate(getPostLoginPath(data.user, from), { replace: true });
+        },
+      },
     );
   }
 

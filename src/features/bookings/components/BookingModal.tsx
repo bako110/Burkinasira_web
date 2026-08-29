@@ -7,6 +7,8 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useCreateBooking } from '../hooks/useCreateBooking';
 import type { BookingItemType } from '../types';
 import type { AvailabilitySlot } from '../../guides/types';
+import { SlotCalendarPicker } from '../../guides/components/SlotCalendarPicker';
+import { computeSlotDurationHours, formatDurationHours } from '../../guides/utils/slotDuration';
 import styles from './BookingModal.module.css';
 
 interface BookingModalProps {
@@ -19,8 +21,10 @@ interface BookingModalProps {
   currency?: string;
   requiresDate?: boolean;
   /** Créneaux publiés par le prestataire (item_type="guide") : si fournis,
-   * remplace le champ date libre par un choix parmi ces créneaux réels. */
+   * remplace le champ date libre par un calendrier + choix parmi ces créneaux réels. */
   slots?: AvailabilitySlot[];
+  /** Tarif horaire, utilisé pour le calcul du prix quand un créneau est choisi. */
+  hourlyRate?: number;
 }
 
 export function BookingModal({
@@ -33,20 +37,23 @@ export function BookingModal({
   currency = 'XOF',
   requiresDate = false,
   slots,
+  hourlyRate,
 }: BookingModalProps) {
   const { t } = useTranslation();
   const { mutate, isPending, isSuccess, error, reset } = useCreateBooking();
   const [quantity, setQuantity] = useState(1);
   const [scheduledDate, setScheduledDate] = useState('');
-  const [selectedSlotId, setSelectedSlotId] = useState('');
+  const [selectedSlot, setSelectedSlot] = useState<AvailabilitySlot | null>(null);
 
   const hasSlots = Boolean(slots && slots.length > 0);
+  const slotDurationHours = selectedSlot ? computeSlotDurationHours(selectedSlot.start_time, selectedSlot.end_time) : 0;
+  const effectiveUnitPrice = selectedSlot && typeof hourlyRate === 'number' ? hourlyRate * slotDurationHours : unitPrice;
 
   function handleClose() {
     reset();
     setQuantity(1);
     setScheduledDate('');
-    setSelectedSlotId('');
+    setSelectedSlot(null);
     onClose();
   }
 
@@ -56,14 +63,14 @@ export function BookingModal({
       item_id: itemId,
       item_title: itemTitle,
       quantity,
-      unit_price: unitPrice,
+      unit_price: effectiveUnitPrice,
       currency,
       scheduled_date: !hasSlots && scheduledDate ? new Date(scheduledDate).toISOString() : undefined,
-      slot_id: hasSlots ? selectedSlotId : undefined,
+      slot_id: hasSlots ? selectedSlot?.id : undefined,
     });
   }
 
-  const total = unitPrice * quantity;
+  const total = effectiveUnitPrice * quantity;
 
   return (
     <Modal open={open} onClose={handleClose} title={t('bookings.modalTitle')}>
@@ -83,21 +90,11 @@ export function BookingModal({
           {hasSlots ? (
             <div className={styles.slotField}>
               <span className={styles.quantityLabel}>{t('bookings.chooseSlot')}</span>
-              <div className={styles.slotList}>
-                {slots!.map((slot) => (
-                  <button
-                    key={slot.id}
-                    type="button"
-                    className={`${styles.slotOption} ${selectedSlotId === slot.id ? styles.slotOptionSelected : ''}`}
-                    onClick={() => setSelectedSlotId(slot.id)}
-                  >
-                    <span className={styles.slotOptionDate}>{slot.date}</span>
-                    <span className={styles.slotOptionTime}>
-                      {slot.start_time} - {slot.end_time}
-                    </span>
-                  </button>
-                ))}
-              </div>
+              <SlotCalendarPicker
+                slots={slots!}
+                selectedSlotId={selectedSlot?.id ?? null}
+                onSelectSlot={setSelectedSlot}
+              />
             </div>
           ) : (
             requiresDate && (
@@ -111,22 +108,43 @@ export function BookingModal({
             )
           )}
 
-          <div className={styles.quantityRow}>
-            <span className={styles.quantityLabel}>{t('bookings.quantity')}</span>
-            <div className={styles.quantityControls}>
-              <button
-                type="button"
-                className={styles.quantityBtn}
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              >
-                −
-              </button>
-              <span className={styles.quantityValue}>{quantity}</span>
-              <button type="button" className={styles.quantityBtn} onClick={() => setQuantity((q) => q + 1)}>
-                +
-              </button>
+          {!hasSlots && (
+            <div className={styles.quantityRow}>
+              <span className={styles.quantityLabel}>{t('bookings.quantity')}</span>
+              <div className={styles.quantityControls}>
+                <button
+                  type="button"
+                  className={styles.quantityBtn}
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                >
+                  −
+                </button>
+                <span className={styles.quantityValue}>{quantity}</span>
+                <button type="button" className={styles.quantityBtn} onClick={() => setQuantity((q) => q + 1)}>
+                  +
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {hasSlots && selectedSlot && (
+            <div className={styles.summaryBox}>
+              <div className={styles.summaryRow}>
+                <span>{t('bookings.summaryDate')}</span>
+                <strong>{selectedSlot.date}</strong>
+              </div>
+              <div className={styles.summaryRow}>
+                <span>{t('bookings.summaryTime')}</span>
+                <strong>
+                  {selectedSlot.start_time} - {selectedSlot.end_time}
+                </strong>
+              </div>
+              <div className={styles.summaryRow}>
+                <span>{t('bookings.summaryDuration')}</span>
+                <strong>{formatDurationHours(slotDurationHours)}</strong>
+              </div>
+            </div>
+          )}
 
           <div className={styles.totalRow}>
             <span>{t('bookings.total')}</span>
@@ -140,7 +158,7 @@ export function BookingModal({
           <Button
             fullWidth
             onClick={handleSubmit}
-            disabled={isPending || (hasSlots ? !selectedSlotId : requiresDate && !scheduledDate)}
+            disabled={isPending || (hasSlots ? !selectedSlot : requiresDate && !scheduledDate)}
           >
             {isPending ? t('common.loading') : t('bookings.confirm')}
           </Button>

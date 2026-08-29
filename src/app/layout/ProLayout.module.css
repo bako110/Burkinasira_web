@@ -305,6 +305,8 @@
   flex-direction: column;
   background-color: var(--color-bg-raised);
   box-shadow: var(--shadow-lg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   transform: translateX(-100%);
   visibility: hidden;
   transition: transform var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear var(--transition-base);

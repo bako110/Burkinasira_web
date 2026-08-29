@@ -11,7 +11,9 @@
     "exploreAlso": "I mana ɲini fana",
     "back": "Kɔsegin",
     "close": "A datugu",
-    "delete": "A bɔ"
+    "delete": "A bɔ",
+    "previous": "Ka taa kɔfɛ",
+    "next": "Ka taa ɲɛfɛ"
   },
   "nav": {
     "home": "So",
@@ -67,7 +69,14 @@
     "roleGuideDesc": "Ne bɛ taama dɛmɛni baara kɛ",
     "roleProvider": "Baarakɛla",
     "roleProviderDesc": "Loko, dumunikɛyɔrɔ, taama walima bololabaara",
-    "finish": "Sɛbɛnni ban"
+    "finish": "Sɛbɛnni ban",
+    "logoutConfirmTitle": "I bɛ i bɔ walima?",
+    "logoutConfirmMessage": "I ka kan ka don kokura walasa ka se i ka konte ni i ka sɛbɛnw ma.",
+    "logoutConfirmCta": "Bɔ",
+    "logoutCancelCta": "Baliya",
+    "logoutSuccess": "I bɔra. K'an ye sɔɔni!",
+    "welcomeBackTitle": "I ni segin",
+    "welcomeBackMessage": "A ka di an ye ka i ye tugun, {{name}}!"
   },
   "pro": {
     "pendingTitle": "Sɛriyɛ lakodɔn tɛmɛnen",
@@ -400,6 +409,11 @@
     "modalTitle": "Sigi-yɔrɔ tarawu",
     "date": "Don",
     "chooseSlot": "Waati kelen sugandi",
+    "weekdaysShort": ["Ntɛ", "Tar", "Ara", "Ala", "Jum", "Sib", "Kar"],
+    "slotsOn": "Waatiw don {{date}} na",
+    "summaryDate": "Don",
+    "summaryTime": "Waati",
+    "summaryDuration": "Waati janya",
     "quantity": "Hakɛ",
     "total": "Bɛɛ lajɛlen",
     "confirm": "Tarawu sɛbɛnni",

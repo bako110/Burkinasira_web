@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { LogOut, User, Trophy, Ticket, Map, MessageCircle, ChevronRight, Trash2 } from 'lucide-react';
 
-import { Card, Input, Button } from '../../../shared/ui';
+import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
+import { useLogoutConfirm } from '../../../shared/hooks/useLogoutConfirm';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { useChangePassword } from '../hooks/useChangePassword';
 import { useDeleteAccount } from '../hooks/useDeleteAccount';
@@ -23,6 +24,7 @@ export function ProfilePage() {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const clearSession = useAuthStore((s) => s.clearSession);
+  const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const push = useToastStore((s) => s.push);
 
   const { mutate: updateProfile, isPending: isSavingProfile, isSuccess: profileSaved, error: profileError } =
@@ -115,7 +117,7 @@ export function ProfilePage() {
           ))}
         </nav>
 
-        <Button variant="ghost" onClick={clearSession} className={styles.logoutBtn}>
+        <Button variant="ghost" onClick={requestLogout} className={styles.logoutBtn}>
           <LogOut size={16} strokeWidth={2} />
           {t('auth.logout')}
         </Button>
@@ -202,6 +204,17 @@ export function ProfilePage() {
         isPending={isDeleting}
         onConfirm={handleDeleteAccount}
         onClose={() => setDeleteOpen(false)}
+      />
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t('auth.logoutConfirmTitle')}
+        message={t('auth.logoutConfirmMessage')}
+        confirmLabel={t('auth.logoutConfirmCta')}
+        cancelLabel={t('auth.logoutCancelCta')}
+        variant="danger"
+        onConfirm={confirmLogout}
+        onCancel={cancelLogout}
       />
     </div>
   );

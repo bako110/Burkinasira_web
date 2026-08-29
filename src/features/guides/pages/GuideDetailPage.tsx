@@ -238,6 +238,7 @@ export function GuideDetailPage() {
           currency={guide.currency}
           requiresDate
           slots={sortedSlots}
+          hourlyRate={guide.hourly_rate}
         />
       )}
     </div>

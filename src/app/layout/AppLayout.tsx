@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Menu, X, LogOut } from 'lucide-react';
 import clsx from 'clsx';
 
-import { LanguageSwitcher, ThemeToggle, ToastViewport } from '../../shared/ui';
+import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
+import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { MobileTabBar } from './MobileTabBar';
 import { DiscoverMenu } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
@@ -15,7 +16,7 @@ import styles from './AppLayout.module.css';
 export function AppLayout() {
   const { t } = useTranslation();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  const clearSession = useAuthStore((s) => s.clearSession);
+  const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
@@ -191,8 +192,8 @@ export function AppLayout() {
             <button
               className={styles.drawerLogout}
               onClick={() => {
-                clearSession();
                 setDrawerOpen(false);
+                requestLogout();
               }}
               type="button"
             >
@@ -212,7 +213,17 @@ export function AppLayout() {
       </main>
 
       <MobileTabBar />
-      <ToastViewport />
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t('auth.logoutConfirmTitle')}
+        message={t('auth.logoutConfirmMessage')}
+        confirmLabel={t('auth.logoutConfirmCta')}
+        cancelLabel={t('auth.logoutCancelCta')}
+        variant="danger"
+        onConfirm={confirmLogout}
+        onCancel={cancelLogout}
+      />
     </div>
   );
 }

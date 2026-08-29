@@ -5,6 +5,8 @@ import { User, Ticket, Map, MessageCircle, Trophy, Settings, LogOut, ChevronDown
 import clsx from 'clsx';
 
 import { useAuthStore } from '../../store/auth.store';
+import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
+import { ConfirmDialog } from '../../shared/ui';
 import styles from './AccountMenu.module.css';
 
 const LINKS = [
@@ -17,7 +19,7 @@ const LINKS = [
 export function AccountMenu() {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
-  const clearSession = useAuthStore((s) => s.clearSession);
+  const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -71,8 +73,8 @@ export function AccountMenu() {
             type="button"
             className={styles.logoutLink}
             onClick={() => {
-              clearSession();
               setOpen(false);
+              requestLogout();
             }}
           >
             <LogOut size={16} strokeWidth={2} className={styles.linkIcon} />
@@ -80,6 +82,17 @@ export function AccountMenu() {
           </button>
         </div>
       )}
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t('auth.logoutConfirmTitle')}
+        message={t('auth.logoutConfirmMessage')}
+        confirmLabel={t('auth.logoutConfirmCta')}
+        cancelLabel={t('auth.logoutCancelCta')}
+        variant="danger"
+        onConfirm={confirmLogout}
+        onCancel={cancelLogout}
+      />
     </div>
   );
 }

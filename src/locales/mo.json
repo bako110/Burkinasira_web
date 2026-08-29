@@ -11,7 +11,9 @@
     "exploreAlso": "Bao n ges woto me",
     "back": "Lebg poore",
     "close": "Ki",
-    "delete": "Yiisi"
+    "delete": "Yiisi",
+    "previous": "Sɔsg",
+    "next": "Poore"
   },
   "nav": {
     "home": "Zaka",
@@ -67,7 +69,14 @@
     "roleGuideDesc": "Mam n kõt sor-wilgr tʋʋm",
     "roleProvider": "Tʋʋm-tʋmd",
     "roleProviderDesc": "Zaka, rɩ-zĩiga, sondgo bɩ tʋʋm-nug tʋʋm",
-    "finish": "Baas sɛb-kɩtg"
+    "finish": "Baas sɛb-kɩtg",
+    "logoutConfirmTitle": "Y rat n yiisa y meng?",
+    "logoutConfirmMessage": "Y na n lebga n kẽ y konta zut n paas y sɛb-kɩtɩ.",
+    "logoutConfirmCta": "Yiisi meng",
+    "logoutCancelCta": "Bas-y-yã",
+    "logoutSuccess": "Fo yiisa f meng. Wa n zĩnda!",
+    "welcomeBackTitle": "Wa-n-neere",
+    "welcomeBackMessage": "Sũ-noog tɩ d le yã-y, {{name}}!"
   },
   "pro": {
     "pendingTitle": "B gũusg y sɛb-kɩtga",
@@ -400,6 +409,11 @@
     "modalTitle": "Reereem",
     "date": "Rasem",
     "chooseSlot": "Yaa sasa a yembre",
+    "weekdaysShort": ["Lũ", "Tar", "Ãra", "Ãrb", "Arz", "Sib", "Ass"],
+    "slotsOn": "Sasa {{date}} wakate",
+    "summaryDate": "Rasem",
+    "summaryTime": "Wakat",
+    "summaryDuration": "Sasa",
     "quantity": "Sõngo",
     "total": "Fãa",
     "confirm": "Kõ reereem-kãseng",

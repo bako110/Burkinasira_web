@@ -11,7 +11,9 @@
     "exploreAlso": "Explorez aussi",
     "back": "Retour",
     "close": "Fermer",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "nav": {
     "home": "Accueil",
@@ -67,7 +69,14 @@
     "roleGuideDesc": "Je propose mes services de guide",
     "roleProvider": "Prestataire",
     "roleProviderDesc": "Hôtel, restaurant, transport ou artisanat",
-    "finish": "Terminer l'inscription"
+    "finish": "Terminer l'inscription",
+    "logoutConfirmTitle": "Se déconnecter ?",
+    "logoutConfirmMessage": "Vous devrez vous reconnecter pour accéder à votre compte et à vos réservations.",
+    "logoutConfirmCta": "Se déconnecter",
+    "logoutCancelCta": "Annuler",
+    "logoutSuccess": "Vous êtes déconnecté(e). À bientôt !",
+    "welcomeBackTitle": "Bon retour",
+    "welcomeBackMessage": "Ravi de vous revoir, {{name}} !"
   },
   "pro": {
     "pendingTitle": "Vérification en cours",
@@ -400,6 +409,11 @@
     "modalTitle": "Réservation",
     "date": "Date",
     "chooseSlot": "Choisissez un créneau",
+    "weekdaysShort": ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"],
+    "slotsOn": "Créneaux du {{date}}",
+    "summaryDate": "Date",
+    "summaryTime": "Horaire",
+    "summaryDuration": "Durée",
     "quantity": "Quantité",
     "total": "Total",
     "confirm": "Confirmer la réservation",

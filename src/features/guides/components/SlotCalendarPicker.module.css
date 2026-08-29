@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.monthLabel {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.navBtn:hover {
+  border-color: var(--color-border-strong);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.emptyCell {
+  aspect-ratio: 1;
+}
+
+.dayCell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text-subtle);
+  font-size: 0.8125rem;
+  cursor: not-allowed;
+}
+
+.dayCellAvailable {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.dayCellAvailable:hover {
+  border-color: var(--color-brand);
+}
+
+.dayCellSelected {
+  background-color: var(--color-brand);
+  border-color: var(--color-brand);
+  color: #fff;
+}
+
+.noDates {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.slotsForDate {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.slotsForDateTitle {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.slotOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.slotOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.slotOption:hover {
+  border-color: var(--color-border-strong);
+}
+
+.slotOptionSelected {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-surface);
+}
+
+.slotTime {
+  font-weight: 600;
+}
+
+.slotDuration {
+  flex-shrink: 0;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-raised);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}

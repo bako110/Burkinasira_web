@@ -11,7 +11,9 @@
     "exploreAlso": "Explore also",
     "back": "Back",
     "close": "Close",
-    "delete": "Delete"
+    "delete": "Delete",
+    "previous": "Previous",
+    "next": "Next"
   },
   "nav": {
     "home": "Home",
@@ -67,7 +69,14 @@
     "roleGuideDesc": "I offer guiding services",
     "roleProvider": "Service provider",
     "roleProviderDesc": "Hotel, restaurant, transport or crafts",
-    "finish": "Finish sign-up"
+    "finish": "Finish sign-up",
+    "logoutConfirmTitle": "Log out?",
+    "logoutConfirmMessage": "You'll need to sign in again to access your account and bookings.",
+    "logoutConfirmCta": "Log out",
+    "logoutCancelCta": "Cancel",
+    "logoutSuccess": "You've been logged out. See you soon!",
+    "welcomeBackTitle": "Welcome back",
+    "welcomeBackMessage": "Great to see you again, {{name}}!"
   },
   "pro": {
     "pendingTitle": "Verification in progress",
@@ -400,6 +409,11 @@
     "modalTitle": "Booking",
     "date": "Date",
     "chooseSlot": "Choose a slot",
+    "weekdaysShort": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "slotsOn": "Slots on {{date}}",
+    "summaryDate": "Date",
+    "summaryTime": "Time",
+    "summaryDuration": "Duration",
     "quantity": "Quantity",
     "total": "Total",
     "confirm": "Confirm booking",

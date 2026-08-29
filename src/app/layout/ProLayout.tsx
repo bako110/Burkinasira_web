@@ -17,8 +17,9 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 
-import { LanguageSwitcher, ThemeToggle } from '../../shared/ui';
+import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
+import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { useMyNotifications } from '../../features/notifications/hooks/useMyNotifications';
 import styles from './ProLayout.module.css';
 
@@ -33,7 +34,7 @@ const NAV_ITEMS = [
 export function ProLayout() {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
-  const clearSession = useAuthStore((s) => s.clearSession);
+  const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const { data: unreadNotifications } = useMyNotifications(true);
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -99,7 +100,7 @@ export function ProLayout() {
             </div>
           )}
 
-          <button type="button" className={styles.logoutBtn} onClick={clearSession} title={collapsed ? t('auth.logout') : undefined}>
+          <button type="button" className={styles.logoutBtn} onClick={requestLogout} title={collapsed ? t('auth.logout') : undefined}>
             <LogOut size={16} strokeWidth={2} />
             <span className={collapsed ? styles.labelHidden : undefined}>{t('auth.logout')}</span>
           </button>
@@ -176,8 +177,8 @@ export function ProLayout() {
             type="button"
             className={styles.logoutBtn}
             onClick={() => {
-              clearSession();
               setDrawerOpen(false);
+              requestLogout();
             }}
           >
             <LogOut size={16} strokeWidth={2} />
@@ -189,6 +190,17 @@ export function ProLayout() {
       <main className={styles.main}>
         <Outlet />
       </main>
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title={t('auth.logoutConfirmTitle')}
+        message={t('auth.logoutConfirmMessage')}
+        confirmLabel={t('auth.logoutConfirmCta')}
+        cancelLabel={t('auth.logoutCancelCta')}
+        variant="danger"
+        onConfirm={confirmLogout}
+        onCancel={cancelLogout}
+      />
     </div>
   );
 }
