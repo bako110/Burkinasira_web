@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2 } from 'lucide-react';
+import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2, CalendarDays, MessageCircle } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { useToastStore } from '../../../store/toast.store';
+import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { useGuideDetail } from '../hooks/useGuideDetail';
+import { useGuideAvailableSlots } from '../hooks/useGuideAvailableSlots';
+import { useContactGuideAboutSlot } from '../hooks/useContactGuideAboutSlot';
 import styles from './GuideDetailPage.module.css';
 
 export function GuideDetailPage() {
@@ -14,13 +18,33 @@ export function GuideDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const requireAuth = useRequireAuth();
+  const push = useToastStore((s) => s.push);
   const [modalOpen, setModalOpen] = useState(false);
+  const [contactingSlotId, setContactingSlotId] = useState<string | null>(null);
 
   const { data: guide, isLoading, isError, refetch } = useGuideDetail(id);
+  const { data: slots, isLoading: slotsLoading } = useGuideAvailableSlots(id);
+  const contactAboutSlot = useContactGuideAboutSlot();
   const canBook = typeof guide?.daily_rate === 'number';
+  const sortedSlots = [...(slots ?? [])].sort((a, b) => (a.date + a.start_time).localeCompare(b.date + b.start_time));
 
   function handleContact() {
     requireAuth(() => setModalOpen(true), t('guides.contactRequiresAuth'));
+  }
+
+  function handleContactAboutSlot(slotId: string) {
+    requireAuth(() => {
+      setContactingSlotId(slotId);
+      contactAboutSlot.mutate(slotId, {
+        onSuccess: (conversation) => {
+          navigate(`/messages?conversation=${conversation.id}`);
+        },
+        onError: (err) => {
+          push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) });
+          setContactingSlotId(null);
+        },
+      });
+    }, t('guides.contactRequiresAuth'));
   }
 
   if (isLoading) {
@@ -146,6 +170,40 @@ export function GuideDetailPage() {
               </div>
             </section>
           )}
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              <CalendarDays size={18} strokeWidth={2} />
+              {t('guides.availableSlots')}
+            </h2>
+            {slotsLoading && <Spinner size={20} />}
+            {!slotsLoading && sortedSlots.length === 0 && (
+              <p className={styles.description}>{t('guides.noSlotsAvailable')}</p>
+            )}
+            {!slotsLoading && sortedSlots.length > 0 && (
+              <div className={styles.slotGrid}>
+                {sortedSlots.map((slot) => (
+                  <div key={slot.id} className={styles.slotCard}>
+                    <div>
+                      <p className={styles.slotCardDate}>{slot.date}</p>
+                      <p className={styles.slotCardTime}>
+                        {slot.start_time} - {slot.end_time}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className={styles.slotContactBtn}
+                      onClick={() => handleContactAboutSlot(slot.id)}
+                      disabled={contactAboutSlot.isPending && contactingSlotId === slot.id}
+                    >
+                      <MessageCircle size={14} strokeWidth={2} />
+                      {t('guides.contactAboutSlot')}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
         </div>
 
         <aside className={styles.sidebar}>
@@ -179,6 +237,7 @@ export function GuideDetailPage() {
           unitPrice={guide.daily_rate!}
           currency={guide.currency}
           requiresDate
+          slots={sortedSlots}
         />
       )}
     </div>

@@ -350,7 +350,10 @@
     "certifications": "Sɛb sẽn kõ-a",
     "visitsCompleted_one": "Bao-gesg a yembr sa",
     "visitsCompleted_other": "Bao-gesg {{count}} sa",
-    "hour": "sasa"
+    "hour": "sasa",
+    "availableSlots": "Sasa sẽn ka lʋɩta",
+    "noSlotsAvailable": "Sasa ka be ye.",
+    "contactAboutSlot": "Sok-a sasa wɛɛngẽ"
   },
   "events": {
     "title": "Kibs la yʋʋm-sɛb",
@@ -396,6 +399,7 @@
     "title": "Mam reereems",
     "modalTitle": "Reereem",
     "date": "Rasem",
+    "chooseSlot": "Yaa sasa a yembre",
     "quantity": "Sõngo",
     "total": "Fãa",
     "confirm": "Kõ reereem-kãseng",

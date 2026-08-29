@@ -350,7 +350,10 @@
     "certifications": "Certifications",
     "visitsCompleted_one": "{{count}} visite réalisée",
     "visitsCompleted_other": "{{count}} visites réalisées",
-    "hour": "heure"
+    "hour": "heure",
+    "availableSlots": "Créneaux disponibles",
+    "noSlotsAvailable": "Aucun créneau publié pour le moment.",
+    "contactAboutSlot": "Contacter à ce sujet"
   },
   "events": {
     "title": "Événements et calendrier",
@@ -396,6 +399,7 @@
     "title": "Mes réservations",
     "modalTitle": "Réservation",
     "date": "Date",
+    "chooseSlot": "Choisissez un créneau",
     "quantity": "Quantité",
     "total": "Total",
     "confirm": "Confirmer la réservation",

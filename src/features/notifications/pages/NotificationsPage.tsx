@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
+import { useAuthStore } from '../../../store/auth.store';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useMyNotifications } from '../hooks/useMyNotifications';
 import { useMarkNotificationRead } from '../hooks/useMarkNotificationRead';
@@ -17,6 +19,8 @@ import styles from './NotificationsPage.module.css';
 export function NotificationsPage() {
   const { t } = useTranslation();
   const push = useToastStore((s) => s.push);
+  const user = useAuthStore((s) => s.user);
+  const fallbackTo = user ? getPostLoginPath(user, '/') : '/';
   const [tab, setTab] = useState<'all' | 'unread'>('all');
   const [showPrefs, setShowPrefs] = useState(false);
 
@@ -35,7 +39,7 @@ export function NotificationsPage() {
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo="/" variant="link">
+      <DetailBackButton fallbackTo={fallbackTo} variant="link">
         {t('common.back')}
       </DetailBackButton>
       <div className={styles.headerRow}>

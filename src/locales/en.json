@@ -350,7 +350,10 @@
     "certifications": "Certifications",
     "visitsCompleted_one": "{{count}} visit completed",
     "visitsCompleted_other": "{{count}} visits completed",
-    "hour": "hour"
+    "hour": "hour",
+    "availableSlots": "Available slots",
+    "noSlotsAvailable": "No slots published yet.",
+    "contactAboutSlot": "Contact about this slot"
   },
   "events": {
     "title": "Events & calendar",
@@ -396,6 +399,7 @@
     "title": "My bookings",
     "modalTitle": "Booking",
     "date": "Date",
+    "chooseSlot": "Choose a slot",
     "quantity": "Quantity",
     "total": "Total",
     "confirm": "Confirm booking",

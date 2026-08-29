@@ -5,6 +5,8 @@ import { MessageCircle } from 'lucide-react';
 import clsx from 'clsx';
 
 import { EmptyResults, Spinner, DetailBackButton } from '../../../shared/ui';
+import { useAuthStore } from '../../../store/auth.store';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import { useConversations } from '../hooks/useConversations';
 import { ConversationListItem } from '../components/ConversationListItem';
 import { ChatWindow } from '../components/ChatWindow';
@@ -12,6 +14,8 @@ import styles from './MessagesPage.module.css';
 
 export function MessagesPage() {
   const { t } = useTranslation();
+  const user = useAuthStore((s) => s.user);
+  const fallbackTo = user ? getPostLoginPath(user, '/profile') : '/profile';
   const [searchParams] = useSearchParams();
   const { data: conversations, isLoading, isError, refetch } = useConversations();
   const [activeId, setActiveId] = useState<string | undefined>(searchParams.get('conversation') ?? undefined);
@@ -27,7 +31,7 @@ export function MessagesPage() {
   return (
     <div className={styles.page}>
       <aside className={clsx(styles.sidebar, activeId && styles.sidebarHiddenMobile)}>
-        <DetailBackButton fallbackTo="/profile" variant="link">
+        <DetailBackButton fallbackTo={fallbackTo} variant="link">
           {t('common.back')}
         </DetailBackButton>
         <h1 className={styles.title}>{t('messaging.title')}</h1>

@@ -350,7 +350,10 @@
     "certifications": "Sɛbɛnw",
     "visitsCompleted_one": "Bɔ-lajɛli kelen dafalen",
     "visitsCompleted_other": "Bɔ-lajɛli {{count}} dafalen",
-    "hour": "lɛrɛ"
+    "hour": "lɛrɛ",
+    "availableSlots": "Waati minnu bɛ",
+    "noSlotsAvailable": "Waati foyi ma bɔ fɔlɔ.",
+    "contactAboutSlot": "Kuma waati nin kan"
   },
   "events": {
     "title": "Waati-kunw ni kalanda",
@@ -396,6 +399,7 @@
     "title": "N ka sigi-yɔrɔ tarawu",
     "modalTitle": "Sigi-yɔrɔ tarawu",
     "date": "Don",
+    "chooseSlot": "Waati kelen sugandi",
     "quantity": "Hakɛ",
     "total": "Bɛɛ lajɛlen",
     "confirm": "Tarawu sɛbɛnni",

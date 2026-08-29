@@ -16,6 +16,7 @@ export interface Booking {
   customer_id: string;
   item_type: BookingItemType;
   item_id: string;
+  slot_id?: string;
   item_title: string;
   quantity: number;
   unit_price: number;
@@ -36,6 +37,7 @@ export interface CreateBookingPayload {
   unit_price: number;
   currency?: string;
   scheduled_date?: string;
+  slot_id?: string;
 }
 
 export interface Invoice {

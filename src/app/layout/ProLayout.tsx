@@ -82,11 +82,11 @@ export function ProLayout() {
         </nav>
 
         <div className={styles.sidebarFooter}>
-          <NavLink to="/messages" className={styles.utilityLink} title={collapsed ? t('pro.messages') : undefined}>
+          <NavLink to={`/pro/${user?.role}/messages`} className={styles.utilityLink} title={collapsed ? t('pro.messages') : undefined}>
             <MessageCircle size={18} strokeWidth={2} />
             <span className={collapsed ? styles.labelHidden : undefined}>{t('pro.messages')}</span>
           </NavLink>
-          <NavLink to="/notifications" className={styles.utilityLink} title={collapsed ? t('pro.notifications') : undefined}>
+          <NavLink to={`/pro/${user?.role}/notifications`} className={styles.utilityLink} title={collapsed ? t('pro.notifications') : undefined}>
             <Bell size={18} strokeWidth={2} />
             <span className={collapsed ? styles.labelHidden : undefined}>{t('pro.notifications')}</span>
             {unreadCount > 0 && <span className={styles.unreadDot} />}
@@ -159,11 +159,11 @@ export function ProLayout() {
         </nav>
 
         <div className={styles.sidebarFooter}>
-          <NavLink to="/messages" className={styles.utilityLink} onClick={() => setDrawerOpen(false)}>
+          <NavLink to={`/pro/${user?.role}/messages`} className={styles.utilityLink} onClick={() => setDrawerOpen(false)}>
             <MessageCircle size={18} strokeWidth={2} />
             <span>{t('pro.messages')}</span>
           </NavLink>
-          <NavLink to="/notifications" className={styles.utilityLink} onClick={() => setDrawerOpen(false)}>
+          <NavLink to={`/pro/${user?.role}/notifications`} className={styles.utilityLink} onClick={() => setDrawerOpen(false)}>
             <Bell size={18} strokeWidth={2} />
             <span>{t('pro.notifications')}</span>
             {unreadCount > 0 && <span className={styles.unreadDot} />}

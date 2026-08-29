@@ -3,11 +3,11 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useRefreshedUser } from '../../features/pro/hooks/useRefreshedUser';
 import { getPostLoginPath } from '../../features/pro/utils/postLoginRedirect';
 
-// Utility screens shared between the tourist and pro trees — a verified
-// guide/provider may open these (e.g. from a quick-link on their dashboard)
-// without being bounced back to /pro/{role}. Never add tourist-discovery
-// pages (home, explore, etc.) here.
-const SHARED_UTILITY_PATHS = ['/messages', '/notifications'];
+// Utility screens shared between the tourist and pro trees. Messages/notifications
+// now have dedicated /pro/{role}/messages and /pro/{role}/notifications routes
+// wrapped in ProLayout, so guides/providers no longer need this tourist tree.
+// Never add tourist-discovery pages (home, explore, etc.) here.
+const SHARED_UTILITY_PATHS: string[] = [];
 
 /**
  * Wraps the tourist-facing route tree. Re-checks the account's role/verification

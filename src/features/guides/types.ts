@@ -44,3 +44,12 @@ export interface GuideDetail {
   review_count: number;
   visits_completed: number;
 }
+
+export interface AvailabilitySlot {
+  id: string;
+  guide_id: string;
+  date: string;
+  start_time: string;
+  end_time: string;
+  is_booked: boolean;
+}
