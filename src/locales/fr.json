@@ -362,7 +362,8 @@
     "hour": "heure",
     "availableSlots": "Créneaux disponibles",
     "noSlotsAvailable": "Aucun créneau publié pour le moment.",
-    "contactAboutSlot": "Contacter à ce sujet"
+    "contactAboutSlot": "Contacter à ce sujet",
+    "viewAvailability": "Voir les disponibilités"
   },
   "events": {
     "title": "Événements et calendrier",
@@ -411,9 +412,11 @@
     "chooseSlot": "Choisissez un créneau",
     "weekdaysShort": ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"],
     "slotsOn": "Créneaux du {{date}}",
+    "summaryTitle": "Récapitulatif",
     "summaryDate": "Date",
     "summaryTime": "Horaire",
     "summaryDuration": "Durée",
+    "reserveSlot": "Réserver ce créneau",
     "quantity": "Quantité",
     "total": "Total",
     "confirm": "Confirmer la réservation",

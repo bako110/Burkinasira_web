@@ -1,22 +1,18 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Star, MapPin, ShieldCheck, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Card, Button } from '../../../shared/ui';
-import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
-import { BookingModal } from '../../bookings/components/BookingModal';
 import type { GuideSummary } from '../types';
 import styles from './GuideCard.module.css';
 
 export function GuideCard({ guide }: { guide: GuideSummary }) {
   const { t } = useTranslation();
-  const requireAuth = useRequireAuth();
-  const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
   const canBook = typeof guide.daily_rate === 'number';
 
   function handleContact() {
-    requireAuth(() => setModalOpen(true), t('guides.contactRequiresAuth'));
+    navigate(`/guides/${guide.id}`);
   }
 
   return (
@@ -74,21 +70,8 @@ export function GuideCard({ guide }: { guide: GuideSummary }) {
       </Link>
 
       <Button variant="secondary" size="sm" fullWidth onClick={handleContact} disabled={!canBook}>
-        {canBook ? t('guides.contact') : t('guides.rateUnavailable')}
+        {canBook ? t('guides.viewAvailability') : t('guides.rateUnavailable')}
       </Button>
-
-      {canBook && (
-        <BookingModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          itemType="guide"
-          itemId={guide.id}
-          itemTitle={guide.display_name}
-          unitPrice={guide.daily_rate!}
-          currency={guide.currency}
-          requiresDate
-        />
-      )}
     </Card>
   );
 }

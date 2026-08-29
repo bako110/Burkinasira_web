@@ -1,51 +1,18 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2, CalendarDays, MessageCircle } from 'lucide-react';
+import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2 } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
-import { useToastStore } from '../../../store/toast.store';
-import { extractApiErrorMessage } from '../../../shared/api/client';
-import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
-import { BookingModal } from '../../bookings/components/BookingModal';
 import { useGuideDetail } from '../hooks/useGuideDetail';
-import { useGuideAvailableSlots } from '../hooks/useGuideAvailableSlots';
-import { useContactGuideAboutSlot } from '../hooks/useContactGuideAboutSlot';
+import { GuideBookingSection } from '../components/GuideBookingSection';
 import styles from './GuideDetailPage.module.css';
 
 export function GuideDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const requireAuth = useRequireAuth();
-  const push = useToastStore((s) => s.push);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [contactingSlotId, setContactingSlotId] = useState<string | null>(null);
 
   const { data: guide, isLoading, isError, refetch } = useGuideDetail(id);
-  const { data: slots, isLoading: slotsLoading } = useGuideAvailableSlots(id);
-  const contactAboutSlot = useContactGuideAboutSlot();
-  const canBook = typeof guide?.daily_rate === 'number';
-  const sortedSlots = [...(slots ?? [])].sort((a, b) => (a.date + a.start_time).localeCompare(b.date + b.start_time));
-
-  function handleContact() {
-    requireAuth(() => setModalOpen(true), t('guides.contactRequiresAuth'));
-  }
-
-  function handleContactAboutSlot(slotId: string) {
-    requireAuth(() => {
-      setContactingSlotId(slotId);
-      contactAboutSlot.mutate(slotId, {
-        onSuccess: (conversation) => {
-          navigate(`/messages?conversation=${conversation.id}`);
-        },
-        onError: (err) => {
-          push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) });
-          setContactingSlotId(null);
-        },
-      });
-    }, t('guides.contactRequiresAuth'));
-  }
 
   if (isLoading) {
     return (
@@ -171,76 +138,16 @@ export function GuideDetailPage() {
             </section>
           )}
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>
-              <CalendarDays size={18} strokeWidth={2} />
-              {t('guides.availableSlots')}
-            </h2>
-            {slotsLoading && <Spinner size={20} />}
-            {!slotsLoading && sortedSlots.length === 0 && (
-              <p className={styles.description}>{t('guides.noSlotsAvailable')}</p>
-            )}
-            {!slotsLoading && sortedSlots.length > 0 && (
-              <div className={styles.slotGrid}>
-                {sortedSlots.map((slot) => (
-                  <div key={slot.id} className={styles.slotCard}>
-                    <div>
-                      <p className={styles.slotCardDate}>{slot.date}</p>
-                      <p className={styles.slotCardTime}>
-                        {slot.start_time} - {slot.end_time}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className={styles.slotContactBtn}
-                      onClick={() => handleContactAboutSlot(slot.id)}
-                      disabled={contactAboutSlot.isPending && contactingSlotId === slot.id}
-                    >
-                      <MessageCircle size={14} strokeWidth={2} />
-                      {t('guides.contactAboutSlot')}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
         </div>
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
-            {typeof guide.daily_rate === 'number' && (
-              <p className={styles.priceInfo}>
-                {t('guides.perDay', { price: guide.daily_rate.toLocaleString('fr-FR'), currency: guide.currency })}
-              </p>
-            )}
-            {typeof guide.hourly_rate === 'number' && (
-              <p className={styles.priceInfoSecondary}>
-                {guide.hourly_rate.toLocaleString('fr-FR')} {guide.currency} / {t('guides.hour')}
-              </p>
-            )}
-            <Button fullWidth onClick={handleContact} disabled={!canBook}>
-              {canBook ? t('guides.contact') : t('guides.rateUnavailable')}
-            </Button>
+            <GuideBookingSection guide={guide} />
           </div>
         </aside>
       </div>
 
       <RelatedModules currentPath="/guides" />
-
-      {canBook && (
-        <BookingModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          itemType="guide"
-          itemId={guide.id}
-          itemTitle={guide.display_name}
-          unitPrice={guide.daily_rate!}
-          currency={guide.currency}
-          requiresDate
-          slots={sortedSlots}
-          hourlyRate={guide.hourly_rate}
-        />
-      )}
     </div>
   );
 }

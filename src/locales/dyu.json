@@ -362,7 +362,8 @@
     "hour": "lɛrɛ",
     "availableSlots": "Waati minnu bɛ",
     "noSlotsAvailable": "Waati foyi ma bɔ fɔlɔ.",
-    "contactAboutSlot": "Kuma waati nin kan"
+    "contactAboutSlot": "Kuma waati nin kan",
+    "viewAvailability": "Waati bɛnnenw lajɛ"
   },
   "events": {
     "title": "Waati-kunw ni kalanda",
@@ -411,9 +412,11 @@
     "chooseSlot": "Waati kelen sugandi",
     "weekdaysShort": ["Ntɛ", "Tar", "Ara", "Ala", "Jum", "Sib", "Kar"],
     "slotsOn": "Waatiw don {{date}} na",
+    "summaryTitle": "Lasɔrɔ kunbɛn",
     "summaryDate": "Don",
     "summaryTime": "Waati",
     "summaryDuration": "Waati janya",
+    "reserveSlot": "Waati nin tarawu",
     "quantity": "Hakɛ",
     "total": "Bɛɛ lajɛlen",
     "confirm": "Tarawu sɛbɛnni",

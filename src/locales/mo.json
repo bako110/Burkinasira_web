@@ -362,7 +362,8 @@
     "hour": "sasa",
     "availableSlots": "Sasa sẽn ka lʋɩta",
     "noSlotsAvailable": "Sasa ka be ye.",
-    "contactAboutSlot": "Sok-a sasa wɛɛngẽ"
+    "contactAboutSlot": "Sok-a sasa wɛɛngẽ",
+    "viewAvailability": "Ges sasa sẽn be"
   },
   "events": {
     "title": "Kibs la yʋʋm-sɛb",
@@ -411,9 +412,11 @@
     "chooseSlot": "Yaa sasa a yembre",
     "weekdaysShort": ["Lũ", "Tar", "Ãra", "Ãrb", "Arz", "Sib", "Ass"],
     "slotsOn": "Sasa {{date}} wakate",
+    "summaryTitle": "Kell-goam",
     "summaryDate": "Rasem",
     "summaryTime": "Wakat",
     "summaryDuration": "Sasa",
+    "reserveSlot": "Reereg sasa kãnga",
     "quantity": "Sõngo",
     "total": "Fãa",
     "confirm": "Kõ reereem-kãseng",
