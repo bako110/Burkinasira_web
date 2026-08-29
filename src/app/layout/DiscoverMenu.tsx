@@ -40,10 +40,13 @@ const PRACTICAL_LINKS = [
   { to: '/weather', key: 'weather', Icon: CloudSun },
 ] as const;
 
+const CLOSE_DELAY_MS = 150;
+
 export function DiscoverMenu() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -54,8 +57,31 @@ export function DiscoverMenu() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  function cancelClose() {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }
+
+  function handleMouseEnter() {
+    cancelClose();
+    setOpen(true);
+  }
+
+  function handleMouseLeave() {
+    cancelClose();
+    closeTimeoutRef.current = setTimeout(() => setOpen(false), CLOSE_DELAY_MS);
+  }
+
   return (
-    <div className={styles.wrap} ref={ref}>
+    <div className={styles.wrap} ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <button
         type="button"
         className={clsx(styles.trigger, open && styles.triggerActive)}
