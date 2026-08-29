@@ -8,6 +8,7 @@ import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { MobileTabBar } from './MobileTabBar';
+import { ExploreMenu } from './ExploreMenu';
 import { DiscoverMenu } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
@@ -49,9 +50,7 @@ export function AppLayout() {
             <NavLink to="/" end className={({ isActive }) => clsx(styles.navLink, isActive && styles.navLinkActive)}>
               {t('nav.home')}
             </NavLink>
-            <NavLink to="/explore" className={({ isActive }) => clsx(styles.navLink, isActive && styles.navLinkActive)}>
-              {t('nav.explore')}
-            </NavLink>
+            <ExploreMenu />
             <DiscoverMenu />
           </nav>
 
