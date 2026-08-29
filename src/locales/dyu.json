@@ -13,7 +13,11 @@
     "close": "A datugu",
     "delete": "A bɔ",
     "previous": "Ka taa kɔfɛ",
-    "next": "Ka taa ɲɛfɛ"
+    "next": "Ka taa ɲɛfɛ",
+    "regionFilter": "Mara sugandi",
+    "allRegions": "Mara bɛɛ",
+    "provinceFilter": "Provɛnsi sugandi",
+    "allProvinces": "Provɛnsi bɛɛ"
   },
   "nav": {
     "home": "So",

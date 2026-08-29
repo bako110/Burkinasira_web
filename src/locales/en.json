@@ -13,7 +13,11 @@
     "close": "Close",
     "delete": "Delete",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "regionFilter": "Filter by region",
+    "allRegions": "All regions",
+    "provinceFilter": "Filter by province",
+    "allProvinces": "All provinces"
   },
   "nav": {
     "home": "Home",

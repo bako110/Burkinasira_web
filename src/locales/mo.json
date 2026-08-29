@@ -13,7 +13,11 @@
     "close": "Ki",
     "delete": "Yiisi",
     "previous": "Sɔsg",
-    "next": "Poore"
+    "next": "Poore",
+    "regionFilter": "Tẽnga yãk",
+    "allRegions": "Tẽns fãa",
+    "provinceFilter": "Provẽs yãk",
+    "allProvinces": "Provẽs fãa"
   },
   "nav": {
     "home": "Zaka",

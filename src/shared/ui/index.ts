@@ -18,3 +18,4 @@ export { BurkinaFlag } from './BurkinaFlag';
 export { FloatingFlags } from './FloatingFlags';
 export { Tabs } from './Tabs';
 export type { TabItem } from './Tabs';
+export { RegionProvinceFilter } from './RegionProvinceFilter';
