@@ -13,6 +13,7 @@ export interface UserPublic {
   email: string;
   phone?: string | null;
   role: UserRole;
+  is_verified: boolean;
   avatar_url?: string | null;
   preferred_language?: string;
 }

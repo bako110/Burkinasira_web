@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { AppLayout } from '../layout/AppLayout';
 import { ProtectedRoute } from './ProtectedRoute';
+import { RoleGate } from './RoleGate';
+import { ProRouteGate } from './ProRouteGate';
 import { ErrorPage } from '../errors/ErrorPage';
 import { HomePage } from '../../features/home/pages/HomePage';
 import { ExplorePage } from '../../features/destinations/pages/ExplorePage';
@@ -39,54 +41,85 @@ import { ProfilePage } from '../../features/profile/pages/ProfilePage';
 import { PassportPage } from '../../features/passport/pages/PassportPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
+import { ProLayout } from '../layout/ProLayout';
+import { PendingVerificationPage } from '../../features/pro/pages/PendingVerificationPage';
+import { ProDashboardPage } from '../../features/pro/pages/ProDashboardPage';
+import { GuideAnalyticsPage } from '../../features/pro/pages/GuideAnalyticsPage';
+import { GuideProfilePage } from '../../features/pro/pages/GuideProfilePage';
+import { GuideAvailabilityPage } from '../../features/pro/pages/GuideAvailabilityPage';
+import { GuideBookingsPage } from '../../features/pro/pages/GuideBookingsPage';
+import { GuideReviewsPage } from '../../features/pro/pages/GuideReviewsPage';
 
 export const router = createBrowserRouter([
   {
-    element: <AppLayout />,
+    element: <RoleGate />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/explore', element: <ExplorePage /> },
-      { path: '/explore/:slug', element: <DestinationDetailPage /> },
-      { path: '/hotels', element: <HotelsPage /> },
-      { path: '/hotels/:id', element: <HotelDetailPage /> },
-      { path: '/restaurants', element: <RestaurantsPage /> },
-      { path: '/restaurants/:id', element: <RestaurantDetailPage /> },
-      { path: '/mobility', element: <MobilityPage /> },
-      { path: '/mobility/:id', element: <TransportDetailPage /> },
-      { path: '/guides', element: <GuidesPage /> },
-      { path: '/guides/:id', element: <GuideDetailPage /> },
-      { path: '/events', element: <EventsPage /> },
-      { path: '/events/:id', element: <EventDetailPage /> },
-      { path: '/health', element: <HealthPage /> },
-      { path: '/health/:id', element: <HealthFacilityDetailPage /> },
-      { path: '/emergency', element: <EmergencyPage /> },
-      { path: '/community', element: <CommunityPage /> },
-      { path: '/community/groups/:groupId', element: <GroupDetailPage /> },
-      { path: '/weather', element: <WeatherPage /> },
-      { path: '/finance', element: <FinancePage /> },
-      { path: '/finance/:id', element: <MoneyServiceDetailPage /> },
-      { path: '/connectivity', element: <ConnectivityPage /> },
-      { path: '/connectivity/:id', element: <ConnectivityPointDetailPage /> },
-      { path: '/culture', element: <CulturePage /> },
-      { path: '/culture/:id', element: <CultureContentDetailPage /> },
-      { path: '/market', element: <MarketPage /> },
-      { path: '/market/:id', element: <ProductDetailPage /> },
       {
-        element: <ProtectedRoute />,
+        element: <AppLayout />,
         children: [
-          { path: '/bookings', element: <MyBookingsPage /> },
-          { path: '/trips', element: <MyTripsPage /> },
-          { path: '/trips/:tripId', element: <TripDetailPage /> },
-          { path: '/notifications', element: <NotificationsPage /> },
-          { path: '/messages', element: <MessagesPage /> },
-          { path: '/profile', element: <ProfilePage /> },
-          { path: '/passport', element: <PassportPage /> },
+          { path: '/', element: <HomePage /> },
+          { path: '/explore', element: <ExplorePage /> },
+          { path: '/explore/:slug', element: <DestinationDetailPage /> },
+          { path: '/hotels', element: <HotelsPage /> },
+          { path: '/hotels/:id', element: <HotelDetailPage /> },
+          { path: '/restaurants', element: <RestaurantsPage /> },
+          { path: '/restaurants/:id', element: <RestaurantDetailPage /> },
+          { path: '/mobility', element: <MobilityPage /> },
+          { path: '/mobility/:id', element: <TransportDetailPage /> },
+          { path: '/guides', element: <GuidesPage /> },
+          { path: '/guides/:id', element: <GuideDetailPage /> },
+          { path: '/events', element: <EventsPage /> },
+          { path: '/events/:id', element: <EventDetailPage /> },
+          { path: '/health', element: <HealthPage /> },
+          { path: '/health/:id', element: <HealthFacilityDetailPage /> },
+          { path: '/emergency', element: <EmergencyPage /> },
+          { path: '/community', element: <CommunityPage /> },
+          { path: '/community/groups/:groupId', element: <GroupDetailPage /> },
+          { path: '/weather', element: <WeatherPage /> },
+          { path: '/finance', element: <FinancePage /> },
+          { path: '/finance/:id', element: <MoneyServiceDetailPage /> },
+          { path: '/connectivity', element: <ConnectivityPage /> },
+          { path: '/connectivity/:id', element: <ConnectivityPointDetailPage /> },
+          { path: '/culture', element: <CulturePage /> },
+          { path: '/culture/:id', element: <CultureContentDetailPage /> },
+          { path: '/market', element: <MarketPage /> },
+          { path: '/market/:id', element: <ProductDetailPage /> },
+          {
+            element: <ProtectedRoute />,
+            children: [
+              { path: '/bookings', element: <MyBookingsPage /> },
+              { path: '/trips', element: <MyTripsPage /> },
+              { path: '/trips/:tripId', element: <TripDetailPage /> },
+              { path: '/notifications', element: <NotificationsPage /> },
+              { path: '/messages', element: <MessagesPage /> },
+              { path: '/profile', element: <ProfilePage /> },
+              { path: '/passport', element: <PassportPage /> },
+            ],
+          },
+          { path: '*', element: <ErrorPage /> },
         ],
       },
-      { path: '*', element: <ErrorPage /> },
     ],
   },
   { path: '/login', element: <LoginPage />, errorElement: <ErrorPage /> },
   { path: '/register', element: <RegisterPage />, errorElement: <ErrorPage /> },
+  {
+    element: <ProRouteGate />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: '/pro/pending', element: <PendingVerificationPage /> },
+      {
+        element: <ProLayout />,
+        children: [
+          { path: '/pro/guide', element: <GuideAnalyticsPage /> },
+          { path: '/pro/guide/profile', element: <GuideProfilePage /> },
+          { path: '/pro/guide/availability', element: <GuideAvailabilityPage /> },
+          { path: '/pro/guide/bookings', element: <GuideBookingsPage /> },
+          { path: '/pro/guide/reviews', element: <GuideReviewsPage /> },
+          { path: '/pro/provider', element: <ProDashboardPage /> },
+        ],
+      },
+    ],
+  },
 ]);

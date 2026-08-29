@@ -11,6 +11,7 @@ import { AuthHeader } from '../components/AuthHeader';
 import { StepIndicator } from '../components/StepIndicator';
 import { SocialAuthButtons } from '../components/SocialAuthButtons';
 import type { SignupRole } from '../types';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import styles from './AuthPage.module.css';
 
 const TOTAL_STEPS = 4;
@@ -49,7 +50,7 @@ export function RegisterPage() {
     e.preventDefault();
     mutate(
       { full_name: fullName, email, password, phone: phone || undefined, role },
-      { onSuccess: () => navigate(from, { replace: true }) },
+      { onSuccess: (data) => navigate(getPostLoginPath(data.user, from), { replace: true }) },
     );
   }
 

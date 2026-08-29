@@ -15,3 +15,5 @@ export { RelatedModules } from './RelatedModules';
 export { DetailBackButton } from './DetailBackButton';
 export { BurkinaFlag } from './BurkinaFlag';
 export { FloatingFlags } from './FloatingFlags';
+export { Tabs } from './Tabs';
+export type { TabItem } from './Tabs';

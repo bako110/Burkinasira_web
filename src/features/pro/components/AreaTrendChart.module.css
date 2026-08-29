@@ -1,0 +1,114 @@
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.totalValue {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-text);
+  font-variant-numeric: proportional-nums;
+}
+
+.svgWrap {
+  position: relative;
+  width: 100%;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.gridline {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  fill: var(--color-text-subtle);
+  font-size: 10px;
+}
+
+.area {
+  opacity: 0.12;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.endDot {
+  stroke-width: 2;
+}
+
+.crosshair {
+  stroke: var(--color-text-subtle);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.hoverDot {
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.hitLayer {
+  fill: transparent;
+  cursor: crosshair;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.15));
+  z-index: 5;
+}
+
+.tooltipValue {
+  font-weight: 700;
+}
+
+.tooltipLabel {
+  color: var(--color-bg);
+  opacity: 0.75;
+  margin-left: 4px;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  color: var(--color-text-subtle);
+  font-size: 0.8125rem;
+}

@@ -7,6 +7,7 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useLogin } from '../hooks/useLogin';
 import { AuthHeader } from '../components/AuthHeader';
 import { SocialAuthButtons } from '../components/SocialAuthButtons';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import styles from './AuthPage.module.css';
 
 export function LoginPage() {
@@ -24,7 +25,7 @@ export function LoginPage() {
     e.preventDefault();
     mutate(
       { email, password },
-      { onSuccess: () => navigate(from, { replace: true }) },
+      { onSuccess: (data) => navigate(getPostLoginPath(data.user, from), { replace: true }) },
     );
   }
 

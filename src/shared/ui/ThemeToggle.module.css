@@ -1,5 +1,7 @@
 .group {
   display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   padding: 4px;
   background-color: var(--color-bg-inset);
   border-radius: var(--radius-full);
@@ -11,12 +13,16 @@
   border: none;
   background: transparent;
   height: 32px;
-  padding: 0 var(--space-3);
+  min-width: 0;
+  padding: 0 var(--space-2);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
