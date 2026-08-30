@@ -19,10 +19,12 @@
     "provinceFilter": "Provẽs yãk",
     "allProvinces": "Provẽs fãa"
   },
-  "virtualTour": {
-    "title": "Gũus-zĩiga",
-    "loading": "Gũus-zĩiga wata...",
-    "cta": "Gũus-zĩiga 360°",
+  "gallery": {
+    "title": "Foto-zĩiga",
+    "zoomIn": "Bɩlg",
+    "zoomOut": "Bʋgs",
+    "previous": "Sɔsg",
+    "next": "Poore",
     "ctaHotel": "Ges zaka",
     "ctaRestaurant": "Ges rɩ-zĩiga",
     "ctaTransport": "Ges pʋɩʋgã",
@@ -276,9 +278,6 @@
     "addMedia": "Paas",
     "mediaHint": "Foto la video (JPEG, PNG, WEBP, MP4, WEBM). Wilg f tʋʋm-zĩig neere.",
     "photosAndVideos": "Foto la video",
-    "photos360Label": "Gũus-zĩiga 360°",
-    "photos360Hint": "Foto bɩ video sẽn gũus 360° ne masin bɩ app. Kɩtdame tɩ nebã tõe n ges zĩiga taoore n deng b sẽn na paam sɛb-kɩtga.",
-    "addPhoto360": "Paas gũus-zĩiga 360°",
     "myFirstEstablishment": "Sɩng ne f tʋʋm-zĩig naaneg",
     "myFirstEstablishmentDesc": "Yãk buud ning f sẽn tʋmd tɩ f zĩig segl.",
     "addAnotherType": "Get tʋʋm-buud a to",
@@ -294,7 +293,12 @@
     "teamMemberRemoved": "Neda yiisame sull pʋgẽ",
     "noTeamMembers": "Ka sull-neb tʋʋm-zĩig kãngã yĩnga ye",
     "removeTeamMemberConfirmTitle": "Yiis neda kãnga?",
-    "removeTeamMemberConfirmMessage": "Neda kãng pa na tar sor n get tʋʋm-zĩig kãngã ye."
+    "removeTeamMemberConfirmMessage": "Neda kãng pa na tar sor n get tʋʋm-zĩig kãngã ye.",
+    "teamMemberName": "Yʋʋr fãa",
+    "temporaryPassword": "Gũusg-goam sẽn ka pidsi",
+    "temporaryPasswordPlaceholder": "Bɩ yɩ sɩb 6 bɩ n yɩɩda",
+    "temporaryPasswordHint": "Gũusg-goam kãngã naan neda konte yĩnga f sã n ka tar-a. Kõ-a woto neda tɩ b tõe n kẽ.",
+    "teamMemberAccountCreated": "Konte naana la booli tʋma neere"
   },
   "theme": {
     "light": "Vẽenem",

@@ -51,7 +51,6 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
   const [contactPhone, setContactPhone] = useState(provider?.contact_phone ?? '');
   const [photos, setPhotos] = useState<string[]>(provider?.photos ?? []);
   const [videos, setVideos] = useState<string[]>(provider?.videos ?? []);
-  const [photos360, setPhotos360] = useState<string[]>(provider?.photos_360 ?? []);
 
   const isSaving = createProvider.isPending || updateProvider.isPending;
 
@@ -69,7 +68,6 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
       vehicle_info: vehicleInfo || undefined,
       photos,
       videos,
-      photos_360: photos360,
       price_estimate: priceEstimate ? Number(priceEstimate) : undefined,
       price_currency: 'XOF',
       contact_phone: contactPhone,
@@ -143,8 +141,6 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
         videos={videos}
         onPhotosChange={setPhotos}
         onVideosChange={setVideos}
-        photos360={photos360}
-        onPhotos360Change={setPhotos360}
       />
 
       <div className={formStyles.row}>

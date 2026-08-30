@@ -56,7 +56,6 @@ export interface RestaurantDetail {
   address?: string;
   photos: string[];
   videos: string[];
-  photos_360: string[];
   opening_hours: OpeningHours[];
   menu: MenuItem[];
   dietary_tags: DietaryTag[];

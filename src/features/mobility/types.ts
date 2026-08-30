@@ -44,7 +44,6 @@ export interface TransportProviderDetail {
   vehicle_info?: string;
   photos: string[];
   videos: string[];
-  photos_360: string[];
   price_estimate?: number;
   price_currency: string;
   contact_phone?: string;

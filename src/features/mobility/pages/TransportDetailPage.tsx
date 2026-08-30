@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, RotateCw } from 'lucide-react';
+import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximize2 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Virtual360Viewer } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
 
@@ -11,7 +11,8 @@ export function TransportDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [tourOpen, setTourOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryStartIndex, setGalleryStartIndex] = useState(0);
 
   const { data: provider, isLoading, isError, refetch } = useTransportProviderDetail(id);
 
@@ -41,9 +42,15 @@ export function TransportDetailPage() {
   }
 
   const location = [provider.city, provider.region].filter(Boolean).join(', ');
+  const allMedia = [...(provider.photos ?? []), ...(provider.videos ?? [])];
   const mapsUrl = provider.base_location
     ? `https://www.google.com/maps?q=${provider.base_location.latitude},${provider.base_location.longitude}`
     : undefined;
+
+  function openGallery(index: number) {
+    setGalleryStartIndex(index);
+    setGalleryOpen(true);
+  }
 
   return (
     <div className={styles.page}>
@@ -76,10 +83,10 @@ export function TransportDetailPage() {
               </span>
             )}
           </div>
-          {provider.photos_360.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
-              <RotateCw size={15} strokeWidth={2} />
-              {t('virtualTour.ctaTransport')}
+          {allMedia.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
+              <Maximize2 size={15} strokeWidth={2} />
+              {t('gallery.ctaTransport')}
             </Button>
           )}
         </div>
@@ -98,6 +105,23 @@ export function TransportDetailPage() {
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('mobility.vehicleInfo')}</h2>
               <p className={styles.description}>{provider.vehicle_info}</p>
+            </section>
+          )}
+
+          {allMedia.length > 0 && (
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>{t('gallery.title')}</h2>
+              <div className={styles.mediaGrid}>
+                {allMedia.map((url, i) => (
+                  <button key={i} type="button" className={styles.mediaThumbButton} onClick={() => openGallery(i)}>
+                    {url.toLowerCase().split('?')[0].match(/\.(mp4|webm|mov)$/) ? (
+                      <video src={url} muted className={styles.mediaThumb} />
+                    ) : (
+                      <img src={url} alt="" className={styles.mediaThumb} loading="lazy" />
+                    )}
+                  </button>
+                ))}
+              </div>
             </section>
           )}
         </div>
@@ -132,11 +156,12 @@ export function TransportDetailPage() {
 
       <RelatedModules currentPath="/mobility" />
 
-      <Virtual360Viewer
-        open={tourOpen}
-        onClose={() => setTourOpen(false)}
-        urls={provider.photos_360}
-        title={t('virtualTour.ctaTransport')}
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={allMedia}
+        startIndex={galleryStartIndex}
+        title={provider.name}
       />
     </div>
   );

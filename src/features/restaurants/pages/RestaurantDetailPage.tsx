@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, RotateCw } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Virtual360Viewer } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
 
@@ -11,7 +11,8 @@ export function RestaurantDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [tourOpen, setTourOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryStartIndex, setGalleryStartIndex] = useState(0);
 
   const { data: restaurant, isLoading, isError, refetch } = useRestaurantDetail(id);
 
@@ -42,7 +43,13 @@ export function RestaurantDetailPage() {
 
   const cover = restaurant.photos?.[0];
   const gallery = restaurant.photos?.slice(1, 5) ?? [];
+  const allMedia = [...(restaurant.photos ?? []), ...(restaurant.videos ?? [])];
   const location = [restaurant.city, restaurant.region].filter(Boolean).join(', ');
+
+  function openGallery(index: number) {
+    setGalleryStartIndex(index);
+    setGalleryOpen(true);
+  }
   const mapsUrl = restaurant.location
     ? `https://www.google.com/maps?q=${restaurant.location.latitude},${restaurant.location.longitude}`
     : undefined;
@@ -83,10 +90,10 @@ export function RestaurantDetailPage() {
               </span>
             )}
           </div>
-          {restaurant.photos_360.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
-              <RotateCw size={15} strokeWidth={2} />
-              {t('virtualTour.ctaRestaurant')}
+          {allMedia.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
+              <Maximize2 size={15} strokeWidth={2} />
+              {t('gallery.ctaRestaurant')}
             </Button>
           )}
         </div>
@@ -95,7 +102,9 @@ export function RestaurantDetailPage() {
       {gallery.length > 0 && (
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
-            <img key={i} src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            <button key={i} type="button" className={styles.galleryImgButton} onClick={() => openGallery(i + 1)}>
+              <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            </button>
           ))}
         </div>
       )}
@@ -212,11 +221,12 @@ export function RestaurantDetailPage() {
 
       <RelatedModules currentPath="/restaurants" />
 
-      <Virtual360Viewer
-        open={tourOpen}
-        onClose={() => setTourOpen(false)}
-        urls={restaurant.photos_360}
-        title={t('virtualTour.ctaRestaurant')}
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={allMedia}
+        startIndex={galleryStartIndex}
+        title={restaurant.name}
       />
     </div>
   );

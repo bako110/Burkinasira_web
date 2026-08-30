@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ImageOff, ArrowLeft, Star, Truck, Package, User } from 'lucide-react';
+import { ImageOff, ArrowLeft, Star, Truck, Package, User, Maximize2 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useProductDetail } from '../hooks/useProductDetail';
@@ -18,6 +18,7 @@ export function ProductDetailPage() {
   const requireAuth = useRequireAuth();
   const [activePhoto, setActivePhoto] = useState(0);
   const [contactOpen, setContactOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
 
   const { data: product, isLoading, isError, refetch } = useProductDetail(id);
   const { data: artisan } = useArtisanDetail(product?.artisan_id);
@@ -53,6 +54,7 @@ export function ProductDetailPage() {
 
   const outOfStock = typeof product.stock_quantity === 'number' && product.stock_quantity <= 0;
   const cover = product.photos[activePhoto] ?? product.photos[0];
+  const allMedia = [...(product.photos ?? []), ...(product.videos ?? [])];
 
   return (
     <div className={styles.page}>
@@ -64,7 +66,12 @@ export function ProductDetailPage() {
         <div className={styles.gallery}>
           <div className={styles.mainImageWrap}>
             {cover ? (
-              <img src={cover} alt={product.name} className={styles.mainImage} />
+              <button type="button" className={styles.mainImageButton} onClick={() => setGalleryOpen(true)}>
+                <img src={cover} alt={product.name} className={styles.mainImage} />
+                <span className={styles.expandHint}>
+                  <Maximize2 size={16} strokeWidth={2} />
+                </span>
+              </button>
             ) : (
               <div className={styles.imagePlaceholder}>
                 <ImageOff size={40} strokeWidth={1.5} />
@@ -146,6 +153,14 @@ export function ProductDetailPage() {
           defaultMessage={t('market.contactDefaultMessage', { product: product.name })}
         />
       )}
+
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={allMedia}
+        startIndex={activePhoto}
+        title={product.name}
+      />
     </div>
   );
 }

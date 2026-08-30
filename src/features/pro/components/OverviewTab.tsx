@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Building2, UtensilsCrossed, Car, ShoppingBag, Plus } from 'lucide-react';
+import { Building2, UtensilsCrossed, Car, ShoppingBag } from 'lucide-react';
 
 import { Spinner } from '../../../shared/ui';
 import {
@@ -26,7 +25,6 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
   const { data: transportProviders, isLoading: loadingTransport } = useMyTransportProviders();
   const { data: artisanProfile, isLoading: loadingArtisanProfile } = useMyArtisanProfile();
   const { data: products, isLoading: loadingProducts } = useMyProducts();
-  const [showAddMore, setShowAddMore] = useState(false);
   const isLoading =
     loadingHotels || loadingRestaurants || loadingTransport || loadingArtisanProfile || loadingProducts;
 
@@ -56,7 +54,7 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
     ...(transportProviders ?? []),
   ].filter((item) => UNPUBLISHED_STATUSES.has(item.status)).length;
 
-  const allCategories = [
+  const ownedCategories = [
     { key: 'hotel', label: t('pro.tab_hotel'), count: hotels?.length ?? 0, owned: (hotels?.length ?? 0) > 0 },
     {
       key: 'restaurant',
@@ -71,10 +69,7 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
       owned: (transportProviders?.length ?? 0) > 0,
     },
     { key: 'artisan', label: t('pro.tab_artisan'), count: products?.length ?? 0, owned: Boolean(artisanProfile) },
-  ] as const;
-
-  const ownedCategories = allCategories.filter((c) => c.owned);
-  const otherCategories = allCategories.filter((c) => !c.owned);
+  ].filter((c) => c.owned);
 
   return (
     <div className={styles.container}>
@@ -88,7 +83,7 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
 
       <div className={styles.categoryGrid}>
         {ownedCategories.map(({ key, label, count }) => {
-          const Icon = CATEGORY_ICONS[key];
+          const Icon = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
           return (
             <button key={key} type="button" className={styles.categoryCard} onClick={() => onNavigate(key)}>
               <span className={styles.categoryIcon}>
@@ -100,31 +95,6 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
           );
         })}
       </div>
-
-      {otherCategories.length > 0 && (
-        <div className={styles.addMoreSection}>
-          {!showAddMore ? (
-            <button type="button" className={styles.addMoreToggle} onClick={() => setShowAddMore(true)}>
-              <Plus size={15} strokeWidth={2} />
-              {t('pro.addAnotherType')}
-            </button>
-          ) : (
-            <div className={styles.categoryGrid}>
-              {otherCategories.map(({ key, label }) => {
-                const Icon = CATEGORY_ICONS[key];
-                return (
-                  <button key={key} type="button" className={styles.categoryCardMuted} onClick={() => onNavigate(key)}>
-                    <span className={styles.categoryIcon}>
-                      <Icon size={20} strokeWidth={1.75} />
-                    </span>
-                    <span className={styles.categoryLabel}>{label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }

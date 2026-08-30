@@ -50,7 +50,6 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
   const [contactEmail, setContactEmail] = useState(restaurant?.contact_email ?? '');
   const [photos, setPhotos] = useState<string[]>(restaurant?.photos ?? []);
   const [videos, setVideos] = useState<string[]>(restaurant?.videos ?? []);
-  const [photos360, setPhotos360] = useState<string[]>(restaurant?.photos_360 ?? []);
 
   const isSaving = createRestaurant.isPending || updateRestaurant.isPending;
 
@@ -72,7 +71,6 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
       contact_email: contactEmail || undefined,
       photos,
       videos,
-      photos_360: photos360,
     };
 
     const onSettled = {
@@ -157,8 +155,6 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
         videos={videos}
         onPhotosChange={setPhotos}
         onVideosChange={setVideos}
-        photos360={photos360}
-        onPhotos360Change={setPhotos360}
       />
 
       <div className={formStyles.row}>

@@ -172,7 +172,6 @@ export interface CreateHotelPayload {
   address?: string;
   photos?: string[];
   videos?: string[];
-  photos_360?: string[];
   amenities?: string[];
   contact_phone?: string;
   contact_email?: string;
@@ -190,7 +189,6 @@ export interface CreateRestaurantPayload {
   address?: string;
   photos?: string[];
   videos?: string[];
-  photos_360?: string[];
   dietary_tags?: string[];
   accepts_table_booking?: boolean;
   offers_takeaway?: boolean;
@@ -209,7 +207,6 @@ export interface CreateTransportProviderPayload {
   vehicle_info?: string;
   photos?: string[];
   videos?: string[];
-  photos_360?: string[];
   price_estimate?: number;
   price_currency?: string;
   contact_phone: string;
@@ -221,7 +218,6 @@ export interface CreateArtisanProfilePayload {
   photo_url?: string;
   photos?: string[];
   videos?: string[];
-  photos_360?: string[];
   region: string;
   province?: string;
   city?: string;
@@ -250,10 +246,13 @@ export interface TeamMember {
   establishment_type?: ProviderItemType;
   establishment_id?: string;
   is_active: boolean;
+  account_created: boolean;
 }
 
 export interface InviteTeamMemberPayload {
   email: string;
+  full_name: string;
+  temporary_password: string;
   role: TeamMemberRole;
   establishment_type: ProviderItemType;
   establishment_id: string;

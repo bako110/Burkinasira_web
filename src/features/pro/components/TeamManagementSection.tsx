@@ -24,17 +24,31 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
   const removeTeamMember = useRemoveTeamMember(itemType, itemId);
 
   const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [temporaryPassword, setTemporaryPassword] = useState('');
   const [role, setRole] = useState<TeamMemberRole>('manager');
   const [pendingRemove, setPendingRemove] = useState<TeamMember | undefined>(undefined);
 
   function handleInvite(e: FormEvent) {
     e.preventDefault();
     inviteTeamMember.mutate(
-      { email, role, establishment_type: itemType, establishment_id: itemId },
       {
-        onSuccess: () => {
-          push({ variant: 'success', message: t('pro.teamMemberInvited') });
+        email,
+        full_name: fullName,
+        temporary_password: temporaryPassword,
+        role,
+        establishment_type: itemType,
+        establishment_id: itemId,
+      },
+      {
+        onSuccess: (member) => {
+          push({
+            variant: 'success',
+            message: member.account_created ? t('pro.teamMemberAccountCreated') : t('pro.teamMemberInvited'),
+          });
           setEmail('');
+          setFullName('');
+          setTemporaryPassword('');
         },
         onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
       },
@@ -44,6 +58,19 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
   return (
     <div className={styles.section}>
       <form onSubmit={handleInvite} className={styles.form}>
+        <div className={styles.field}>
+          <label htmlFor="team_full_name" className={styles.label}>
+            {t('pro.teamMemberName')}
+          </label>
+          <input
+            id="team_full_name"
+            className={styles.input}
+            required
+            minLength={2}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+        </div>
         <div className={styles.field}>
           <label htmlFor="team_email" className={styles.label}>
             {t('pro.inviteByEmail')}
@@ -56,6 +83,21 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
             placeholder="manager@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className={styles.field}>
+          <label htmlFor="team_password" className={styles.label}>
+            {t('pro.temporaryPassword')}
+          </label>
+          <input
+            id="team_password"
+            type="text"
+            className={styles.input}
+            required
+            minLength={6}
+            placeholder={t('pro.temporaryPasswordPlaceholder')}
+            value={temporaryPassword}
+            onChange={(e) => setTemporaryPassword(e.target.value)}
           />
         </div>
         <div className={styles.field}>
@@ -80,6 +122,7 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
           {t('pro.invite')}
         </Button>
       </form>
+      <p className={styles.hint}>{t('pro.temporaryPasswordHint')}</p>
 
       {isLoading ? (
         <Spinner size={22} />

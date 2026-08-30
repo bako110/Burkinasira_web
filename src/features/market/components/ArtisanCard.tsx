@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { User, ShieldCheck, Star, MapPin, RotateCw } from 'lucide-react';
+import { User, ShieldCheck, Star, MapPin, Maximize2 } from 'lucide-react';
 
-import { Button, Virtual360Viewer } from '../../../shared/ui';
+import { Button, ImmersiveGallery } from '../../../shared/ui';
 import type { ArtisanSummary } from '../types';
 import styles from './ArtisanCard.module.css';
 
@@ -12,8 +12,9 @@ interface ArtisanCardProps {
 
 export function ArtisanCard({ artisan }: ArtisanCardProps) {
   const { t } = useTranslation();
-  const [tourOpen, setTourOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const location = [artisan.city, artisan.region].filter(Boolean).join(', ');
+  const allMedia = [...(artisan.photos ?? []), ...(artisan.videos ?? [])];
 
   return (
     <div className={styles.card}>
@@ -49,19 +50,19 @@ export function ArtisanCard({ artisan }: ArtisanCardProps) {
           )}
         </div>
         {artisan.story && <p className={styles.story}>{artisan.story}</p>}
-        {artisan.photos_360.length > 0 && (
-          <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
-            <RotateCw size={14} strokeWidth={2} />
-            {t('virtualTour.ctaArtisan')}
+        {allMedia.length > 0 && (
+          <Button variant="secondary" size="sm" onClick={() => setGalleryOpen(true)}>
+            <Maximize2 size={14} strokeWidth={2} />
+            {t('gallery.ctaArtisan')}
           </Button>
         )}
       </div>
 
-      <Virtual360Viewer
-        open={tourOpen}
-        onClose={() => setTourOpen(false)}
-        urls={artisan.photos_360}
-        title={t('virtualTour.ctaArtisan')}
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={allMedia}
+        title={artisan.display_name}
       />
     </div>
   );

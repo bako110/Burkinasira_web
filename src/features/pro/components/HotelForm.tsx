@@ -45,7 +45,6 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
   const [contactEmail, setContactEmail] = useState(hotel?.contact_email ?? '');
   const [photos, setPhotos] = useState<string[]>(hotel?.photos ?? []);
   const [videos, setVideos] = useState<string[]>(hotel?.videos ?? []);
-  const [photos360, setPhotos360] = useState<string[]>(hotel?.photos_360 ?? []);
 
   const isSaving = createHotel.isPending || updateHotel.isPending;
 
@@ -64,7 +63,6 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
       contact_email: contactEmail || undefined,
       photos,
       videos,
-      photos_360: photos360,
     };
 
     const onSettled = {
@@ -137,8 +135,6 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
         videos={videos}
         onPhotosChange={setPhotos}
         onVideosChange={setVideos}
-        photos360={photos360}
-        onPhotos360Change={setPhotos360}
       />
 
       <div className={formStyles.row}>

@@ -40,7 +40,6 @@ export interface ArtisanSummary {
   photo_url?: string;
   photos: string[];
   videos: string[];
-  photos_360: string[];
   region?: string;
   province?: string;
   city?: string;

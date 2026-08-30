@@ -20,4 +20,4 @@ export { FloatingFlags } from './FloatingFlags';
 export { Tabs } from './Tabs';
 export type { TabItem } from './Tabs';
 export { RegionProvinceFilter } from './RegionProvinceFilter';
-export { Virtual360Viewer } from './Virtual360Viewer';
+export { ImmersiveGallery } from './ImmersiveGallery';

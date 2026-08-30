@@ -19,6 +19,12 @@
   gap: var(--space-1);
 }
 
+.hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
 .label {
   font-size: 0.8125rem;
   font-weight: 600;

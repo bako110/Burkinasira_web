@@ -19,10 +19,12 @@
     "provinceFilter": "Filter by province",
     "allProvinces": "All provinces"
   },
-  "virtualTour": {
-    "title": "Virtual tour",
-    "loading": "Loading virtual tour...",
-    "cta": "360° virtual tour",
+  "gallery": {
+    "title": "Gallery",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "previous": "Previous",
+    "next": "Next",
     "ctaHotel": "Visit the hotel",
     "ctaRestaurant": "Visit the restaurant",
     "ctaTransport": "Visit the vehicle",
@@ -276,9 +278,6 @@
     "addMedia": "Add",
     "mediaHint": "Photos and videos (JPEG, PNG, WEBP, MP4, WEBM). Showcase your establishment.",
     "photosAndVideos": "Photos and videos",
-    "photos360Label": "360° virtual tour",
-    "photos360Hint": "360° panoramic photos or videos captured with a device or dedicated app. Lets visitors look around virtually before booking.",
-    "addPhoto360": "Add a 360° view",
     "myFirstEstablishment": "Start by creating your establishment",
     "myFirstEstablishmentDesc": "Choose the type of business you run to set up your space.",
     "addAnotherType": "Manage another type of business",
@@ -294,7 +293,12 @@
     "teamMemberRemoved": "Member removed from the team",
     "noTeamMembers": "No team member for this establishment",
     "removeTeamMemberConfirmTitle": "Remove this member?",
-    "removeTeamMemberConfirmMessage": "This person will no longer have access to manage this establishment."
+    "removeTeamMemberConfirmMessage": "This person will no longer have access to manage this establishment.",
+    "teamMemberName": "Full name",
+    "temporaryPassword": "Temporary password",
+    "temporaryPasswordPlaceholder": "At least 6 characters",
+    "temporaryPasswordHint": "This password is created for the member's account if they don't already have one. Share it with them directly — they can change it once logged in.",
+    "teamMemberAccountCreated": "Account created and invitation sent successfully"
   },
   "theme": {
     "light": "Light",
