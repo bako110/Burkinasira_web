@@ -5,8 +5,16 @@ import { Star } from 'lucide-react';
 import { Spinner, EmptyResults } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
-import { useMyGuideReviews, useReplyToReview } from '../hooks/useGuideReviews';
+import { useMyGuideReviews, useReplyToReview, useReviewsForTarget } from '../hooks/useGuideReviews';
+import type { ProviderItemType } from '../types';
 import styles from './ReviewsTab.module.css';
+
+const ITEM_TYPE_TO_REVIEW_TARGET: Record<ProviderItemType, 'hotel' | 'restaurant' | 'transport' | 'artisan_product'> = {
+  hotel: 'hotel',
+  restaurant: 'restaurant',
+  transport: 'transport',
+  product: 'artisan_product',
+};
 
 function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
@@ -66,9 +74,20 @@ function ReplyForm({ reviewId }: { reviewId: string }) {
   );
 }
 
-export function ReviewsTab() {
+interface ReviewsTabProps {
+  source?: { itemType: ProviderItemType; itemId: string | undefined };
+}
+
+function useReviewsSource(source?: ReviewsTabProps['source']) {
+  const guideQuery = useMyGuideReviews();
+  const targetType = source ? ITEM_TYPE_TO_REVIEW_TARGET[source.itemType] : 'hotel';
+  const providerQuery = useReviewsForTarget(targetType, source?.itemId);
+  return source ? providerQuery : guideQuery;
+}
+
+export function ReviewsTab({ source }: ReviewsTabProps) {
   const { t } = useTranslation();
-  const { data, isLoading } = useMyGuideReviews();
+  const { data, isLoading } = useReviewsSource(source);
 
   const breakdown = data?.rating_breakdown ?? { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 };
   const maxCount = Math.max(1, ...Object.values(breakdown));

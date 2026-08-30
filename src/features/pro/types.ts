@@ -153,3 +153,77 @@ export interface GuideAnalyticsSummary {
   monthly: AnalyticsTimeSeriesPoint[];
   yearly: AnalyticsTimeSeriesPoint[];
 }
+
+export type ProviderItemType = 'hotel' | 'restaurant' | 'transport' | 'product';
+
+export interface GeoPointPayload {
+  latitude: number;
+  longitude: number;
+}
+
+export interface CreateHotelPayload {
+  name: string;
+  type: string;
+  description: string;
+  region: string;
+  province?: string;
+  city?: string;
+  location: GeoPointPayload;
+  address?: string;
+  photos?: string[];
+  amenities?: string[];
+  contact_phone?: string;
+  contact_email?: string;
+}
+
+export interface CreateRestaurantPayload {
+  name: string;
+  type: string;
+  description: string;
+  cuisine_style?: string;
+  region: string;
+  province?: string;
+  city?: string;
+  location: GeoPointPayload;
+  address?: string;
+  photos?: string[];
+  dietary_tags?: string[];
+  accepts_table_booking?: boolean;
+  offers_takeaway?: boolean;
+  contact_phone?: string;
+  contact_email?: string;
+}
+
+export interface CreateTransportProviderPayload {
+  name: string;
+  type: string;
+  description?: string;
+  region: string;
+  province?: string;
+  city?: string;
+  base_location?: GeoPointPayload;
+  vehicle_info?: string;
+  price_estimate?: number;
+  price_currency?: string;
+  contact_phone: string;
+}
+
+export interface CreateArtisanProfilePayload {
+  display_name: string;
+  story?: string;
+  photo_url?: string;
+  region: string;
+  province?: string;
+  city?: string;
+}
+
+export interface CreateProductPayload {
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  currency?: string;
+  photos?: string[];
+  stock_quantity?: number;
+  fulfillment_mode?: string;
+}

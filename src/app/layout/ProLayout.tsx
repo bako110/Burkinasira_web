@@ -14,6 +14,7 @@ import {
   Star,
   Bell,
   MessageCircle,
+  Building2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -23,12 +24,16 @@ import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { useMyNotifications } from '../../features/notifications/hooks/useMyNotifications';
 import styles from './ProLayout.module.css';
 
-const NAV_ITEMS = [
+const GUIDE_NAV_ITEMS = [
   { to: '/pro/guide', end: true, key: 'analytics', Icon: LayoutDashboard },
   { to: '/pro/guide/profile', end: false, key: 'profile', Icon: User },
   { to: '/pro/guide/availability', end: false, key: 'availability', Icon: CalendarClock },
   { to: '/pro/guide/bookings', end: false, key: 'bookings', Icon: Ticket },
   { to: '/pro/guide/reviews', end: false, key: 'reviews', Icon: Star },
+] as const;
+
+const PROVIDER_NAV_ITEMS = [
+  { to: '/pro/provider', end: true, key: 'dashboard', Icon: Building2 },
 ] as const;
 
 export function ProLayout() {
@@ -38,6 +43,11 @@ export function ProLayout() {
   const { data: unreadNotifications } = useMyNotifications(true);
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const isGuide = user?.role === 'guide';
+  const NAV_ITEMS = isGuide ? GUIDE_NAV_ITEMS : PROVIDER_NAV_ITEMS;
+  const homePath = isGuide ? '/pro/guide' : '/pro/provider';
+  const badgeKey = isGuide ? 'pro.badgeGuide' : 'pro.badgeProvider';
 
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? 'hidden' : '';
@@ -53,9 +63,9 @@ export function ProLayout() {
       {/* --- Desktop sidebar --- */}
       <aside className={clsx(styles.sidebar, collapsed && styles.sidebarCollapsed)}>
         <div className={styles.sidebarHeader}>
-          <NavLink to="/pro/guide" className={styles.brand}>
+          <NavLink to={homePath} className={styles.brand}>
             <img src="/logo.png" alt="" className={styles.logo} />
-            {!collapsed && <span className={styles.badge}>{t('pro.badgeGuide')}</span>}
+            {!collapsed && <span className={styles.badge}>{t(badgeKey)}</span>}
           </NavLink>
           <button
             type="button"
@@ -118,13 +128,15 @@ export function ProLayout() {
         >
           <Menu size={20} strokeWidth={2} />
         </button>
-        <NavLink to="/pro/guide" className={styles.brand}>
+        <NavLink to={homePath} className={styles.brand}>
           <img src="/logo.png" alt="" className={styles.logo} />
-          <span className={styles.badge}>{t('pro.badgeGuide')}</span>
+          <span className={styles.badge}>{t(badgeKey)}</span>
         </NavLink>
-        <NavLink to="/pro/guide/profile" className={styles.mobileProfileLink} aria-label={t('pro.tab_profile')}>
-          <User size={20} strokeWidth={2} />
-        </NavLink>
+        {isGuide && (
+          <NavLink to="/pro/guide/profile" className={styles.mobileProfileLink} aria-label={t('pro.tab_profile')}>
+            <User size={20} strokeWidth={2} />
+          </NavLink>
+        )}
       </div>
 
       {/* --- Mobile drawer --- */}

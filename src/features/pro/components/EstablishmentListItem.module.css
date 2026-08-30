@@ -1,0 +1,148 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  transition: background-color var(--transition-fast);
+}
+
+.item:hover {
+  background-color: var(--color-bg-inset);
+}
+
+.thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-subtle);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  min-width: 0;
+  flex-shrink: 1;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.typeTag {
+  font-weight: 600;
+  color: var(--color-text-subtle);
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.reviewCount {
+  font-weight: 400;
+  color: var(--color-text-subtle);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.statusBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.statusPublished {
+  background-color: rgba(22, 163, 74, 0.14);
+  color: var(--color-success);
+}
+
+.statusDraft,
+.statusPending {
+  background-color: rgba(217, 119, 6, 0.14);
+  color: var(--color-warning);
+}
+
+.statusArchived,
+.statusSuspended {
+  background-color: var(--color-bg-inset);
+  color: var(--color-text-subtle);
+}
+
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.actionBtn:hover {
+  background-color: var(--color-bg-inset);
+  color: var(--color-text);
+}
+
+@media (max-width: 480px) {
+  .actionBtn {
+    width: 40px;
+    height: 40px;
+  }
+}

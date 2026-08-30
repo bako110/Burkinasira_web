@@ -29,6 +29,8 @@ export interface MobilityFilters {
   page_size?: number;
 }
 
+export type TransportProviderStatus = 'pending' | 'active' | 'suspended';
+
 export interface TransportProviderDetail {
   id: string;
   name: string;
@@ -43,6 +45,7 @@ export interface TransportProviderDetail {
   price_currency: string;
   contact_phone?: string;
   is_verified: boolean;
+  status: TransportProviderStatus;
   average_rating: number;
   review_count: number;
 }

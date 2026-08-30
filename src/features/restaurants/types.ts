@@ -41,6 +41,8 @@ export interface MenuItem {
   is_specialty: boolean;
 }
 
+export type RestaurantStatus = 'draft' | 'published' | 'archived';
+
 export interface RestaurantDetail {
   id: string;
   name: string;
@@ -64,4 +66,5 @@ export interface RestaurantDetail {
   average_rating: number;
   review_count: number;
   is_verified: boolean;
+  status: RestaurantStatus;
 }

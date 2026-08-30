@@ -9,6 +9,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { useAuthStore } from '../../../store/auth.store';
 import { useMyVerificationRequests, useSubmitVerificationRequest } from '../hooks/useVerification';
 import { GuideProfileForm } from '../components/GuideProfileForm';
+import { ProviderProfileForm } from '../components/ProviderProfileForm';
 import type { VerificationDocumentType, VerificationStatus } from '../types';
 import styles from './PendingVerificationPage.module.css';
 
@@ -117,10 +118,15 @@ export function PendingVerificationPage() {
           </ul>
         </div>
 
-        {isGuide && (
+        {isGuide ? (
           <>
             <h2 className={styles.listTitle}>{t('pro.guideProfileTitle')}</h2>
             <GuideProfileForm />
+            <hr className={styles.divider} />
+          </>
+        ) : (
+          <>
+            <ProviderProfileForm />
             <hr className={styles.divider} />
           </>
         )}

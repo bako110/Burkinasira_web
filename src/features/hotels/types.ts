@@ -51,6 +51,8 @@ export interface HotelOffer {
   valid_until?: string;
 }
 
+export type HotelStatus = 'draft' | 'published' | 'archived';
+
 export interface HotelDetail {
   id: string;
   name: string;
@@ -70,4 +72,5 @@ export interface HotelDetail {
   average_rating: number;
   review_count: number;
   is_verified: boolean;
+  status: HotelStatus;
 }

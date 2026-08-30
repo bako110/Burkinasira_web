@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { Spinner } from '../../../shared/ui';
-import { useMyGuideAnalytics } from '../hooks/useGuideAnalytics';
+import { useMyGuideAnalytics, useMyProviderAnalytics } from '../hooks/useGuideAnalytics';
+import type { GuideAnalyticsSummary, ProviderItemType } from '../types';
 import { StatTile } from './StatTile';
 import { AreaTrendChart } from './AreaTrendChart';
 import styles from './AnalyticsTab.module.css';
@@ -24,13 +25,34 @@ function formatYearLabel(period: string): string {
   return period;
 }
 
-export function AnalyticsTab() {
+interface AnalyticsTabProps {
+  source?: { itemType: ProviderItemType; itemId: string | undefined };
+}
+
+function useAnalyticsSource(source?: AnalyticsTabProps['source']) {
+  const guideQuery = useMyGuideAnalytics();
+  const providerQuery = useMyProviderAnalytics(source?.itemType ?? 'hotel', source?.itemId);
+  return source ? providerQuery : guideQuery;
+}
+
+export function AnalyticsTab({ source }: AnalyticsTabProps) {
   const { t } = useTranslation();
-  const { data, isLoading } = useMyGuideAnalytics();
+  const { data, isLoading } = useAnalyticsSource(source);
 
   if (isLoading || !data) {
     return <Spinner size={22} />;
   }
+
+  return <AnalyticsTabContent data={data} t={t} />;
+}
+
+function AnalyticsTabContent({
+  data,
+  t,
+}: {
+  data: GuideAnalyticsSummary;
+  t: (key: string, opts?: Record<string, unknown>) => string;
+}) {
 
   const currencyFormatter = (value: number) => `${value.toLocaleString('fr-FR')} ${data.currency}`;
   const countFormatter = (value: number) => value.toLocaleString('fr-FR');

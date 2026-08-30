@@ -6,8 +6,8 @@ import clsx from 'clsx';
 import { Button, Spinner, EmptyResults } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
-import { useConfirmBooking, useMyGuideBookings } from '../hooks/useGuideBookings';
-import type { BookingStatus } from '../types';
+import { useConfirmBooking, useMyGuideBookings, useReceivedBookings } from '../hooks/useGuideBookings';
+import type { BookingStatus, ProviderItemType } from '../types';
 import styles from './BookingsTab.module.css';
 
 const STATUS_FILTERS: { value: BookingStatus | 'all'; labelKey: string }[] = [
@@ -26,11 +26,22 @@ const BADGE_CLASS: Record<BookingStatus, string> = {
   refunded: styles.badgeRefunded,
 };
 
-export function BookingsTab() {
+interface BookingsTabProps {
+  source?: { itemType: ProviderItemType; itemId: string | undefined };
+}
+
+function useBookingsSource(filter: BookingStatus | 'all', source?: BookingsTabProps['source']) {
+  const statusFilter = filter === 'all' ? undefined : filter;
+  const guideQuery = useMyGuideBookings(statusFilter);
+  const providerQuery = useReceivedBookings(source?.itemType ?? 'hotel', source?.itemId, statusFilter);
+  return source ? providerQuery : guideQuery;
+}
+
+export function BookingsTab({ source }: BookingsTabProps) {
   const { t } = useTranslation();
   const push = useToastStore((s) => s.push);
   const [filter, setFilter] = useState<BookingStatus | 'all'>('all');
-  const { data: bookings, isLoading } = useMyGuideBookings(filter === 'all' ? undefined : filter);
+  const { data: bookings, isLoading } = useBookingsSource(filter, source);
   const confirmBooking = useConfirmBooking();
 
   function handleConfirm(bookingId: string) {

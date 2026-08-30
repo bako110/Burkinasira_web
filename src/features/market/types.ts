@@ -30,6 +30,8 @@ export interface ProductFilters {
   page_size?: number;
 }
 
+export type ArtisanStatus = 'pending' | 'active' | 'suspended';
+
 export interface ArtisanSummary {
   id: string;
   user_id: string;
@@ -40,6 +42,7 @@ export interface ArtisanSummary {
   province?: string;
   city?: string;
   is_verified: boolean;
+  status: ArtisanStatus;
   average_rating: number;
   review_count: number;
 }
@@ -49,6 +52,8 @@ export interface ArtisanFilters {
   province?: string;
   verified_only?: boolean;
 }
+
+export type ProductStatus = 'draft' | 'published' | 'out_of_stock' | 'archived';
 
 export interface ProductDetail {
   id: string;
@@ -63,4 +68,5 @@ export interface ProductDetail {
   fulfillment_mode?: FulfillmentMode;
   average_rating?: number;
   review_count?: number;
+  status: ProductStatus;
 }
