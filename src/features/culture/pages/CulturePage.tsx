@@ -108,8 +108,7 @@ export function CulturePage() {
         <RegionProvinceFilter
           region={urlRegion}
           province={urlProvince}
-          onRegionChange={applyRegion}
-          onProvinceChange={applyProvince}
+          onChange={applyRegionProvince}
           showProvince
         />
         <CultureFilters active={urlType} onChange={applyType} />
