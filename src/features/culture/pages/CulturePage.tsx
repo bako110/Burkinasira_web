@@ -76,20 +76,12 @@ export function CulturePage() {
     });
   }
 
-  function applyRegion(value: string | undefined) {
+  function applyRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (value) next.set('region', value);
+      if (regionValue) next.set('region', regionValue);
       else next.delete('region');
-      next.delete('province');
-      return next;
-    });
-  }
-
-  function applyProvince(value: string | undefined) {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      if (value) next.set('province', value);
+      if (provinceValue) next.set('province', provinceValue);
       else next.delete('province');
       return next;
     });

@@ -76,22 +76,12 @@ export function HotelsPage() {
     });
   }
 
-  function applyRegion(value: string | undefined) {
-    console.log('DEBUG applyRegion called with', value);
+  function applyRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (value) next.set('region', value);
+      if (regionValue) next.set('region', regionValue);
       else next.delete('region');
-      next.delete('province');
-      console.log('DEBUG next searchParams', next.toString());
-      return next;
-    });
-  }
-
-  function applyProvince(value: string | undefined) {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      if (value) next.set('province', value);
+      if (provinceValue) next.set('province', provinceValue);
       else next.delete('province');
       return next;
     });
@@ -123,8 +113,7 @@ export function HotelsPage() {
         <RegionProvinceFilter
           region={urlRegion}
           province={urlProvince}
-          onRegionChange={applyRegion}
-          onProvinceChange={applyProvince}
+          onChange={applyRegionProvince}
           showProvince
         />
         <HotelFilters active={urlType} onChange={applyType} />

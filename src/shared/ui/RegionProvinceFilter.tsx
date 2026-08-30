@@ -8,8 +8,14 @@ import styles from './RegionProvinceFilter.module.css';
 interface RegionProvinceFilterProps {
   region: string | undefined;
   province?: string | undefined;
-  onRegionChange: (region: string | undefined) => void;
-  onProvinceChange?: (province: string | undefined) => void;
+  /**
+   * Appelé à chaque changement, avec les deux valeurs résultantes (région et
+   * province, cette dernière étant remise à undefined dès que la région
+   * change). Un seul callback combiné évite d'appeler deux setters d'état
+   * distincts pour un même geste utilisateur, ce qui provoquerait une race
+   * (le second appel écraserait le premier avec un état encore périmé).
+   */
+  onChange: (region: string | undefined, province: string | undefined) => void;
   /** Masque le second sélecteur (province) quand le module ne le supporte pas côté backend. */
   showProvince?: boolean;
 }
@@ -17,16 +23,18 @@ interface RegionProvinceFilterProps {
 export function RegionProvinceFilter({
   region,
   province,
-  onRegionChange,
-  onProvinceChange,
+  onChange,
   showProvince = false,
 }: RegionProvinceFilterProps) {
   const { t } = useTranslation();
   const provinces = getProvincesForRegion(region);
 
   function handleRegionChange(value: string) {
-    onRegionChange(value || undefined);
-    onProvinceChange?.(undefined);
+    onChange(value || undefined, undefined);
+  }
+
+  function handleProvinceChange(value: string) {
+    onChange(region, value || undefined);
   }
 
   return (
@@ -54,7 +62,7 @@ export function RegionProvinceFilter({
           <select
             className={styles.select}
             value={province ?? ''}
-            onChange={(e) => onProvinceChange?.(e.target.value || undefined)}
+            onChange={(e) => handleProvinceChange(e.target.value)}
             disabled={!region}
             aria-label={t('common.provinceFilter')}
           >

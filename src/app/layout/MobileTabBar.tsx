@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Home, Compass, Ticket, MessageCircle, User } from 'lucide-react';
+import { Home, Users, Ticket, MessageCircle, User } from 'lucide-react';
 import clsx from 'clsx';
 
 import styles from './MobileTabBar.module.css';
 
 const TABS = [
   { to: '/', key: 'home', end: true, Icon: Home },
-  { to: '/explore', key: 'explore', end: false, Icon: Compass },
+  { to: '/community', key: 'community', end: false, Icon: Users },
   { to: '/bookings', key: 'bookings', end: false, Icon: Ticket },
   { to: '/messages', key: 'messages', end: false, Icon: MessageCircle },
   { to: '/profile', key: 'profile', end: false, Icon: User },
