@@ -43,7 +43,12 @@ import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
 import { ProLayout } from '../layout/ProLayout';
 import { PendingVerificationPage } from '../../features/pro/pages/PendingVerificationPage';
-import { ProDashboardPage } from '../../features/pro/pages/ProDashboardPage';
+import { ProOverviewPage } from '../../features/pro/pages/ProOverviewPage';
+import { ProHotelPage } from '../../features/pro/pages/ProHotelPage';
+import { ProRestaurantPage } from '../../features/pro/pages/ProRestaurantPage';
+import { ProTransportPage } from '../../features/pro/pages/ProTransportPage';
+import { ProArtisanPage } from '../../features/pro/pages/ProArtisanPage';
+import { ProTeamPage } from '../../features/pro/pages/ProTeamPage';
 import { GuideAnalyticsPage } from '../../features/pro/pages/GuideAnalyticsPage';
 import { GuideProfilePage } from '../../features/pro/pages/GuideProfilePage';
 import { GuideAvailabilityPage } from '../../features/pro/pages/GuideAvailabilityPage';
@@ -121,7 +126,12 @@ export const router = createBrowserRouter([
           { path: '/pro/guide/reviews', element: <GuideReviewsPage /> },
           { path: '/pro/guide/messages', element: <ProMessagesPage /> },
           { path: '/pro/guide/notifications', element: <ProNotificationsPage /> },
-          { path: '/pro/provider', element: <ProDashboardPage /> },
+          { path: '/pro/provider', element: <ProOverviewPage /> },
+          { path: '/pro/provider/hotel', element: <ProHotelPage /> },
+          { path: '/pro/provider/restaurant', element: <ProRestaurantPage /> },
+          { path: '/pro/provider/transport', element: <ProTransportPage /> },
+          { path: '/pro/provider/artisan', element: <ProArtisanPage /> },
+          { path: '/pro/provider/team', element: <ProTeamPage /> },
           { path: '/pro/provider/messages', element: <ProMessagesPage /> },
           { path: '/pro/provider/notifications', element: <ProNotificationsPage /> },
         ],

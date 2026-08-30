@@ -6,6 +6,7 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import type { FulfillmentMode, ProductCategory, ProductDetail } from '../../market/types';
 import { useCreateMyProduct, useUpdateMyProduct } from '../hooks/useMyEstablishments';
+import { MediaGalleryInput } from './MediaGalleryInput';
 import formStyles from './GuideProfileForm.module.css';
 
 const PRODUCT_CATEGORIES: ProductCategory[] = [
@@ -41,6 +42,8 @@ export function ProductForm({ product, onSaved, onCancel }: ProductFormProps) {
     product?.stock_quantity !== undefined ? String(product.stock_quantity) : '0',
   );
   const [fulfillmentMode, setFulfillmentMode] = useState<FulfillmentMode>(product?.fulfillment_mode ?? 'les_deux');
+  const [photos, setPhotos] = useState<string[]>(product?.photos ?? []);
+  const [videos, setVideos] = useState<string[]>(product?.videos ?? []);
 
   const isSaving = createProduct.isPending || updateProduct.isPending;
 
@@ -53,6 +56,8 @@ export function ProductForm({ product, onSaved, onCancel }: ProductFormProps) {
       price: Number(price) || 0,
       stock_quantity: stockQuantity ? Number(stockQuantity) : 0,
       fulfillment_mode: fulfillmentMode,
+      photos,
+      videos,
     };
 
     const onSettled = {
@@ -118,6 +123,14 @@ export function ProductForm({ product, onSaved, onCancel }: ProductFormProps) {
           ))}
         </select>
       </div>
+
+      <MediaGalleryInput
+        label={t('pro.photosAndVideos')}
+        photos={photos}
+        videos={videos}
+        onPhotosChange={setPhotos}
+        onVideosChange={setVideos}
+      />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

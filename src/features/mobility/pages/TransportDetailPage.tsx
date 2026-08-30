@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink } from 'lucide-react';
+import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, RotateCw } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Virtual360Viewer } from '../../../shared/ui';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
 
@@ -10,6 +11,7 @@ export function TransportDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [tourOpen, setTourOpen] = useState(false);
 
   const { data: provider, isLoading, isError, refetch } = useTransportProviderDetail(id);
 
@@ -74,6 +76,12 @@ export function TransportDetailPage() {
               </span>
             )}
           </div>
+          {provider.photos_360.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
+              <RotateCw size={15} strokeWidth={2} />
+              {t('virtualTour.ctaTransport')}
+            </Button>
+          )}
         </div>
       </section>
 
@@ -123,6 +131,13 @@ export function TransportDetailPage() {
       </div>
 
       <RelatedModules currentPath="/mobility" />
+
+      <Virtual360Viewer
+        open={tourOpen}
+        onClose={() => setTourOpen(false)}
+        urls={provider.photos_360}
+        title={t('virtualTour.ctaTransport')}
+      />
     </div>
   );
 }

@@ -57,3 +57,39 @@
   font-size: 0.75rem;
   color: var(--color-text-muted);
 }
+
+.addMoreSection {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.addMoreToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.addMoreToggle:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.categoryCardMuted {
+  composes: categoryCard;
+  border-style: dashed;
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.categoryCardMuted .categoryIcon {
+  background-color: var(--color-bg-inset);
+  color: var(--color-text-subtle);
+}

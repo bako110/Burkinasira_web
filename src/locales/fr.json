@@ -19,6 +19,15 @@
     "provinceFilter": "Filtrer par province",
     "allProvinces": "Toutes les provinces"
   },
+  "virtualTour": {
+    "title": "Visite virtuelle",
+    "loading": "Chargement de la visite virtuelle...",
+    "cta": "Visite virtuelle 360°",
+    "ctaHotel": "Visiter l'hôtel",
+    "ctaRestaurant": "Visiter le restaurant",
+    "ctaTransport": "Visiter le véhicule",
+    "ctaArtisan": "Visiter l'atelier"
+  },
   "nav": {
     "home": "Accueil",
     "explore": "Explorer",
@@ -263,7 +272,29 @@
     "establishmentStatus_out_of_stock": "Épuisé",
     "establishmentStatus_suspended": "Suspendu",
     "draftNotice": "Ce brouillon sera publié automatiquement dès que votre compte sera vérifié par un administrateur.",
-    "pendingNotice": "En attente de validation par un administrateur avant publication."
+    "pendingNotice": "En attente de validation par un administrateur avant publication.",
+    "addMedia": "Ajouter",
+    "mediaHint": "Photos et vidéos (JPEG, PNG, WEBP, MP4, WEBM). Mettez en avant votre établissement.",
+    "photosAndVideos": "Photos et vidéos",
+    "photos360Label": "Visite virtuelle 360°",
+    "photos360Hint": "Photos ou vidéos panoramiques à 360° prises avec un appareil ou une app dédiée. Permet aux visiteurs de se déplacer virtuellement avant de réserver.",
+    "addPhoto360": "Ajouter une vue 360°",
+    "myFirstEstablishment": "Commencez par créer votre établissement",
+    "myFirstEstablishmentDesc": "Choisissez le type d'activité que vous gérez pour configurer votre espace.",
+    "addAnotherType": "Gérer un autre type d'activité",
+    "tab_team": "Équipe",
+    "inviteByEmail": "Inviter par e-mail",
+    "teamRole": "Rôle",
+    "teamRole_owner": "Propriétaire",
+    "teamRole_manager": "Gérant",
+    "teamRole_staff": "Employé",
+    "invite": "Inviter",
+    "invitePending": "Invitation en attente",
+    "teamMemberInvited": "Invitation envoyée avec succès",
+    "teamMemberRemoved": "Membre retiré de l'équipe",
+    "noTeamMembers": "Aucun membre d'équipe pour cet établissement",
+    "removeTeamMemberConfirmTitle": "Retirer ce membre ?",
+    "removeTeamMemberConfirmMessage": "Cette personne n'aura plus accès à la gestion de cet établissement."
   },
   "theme": {
     "light": "Clair",

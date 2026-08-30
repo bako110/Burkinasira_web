@@ -64,6 +64,8 @@ export interface HotelDetail {
   location?: { latitude: number; longitude: number };
   address?: string;
   photos: string[];
+  videos: string[];
+  photos_360: string[];
   amenities: string[];
   room_types: RoomType[];
   offers: HotelOffer[];

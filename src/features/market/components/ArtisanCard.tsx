@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { User, ShieldCheck, Star, MapPin } from 'lucide-react';
+import { User, ShieldCheck, Star, MapPin, RotateCw } from 'lucide-react';
 
+import { Button, Virtual360Viewer } from '../../../shared/ui';
 import type { ArtisanSummary } from '../types';
 import styles from './ArtisanCard.module.css';
 
@@ -10,6 +12,7 @@ interface ArtisanCardProps {
 
 export function ArtisanCard({ artisan }: ArtisanCardProps) {
   const { t } = useTranslation();
+  const [tourOpen, setTourOpen] = useState(false);
   const location = [artisan.city, artisan.region].filter(Boolean).join(', ');
 
   return (
@@ -46,7 +49,20 @@ export function ArtisanCard({ artisan }: ArtisanCardProps) {
           )}
         </div>
         {artisan.story && <p className={styles.story}>{artisan.story}</p>}
+        {artisan.photos_360.length > 0 && (
+          <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
+            <RotateCw size={14} strokeWidth={2} />
+            {t('virtualTour.ctaArtisan')}
+          </Button>
+        )}
       </div>
+
+      <Virtual360Viewer
+        open={tourOpen}
+        onClose={() => setTourOpen(false)}
+        urls={artisan.photos_360}
+        title={t('virtualTour.ctaArtisan')}
+      />
     </div>
   );
 }

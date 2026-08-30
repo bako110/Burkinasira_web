@@ -14,6 +14,7 @@ export interface TransportProviderSummary {
   region: string;
   province?: string;
   city?: string;
+  photo?: string;
   price_estimate?: number;
   price_currency: string;
   is_verified: boolean;
@@ -41,6 +42,9 @@ export interface TransportProviderDetail {
   city?: string;
   base_location?: { latitude: number; longitude: number };
   vehicle_info?: string;
+  photos: string[];
+  videos: string[];
+  photos_360: string[];
   price_estimate?: number;
   price_currency: string;
   contact_phone?: string;

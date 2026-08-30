@@ -7,6 +7,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { EstablishmentType, RestaurantDetail } from '../../restaurants/types';
 import { useCreateMyRestaurant, useUpdateMyRestaurant } from '../hooks/useMyEstablishments';
+import { MediaGalleryInput } from './MediaGalleryInput';
 import formStyles from './GuideProfileForm.module.css';
 
 const ESTABLISHMENT_TYPES: EstablishmentType[] = [
@@ -47,6 +48,9 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
   const [offersTakeaway, setOffersTakeaway] = useState(restaurant?.offers_takeaway ?? false);
   const [contactPhone, setContactPhone] = useState(restaurant?.contact_phone ?? '');
   const [contactEmail, setContactEmail] = useState(restaurant?.contact_email ?? '');
+  const [photos, setPhotos] = useState<string[]>(restaurant?.photos ?? []);
+  const [videos, setVideos] = useState<string[]>(restaurant?.videos ?? []);
+  const [photos360, setPhotos360] = useState<string[]>(restaurant?.photos_360 ?? []);
 
   const isSaving = createRestaurant.isPending || updateRestaurant.isPending;
 
@@ -66,6 +70,9 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
       offers_takeaway: offersTakeaway,
       contact_phone: contactPhone || undefined,
       contact_email: contactEmail || undefined,
+      photos,
+      videos,
+      photos_360: photos360,
     };
 
     const onSettled = {
@@ -143,6 +150,16 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
           onChange={(e) => setCuisineStyle(e.target.value)}
         />
       </div>
+
+      <MediaGalleryInput
+        label={t('pro.photosAndVideos')}
+        photos={photos}
+        videos={videos}
+        onPhotosChange={setPhotos}
+        onVideosChange={setVideos}
+        photos360={photos360}
+        onPhotos360Change={setPhotos360}
+      />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

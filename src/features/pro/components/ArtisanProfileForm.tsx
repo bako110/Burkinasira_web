@@ -7,6 +7,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { ArtisanSummary } from '../../market/types';
 import { useCreateMyArtisanProfile, useUpdateMyArtisanProfile } from '../hooks/useMyEstablishments';
+import { MediaGalleryInput } from './MediaGalleryInput';
 import formStyles from './GuideProfileForm.module.css';
 
 interface ArtisanProfileFormProps {
@@ -23,6 +24,9 @@ export function ArtisanProfileForm({ profile, onSaved }: ArtisanProfileFormProps
   const [displayName, setDisplayName] = useState(profile?.display_name ?? '');
   const [story, setStory] = useState(profile?.story ?? '');
   const [photoUrl, setPhotoUrl] = useState(profile?.photo_url ?? '');
+  const [photos, setPhotos] = useState<string[]>(profile?.photos ?? []);
+  const [videos, setVideos] = useState<string[]>(profile?.videos ?? []);
+  const [photos360, setPhotos360] = useState<string[]>(profile?.photos_360 ?? []);
   const [region, setRegion] = useState(profile?.region ?? BURKINA_REGIONS[0]);
   const [province, setProvince] = useState(profile?.province ?? '');
   const [city, setCity] = useState(profile?.city ?? '');
@@ -35,6 +39,9 @@ export function ArtisanProfileForm({ profile, onSaved }: ArtisanProfileFormProps
       display_name: displayName,
       story: story || undefined,
       photo_url: photoUrl || undefined,
+      photos,
+      videos,
+      photos_360: photos360,
       region,
       province: province || undefined,
       city: city || undefined,
@@ -95,6 +102,16 @@ export function ArtisanProfileForm({ profile, onSaved }: ArtisanProfileFormProps
           onChange={(e) => setPhotoUrl(e.target.value)}
         />
       </div>
+
+      <MediaGalleryInput
+        label={t('pro.photosAndVideos')}
+        photos={photos}
+        videos={videos}
+        onPhotosChange={setPhotos}
+        onVideosChange={setVideos}
+        photos360={photos360}
+        onPhotos360Change={setPhotos360}
+      />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

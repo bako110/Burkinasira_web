@@ -15,6 +15,10 @@ import {
   Bell,
   MessageCircle,
   Building2,
+  UtensilsCrossed,
+  Car,
+  ShoppingBag,
+  Users,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -22,6 +26,12 @@ import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { useMyNotifications } from '../../features/notifications/hooks/useMyNotifications';
+import {
+  useMyHotels,
+  useMyRestaurants,
+  useMyTransportProviders,
+  useMyArtisanProfile,
+} from '../../features/pro/hooks/useMyEstablishments';
 import styles from './ProLayout.module.css';
 
 const GUIDE_NAV_ITEMS = [
@@ -32,9 +42,19 @@ const GUIDE_NAV_ITEMS = [
   { to: '/pro/guide/reviews', end: false, key: 'reviews', Icon: Star },
 ] as const;
 
-const PROVIDER_NAV_ITEMS = [
-  { to: '/pro/provider', end: true, key: 'dashboard', Icon: Building2 },
+const PROVIDER_CATEGORY_ITEMS = [
+  { to: '/pro/provider/hotel', key: 'hotel', Icon: Building2, owned: (o: OwnedCategories) => o.hotel },
+  { to: '/pro/provider/restaurant', key: 'restaurant', Icon: UtensilsCrossed, owned: (o: OwnedCategories) => o.restaurant },
+  { to: '/pro/provider/transport', key: 'transport', Icon: Car, owned: (o: OwnedCategories) => o.transport },
+  { to: '/pro/provider/artisan', key: 'artisan', Icon: ShoppingBag, owned: (o: OwnedCategories) => o.artisan },
 ] as const;
+
+interface OwnedCategories {
+  hotel: boolean;
+  restaurant: boolean;
+  transport: boolean;
+  artisan: boolean;
+}
 
 export function ProLayout() {
   const { t } = useTranslation();
@@ -45,6 +65,32 @@ export function ProLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const isGuide = user?.role === 'guide';
+
+  // Un provider ne voit dans sa sidebar que les types d'établissement qu'il possède
+  // réellement (ex: un hôtelier ne voit pas "Restaurant"/"Transport"/"Artisanat").
+  // Il peut en ajouter un nouveau depuis la Vue d'ensemble, qui le fera apparaître ici.
+  const { data: hotels } = useMyHotels();
+  const { data: restaurants } = useMyRestaurants();
+  const { data: transportProviders } = useMyTransportProviders();
+  const { data: artisanProfile } = useMyArtisanProfile();
+  const ownedCategories: OwnedCategories = {
+    hotel: (hotels?.length ?? 0) > 0,
+    restaurant: (restaurants?.length ?? 0) > 0,
+    transport: (transportProviders?.length ?? 0) > 0,
+    artisan: Boolean(artisanProfile),
+  };
+
+  const PROVIDER_NAV_ITEMS = [
+    { to: '/pro/provider', end: true, key: 'overview', Icon: LayoutDashboard },
+    ...PROVIDER_CATEGORY_ITEMS.filter((item) => item.owned(ownedCategories)).map(({ to, key, Icon }) => ({
+      to,
+      end: false,
+      key,
+      Icon,
+    })),
+    { to: '/pro/provider/team', end: false, key: 'team', Icon: Users },
+  ];
+
   const NAV_ITEMS = isGuide ? GUIDE_NAV_ITEMS : PROVIDER_NAV_ITEMS;
   const homePath = isGuide ? '/pro/guide' : '/pro/provider';
   const badgeKey = isGuide ? 'pro.badgeGuide' : 'pro.badgeProvider';

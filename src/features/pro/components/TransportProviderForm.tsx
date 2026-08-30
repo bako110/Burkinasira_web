@@ -7,6 +7,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { TransportType, TransportProviderDetail } from '../../mobility/types';
 import { useCreateMyTransportProvider, useUpdateMyTransportProvider } from '../hooks/useMyEstablishments';
+import { MediaGalleryInput } from './MediaGalleryInput';
 import formStyles from './GuideProfileForm.module.css';
 
 const TRANSPORT_TYPES: TransportType[] = [
@@ -48,6 +49,9 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
     provider?.price_estimate !== undefined ? String(provider.price_estimate) : '',
   );
   const [contactPhone, setContactPhone] = useState(provider?.contact_phone ?? '');
+  const [photos, setPhotos] = useState<string[]>(provider?.photos ?? []);
+  const [videos, setVideos] = useState<string[]>(provider?.videos ?? []);
+  const [photos360, setPhotos360] = useState<string[]>(provider?.photos_360 ?? []);
 
   const isSaving = createProvider.isPending || updateProvider.isPending;
 
@@ -63,6 +67,9 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
       base_location:
         latitude || longitude ? { latitude: Number(latitude) || 0, longitude: Number(longitude) || 0 } : undefined,
       vehicle_info: vehicleInfo || undefined,
+      photos,
+      videos,
+      photos_360: photos360,
       price_estimate: priceEstimate ? Number(priceEstimate) : undefined,
       price_currency: 'XOF',
       contact_phone: contactPhone,
@@ -129,6 +136,16 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
+
+      <MediaGalleryInput
+        label={t('pro.photosAndVideos')}
+        photos={photos}
+        videos={videos}
+        onPhotosChange={setPhotos}
+        onVideosChange={setVideos}
+        photos360={photos360}
+        onPhotos360Change={setPhotos360}
+      />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Building2, UtensilsCrossed, Car, ShoppingBag } from 'lucide-react';
+import { Building2, UtensilsCrossed, Car, ShoppingBag, Plus } from 'lucide-react';
 
 import { Spinner } from '../../../shared/ui';
 import {
@@ -7,6 +8,7 @@ import {
   useMyRestaurants,
   useMyTransportProviders,
   useMyProducts,
+  useMyArtisanProfile,
 } from '../hooks/useMyEstablishments';
 import { StatTile } from './StatTile';
 import styles from './OverviewTab.module.css';
@@ -15,14 +17,18 @@ interface OverviewTabProps {
   onNavigate: (tabKey: string) => void;
 }
 
+const CATEGORY_ICONS = { hotel: Building2, restaurant: UtensilsCrossed, transport: Car, artisan: ShoppingBag };
+
 export function OverviewTab({ onNavigate }: OverviewTabProps) {
   const { t } = useTranslation();
   const { data: hotels, isLoading: loadingHotels } = useMyHotels();
   const { data: restaurants, isLoading: loadingRestaurants } = useMyRestaurants();
   const { data: transportProviders, isLoading: loadingTransport } = useMyTransportProviders();
+  const { data: artisanProfile, isLoading: loadingArtisanProfile } = useMyArtisanProfile();
   const { data: products, isLoading: loadingProducts } = useMyProducts();
-
-  const isLoading = loadingHotels || loadingRestaurants || loadingTransport || loadingProducts;
+  const [showAddMore, setShowAddMore] = useState(false);
+  const isLoading =
+    loadingHotels || loadingRestaurants || loadingTransport || loadingArtisanProfile || loadingProducts;
 
   if (isLoading) {
     return <Spinner size={22} />;
@@ -50,12 +56,25 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
     ...(transportProviders ?? []),
   ].filter((item) => UNPUBLISHED_STATUSES.has(item.status)).length;
 
-  const categories = [
-    { key: 'hotel', label: t('pro.tab_hotel'), Icon: Building2, count: hotels?.length ?? 0 },
-    { key: 'restaurant', label: t('pro.tab_restaurant'), Icon: UtensilsCrossed, count: restaurants?.length ?? 0 },
-    { key: 'transport', label: t('pro.tab_transport'), Icon: Car, count: transportProviders?.length ?? 0 },
-    { key: 'artisan', label: t('pro.tab_artisan'), Icon: ShoppingBag, count: products?.length ?? 0 },
-  ];
+  const allCategories = [
+    { key: 'hotel', label: t('pro.tab_hotel'), count: hotels?.length ?? 0, owned: (hotels?.length ?? 0) > 0 },
+    {
+      key: 'restaurant',
+      label: t('pro.tab_restaurant'),
+      count: restaurants?.length ?? 0,
+      owned: (restaurants?.length ?? 0) > 0,
+    },
+    {
+      key: 'transport',
+      label: t('pro.tab_transport'),
+      count: transportProviders?.length ?? 0,
+      owned: (transportProviders?.length ?? 0) > 0,
+    },
+    { key: 'artisan', label: t('pro.tab_artisan'), count: products?.length ?? 0, owned: Boolean(artisanProfile) },
+  ] as const;
+
+  const ownedCategories = allCategories.filter((c) => c.owned);
+  const otherCategories = allCategories.filter((c) => !c.owned);
 
   return (
     <div className={styles.container}>
@@ -68,16 +87,44 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
       </div>
 
       <div className={styles.categoryGrid}>
-        {categories.map(({ key, label, Icon, count }) => (
-          <button key={key} type="button" className={styles.categoryCard} onClick={() => onNavigate(key)}>
-            <span className={styles.categoryIcon}>
-              <Icon size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.categoryLabel}>{label}</span>
-            <span className={styles.categoryCount}>{count}</span>
-          </button>
-        ))}
+        {ownedCategories.map(({ key, label, count }) => {
+          const Icon = CATEGORY_ICONS[key];
+          return (
+            <button key={key} type="button" className={styles.categoryCard} onClick={() => onNavigate(key)}>
+              <span className={styles.categoryIcon}>
+                <Icon size={20} strokeWidth={1.75} />
+              </span>
+              <span className={styles.categoryLabel}>{label}</span>
+              <span className={styles.categoryCount}>{count}</span>
+            </button>
+          );
+        })}
       </div>
+
+      {otherCategories.length > 0 && (
+        <div className={styles.addMoreSection}>
+          {!showAddMore ? (
+            <button type="button" className={styles.addMoreToggle} onClick={() => setShowAddMore(true)}>
+              <Plus size={15} strokeWidth={2} />
+              {t('pro.addAnotherType')}
+            </button>
+          ) : (
+            <div className={styles.categoryGrid}>
+              {otherCategories.map(({ key, label }) => {
+                const Icon = CATEGORY_ICONS[key];
+                return (
+                  <button key={key} type="button" className={styles.categoryCardMuted} onClick={() => onNavigate(key)}>
+                    <span className={styles.categoryIcon}>
+                      <Icon size={20} strokeWidth={1.75} />
+                    </span>
+                    <span className={styles.categoryLabel}>{label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

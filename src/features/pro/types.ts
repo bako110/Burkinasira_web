@@ -171,6 +171,8 @@ export interface CreateHotelPayload {
   location: GeoPointPayload;
   address?: string;
   photos?: string[];
+  videos?: string[];
+  photos_360?: string[];
   amenities?: string[];
   contact_phone?: string;
   contact_email?: string;
@@ -187,6 +189,8 @@ export interface CreateRestaurantPayload {
   location: GeoPointPayload;
   address?: string;
   photos?: string[];
+  videos?: string[];
+  photos_360?: string[];
   dietary_tags?: string[];
   accepts_table_booking?: boolean;
   offers_takeaway?: boolean;
@@ -203,6 +207,9 @@ export interface CreateTransportProviderPayload {
   city?: string;
   base_location?: GeoPointPayload;
   vehicle_info?: string;
+  photos?: string[];
+  videos?: string[];
+  photos_360?: string[];
   price_estimate?: number;
   price_currency?: string;
   contact_phone: string;
@@ -212,6 +219,9 @@ export interface CreateArtisanProfilePayload {
   display_name: string;
   story?: string;
   photo_url?: string;
+  photos?: string[];
+  videos?: string[];
+  photos_360?: string[];
   region: string;
   province?: string;
   city?: string;
@@ -224,6 +234,27 @@ export interface CreateProductPayload {
   price: number;
   currency?: string;
   photos?: string[];
+  videos?: string[];
   stock_quantity?: number;
   fulfillment_mode?: string;
+}
+
+export type TeamMemberRole = 'owner' | 'manager' | 'staff';
+
+export interface TeamMember {
+  id: string;
+  provider_id: string;
+  user_id?: string;
+  email: string;
+  role: TeamMemberRole;
+  establishment_type?: ProviderItemType;
+  establishment_id?: string;
+  is_active: boolean;
+}
+
+export interface InviteTeamMemberPayload {
+  email: string;
+  role: TeamMemberRole;
+  establishment_type: ProviderItemType;
+  establishment_id: string;
 }

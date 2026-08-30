@@ -7,6 +7,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { AccommodationType, HotelDetail } from '../../hotels/types';
 import { useCreateMyHotel, useUpdateMyHotel } from '../hooks/useMyEstablishments';
+import { MediaGalleryInput } from './MediaGalleryInput';
 import formStyles from './GuideProfileForm.module.css';
 
 const ACCOMMODATION_TYPES: AccommodationType[] = [
@@ -42,6 +43,9 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
   const [longitude, setLongitude] = useState(hotel?.location?.longitude !== undefined ? String(hotel.location.longitude) : '');
   const [contactPhone, setContactPhone] = useState(hotel?.contact_phone ?? '');
   const [contactEmail, setContactEmail] = useState(hotel?.contact_email ?? '');
+  const [photos, setPhotos] = useState<string[]>(hotel?.photos ?? []);
+  const [videos, setVideos] = useState<string[]>(hotel?.videos ?? []);
+  const [photos360, setPhotos360] = useState<string[]>(hotel?.photos_360 ?? []);
 
   const isSaving = createHotel.isPending || updateHotel.isPending;
 
@@ -58,6 +62,9 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
       address: address || undefined,
       contact_phone: contactPhone || undefined,
       contact_email: contactEmail || undefined,
+      photos,
+      videos,
+      photos_360: photos360,
     };
 
     const onSettled = {
@@ -123,6 +130,16 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
+
+      <MediaGalleryInput
+        label={t('pro.photosAndVideos')}
+        photos={photos}
+        videos={videos}
+        onPhotosChange={setPhotos}
+        onVideosChange={setVideos}
+        photos360={photos360}
+        onPhotos360Change={setPhotos360}
+      />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

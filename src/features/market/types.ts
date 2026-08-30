@@ -38,6 +38,9 @@ export interface ArtisanSummary {
   display_name: string;
   story?: string;
   photo_url?: string;
+  photos: string[];
+  videos: string[];
+  photos_360: string[];
   region?: string;
   province?: string;
   city?: string;
@@ -64,6 +67,7 @@ export interface ProductDetail {
   price: number;
   currency: string;
   photos: string[];
+  videos: string[];
   stock_quantity?: number;
   fulfillment_mode?: FulfillmentMode;
   average_rating?: number;

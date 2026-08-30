@@ -19,6 +19,15 @@
     "provinceFilter": "Provẽs yãk",
     "allProvinces": "Provẽs fãa"
   },
+  "virtualTour": {
+    "title": "Gũus-zĩiga",
+    "loading": "Gũus-zĩiga wata...",
+    "cta": "Gũus-zĩiga 360°",
+    "ctaHotel": "Ges zaka",
+    "ctaRestaurant": "Ges rɩ-zĩiga",
+    "ctaTransport": "Ges pʋɩʋgã",
+    "ctaArtisan": "Ges tʋʋm-zĩiga"
+  },
   "nav": {
     "home": "Zaka",
     "explore": "Bao n ges",
@@ -263,7 +272,29 @@
     "establishmentStatus_out_of_stock": "Sɩlemde sãame",
     "establishmentStatus_suspended": "Gãneg-a",
     "draftNotice": "Sɛb-sõsg-kãngã na pukã toor-toor y konte sã n sak-y admin poore.",
-    "pendingNotice": "B gũusg admin sak-a poore tɩ b puk-a."
+    "pendingNotice": "B gũusg admin sak-a poore tɩ b puk-a.",
+    "addMedia": "Paas",
+    "mediaHint": "Foto la video (JPEG, PNG, WEBP, MP4, WEBM). Wilg f tʋʋm-zĩig neere.",
+    "photosAndVideos": "Foto la video",
+    "photos360Label": "Gũus-zĩiga 360°",
+    "photos360Hint": "Foto bɩ video sẽn gũus 360° ne masin bɩ app. Kɩtdame tɩ nebã tõe n ges zĩiga taoore n deng b sẽn na paam sɛb-kɩtga.",
+    "addPhoto360": "Paas gũus-zĩiga 360°",
+    "myFirstEstablishment": "Sɩng ne f tʋʋm-zĩig naaneg",
+    "myFirstEstablishmentDesc": "Yãk buud ning f sẽn tʋmd tɩ f zĩig segl.",
+    "addAnotherType": "Get tʋʋm-buud a to",
+    "tab_team": "Sull",
+    "inviteByEmail": "Bool ne email",
+    "teamRole": "Tʋʋmd",
+    "teamRole_owner": "Soaba",
+    "teamRole_manager": "Get-soaba",
+    "teamRole_staff": "Tʋm-tʋmda",
+    "invite": "Bool",
+    "invitePending": "Booli gũusg pʋgẽ",
+    "teamMemberInvited": "Boolg tʋma neere",
+    "teamMemberRemoved": "Neda yiisame sull pʋgẽ",
+    "noTeamMembers": "Ka sull-neb tʋʋm-zĩig kãngã yĩnga ye",
+    "removeTeamMemberConfirmTitle": "Yiis neda kãnga?",
+    "removeTeamMemberConfirmMessage": "Neda kãng pa na tar sor n get tʋʋm-zĩig kãngã ye."
   },
   "theme": {
     "light": "Vẽenem",

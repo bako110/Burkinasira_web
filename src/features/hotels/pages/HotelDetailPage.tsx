@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, RotateCw } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Virtual360Viewer } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { useHotelDetail } from '../hooks/useHotelDetail';
@@ -17,6 +17,7 @@ export function HotelDetailPage() {
   const requireAuth = useRequireAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
+  const [tourOpen, setTourOpen] = useState(false);
 
   const { data: hotel, isLoading, isError, refetch } = useHotelDetail(id);
 
@@ -92,6 +93,12 @@ export function HotelDetailPage() {
               </span>
             )}
           </div>
+          {hotel.photos_360.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
+              <RotateCw size={15} strokeWidth={2} />
+              {t('virtualTour.ctaHotel')}
+            </Button>
+          )}
         </div>
       </div>
 
@@ -231,6 +238,13 @@ export function HotelDetailPage() {
           requiresDate
         />
       )}
+
+      <Virtual360Viewer
+        open={tourOpen}
+        onClose={() => setTourOpen(false)}
+        urls={hotel.photos_360}
+        title={t('virtualTour.ctaHotel')}
+      />
     </div>
   );
 }

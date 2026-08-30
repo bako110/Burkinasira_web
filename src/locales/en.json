@@ -19,6 +19,15 @@
     "provinceFilter": "Filter by province",
     "allProvinces": "All provinces"
   },
+  "virtualTour": {
+    "title": "Virtual tour",
+    "loading": "Loading virtual tour...",
+    "cta": "360° virtual tour",
+    "ctaHotel": "Visit the hotel",
+    "ctaRestaurant": "Visit the restaurant",
+    "ctaTransport": "Visit the vehicle",
+    "ctaArtisan": "Visit the workshop"
+  },
   "nav": {
     "home": "Home",
     "explore": "Explore",
@@ -263,7 +272,29 @@
     "establishmentStatus_out_of_stock": "Out of stock",
     "establishmentStatus_suspended": "Suspended",
     "draftNotice": "This draft will be published automatically once your account is verified by an administrator.",
-    "pendingNotice": "Awaiting approval from an administrator before publication."
+    "pendingNotice": "Awaiting approval from an administrator before publication.",
+    "addMedia": "Add",
+    "mediaHint": "Photos and videos (JPEG, PNG, WEBP, MP4, WEBM). Showcase your establishment.",
+    "photosAndVideos": "Photos and videos",
+    "photos360Label": "360° virtual tour",
+    "photos360Hint": "360° panoramic photos or videos captured with a device or dedicated app. Lets visitors look around virtually before booking.",
+    "addPhoto360": "Add a 360° view",
+    "myFirstEstablishment": "Start by creating your establishment",
+    "myFirstEstablishmentDesc": "Choose the type of business you run to set up your space.",
+    "addAnotherType": "Manage another type of business",
+    "tab_team": "Team",
+    "inviteByEmail": "Invite by email",
+    "teamRole": "Role",
+    "teamRole_owner": "Owner",
+    "teamRole_manager": "Manager",
+    "teamRole_staff": "Staff",
+    "invite": "Invite",
+    "invitePending": "Invitation pending",
+    "teamMemberInvited": "Invitation sent successfully",
+    "teamMemberRemoved": "Member removed from the team",
+    "noTeamMembers": "No team member for this establishment",
+    "removeTeamMemberConfirmTitle": "Remove this member?",
+    "removeTeamMemberConfirmMessage": "This person will no longer have access to manage this establishment."
   },
   "theme": {
     "light": "Light",

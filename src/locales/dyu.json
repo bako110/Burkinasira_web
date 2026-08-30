@@ -19,6 +19,15 @@
     "provinceFilter": "Provɛnsi sugandi",
     "allProvinces": "Provɛnsi bɛɛ"
   },
+  "virtualTour": {
+    "title": "Bɔlan taama",
+    "loading": "Bɔlan taama bɛ na...",
+    "cta": "Bɔlan taama 360°",
+    "ctaHotel": "Lotɛli lajɛ",
+    "ctaRestaurant": "Dumunikɛyɔrɔ lajɛ",
+    "ctaTransport": "Mobili lajɛ",
+    "ctaArtisan": "Baarayɔrɔ lajɛ"
+  },
   "nav": {
     "home": "So",
     "explore": "Ɲini",
@@ -263,7 +272,29 @@
     "establishmentStatus_out_of_stock": "A banna",
     "establishmentStatus_suspended": "A jɔra",
     "draftNotice": "Nin sɛbɛnni in bɛna bɔ kɛnɛ kan i yɛrɛ wa lajɛlen kɔfɛ ɲɛmɔgɔ fɛ.",
-    "pendingNotice": "A bɛ ɲɛmɔgɔ ka lajɛli makɔnɔ sanni a ka bɔ kɛnɛ kan."
+    "pendingNotice": "A bɛ ɲɛmɔgɔ ka lajɛli makɔnɔ sanni a ka bɔ kɛnɛ kan.",
+    "addMedia": "Fara a kan",
+    "mediaHint": "Foto ni wideyo (JPEG, PNG, WEBP, MP4, WEBM). I ka baarayɔrɔ jira ka ɲɛ.",
+    "photosAndVideos": "Foto ni wideyo",
+    "photos360Label": "Bɔlan taama 360°",
+    "photos360Hint": "Foto walima wideyo minnu ye 360° la, minɛnen ni minɛnnen walima app dɔ ye. A bɛ to bagbaatɔw ka yɔrɔ lajɛ sanni u ka minɛni kɛ.",
+    "addPhoto360": "Fara 360° kɔrɔ kan",
+    "myFirstEstablishment": "Daminɛ ni i ka baarayɔrɔ dilanni ye",
+    "myFirstEstablishmentDesc": "I ka baara suguya sugandi walasa ka i ka yɔrɔ labɛn.",
+    "addAnotherType": "Baara suguya wɛrɛ mara",
+    "tab_team": "Jɛkulu",
+    "inviteByEmail": "Wele ni imɛli ye",
+    "teamRole": "Baara",
+    "teamRole_owner": "Tigi",
+    "teamRole_manager": "Ɲɛmɔgɔ",
+    "teamRole_staff": "Baarakɛla",
+    "invite": "Wele",
+    "invitePending": "Welekan bɛ lakodɔn na",
+    "teamMemberInvited": "Welekan cira ka ɲɛ",
+    "teamMemberRemoved": "Mɔgɔ bɔra jɛkulu kɔnɔ",
+    "noTeamMembers": "Jɛkulu mɔgɔ si tɛ baarayɔrɔ in na",
+    "removeTeamMemberConfirmTitle": "I bɛna mɔgɔ in bɔ wa?",
+    "removeTeamMemberConfirmMessage": "Nin mɔgɔ in tɛna se ka baarayɔrɔ in mara tugun."
   },
   "theme": {
     "light": "Kɛnɛ",

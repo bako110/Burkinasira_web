@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, RotateCw } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Virtual360Viewer } from '../../../shared/ui';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
 
@@ -10,6 +11,7 @@ export function RestaurantDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [tourOpen, setTourOpen] = useState(false);
 
   const { data: restaurant, isLoading, isError, refetch } = useRestaurantDetail(id);
 
@@ -81,6 +83,12 @@ export function RestaurantDetailPage() {
               </span>
             )}
           </div>
+          {restaurant.photos_360.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={() => setTourOpen(true)}>
+              <RotateCw size={15} strokeWidth={2} />
+              {t('virtualTour.ctaRestaurant')}
+            </Button>
+          )}
         </div>
       </div>
 
@@ -203,6 +211,13 @@ export function RestaurantDetailPage() {
       </div>
 
       <RelatedModules currentPath="/restaurants" />
+
+      <Virtual360Viewer
+        open={tourOpen}
+        onClose={() => setTourOpen(false)}
+        urls={restaurant.photos_360}
+        title={t('virtualTour.ctaRestaurant')}
+      />
     </div>
   );
 }
