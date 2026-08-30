@@ -6,42 +6,67 @@
 
 .selectField {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 
 .icon {
   position: absolute;
   left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--color-text-subtle);
   pointer-events: none;
+  z-index: 1;
+}
+
+.chevron {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-subtle);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .select {
   appearance: none;
-  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--space-3) * 2 + 15px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  width: auto;
+  padding: var(--space-2) calc(var(--space-4) + 14px) var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
   color: var(--color-text);
   font-size: 0.8125rem;
   font-weight: 600;
+  font-family: inherit;
+  line-height: normal;
   cursor: pointer;
 }
 
-.selectField:has(.select:not(:first-child)) .icon {
-  display: none;
-}
-
-.selectField:not(:first-child) .select {
-  padding-left: var(--space-4);
+.selectWithIcon {
+  padding-left: calc(var(--space-3) * 2 + 15px);
 }
 
 .select:hover {
   border-color: var(--color-border-strong);
 }
 
+.select:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 1px;
+}
+
 .select:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.select option {
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }

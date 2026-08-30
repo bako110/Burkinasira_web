@@ -78,6 +78,12 @@
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  .heroContent {
+    padding: var(--space-4);
+  }
+}
+
 .categoryBadge {
   display: inline-block;
   padding: 4px var(--space-3);
@@ -207,6 +213,10 @@
   gap: var(--space-3);
 }
 
+.programRow > div {
+  min-width: 0;
+}
+
 .programTime {
   flex-shrink: 0;
   min-width: 56px;
@@ -219,12 +229,14 @@
   margin: 0;
   font-size: 0.875rem;
   font-weight: 700;
+  overflow-wrap: break-word;
 }
 
 .programDescription {
   margin: 2px 0 0;
   font-size: 0.8125rem;
   color: var(--color-text-muted);
+  overflow-wrap: break-word;
 }
 
 .priceInfo {

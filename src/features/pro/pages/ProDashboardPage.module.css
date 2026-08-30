@@ -27,6 +27,7 @@
 
 .grid {
   display: grid;
+  min-width: 0;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-4);
 }

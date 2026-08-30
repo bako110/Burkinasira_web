@@ -42,7 +42,7 @@
   gap: var(--space-6);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
   .layout {
     flex-direction: row;
     align-items: flex-start;

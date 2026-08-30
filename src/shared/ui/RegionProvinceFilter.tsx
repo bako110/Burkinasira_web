@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { MapPin } from 'lucide-react';
+import { MapPin, ChevronDown } from 'lucide-react';
+import clsx from 'clsx';
 
 import { BURKINA_REGION_NAMES, getProvincesForRegion } from '../data/burkinaRegions';
 import styles from './RegionProvinceFilter.module.css';
@@ -33,7 +34,7 @@ export function RegionProvinceFilter({
       <div className={styles.selectField}>
         <MapPin size={15} strokeWidth={2} className={styles.icon} />
         <select
-          className={styles.select}
+          className={clsx(styles.select, styles.selectWithIcon)}
           value={region ?? ''}
           onChange={(e) => handleRegionChange(e.target.value)}
           aria-label={t('common.regionFilter')}
@@ -45,6 +46,7 @@ export function RegionProvinceFilter({
             </option>
           ))}
         </select>
+        <ChevronDown size={14} strokeWidth={2} className={styles.chevron} />
       </div>
 
       {showProvince && (
@@ -63,6 +65,7 @@ export function RegionProvinceFilter({
               </option>
             ))}
           </select>
+          <ChevronDown size={14} strokeWidth={2} className={styles.chevron} />
         </div>
       )}
     </div>
