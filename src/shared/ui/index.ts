@@ -12,6 +12,7 @@ export { CardSkeleton } from './CardSkeleton';
 export { ToastViewport } from './ToastViewport';
 export { Modal } from './Modal';
 export { ConfirmDialog } from './ConfirmDialog';
+export { AuthRequiredModal } from './AuthRequiredModal';
 export { RelatedModules } from './RelatedModules';
 export { DetailBackButton } from './DetailBackButton';
 export { BurkinaFlag } from './BurkinaFlag';

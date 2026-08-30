@@ -77,11 +77,13 @@ export function HotelsPage() {
   }
 
   function applyRegion(value: string | undefined) {
+    console.log('DEBUG applyRegion called with', value);
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (value) next.set('region', value);
       else next.delete('region');
       next.delete('province');
+      console.log('DEBUG next searchParams', next.toString());
       return next;
     });
   }

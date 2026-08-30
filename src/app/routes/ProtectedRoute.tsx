@@ -1,13 +1,14 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { useAuthStore } from '../../store/auth.store';
+import { AuthRequiredModal } from '../../shared/ui/AuthRequiredModal';
 
 export function ProtectedRoute() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location.pathname + location.search }} replace />;
+    return <AuthRequiredModal open from={location.pathname + location.search} />;
   }
 
   return <Outlet />;
