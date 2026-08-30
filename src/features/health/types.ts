@@ -12,6 +12,7 @@ export interface HealthFacilitySummary {
   name: string;
   type: HealthFacilityType;
   region: string;
+  province?: string;
   city?: string;
   is_on_duty?: boolean;
   contact_phone?: string;
@@ -20,6 +21,7 @@ export interface HealthFacilitySummary {
 export interface HealthFacilityFilters {
   type?: HealthFacilityType;
   region?: string;
+  province?: string;
   on_duty_only?: boolean;
   page?: number;
   page_size?: number;
@@ -38,6 +40,7 @@ export interface HealthFacilityDetail {
   type: HealthFacilityType;
   description?: string;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;

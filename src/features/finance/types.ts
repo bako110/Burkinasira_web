@@ -6,6 +6,7 @@ export interface MoneyServiceSummary {
   type: MoneyServiceType;
   operator?: string;
   region: string;
+  province?: string;
   city?: string;
   contact_phone?: string;
 }
@@ -13,6 +14,7 @@ export interface MoneyServiceSummary {
 export interface MoneyServiceFilters {
   type?: MoneyServiceType;
   region?: string;
+  province?: string;
   page?: number;
   page_size?: number;
 }
@@ -30,6 +32,7 @@ export interface MoneyServiceDetail {
   type: MoneyServiceType;
   operator?: string;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;

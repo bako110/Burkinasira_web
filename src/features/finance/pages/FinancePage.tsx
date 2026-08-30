@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useMoneyServices } from '../hooks/useMoneyServices';
 import { MoneyServiceCard } from '../components/MoneyServiceCard';
 import { MoneyFilters } from '../components/MoneyFilters';
@@ -16,6 +16,8 @@ export function FinancePage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlType = (searchParams.get('type') as MoneyServiceType | null) ?? undefined;
+  const urlRegion = searchParams.get('region') ?? undefined;
+  const urlProvince = searchParams.get('province') ?? undefined;
 
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<MoneyServiceSummary[]>([]);
@@ -23,10 +25,12 @@ export function FinancePage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType]);
+  }, [urlType, urlRegion, urlProvince]);
 
   const { data, isLoading, isFetching, isError, refetch } = useMoneyServices({
     type: urlType,
+    region: urlRegion,
+    province: urlProvince,
     page,
     page_size: PAGE_SIZE,
   });
@@ -41,6 +45,17 @@ export function FinancePage() {
       const next = new URLSearchParams(prev);
       if (value) next.set('type', value);
       else next.delete('type');
+      return next;
+    });
+  }
+
+  function applyRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (regionValue) next.set('region', regionValue);
+      else next.delete('region');
+      if (provinceValue) next.set('province', provinceValue);
+      else next.delete('province');
       return next;
     });
   }
@@ -60,6 +75,12 @@ export function FinancePage() {
       </section>
 
       <div className={styles.body}>
+        <RegionProvinceFilter
+          region={urlRegion}
+          province={urlProvince}
+          onChange={applyRegionProvince}
+          showProvince
+        />
         <MoneyFilters active={urlType} onChange={applyType} />
 
         {!showInitialLoading && !isError && (

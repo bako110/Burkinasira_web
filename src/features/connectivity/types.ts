@@ -12,6 +12,7 @@ export interface ConnectivityPointSummary {
   type: ConnectivityPointType;
   operator?: string;
   region: string;
+  province?: string;
   city?: string;
   is_free?: boolean;
   offers_esim?: boolean;
@@ -21,6 +22,7 @@ export interface ConnectivityPointSummary {
 export interface ConnectivityFilters {
   type?: ConnectivityPointType;
   region?: string;
+  province?: string;
   page?: number;
   page_size?: number;
 }
@@ -31,6 +33,7 @@ export interface ConnectivityPointDetail {
   type: ConnectivityPointType;
   operator?: string;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;
