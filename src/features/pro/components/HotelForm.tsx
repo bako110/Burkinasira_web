@@ -6,8 +6,11 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { AccommodationType, HotelDetail } from '../../hotels/types';
+import type { RoomTypePayload } from '../types';
 import { useCreateMyHotel, useUpdateMyHotel } from '../hooks/useMyEstablishments';
 import { MediaGalleryInput } from './MediaGalleryInput';
+import { LocationPicker } from '../../../shared/ui/LocationPicker';
+import { RoomTypesEditor } from './RoomTypesEditor';
 import formStyles from './GuideProfileForm.module.css';
 
 const ACCOMMODATION_TYPES: AccommodationType[] = [
@@ -45,6 +48,8 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
   const [contactEmail, setContactEmail] = useState(hotel?.contact_email ?? '');
   const [photos, setPhotos] = useState<string[]>(hotel?.photos ?? []);
   const [videos, setVideos] = useState<string[]>(hotel?.videos ?? []);
+  const [amenities, setAmenities] = useState(hotel?.amenities?.join(', ') ?? '');
+  const [roomTypes, setRoomTypes] = useState<RoomTypePayload[]>(hotel?.room_types ?? []);
 
   const isSaving = createHotel.isPending || updateHotel.isPending;
 
@@ -63,6 +68,8 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
       contact_email: contactEmail || undefined,
       photos,
       videos,
+      amenities: amenities.split(',').map((a) => a.trim()).filter(Boolean),
+      room_types: roomTypes,
     };
 
     const onSettled = {
@@ -183,36 +190,25 @@ export function HotelForm({ hotel, onSaved, onCancel }: HotelFormProps) {
         </div>
       </div>
 
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="hotel_latitude" className={formStyles.label}>
-            {t('pro.latitude')}
-          </label>
-          <input
-            id="hotel_latitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            required
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-          />
-        </div>
-        <div className={formStyles.field}>
-          <label htmlFor="hotel_longitude" className={formStyles.label}>
-            {t('pro.longitude')}
-          </label>
-          <input
-            id="hotel_longitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            required
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-          />
-        </div>
+      <div className={formStyles.field}>
+        <label className={formStyles.label}>{t('pro.location')}</label>
+        <LocationPicker latitude={latitude} longitude={longitude} onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }} />
       </div>
+
+      <div className={formStyles.field}>
+        <label htmlFor="hotel_amenities" className={formStyles.label}>
+          {t('pro.amenities')}
+        </label>
+        <input
+          id="hotel_amenities"
+          className={formStyles.input}
+          placeholder={t('pro.amenitiesPlaceholder')}
+          value={amenities}
+          onChange={(e) => setAmenities(e.target.value)}
+        />
+      </div>
+
+      <RoomTypesEditor value={roomTypes} onChange={setRoomTypes} />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>

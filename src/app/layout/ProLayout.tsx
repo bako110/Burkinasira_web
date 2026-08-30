@@ -66,9 +66,8 @@ export function ProLayout() {
 
   const isGuide = user?.role === 'guide';
 
-  // Un provider ne voit dans sa sidebar que les types d'établissement qu'il possède
-  // réellement (ex: un hôtelier ne voit pas "Restaurant"/"Transport"/"Artisanat").
-  // Il peut en ajouter un nouveau depuis la Vue d'ensemble, qui le fera apparaître ici.
+  // Un provider ne voit dans sa sidebar QUE le type d'établissement qu'il possède
+  // réellement (ex: un hôtelier ne voit jamais "Restaurant"/"Transport"/"Artisanat").
   const { data: hotels } = useMyHotels();
   const { data: restaurants } = useMyRestaurants();
   const { data: transportProviders } = useMyTransportProviders();

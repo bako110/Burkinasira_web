@@ -6,8 +6,12 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { BURKINA_REGIONS } from '../../weather/types';
 import type { EstablishmentType, RestaurantDetail } from '../../restaurants/types';
+import type { OpeningHoursPayload, MenuItemPayload } from '../types';
 import { useCreateMyRestaurant, useUpdateMyRestaurant } from '../hooks/useMyEstablishments';
 import { MediaGalleryInput } from './MediaGalleryInput';
+import { LocationPicker } from '../../../shared/ui/LocationPicker';
+import { OpeningHoursEditor } from './OpeningHoursEditor';
+import { MenuEditor } from './MenuEditor';
 import formStyles from './GuideProfileForm.module.css';
 
 const ESTABLISHMENT_TYPES: EstablishmentType[] = [
@@ -46,6 +50,10 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
   );
   const [acceptsTableBooking, setAcceptsTableBooking] = useState(restaurant?.accepts_table_booking ?? true);
   const [offersTakeaway, setOffersTakeaway] = useState(restaurant?.offers_takeaway ?? false);
+  const [offersCookingWorkshop, setOffersCookingWorkshop] = useState(restaurant?.offers_cooking_workshop ?? false);
+  const [dietaryTags, setDietaryTags] = useState(restaurant?.dietary_tags?.join(', ') ?? '');
+  const [openingHours, setOpeningHours] = useState<OpeningHoursPayload[]>(restaurant?.opening_hours ?? []);
+  const [menu, setMenu] = useState<MenuItemPayload[]>(restaurant?.menu ?? []);
   const [contactPhone, setContactPhone] = useState(restaurant?.contact_phone ?? '');
   const [contactEmail, setContactEmail] = useState(restaurant?.contact_email ?? '');
   const [photos, setPhotos] = useState<string[]>(restaurant?.photos ?? []);
@@ -67,6 +75,10 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
       address: address || undefined,
       accepts_table_booking: acceptsTableBooking,
       offers_takeaway: offersTakeaway,
+      offers_cooking_workshop: offersCookingWorkshop,
+      dietary_tags: dietaryTags.split(',').map((tag) => tag.trim()).filter(Boolean),
+      opening_hours: openingHours,
+      menu,
       contact_phone: contactPhone || undefined,
       contact_email: contactEmail || undefined,
       photos,
@@ -213,36 +225,27 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
         </div>
       </div>
 
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="restaurant_latitude" className={formStyles.label}>
-            {t('pro.latitude')}
-          </label>
-          <input
-            id="restaurant_latitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            required
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-          />
-        </div>
-        <div className={formStyles.field}>
-          <label htmlFor="restaurant_longitude" className={formStyles.label}>
-            {t('pro.longitude')}
-          </label>
-          <input
-            id="restaurant_longitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            required
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-          />
-        </div>
+      <div className={formStyles.field}>
+        <label className={formStyles.label}>{t('pro.location')}</label>
+        <LocationPicker latitude={latitude} longitude={longitude} onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }} />
       </div>
+
+      <div className={formStyles.field}>
+        <label htmlFor="restaurant_dietary_tags" className={formStyles.label}>
+          {t('pro.dietaryTags')}
+        </label>
+        <input
+          id="restaurant_dietary_tags"
+          className={formStyles.input}
+          placeholder={t('pro.dietaryTagsPlaceholder')}
+          value={dietaryTags}
+          onChange={(e) => setDietaryTags(e.target.value)}
+        />
+      </div>
+
+      <OpeningHoursEditor value={openingHours} onChange={setOpeningHours} />
+
+      <MenuEditor value={menu} onChange={setMenu} />
 
       <div className={formStyles.row}>
         <div className={formStyles.field}>
@@ -265,6 +268,17 @@ export function RestaurantForm({ restaurant, onSaved, onCancel }: RestaurantForm
               onChange={(e) => setOffersTakeaway(e.target.checked)}
             />
             {t('pro.offersTakeaway')}
+          </label>
+        </div>
+        <div className={formStyles.field}>
+          <label htmlFor="restaurant_offers_cooking_workshop" className={formStyles.label} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input
+              id="restaurant_offers_cooking_workshop"
+              type="checkbox"
+              checked={offersCookingWorkshop}
+              onChange={(e) => setOffersCookingWorkshop(e.target.checked)}
+            />
+            {t('pro.offersCookingWorkshop')}
           </label>
         </div>
       </div>

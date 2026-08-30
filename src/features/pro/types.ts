@@ -161,6 +161,30 @@ export interface GeoPointPayload {
   longitude: number;
 }
 
+export interface RoomTypePayload {
+  name: string;
+  capacity: number;
+  price_per_night: number;
+  currency: string;
+  total_rooms: number;
+  amenities: string[];
+}
+
+export interface OpeningHoursPayload {
+  day: string;
+  open_time?: string;
+  close_time?: string;
+  closed: boolean;
+}
+
+export interface MenuItemPayload {
+  name: string;
+  description?: string;
+  price?: number;
+  currency: string;
+  is_specialty: boolean;
+}
+
 export interface CreateHotelPayload {
   name: string;
   type: string;
@@ -173,6 +197,7 @@ export interface CreateHotelPayload {
   photos?: string[];
   videos?: string[];
   amenities?: string[];
+  room_types?: RoomTypePayload[];
   contact_phone?: string;
   contact_email?: string;
 }
@@ -189,9 +214,12 @@ export interface CreateRestaurantPayload {
   address?: string;
   photos?: string[];
   videos?: string[];
+  opening_hours?: OpeningHoursPayload[];
+  menu?: MenuItemPayload[];
   dietary_tags?: string[];
   accepts_table_booking?: boolean;
   offers_takeaway?: boolean;
+  offers_cooking_workshop?: boolean;
   contact_phone?: string;
   contact_email?: string;
 }

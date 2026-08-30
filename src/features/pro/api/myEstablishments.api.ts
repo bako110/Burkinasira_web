@@ -104,8 +104,8 @@ export async function updateMyArtisanProfile(payload: Partial<CreateArtisanProfi
 }
 
 export async function fetchMyProducts(): Promise<ProductDetail[]> {
-  const { data } = await apiClient.get<ProductDetail[]>('/market/products/me/list');
-  return data;
+  const data = await getOrNull<ProductDetail[]>('/market/products/me/list');
+  return data ?? [];
 }
 
 export async function createMyProduct(payload: CreateProductPayload): Promise<ProductDetail> {

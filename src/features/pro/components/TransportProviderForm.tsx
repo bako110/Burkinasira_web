@@ -8,6 +8,7 @@ import { BURKINA_REGIONS } from '../../weather/types';
 import type { TransportType, TransportProviderDetail } from '../../mobility/types';
 import { useCreateMyTransportProvider, useUpdateMyTransportProvider } from '../hooks/useMyEstablishments';
 import { MediaGalleryInput } from './MediaGalleryInput';
+import { LocationPicker } from '../../../shared/ui/LocationPicker';
 import formStyles from './GuideProfileForm.module.css';
 
 const TRANSPORT_TYPES: TransportType[] = [
@@ -199,33 +200,9 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
         </div>
       </div>
 
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_latitude" className={formStyles.label}>
-            {t('pro.latitude')}
-          </label>
-          <input
-            id="transport_latitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-          />
-        </div>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_longitude" className={formStyles.label}>
-            {t('pro.longitude')}
-          </label>
-          <input
-            id="transport_longitude"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-          />
-        </div>
+      <div className={formStyles.field}>
+        <label className={formStyles.label}>{t('pro.location')}</label>
+        <LocationPicker latitude={latitude} longitude={longitude} onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }} />
       </div>
 
       <div className={formStyles.row}>
