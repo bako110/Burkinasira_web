@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Plus, Users } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, RegionProvinceFilter } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useAuthStore } from '../../../store/auth.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -19,7 +19,6 @@ import { CreateFavoriteListModal } from '../components/CreateFavoriteListModal';
 import { GroupCard } from '../components/GroupCard';
 import { CreateGroupModal } from '../components/CreateGroupModal';
 import { GROUP_THEMES, type Question } from '../types';
-import { BURKINA_REGIONS } from '../../weather/types';
 import styles from './CommunityPage.module.css';
 
 type Tab = 'questions' | 'favorites' | 'groups';
@@ -40,13 +39,20 @@ export function CommunityPage() {
   const { mutate: deleteList } = useDeleteFavoriteList();
 
   const [createGroupOpen, setCreateGroupOpen] = useState(false);
-  const [groupRegion, setGroupRegion] = useState('');
+  const [groupRegion, setGroupRegion] = useState<string | undefined>(undefined);
+  const [groupProvince, setGroupProvince] = useState<string | undefined>(undefined);
   const [groupTheme, setGroupTheme] = useState('');
   const { data: groups, isLoading: isLoadingGroups } = useGroups(
     true,
-    groupRegion || undefined,
+    groupRegion,
     groupTheme || undefined,
+    groupProvince,
   );
+
+  function applyGroupRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
+    setGroupRegion(regionValue);
+    setGroupProvince(provinceValue);
+  }
 
   function handleDeleteList(id: string) {
     deleteList(id, {
@@ -167,19 +173,12 @@ export function CommunityPage() {
           <div className={styles.tabContent}>
             <div className={styles.tabHeader}>
               <div className={styles.filterRow}>
-                <select
-                  className={styles.filterSelect}
-                  value={groupRegion}
-                  onChange={(e) => setGroupRegion(e.target.value)}
-                  aria-label={t('community.regionLabel')}
-                >
-                  <option value="">{t('community.allRegions')}</option>
-                  {BURKINA_REGIONS.map((r) => (
-                    <option key={r} value={r}>
-                      {r}
-                    </option>
-                  ))}
-                </select>
+                <RegionProvinceFilter
+                  region={groupRegion}
+                  province={groupProvince}
+                  onChange={applyGroupRegionProvince}
+                  showProvince
+                />
                 <select
                   className={styles.filterSelect}
                   value={groupTheme}

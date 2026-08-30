@@ -60,6 +60,7 @@ export interface Group {
   description?: string;
   cover_photo?: string;
   region?: string;
+  province?: string;
   theme?: string;
   creator_id: string;
   member_ids: string[];
@@ -80,6 +81,7 @@ export interface GroupDetail {
   description?: string;
   cover_photo?: string;
   region?: string;
+  province?: string;
   theme?: string;
   creator_id: string;
   members: GroupMember[];

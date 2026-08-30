@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ShieldAlert, Siren, FileWarning } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Spinner, Reveal, EmptyResults, Button } from '../../../shared/ui';
+import { Spinner, Reveal, EmptyResults, Button, RegionProvinceFilter } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useEmergencyContacts } from '../hooks/useEmergencyContacts';
 import { useSecurityAlerts } from '../hooks/useSecurityAlerts';
@@ -15,8 +15,9 @@ import styles from './EmergencyPage.module.css';
 export function EmergencyPage() {
   const { t } = useTranslation();
   const requireAuth = useRequireAuth();
-  const { data: contacts, isLoading: isLoadingContacts, isError, refetch } = useEmergencyContacts();
-  const { data: alerts, isLoading: isLoadingAlerts } = useSecurityAlerts();
+  const [region, setRegion] = useState<string | undefined>(undefined);
+  const { data: contacts, isLoading: isLoadingContacts, isError, refetch } = useEmergencyContacts(region);
+  const { data: alerts, isLoading: isLoadingAlerts } = useSecurityAlerts(region);
   const [sosOpen, setSosOpen] = useState(false);
   const [incidentOpen, setIncidentOpen] = useState(false);
 
@@ -52,6 +53,8 @@ export function EmergencyPage() {
       <ReportIncidentModal open={incidentOpen} onClose={() => setIncidentOpen(false)} />
 
       <div className={styles.body}>
+        <RegionProvinceFilter region={region} onChange={(regionValue) => setRegion(regionValue)} />
+
         {!isLoadingAlerts && activeAlerts.length > 0 && (
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>{t('emergency.alertsTitle')}</h2>

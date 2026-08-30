@@ -37,10 +37,17 @@ export interface ArtisanSummary {
   story?: string;
   photo_url?: string;
   region?: string;
+  province?: string;
   city?: string;
   is_verified: boolean;
   average_rating: number;
   review_count: number;
+}
+
+export interface ArtisanFilters {
+  region?: string;
+  province?: string;
+  verified_only?: boolean;
 }
 
 export interface ProductDetail {

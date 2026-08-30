@@ -81,9 +81,10 @@ export async function fetchGroups(
   publicOnly = true,
   region?: string,
   theme?: string,
+  province?: string,
 ): Promise<Group[]> {
   const { data } = await apiClient.get<Group[]>('/community/groups', {
-    params: { public_only: publicOnly, region, theme },
+    params: { public_only: publicOnly, region, theme, province },
   });
   return data;
 }

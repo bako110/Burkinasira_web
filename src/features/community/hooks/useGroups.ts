@@ -2,10 +2,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { fetchGroups, fetchGroupDetail, createGroup, joinGroup, leaveGroup } from '../api/community.api';
 
-export function useGroups(publicOnly = true, region?: string, theme?: string) {
+export function useGroups(publicOnly = true, region?: string, theme?: string, province?: string) {
   return useQuery({
-    queryKey: ['community-groups', publicOnly, region, theme],
-    queryFn: () => fetchGroups(publicOnly, region, theme),
+    queryKey: ['community-groups', publicOnly, region, theme, province],
+    queryFn: () => fetchGroups(publicOnly, region, theme, province),
   });
 }
 

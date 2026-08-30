@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import clsx from 'clsx';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useProducts } from '../hooks/useProducts';
+import { useArtisans } from '../hooks/useArtisans';
 import { ProductCard } from '../components/ProductCard';
 import { ProductFilters } from '../components/ProductFilters';
+import { ArtisanCard } from '../components/ArtisanCard';
 import type { ProductCategory, ProductSummary } from '../types';
 import styles from './MarketPage.module.css';
 
 const PAGE_SIZE = 15;
 
+type Tab = 'products' | 'artisans';
+
 export function MarketPage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [tab, setTab] = useState<Tab>('products');
 
   const urlQuery = searchParams.get('q') ?? '';
   const urlCategory = (searchParams.get('category') as ProductCategory | null) ?? undefined;
+  const urlRegion = searchParams.get('region') ?? undefined;
+  const urlProvince = searchParams.get('province') ?? undefined;
 
   const [queryInput, setQueryInput] = useState(urlQuery);
   const debouncedQuery = useDebouncedValue(queryInput);
@@ -72,6 +80,24 @@ export function MarketPage() {
     });
   }
 
+  function applyRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (regionValue) next.set('region', regionValue);
+      else next.delete('region');
+      if (provinceValue) next.set('province', provinceValue);
+      else next.delete('province');
+      return next;
+    });
+  }
+
+  const {
+    data: artisans,
+    isLoading: isLoadingArtisans,
+    isError: isArtisansError,
+    refetch: refetchArtisans,
+  } = useArtisans({ region: urlRegion, province: urlProvince });
+
   const total = data?.total ?? 0;
   const hasMore = accumulated.length > 0 && accumulated.length < total;
   const showInitialLoading = isLoading && page === 1;
@@ -90,41 +116,103 @@ export function MarketPage() {
       />
 
       <div className={styles.body}>
-        <ProductFilters active={urlCategory} onChange={applyCategory} />
+        <div className={styles.tabs}>
+          <button
+            type="button"
+            className={clsx(styles.tab, tab === 'products' && styles.tabActive)}
+            onClick={() => setTab('products')}
+          >
+            {t('market.tabProducts')}
+          </button>
+          <button
+            type="button"
+            className={clsx(styles.tab, tab === 'artisans' && styles.tabActive)}
+            onClick={() => setTab('artisans')}
+          >
+            {t('market.tabArtisans')}
+          </button>
+        </div>
 
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
-          </div>
-        )}
-
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
-
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults variant="empty" title={t('market.empty')} text={t('explore.emptyText')} />
-        )}
-
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
+        {tab === 'products' && (
           <>
-            <div className={styles.grid}>
-              {accumulated.map((product, i) => (
-                <Reveal key={product.id} delay={Math.min(i, 10) * 40}>
-                  <ProductCard product={product} />
-                </Reveal>
-              ))}
-            </div>
+            <ProductFilters active={urlCategory} onChange={applyCategory} />
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+            {!showInitialLoading && !isError && (
+              <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+            )}
+
+            {showInitialLoading && (
+              <div className={styles.grid}>
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <CardSkeleton key={i} />
+                ))}
+              </div>
+            )}
+
+            {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+            {!showInitialLoading && !isError && accumulated.length === 0 && (
+              <EmptyResults variant="empty" title={t('market.empty')} text={t('explore.emptyText')} />
+            )}
+
+            {!showInitialLoading && !isError && accumulated.length > 0 && (
+              <>
+                <div className={styles.grid}>
+                  {accumulated.map((product, i) => (
+                    <Reveal key={product.id} delay={Math.min(i, 10) * 40}>
+                      <ProductCard product={product} />
+                    </Reveal>
+                  ))}
+                </div>
+
+                {hasMore && (
+                  <div className={styles.loadMoreRow}>
+                    <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                      {isFetching ? t('common.loading') : t('explore.loadMore')}
+                    </Button>
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        )}
+
+        {tab === 'artisans' && (
+          <>
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+
+            {!isLoadingArtisans && !isArtisansError && (
+              <p className={styles.resultsCount}>{t('explore.resultsCount', { count: artisans?.length ?? 0 })}</p>
+            )}
+
+            {isLoadingArtisans && (
+              <div className={styles.artisanList}>
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <CardSkeleton key={i} />
+                ))}
+              </div>
+            )}
+
+            {!isLoadingArtisans && isArtisansError && (
+              <EmptyResults variant="error" onRetry={() => refetchArtisans()} />
+            )}
+
+            {!isLoadingArtisans && !isArtisansError && (!artisans || artisans.length === 0) && (
+              <EmptyResults variant="empty" title={t('market.emptyArtisans')} text={t('explore.emptyText')} />
+            )}
+
+            {!isLoadingArtisans && !isArtisansError && artisans && artisans.length > 0 && (
+              <div className={styles.artisanList}>
+                {artisans.map((artisan, i) => (
+                  <Reveal key={artisan.id} delay={Math.min(i, 8) * 50}>
+                    <ArtisanCard artisan={artisan} />
+                  </Reveal>
+                ))}
               </div>
             )}
           </>
