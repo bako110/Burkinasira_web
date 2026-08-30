@@ -350,7 +350,7 @@
   "guides": {
     "title": "Guides touristiques",
     "subtitle": "Trouvez un guide certifié pour découvrir le Burkina Faso autrement.",
-    "searchPlaceholder": "Une région...",
+    "searchPlaceholder": "Une spécialité...",
     "empty": "Aucun guide trouvé",
     "perDay": "{{price}} {{currency}} / jour",
     "contact": "Contacter",

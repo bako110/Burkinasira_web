@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useGuides } from '../hooks/useGuides';
 import { GuideCard } from '../components/GuideCard';
@@ -15,21 +15,23 @@ export function GuidesPage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const urlRegion = searchParams.get('region') ?? '';
+  const urlSpecialty = searchParams.get('specialty') ?? '';
+  const urlRegion = searchParams.get('region') ?? undefined;
+  const urlProvince = searchParams.get('province') ?? undefined;
 
-  const [queryInput, setQueryInput] = useState(urlRegion);
+  const [queryInput, setQueryInput] = useState(urlSpecialty);
   const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<GuideSummary[]>([]);
 
-  useEffect(() => setQueryInput(urlRegion), [urlRegion]);
+  useEffect(() => setQueryInput(urlSpecialty), [urlSpecialty]);
 
   useEffect(() => {
-    if (debouncedQuery === urlRegion) return;
+    if (debouncedQuery === urlSpecialty) return;
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (debouncedQuery) next.set('region', debouncedQuery);
-      else next.delete('region');
+      if (debouncedQuery) next.set('specialty', debouncedQuery);
+      else next.delete('specialty');
       return next;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,10 +40,12 @@ export function GuidesPage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlRegion]);
+  }, [urlSpecialty, urlRegion, urlProvince]);
 
   const { data, isLoading, isFetching, isError, refetch } = useGuides({
-    region: urlRegion || undefined,
+    specialty: urlSpecialty || undefined,
+    region: urlRegion,
+    province: urlProvince,
     page,
     page_size: PAGE_SIZE,
   });
@@ -54,8 +58,27 @@ export function GuidesPage() {
   function applySearch() {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (queryInput) next.set('region', queryInput);
+      if (queryInput) next.set('specialty', queryInput);
+      else next.delete('specialty');
+      return next;
+    });
+  }
+
+  function applyRegion(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('region', value);
       else next.delete('region');
+      next.delete('province');
+      return next;
+    });
+  }
+
+  function applyProvince(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('province', value);
+      else next.delete('province');
       return next;
     });
   }
@@ -83,6 +106,14 @@ export function GuidesPage() {
       />
 
       <div className={styles.body}>
+        <RegionProvinceFilter
+          region={urlRegion}
+          province={urlProvince}
+          onRegionChange={applyRegion}
+          onProvinceChange={applyProvince}
+          showProvince
+        />
+
         {!showInitialLoading && !isError && (
           <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
         )}

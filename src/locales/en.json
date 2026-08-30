@@ -350,7 +350,7 @@
   "guides": {
     "title": "Tourist guides",
     "subtitle": "Find a certified guide to experience Burkina Faso differently.",
-    "searchPlaceholder": "A region...",
+    "searchPlaceholder": "A specialty...",
     "empty": "No guide found",
     "perDay": "{{price}} {{currency}} / day",
     "contact": "Contact",

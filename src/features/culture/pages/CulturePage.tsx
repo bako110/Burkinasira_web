@@ -113,6 +113,13 @@ export function CulturePage() {
       />
 
       <div className={styles.body}>
+        <RegionProvinceFilter
+          region={urlRegion}
+          province={urlProvince}
+          onRegionChange={applyRegion}
+          onProvinceChange={applyProvince}
+          showProvince
+        />
         <CultureFilters active={urlType} onChange={applyType} />
 
         {!showInitialLoading && !isError && (

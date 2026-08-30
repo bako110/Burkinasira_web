@@ -5,6 +5,7 @@ export interface GuideSummary {
   languages: string[];
   specialties: string[];
   regions_covered: string[];
+  provinces_covered: string[];
   is_verified: boolean;
   average_rating: number;
   review_count: number;
@@ -14,6 +15,7 @@ export interface GuideSummary {
 
 export interface GuideFilters {
   region?: string;
+  province?: string;
   language?: string;
   specialty?: string;
   verified_only?: boolean;
@@ -35,6 +37,7 @@ export interface GuideDetail {
   languages: string[];
   specialties: string[];
   regions_covered: string[];
+  provinces_covered: string[];
   certifications: Certification[];
   hourly_rate?: number;
   daily_rate?: number;
