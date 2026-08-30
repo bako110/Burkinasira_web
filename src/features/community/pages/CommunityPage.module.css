@@ -12,6 +12,12 @@
   isolation: isolate;
 }
 
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-5) var(--space-3) var(--space-4);
+  }
+}
+
 .heroMesh {
   position: absolute;
   inset: 0;
@@ -140,4 +146,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -7,6 +7,12 @@
   padding: var(--space-8) var(--space-4);
 }
 
+@media (max-width: 480px) {
+  .wrap {
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
 .iconWrap {
   display: flex;
   align-items: center;

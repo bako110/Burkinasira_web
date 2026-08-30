@@ -7,10 +7,17 @@
 .summary {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-4);
   padding: var(--space-4);
   border-radius: var(--radius-lg);
   background-color: var(--color-bg-subtle);
+}
+
+@media (max-width: 480px) {
+  .summary {
+    padding: var(--space-3);
+  }
 }
 
 .averageBlock {
@@ -40,6 +47,7 @@
 
 .breakdown {
   flex: 1;
+  min-width: 160px;
   display: flex;
   flex-direction: column;
   gap: 4px;

@@ -139,6 +139,17 @@
   object-fit: cover;
 }
 
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: none;
+  }
+
+  .galleryImg {
+    height: 90px;
+  }
+}
+
 .body {
   display: flex;
   flex-direction: column;

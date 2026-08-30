@@ -35,6 +35,13 @@
   cursor: pointer;
 }
 
+@media (max-width: 480px) {
+  .deleteBtn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .deleteBtn:hover {
   background-color: rgba(220, 38, 38, 0.1);
   color: var(--color-danger);

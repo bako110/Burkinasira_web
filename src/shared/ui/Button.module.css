@@ -27,6 +27,12 @@
   font-size: 0.875rem;
 }
 
+@media (max-width: 480px) {
+  .sm {
+    height: 40px;
+  }
+}
+
 .md {
   height: 44px;
   padding: 0 var(--space-4);

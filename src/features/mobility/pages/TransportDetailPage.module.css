@@ -128,7 +128,7 @@
   margin: 0 auto;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .body {
     flex-direction: row;
     align-items: flex-start;
@@ -167,7 +167,7 @@
   flex-shrink: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .sidebar {
     width: 320px;
     position: sticky;

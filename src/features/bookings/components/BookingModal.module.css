@@ -47,6 +47,13 @@
   border-color: var(--color-border-strong);
 }
 
+@media (max-width: 480px) {
+  .quantityBtn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .quantityValue {
   min-width: 20px;
   text-align: center;

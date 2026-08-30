@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useEvents } from '../hooks/useEvents';
 import { EventCard } from '../components/EventCard';
@@ -18,6 +18,8 @@ export function EventsPage() {
 
   const urlQuery = searchParams.get('q') ?? '';
   const urlCategory = (searchParams.get('category') as EventCategory | null) ?? undefined;
+  const urlRegion = searchParams.get('region') ?? undefined;
+  const urlProvince = searchParams.get('province') ?? undefined;
 
   const [queryInput, setQueryInput] = useState(urlQuery);
   const debouncedQuery = useDebouncedValue(queryInput);
@@ -40,11 +42,13 @@ export function EventsPage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlQuery, urlCategory]);
+  }, [urlQuery, urlCategory, urlRegion, urlProvince]);
 
   const { data, isLoading, isFetching, isError, refetch } = useEvents({
     q: urlQuery || undefined,
     category: urlCategory,
+    region: urlRegion,
+    province: urlProvince,
     page,
     page_size: PAGE_SIZE,
   });
@@ -72,6 +76,25 @@ export function EventsPage() {
     });
   }
 
+  function applyRegion(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('region', value);
+      else next.delete('region');
+      next.delete('province');
+      return next;
+    });
+  }
+
+  function applyProvince(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('province', value);
+      else next.delete('province');
+      return next;
+    });
+  }
+
   function resetFilters() {
     setQueryInput('');
     setSearchParams({});
@@ -95,6 +118,13 @@ export function EventsPage() {
       />
 
       <div className={styles.body}>
+        <RegionProvinceFilter
+          region={urlRegion}
+          province={urlProvince}
+          onRegionChange={applyRegion}
+          onProvinceChange={applyProvince}
+          showProvince
+        />
         <EventFilters active={urlCategory} onChange={applyCategory} />
 
         {!showInitialLoading && !isError && (

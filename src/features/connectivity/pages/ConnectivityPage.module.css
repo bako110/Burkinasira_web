@@ -12,6 +12,12 @@
   isolation: isolate;
 }
 
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-5) var(--space-4) var(--space-4);
+  }
+}
+
 .heroMesh {
   position: absolute;
   inset: 0;
@@ -49,6 +55,12 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .body {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
 }
 
 .resultsCount {

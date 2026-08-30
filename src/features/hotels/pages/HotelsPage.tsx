@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useHotels } from '../hooks/useHotels';
 import { HotelCard } from '../components/HotelCard';
@@ -18,6 +18,8 @@ export function HotelsPage() {
 
   const urlQuery = searchParams.get('q') ?? '';
   const urlType = (searchParams.get('type') as AccommodationType | null) ?? undefined;
+  const urlRegion = searchParams.get('region') ?? undefined;
+  const urlProvince = searchParams.get('province') ?? undefined;
 
   const [queryInput, setQueryInput] = useState(urlQuery);
   const debouncedQuery = useDebouncedValue(queryInput);
@@ -40,11 +42,13 @@ export function HotelsPage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlQuery, urlType]);
+  }, [urlQuery, urlType, urlRegion, urlProvince]);
 
   const { data, isLoading, isFetching, isError, refetch } = useHotels({
     q: urlQuery || undefined,
     type: urlType,
+    region: urlRegion,
+    province: urlProvince,
     page,
     page_size: PAGE_SIZE,
   });
@@ -72,6 +76,25 @@ export function HotelsPage() {
     });
   }
 
+  function applyRegion(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('region', value);
+      else next.delete('region');
+      next.delete('province');
+      return next;
+    });
+  }
+
+  function applyProvince(value: string | undefined) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set('province', value);
+      else next.delete('province');
+      return next;
+    });
+  }
+
   function resetFilters() {
     setQueryInput('');
     setSearchParams({});
@@ -95,6 +118,13 @@ export function HotelsPage() {
       />
 
       <div className={styles.body}>
+        <RegionProvinceFilter
+          region={urlRegion}
+          province={urlProvince}
+          onRegionChange={applyRegion}
+          onProvinceChange={applyProvince}
+          showProvince
+        />
         <HotelFilters active={urlType} onChange={applyType} />
 
         {!showInitialLoading && !isError && (

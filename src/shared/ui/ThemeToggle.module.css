@@ -26,6 +26,13 @@
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
+@media (max-width: 480px) {
+  .option,
+  .active {
+    height: 40px;
+  }
+}
+
 .active {
   background-color: var(--color-bg-raised);
   color: var(--color-text);

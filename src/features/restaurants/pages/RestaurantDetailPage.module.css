@@ -133,10 +133,23 @@
   overflow: hidden;
 }
 
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: none;
+  }
+}
+
 .galleryImg {
   width: 100%;
   height: 120px;
   object-fit: cover;
+}
+
+@media (max-width: 480px) {
+  .galleryImg {
+    height: 90px;
+  }
 }
 
 .body {

@@ -26,6 +26,7 @@
 .slotItem {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-3);
@@ -120,4 +121,10 @@
   background-color: var(--color-bg);
   color: var(--color-text);
   font-size: 0.9375rem;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
 }

@@ -7,6 +7,7 @@ export interface RestaurantSummary {
   type: EstablishmentType;
   cuisine_style?: string;
   region: string;
+  province?: string;
   city?: string;
   photo?: string;
   dietary_tags: DietaryTag[];
@@ -17,6 +18,7 @@ export interface RestaurantSummary {
 export interface RestaurantFilters {
   type?: EstablishmentType;
   region?: string;
+  province?: string;
   city?: string;
   dietary_tag?: DietaryTag;
   q?: string;
@@ -46,6 +48,7 @@ export interface RestaurantDetail {
   description?: string;
   cuisine_style?: string;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;

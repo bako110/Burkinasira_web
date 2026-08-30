@@ -39,6 +39,12 @@
   gap: var(--space-3);
 }
 
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .select {
   height: 44px;
   padding: 0 var(--space-3);

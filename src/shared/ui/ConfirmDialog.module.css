@@ -7,5 +7,12 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
 }

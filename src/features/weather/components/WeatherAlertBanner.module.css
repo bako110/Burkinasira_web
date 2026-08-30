@@ -1,5 +1,6 @@
 .banner {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
   padding: var(--space-4);
   border-radius: var(--radius-lg);
@@ -8,6 +9,12 @@
 
 .icon {
   flex-shrink: 0;
+}
+
+.title,
+.description {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .title {

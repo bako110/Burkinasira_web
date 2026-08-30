@@ -12,6 +12,7 @@ export interface TransportProviderSummary {
   name: string;
   type: TransportType;
   region: string;
+  province?: string;
   city?: string;
   price_estimate?: number;
   price_currency: string;
@@ -23,6 +24,7 @@ export interface TransportProviderSummary {
 export interface MobilityFilters {
   type?: TransportType;
   region?: string;
+  province?: string;
   page?: number;
   page_size?: number;
 }
@@ -33,6 +35,7 @@ export interface TransportProviderDetail {
   type: TransportType;
   description?: string;
   region: string;
+  province?: string;
   city?: string;
   base_location?: { latitude: number; longitude: number };
   vehicle_info?: string;

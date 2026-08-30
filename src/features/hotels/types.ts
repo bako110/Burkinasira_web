@@ -12,6 +12,7 @@ export interface HotelSummary {
   name: string;
   type: AccommodationType;
   region: string;
+  province?: string;
   city?: string;
   photo?: string;
   min_price?: number;
@@ -24,6 +25,7 @@ export interface HotelSummary {
 export interface HotelFilters {
   type?: AccommodationType;
   region?: string;
+  province?: string;
   city?: string;
   max_price?: number;
   amenity?: string;
@@ -55,6 +57,7 @@ export interface HotelDetail {
   type: AccommodationType;
   description?: string;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;

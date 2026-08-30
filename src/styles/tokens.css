@@ -1,3 +1,13 @@
+/*
+  Breakpoints standard du projet (CSS ne supporte pas var() dans @media,
+  ces valeurs sont documentées ici comme référence pour toutes les media queries) :
+  - 380px  : très petits Android (Galaxy Fold, petits écrans compacts)
+  - 480px  : petits mobiles (iPhone SE, Android compacts)
+  - 640px  : mobiles larges / phablets
+  - 768px  : tablettes / bascule mobile -> desktop (nav, tabbar)
+  - 1024px : petits desktops / tablettes larges
+  - 1200px : conteneur max desktop
+*/
 :root {
   --color-brand-50: #fff7ed;
   --color-brand-100: #ffedd5;

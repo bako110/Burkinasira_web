@@ -19,12 +19,14 @@ export interface CultureContentSummary {
   summary?: string;
   cover_photo?: string;
   region?: string;
+  province?: string;
   author?: string;
 }
 
 export interface CultureFilters {
   type?: CultureContentType;
   region?: string;
+  province?: string;
   q?: string;
   page?: number;
   page_size?: number;
@@ -40,6 +42,7 @@ export interface CultureContentDetail {
   media_url?: string;
   cover_photo?: string;
   region?: string;
+  province?: string;
   related_destination_ids?: string[];
   author?: string;
 }

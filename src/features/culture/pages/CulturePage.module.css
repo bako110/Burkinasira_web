@@ -14,6 +14,12 @@
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .body {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+}
+
 .resultsCount {
   margin: 0;
   font-size: 0.875rem;

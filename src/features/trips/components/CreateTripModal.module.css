@@ -10,6 +10,12 @@
   gap: var(--space-3);
 }
 
+@media (max-width: 380px) {
+  .dateRow {
+    grid-template-columns: 1fr;
+  }
+}
+
 .field {
   display: flex;
   flex-direction: column;

@@ -19,6 +19,12 @@
   isolation: isolate;
 }
 
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
 .glow {
   position: absolute;
   inset: -20%;

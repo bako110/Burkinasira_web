@@ -15,6 +15,7 @@ export interface EventSummary {
   title: string;
   category: EventCategory;
   region: string;
+  province?: string;
   city?: string;
   photo?: string;
   start_date: string;
@@ -27,6 +28,7 @@ export interface EventSummary {
 export interface EventFilters {
   category?: EventCategory;
   region?: string;
+  province?: string;
   upcoming_only?: boolean;
   q?: string;
   page?: number;
@@ -45,6 +47,7 @@ export interface EventDetail {
   description?: string;
   category: EventCategory;
   region: string;
+  province?: string;
   city?: string;
   location?: { latitude: number; longitude: number };
   address?: string;

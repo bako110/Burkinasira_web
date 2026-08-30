@@ -9,10 +9,17 @@
   border-radius: var(--radius-lg);
 }
 
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
 .headingRow {
   position: relative;
   z-index: 1;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-4);

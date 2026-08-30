@@ -14,3 +14,9 @@
   outline: none;
   border-color: var(--color-brand);
 }
+
+@media (max-width: 480px) {
+  .select {
+    height: 40px;
+  }
+}

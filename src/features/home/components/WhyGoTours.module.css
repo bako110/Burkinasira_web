@@ -6,6 +6,12 @@
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
 .heading {
   position: relative;
   z-index: 1;

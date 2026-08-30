@@ -13,6 +13,12 @@
   padding: var(--space-6);
 }
 
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-4);
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
