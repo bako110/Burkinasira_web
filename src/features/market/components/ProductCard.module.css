@@ -75,6 +75,27 @@
   font-size: 0.8125rem;
 }
 
+.addToCartBtn {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-brand);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.addToCartBtn:hover {
+  filter: brightness(1.08);
+}
+
 .body {
   flex: 1;
   padding: var(--space-3);
@@ -115,11 +136,3 @@
   color: var(--color-text-muted);
 }
 
-.fulfillment {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 2px;
-  font-size: 0.6875rem;
-  color: var(--color-text-subtle);
-}

@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
+import { useCartTotalCount } from '../../../store/cart.store';
 import { useProducts } from '../hooks/useProducts';
 import { useArtisans } from '../hooks/useArtisans';
 import { ProductCard } from '../components/ProductCard';
 import { ProductFilters } from '../components/ProductFilters';
 import { ArtisanCard } from '../components/ArtisanCard';
+import { CartModal } from '../components/CartModal';
 import type { ProductCategory, ProductSummary } from '../types';
 import styles from './MarketPage.module.css';
 
@@ -21,6 +24,8 @@ export function MarketPage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<Tab>('products');
+  const [cartOpen, setCartOpen] = useState(false);
+  const cartCount = useCartTotalCount();
 
   const urlQuery = searchParams.get('q') ?? '';
   const urlCategory = (searchParams.get('category') as ProductCategory | null) ?? undefined;
@@ -116,20 +121,27 @@ export function MarketPage() {
       />
 
       <div className={styles.body}>
-        <div className={styles.tabs}>
-          <button
-            type="button"
-            className={clsx(styles.tab, tab === 'products' && styles.tabActive)}
-            onClick={() => setTab('products')}
-          >
-            {t('market.tabProducts')}
-          </button>
-          <button
-            type="button"
-            className={clsx(styles.tab, tab === 'artisans' && styles.tabActive)}
-            onClick={() => setTab('artisans')}
-          >
-            {t('market.tabArtisans')}
+        <div className={styles.tabsRow}>
+          <div className={styles.tabs}>
+            <button
+              type="button"
+              className={clsx(styles.tab, tab === 'products' && styles.tabActive)}
+              onClick={() => setTab('products')}
+            >
+              {t('market.tabProducts')}
+            </button>
+            <button
+              type="button"
+              className={clsx(styles.tab, tab === 'artisans' && styles.tabActive)}
+              onClick={() => setTab('artisans')}
+            >
+              {t('market.tabArtisans')}
+            </button>
+          </div>
+
+          <button type="button" className={styles.cartButton} onClick={() => setCartOpen(true)}>
+            <ShoppingCart size={18} strokeWidth={2} />
+            {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
           </button>
         </div>
 
@@ -220,6 +232,8 @@ export function MarketPage() {
 
         <RelatedModules currentPath="/market" />
       </div>
+
+      <CartModal open={cartOpen} onClose={() => setCartOpen(false)} />
     </div>
   );
 }

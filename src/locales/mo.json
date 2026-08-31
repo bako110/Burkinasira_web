@@ -120,6 +120,8 @@
     "docAutre": "Sɛb a to",
     "chooseFile": "Yãk sɛba",
     "selectFileFirst": "Yãk sɛb-buud n tʋm.",
+    "submitDocumentTitle": "Tʋm sɛb-kaset a yembre",
+    "fileFormatsHint": "Sɛb-buud nins sẽn sak-b: foto (JPEG, PNG, WEBP) bɩ PDF.",
     "submitDocument": "Tʋm sɛba",
     "documentSubmitted": "Sɛba tʋma neere",
     "submittedDocuments": "Sɛba nins sẽn tʋme",
@@ -892,6 +894,21 @@
     "contactRequiresAuth": "Kẽ n tõog n sõsg ne tʋm-tʋmda",
     "soldBy": "A koosdã yaa",
     "contactDefaultMessage": "Ne y'ala, mam data «{{product}}» yĩnga.",
+    "addToCart": "Paas panɩɛre",
+    "addedToCart": "Paase panɩɛre",
+    "cartTitle": "Mam panɩɛre",
+    "cartEmpty": "Y panɩɛre ka pʋgd ye",
+    "cartEmptyText": "Ges rat-zĩiga la paas bũmb y panɩɛre.",
+    "cartSoldBy": "A koosdã yaa {{name}}",
+    "cartRemove": "Yiisi",
+    "cartClear": "Ki panɩɛre pʋgẽ",
+    "cartTotal": "Fãa",
+    "cartCheckout": "Tʋm sɛb-kɩtga",
+    "cartCheckoutRequiresAuth": "Kẽ n tõog n tʋm sɛb-kɩtga",
+    "orderPlaced": "Sɛb-kɩtga tʋma neere",
+    "orderPlacedText": "Tʋm-tʋmda paama kibare y sɛb-kɩtga wɛɛngẽ.",
+    "orderPartialError": "Bũmb kẽer ka tõe n tʋm ye (pʋgd ka zemse).",
+    "backToMarket": "Lebg rat-zĩiga",
     "filters": {
       "all": "Fãa",
       "tissus_vetements": "Fu la futu",
@@ -917,7 +934,8 @@
       "livraison": "Tʋʋlg",
       "retrait": "Rɩk",
       "les_deux": "Tʋʋlg bɩ rɩk"
-    }
+    },
+    "fulfillmentMode": "Tʋʋlg noore"
   },
   "community": {
     "title": "FasoViva tigims",

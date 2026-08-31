@@ -1,0 +1,225 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.itemImage {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-inset);
+  color: var(--color-text-subtle);
+}
+
+.itemImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.itemName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemArtisan {
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
+.itemPrice {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.itemActions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quantityBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantityBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quantityValue {
+  min-width: 16px;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--color-danger);
+}
+
+.fulfillmentField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.fulfillmentLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.fulfillmentSelect {
+  height: 40px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.875rem;
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.totalRow strong {
+  font-size: 1.125rem;
+  color: var(--color-text);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-6) 0;
+}
+
+.emptyIcon {
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-2);
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.emptyText {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+}
+
+.successIcon {
+  color: var(--color-success);
+  margin-bottom: var(--space-2);
+}
+
+.successTitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.successText {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}

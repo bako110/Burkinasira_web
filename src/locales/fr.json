@@ -120,6 +120,8 @@
     "docAutre": "Autre document",
     "chooseFile": "Choisir un fichier",
     "selectFileFirst": "Sélectionnez un fichier à envoyer.",
+    "submitDocumentTitle": "Envoyer un document justificatif",
+    "fileFormatsHint": "Formats acceptés : image (JPEG, PNG, WEBP) ou PDF.",
     "submitDocument": "Envoyer le document",
     "documentSubmitted": "Document envoyé avec succès",
     "submittedDocuments": "Documents envoyés",
@@ -892,6 +894,21 @@
     "contactRequiresAuth": "Connectez-vous pour contacter l'artisan",
     "soldBy": "Vendu par",
     "contactDefaultMessage": "Bonjour, je suis intéressé(e) par « {{product}} ».",
+    "addToCart": "Ajouter au panier",
+    "addedToCart": "Ajouté au panier",
+    "cartTitle": "Mon panier",
+    "cartEmpty": "Votre panier est vide",
+    "cartEmptyText": "Parcourez le marché et ajoutez des produits à votre panier.",
+    "cartSoldBy": "Vendu par {{name}}",
+    "cartRemove": "Retirer",
+    "cartClear": "Vider le panier",
+    "cartTotal": "Total",
+    "cartCheckout": "Commander",
+    "cartCheckoutRequiresAuth": "Connectez-vous pour commander",
+    "orderPlaced": "Commande passée avec succès",
+    "orderPlacedText": "L'artisan a été informé de votre commande.",
+    "orderPartialError": "Certains articles n'ont pas pu être commandés (stock insuffisant).",
+    "backToMarket": "Retour au marché",
     "filters": {
       "all": "Tout",
       "tissus_vetements": "Tissus & vêtements",
@@ -917,7 +934,8 @@
       "livraison": "Livraison",
       "retrait": "Retrait",
       "les_deux": "Livraison ou retrait"
-    }
+    },
+    "fulfillmentMode": "Mode de livraison"
   },
   "community": {
     "title": "Communauté FasoViva",

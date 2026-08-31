@@ -12,14 +12,15 @@ export type FulfillmentMode = 'livraison' | 'retrait' | 'les_deux';
 
 export interface ProductSummary {
   id: string;
+  artisan_id: string;
   name: string;
   price: number;
   currency: string;
   photo?: string;
   category: ProductCategory;
-  stock_quantity?: number;
-  fulfillment_mode?: FulfillmentMode;
-  average_rating?: number;
+  average_rating: number;
+  review_count: number;
+  in_stock: boolean;
 }
 
 export interface ProductFilters {
@@ -72,4 +73,25 @@ export interface ProductDetail {
   average_rating?: number;
   review_count?: number;
   status: ProductStatus;
+}
+
+export type OrderStatus = string;
+
+export interface Order {
+  id: string;
+  buyer_id: string;
+  product_id: string;
+  quantity: number;
+  unit_price: number;
+  total_price: number;
+  currency: string;
+  fulfillment_mode: FulfillmentMode;
+  status: OrderStatus;
+  created_at: string;
+}
+
+export interface CreateOrderPayload {
+  product_id: string;
+  quantity: number;
+  fulfillment_mode: FulfillmentMode;
 }

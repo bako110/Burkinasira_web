@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ImageOff, ArrowLeft, Star, Truck, Package, User, Maximize2 } from 'lucide-react';
+import { ImageOff, ArrowLeft, Star, Truck, Package, User, Maximize2, ShoppingCart, Check } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { useCartStore } from '../../../store/cart.store';
+import { useToastStore } from '../../../store/toast.store';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useProductDetail } from '../hooks/useProductDetail';
 import { useArtisanDetail } from '../hooks/useArtisanDetail';
@@ -16,15 +18,39 @@ export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const requireAuth = useRequireAuth();
+  const addItem = useCartStore((s) => s.addItem);
+  const push = useToastStore((s) => s.push);
   const [activePhoto, setActivePhoto] = useState(0);
   const [contactOpen, setContactOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [justAdded, setJustAdded] = useState(false);
 
   const { data: product, isLoading, isError, refetch } = useProductDetail(id);
   const { data: artisan } = useArtisanDetail(product?.artisan_id);
 
   function handleContactArtisan() {
     requireAuth(() => setContactOpen(true), t('market.contactRequiresAuth'));
+  }
+
+  function handleAddToCart() {
+    if (!product) return;
+    addItem(
+      {
+        product_id: product.id,
+        name: product.name,
+        price: product.price,
+        currency: product.currency,
+        photo: product.photos[0],
+        stock_quantity: product.stock_quantity,
+        artisan_id: product.artisan_id,
+        artisan_name: artisan?.display_name,
+      },
+      quantity,
+    );
+    push({ variant: 'success', message: t('market.addedToCart') });
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1500);
   }
 
   if (isLoading) {
@@ -127,9 +153,37 @@ export function ProductDetailPage() {
             </span>
           )}
 
-          <Button fullWidth disabled={outOfStock} onClick={handleContactArtisan}>
+          {!outOfStock && (
+            <div className={styles.quantityRow}>
+              <span className={styles.quantityLabel}>{t('bookings.quantity')}</span>
+              <div className={styles.quantityControls}>
+                <button
+                  type="button"
+                  className={styles.quantityBtn}
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                >
+                  −
+                </button>
+                <span className={styles.quantityValue}>{quantity}</span>
+                <button
+                  type="button"
+                  className={styles.quantityBtn}
+                  onClick={() => setQuantity((q) => (product.stock_quantity ? Math.min(product.stock_quantity, q + 1) : q + 1))}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          )}
+
+          <Button fullWidth disabled={outOfStock} onClick={handleAddToCart}>
+            {justAdded ? <Check size={16} strokeWidth={2.5} /> : <ShoppingCart size={16} strokeWidth={2} />}
+            {outOfStock ? t('market.outOfStock') : t('market.addToCart')}
+          </Button>
+
+          <Button fullWidth variant="secondary" disabled={outOfStock} onClick={handleContactArtisan}>
             <User size={16} strokeWidth={2} />
-            {outOfStock ? t('market.outOfStock') : t('market.contactArtisan')}
+            {t('market.contactArtisan')}
           </Button>
 
           {artisan && (

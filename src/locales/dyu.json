@@ -120,6 +120,8 @@
     "docAutre": "Sɛbɛn wɛrɛ",
     "chooseFile": "Sɛbɛn sugandi",
     "selectFileFirst": "I ka sɛbɛn kelen sugandi ka ci.",
+    "submitDocumentTitle": "Sɛbɛn seereya kɛlen ci",
+    "fileFormatsHint": "Suguya minnu bɛ sɔn: foto (JPEG, PNG, WEBP) walima PDF.",
     "submitDocument": "Sɛbɛn ci",
     "documentSubmitted": "Sɛbɛn cira ka ɲɛ",
     "submittedDocuments": "Sɛbɛnw minnu cira",
@@ -892,6 +894,21 @@
     "contactRequiresAuth": "I ka don walasa ka baro baarakɛla fɛ",
     "soldBy": "A feerelen bɛ",
     "contactDefaultMessage": "I ni ce, ne b'a fɛ ka «{{product}}» san.",
+    "addToCart": "Fara sanni bɔrɔ kan",
+    "addedToCart": "A farala sanni bɔrɔ kan",
+    "cartTitle": "N ka sanni bɔrɔ",
+    "cartEmpty": "I ka sanni bɔrɔ lankolon don",
+    "cartEmptyText": "Feereyɔrɔ lajɛ ka fɛnw fara i ka sanni bɔrɔ kan.",
+    "cartSoldBy": "A feerelen bɛ {{name}} fɛ",
+    "cartRemove": "A bɔ",
+    "cartClear": "Sanni bɔrɔ lakolon",
+    "cartTotal": "A bɛɛ lajɛlen",
+    "cartCheckout": "Minɛni kɛ",
+    "cartCheckoutRequiresAuth": "I ka don walasa ka minɛni kɛ",
+    "orderPlaced": "Minɛni kɛra ka ɲɛ",
+    "orderPlacedText": "Baarakɛla ye i ka minɛni kunnafoni sɔrɔ.",
+    "orderPartialError": "Fɛn dɔw ma se ka minɛ (sɔrɔ dɔgɔyara).",
+    "backToMarket": "Segin feereyɔrɔ la",
     "filters": {
       "all": "Bɛɛ",
       "tissus_vetements": "Fini ni finiw",
@@ -917,7 +934,8 @@
       "livraison": "Bilali",
       "retrait": "Tali",
       "les_deux": "Bilali walima tali"
-    }
+    },
+    "fulfillmentMode": "Bilali cogo"
   },
   "community": {
     "title": "FasoViva Jɛkulu",

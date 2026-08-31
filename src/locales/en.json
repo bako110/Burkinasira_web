@@ -120,6 +120,8 @@
     "docAutre": "Other document",
     "chooseFile": "Choose a file",
     "selectFileFirst": "Select a file to submit.",
+    "submitDocumentTitle": "Submit a supporting document",
+    "fileFormatsHint": "Accepted formats: image (JPEG, PNG, WEBP) or PDF.",
     "submitDocument": "Submit document",
     "documentSubmitted": "Document submitted successfully",
     "submittedDocuments": "Submitted documents",
@@ -892,6 +894,21 @@
     "contactRequiresAuth": "Sign in to contact the artisan",
     "soldBy": "Sold by",
     "contactDefaultMessage": "Hello, I'm interested in \"{{product}}\".",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added to cart",
+    "cartTitle": "My cart",
+    "cartEmpty": "Your cart is empty",
+    "cartEmptyText": "Browse the market and add products to your cart.",
+    "cartSoldBy": "Sold by {{name}}",
+    "cartRemove": "Remove",
+    "cartClear": "Clear cart",
+    "cartTotal": "Total",
+    "cartCheckout": "Checkout",
+    "cartCheckoutRequiresAuth": "Sign in to checkout",
+    "orderPlaced": "Order placed successfully",
+    "orderPlacedText": "The artisan has been notified of your order.",
+    "orderPartialError": "Some items could not be ordered (insufficient stock).",
+    "backToMarket": "Back to market",
     "filters": {
       "all": "All",
       "tissus_vetements": "Textiles & clothing",
@@ -917,7 +934,8 @@
       "livraison": "Delivery",
       "retrait": "Pickup",
       "les_deux": "Delivery or pickup"
-    }
+    },
+    "fulfillmentMode": "Delivery method"
   },
   "community": {
     "title": "FasoViva Community",
