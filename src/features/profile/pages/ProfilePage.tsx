@@ -1,7 +1,7 @@
 import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { LogOut, User, Trophy, Ticket, Map, MessageCircle, ChevronRight, Trash2 } from 'lucide-react';
+import { LogOut, User, Trophy, Ticket, Map, MessageCircle, ChevronRight, Trash2, ShoppingBag } from 'lucide-react';
 
 import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
@@ -16,6 +16,7 @@ import styles from './ProfilePage.module.css';
 
 const HUB_LINKS = [
   { to: '/bookings', key: 'bookings', Icon: Ticket },
+  { to: '/market/orders', key: 'orders', Icon: ShoppingBag },
   { to: '/trips', key: 'trips', Icon: Map },
   { to: '/messages', key: 'messages', Icon: MessageCircle },
 ] as const;

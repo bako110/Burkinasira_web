@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Trash2, ImageOff, CheckCircle2, ShoppingBag } from 'lucide-react';
 
 import { Modal, Button } from '../../../shared/ui';
@@ -16,10 +17,12 @@ interface CartModalProps {
 
 export function CartModal({ open, onClose }: CartModalProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const requireAuth = useRequireAuth();
   const items = useCartStore((s) => s.items);
   const setQuantity = useCartStore((s) => s.setQuantity);
   const removeItem = useCartStore((s) => s.removeItem);
+  const removeItems = useCartStore((s) => s.removeItems);
   const clear = useCartStore((s) => s.clear);
   const { mutateAsync: createOrder } = useCreateOrder();
 
@@ -27,6 +30,7 @@ export function CartModal({ open, onClose }: CartModalProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [failedItemNames, setFailedItemNames] = useState<string[]>([]);
 
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const currency = items[0]?.currency ?? 'XOF';
@@ -34,14 +38,21 @@ export function CartModal({ open, onClose }: CartModalProps) {
   function handleClose() {
     setIsSuccess(false);
     setCheckoutError(null);
+    setFailedItemNames([]);
     onClose();
+  }
+
+  function handleViewOrders() {
+    handleClose();
+    navigate('/market/orders');
   }
 
   async function handleCheckout() {
     requireAuth(async () => {
       setIsCheckingOut(true);
       setCheckoutError(null);
-      let failedCount = 0;
+      const succeededIds: string[] = [];
+      const failedNames: string[] = [];
 
       for (const item of items) {
         try {
@@ -50,17 +61,21 @@ export function CartModal({ open, onClose }: CartModalProps) {
             quantity: item.quantity,
             fulfillment_mode: fulfillmentMode,
           });
+          succeededIds.push(item.product_id);
         } catch {
-          failedCount += 1;
+          failedNames.push(item.name);
         }
       }
 
       setIsCheckingOut(false);
-      if (failedCount === 0) {
-        clear();
+      if (succeededIds.length > 0) {
+        removeItems(succeededIds);
+      }
+
+      if (failedNames.length === 0) {
         setIsSuccess(true);
-      } else if (failedCount < items.length) {
-        clear();
+      } else if (succeededIds.length > 0) {
+        setFailedItemNames(failedNames);
         setCheckoutError(t('market.orderPartialError'));
         setIsSuccess(true);
       } else {
@@ -76,8 +91,22 @@ export function CartModal({ open, onClose }: CartModalProps) {
           <CheckCircle2 size={40} strokeWidth={1.5} className={styles.successIcon} />
           <p className={styles.successTitle}>{t('market.orderPlaced')}</p>
           <p className={styles.successText}>{t('market.orderPlacedText')}</p>
-          {checkoutError && <p className={styles.error}>{checkoutError}</p>}
-          <Button fullWidth onClick={handleClose}>
+          {checkoutError && (
+            <div className={styles.partialError}>
+              <p className={styles.error}>{checkoutError}</p>
+              {failedItemNames.length > 0 && (
+                <ul className={styles.failedList}>
+                  {failedItemNames.map((name, i) => (
+                    <li key={i}>{name}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+          <Button fullWidth onClick={handleViewOrders}>
+            {t('market.viewMyOrders')}
+          </Button>
+          <Button fullWidth variant="ghost" onClick={handleClose}>
             {t('common.back')}
           </Button>
         </div>

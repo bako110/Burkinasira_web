@@ -49,6 +49,7 @@
     "connectivity": "Internet zoodo",
     "weather": "Sa wakat",
     "bookings": "Reereems",
+    "orders": "Mam kʋmandẽ wã",
     "trips": "Mam sore-yalse",
     "notifications": "Kibare",
     "messages": "Kʋʋg-goam",
@@ -908,7 +909,20 @@
     "orderPlaced": "Sɛb-kɩtga tʋma neere",
     "orderPlacedText": "Tʋm-tʋmda paama kibare y sɛb-kɩtga wɛɛngẽ.",
     "orderPartialError": "Bũmb kẽer ka tõe n tʋm ye (pʋgd ka zemse).",
+    "viewMyOrders": "Ges mam kʋmandẽ wã",
     "backToMarket": "Lebg rat-zĩiga",
+    "ordersTitle": "Mam kʋmandẽ wã",
+    "ordersEmpty": "Kʋmandẽ ka be ye",
+    "ordersEmptyText": "Fo sẽn kos bũmb rat-zĩiga wã na n pukame ka.",
+    "orderProductUnavailable": "Bũmbu ka be ye",
+    "orderQuantity": "Sõore: {{count}}",
+    "orderStatus": {
+      "pending": "Gũusg pʋgẽ",
+      "confirmed": "Kɩtame",
+      "cancelled": "Basame",
+      "completed": "Sɛba",
+      "refunded": "Lebs ligdã"
+    },
     "filters": {
       "all": "Fãa",
       "tissus_vetements": "Fu la futu",

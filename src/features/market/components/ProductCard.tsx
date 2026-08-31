@@ -25,6 +25,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
       price: product.price,
       currency: product.currency,
       photo: product.photo,
+      stock_quantity: product.stock_quantity,
       artisan_id: product.artisan_id,
     });
     push({ variant: 'success', message: t('market.addedToCart') });

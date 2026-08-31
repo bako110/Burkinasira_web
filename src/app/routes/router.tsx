@@ -30,6 +30,7 @@ import { CulturePage } from '../../features/culture/pages/CulturePage';
 import { CultureContentDetailPage } from '../../features/culture/pages/CultureContentDetailPage';
 import { MarketPage } from '../../features/market/pages/MarketPage';
 import { ProductDetailPage } from '../../features/market/pages/ProductDetailPage';
+import { MyOrdersPage } from '../../features/market/pages/MyOrdersPage';
 import { MyBookingsPage } from '../../features/bookings/pages/MyBookingsPage';
 import { MyTripsPage } from '../../features/trips/pages/MyTripsPage';
 import { TripDetailPage } from '../../features/trips/pages/TripDetailPage';
@@ -96,6 +97,7 @@ export const router = createBrowserRouter([
             element: <ProtectedRoute />,
             children: [
               { path: '/bookings', element: <MyBookingsPage /> },
+              { path: '/market/orders', element: <MyOrdersPage /> },
               { path: '/trips', element: <MyTripsPage /> },
               { path: '/trips/:tripId', element: <TripDetailPage /> },
               { path: '/notifications', element: <NotificationsPage /> },

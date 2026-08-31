@@ -49,6 +49,7 @@
     "connectivity": "Connectivity",
     "weather": "Weather",
     "bookings": "Bookings",
+    "orders": "My orders",
     "trips": "My trips",
     "notifications": "Notifications",
     "messages": "Messages",
@@ -908,7 +909,20 @@
     "orderPlaced": "Order placed successfully",
     "orderPlacedText": "The artisan has been notified of your order.",
     "orderPartialError": "Some items could not be ordered (insufficient stock).",
+    "viewMyOrders": "View my orders",
     "backToMarket": "Back to market",
+    "ordersTitle": "My orders",
+    "ordersEmpty": "No orders yet",
+    "ordersEmptyText": "Your orders from the craft market will appear here.",
+    "orderProductUnavailable": "Product unavailable",
+    "orderQuantity": "Quantity: {{count}}",
+    "orderStatus": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "refunded": "Refunded"
+    },
     "filters": {
       "all": "All",
       "tissus_vetements": "Textiles & clothing",

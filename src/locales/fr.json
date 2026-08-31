@@ -49,6 +49,7 @@
     "connectivity": "Connectivité",
     "weather": "Météo",
     "bookings": "Réservations",
+    "orders": "Mes commandes",
     "trips": "Mes voyages",
     "notifications": "Notifications",
     "messages": "Messages",
@@ -908,7 +909,20 @@
     "orderPlaced": "Commande passée avec succès",
     "orderPlacedText": "L'artisan a été informé de votre commande.",
     "orderPartialError": "Certains articles n'ont pas pu être commandés (stock insuffisant).",
+    "viewMyOrders": "Voir mes commandes",
     "backToMarket": "Retour au marché",
+    "ordersTitle": "Mes commandes",
+    "ordersEmpty": "Aucune commande",
+    "ordersEmptyText": "Vos commandes passées sur le marché artisanal apparaîtront ici.",
+    "orderProductUnavailable": "Produit indisponible",
+    "orderQuantity": "Quantité : {{count}}",
+    "orderStatus": {
+      "pending": "En attente",
+      "confirmed": "Confirmée",
+      "cancelled": "Annulée",
+      "completed": "Terminée",
+      "refunded": "Remboursée"
+    },
     "filters": {
       "all": "Tout",
       "tissus_vetements": "Tissus & vêtements",

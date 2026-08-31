@@ -21,6 +21,7 @@ export interface ProductSummary {
   average_rating: number;
   review_count: number;
   in_stock: boolean;
+  stock_quantity: number;
 }
 
 export interface ProductFilters {

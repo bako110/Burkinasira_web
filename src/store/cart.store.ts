@@ -16,6 +16,7 @@ interface CartState {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   removeItem: (productId: string) => void;
+  removeItems: (productIds: string[]) => void;
   setQuantity: (productId: string, quantity: number) => void;
   clear: () => void;
 }
@@ -61,6 +62,13 @@ export const useCartStore = create<CartState>((set, get) => ({
 
   removeItem: (productId) => {
     const next = get().items.filter((i) => i.product_id !== productId);
+    persist(next);
+    set({ items: next });
+  },
+
+  removeItems: (productIds) => {
+    const idsToRemove = new Set(productIds);
+    const next = get().items.filter((i) => !idsToRemove.has(i.product_id));
     persist(next);
     set({ items: next });
   },

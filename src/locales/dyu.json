@@ -49,6 +49,7 @@
     "connectivity": "Ɛntɛrinɛti sennkɛ",
     "weather": "Waati sanni",
     "bookings": "Sigi-yɔrɔw",
+    "orders": "N ka minɛnw",
     "trips": "N ka taamaw",
     "notifications": "Kunnafoniw",
     "messages": "Bataki",
@@ -908,7 +909,20 @@
     "orderPlaced": "Minɛni kɛra ka ɲɛ",
     "orderPlacedText": "Baarakɛla ye i ka minɛni kunnafoni sɔrɔ.",
     "orderPartialError": "Fɛn dɔw ma se ka minɛ (sɔrɔ dɔgɔyara).",
+    "viewMyOrders": "N ka minɛnw lajɛ",
     "backToMarket": "Segin feereyɔrɔ la",
+    "ordersTitle": "N ka minɛnw",
+    "ordersEmpty": "Minɛni si tɛ yen",
+    "ordersEmptyText": "I ka minɛni kɔrɔw bɛna bɔ yan.",
+    "orderProductUnavailable": "Fɛn tɛ sɔrɔ",
+    "orderQuantity": "Hakɛ: {{count}}",
+    "orderStatus": {
+      "pending": "A bɛ makɔnɔ",
+      "confirmed": "A dafara",
+      "cancelled": "A dabɔra",
+      "completed": "A banna",
+      "refunded": "Wari seginna"
+    },
     "filters": {
       "all": "Bɛɛ",
       "tissus_vetements": "Fini ni finiw",
