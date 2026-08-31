@@ -963,6 +963,7 @@
     "createGroup": "Create a group",
     "createGroupRequiresAuth": "Sign in to create a group",
     "createGroupTitle": "New traveler group",
+    "groupCoverLabel": "Group photo",
     "groupNameLabel": "Group name",
     "groupDescriptionLabel": "Description",
     "publicGroupLabel": "Public group",

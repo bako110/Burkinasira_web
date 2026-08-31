@@ -4,6 +4,76 @@
   gap: var(--space-3);
 }
 
+.coverField {
+  position: relative;
+  align-self: center;
+}
+
+.coverButton {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px dashed var(--color-border);
+  background-color: var(--color-bg-subtle);
+  cursor: pointer;
+  padding: 0;
+}
+
+.coverButton:hover {
+  border-color: var(--color-brand);
+}
+
+.coverButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.coverPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.coverPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--color-text-subtle);
+}
+
+.coverPlaceholderText {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 var(--space-2);
+}
+
+.coverRemoveBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(20, 18, 15, 0.72);
+  color: #fff;
+  cursor: pointer;
+}
+
+.hiddenInput {
+  display: none;
+}
+
 .field {
   display: flex;
   flex-direction: column;
