@@ -152,8 +152,21 @@
   border-color: var(--color-border-strong);
 }
 
-.loginLinkCompact {
+.actionsCompact {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .actionsCompact {
+    display: none;
+  }
+}
+
+.loginLinkCompact {
   height: 36px;
   display: inline-flex;
   align-items: center;
@@ -166,12 +179,6 @@
   font-size: 0.75rem;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .loginLinkCompact {
-    display: none;
-  }
 }
 
 /* Drawer (mobile menu) */

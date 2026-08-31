@@ -1009,6 +1009,7 @@
     "postRequiresAuth": "I ka don walasa ka bataki ci",
     "likeRequiresAuth": "I ka don walasa ka bataki kanu",
     "commentRequiresAuth": "I ka don walasa ka hakilina di",
+    "commentsTitle": "Hakilinaw",
     "noComments": "Hakilina si tɛ fɔlɔ",
     "commentPlaceholder": "Hakilina sɛbɛn...",
     "noPosts": "Bataki si ma sɔrɔ fɔlɔ",

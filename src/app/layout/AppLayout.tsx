@@ -12,6 +12,7 @@ import { ExploreMenu } from './ExploreMenu';
 import { DiscoverMenu } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
+import { CartButton } from '../../features/market/components/CartButton';
 import styles from './AppLayout.module.css';
 
 export function AppLayout() {
@@ -57,6 +58,7 @@ export function AppLayout() {
           <div className={styles.actionsDesktop}>
             <LanguageSwitcher />
             <ThemeToggle />
+            <CartButton />
             {isAuthenticated ? (
               <>
                 <NotificationBell />
@@ -69,11 +71,14 @@ export function AppLayout() {
             )}
           </div>
 
-          {!isAuthenticated && (
-            <NavLink to="/login" className={styles.loginLinkCompact}>
-              {t('auth.login')}
-            </NavLink>
-          )}
+          <div className={styles.actionsCompact}>
+            <CartButton />
+            {!isAuthenticated && (
+              <NavLink to="/login" className={styles.loginLinkCompact}>
+                {t('auth.login')}
+              </NavLink>
+            )}
+          </div>
         </div>
       </header>
 

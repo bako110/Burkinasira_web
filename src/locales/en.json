@@ -1009,6 +1009,7 @@
     "postRequiresAuth": "Sign in to post",
     "likeRequiresAuth": "Sign in to like a post",
     "commentRequiresAuth": "Sign in to comment",
+    "commentsTitle": "Comments",
     "noComments": "No comments yet",
     "commentPlaceholder": "Write a comment...",
     "noPosts": "No posts yet",

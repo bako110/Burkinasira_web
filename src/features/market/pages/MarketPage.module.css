@@ -45,17 +45,10 @@
   padding-top: var(--space-3);
 }
 
-.tabsRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  border-bottom: 1px solid var(--color-border);
-}
-
 .tabs {
   display: flex;
   gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .tab {
@@ -80,40 +73,3 @@
   gap: var(--space-3);
 }
 
-.cartButton {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background-color: var(--color-bg-raised);
-  color: var(--color-text);
-  cursor: pointer;
-  margin-bottom: var(--space-2);
-}
-
-.cartButton:hover {
-  border-color: var(--color-brand);
-  color: var(--color-brand);
-}
-
-.cartBadge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 4px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-brand);
-  color: #fff;
-  font-size: 0.625rem;
-  font-weight: 800;
-}

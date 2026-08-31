@@ -77,6 +77,15 @@
   max-height: 480px;
 }
 
+.mediaButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .mediaNav {
   position: absolute;
   top: 50%;
@@ -160,9 +169,7 @@
 .commentSection {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4) var(--space-4);
-  border-top: 1px solid var(--color-border);
+  gap: var(--space-3);
 }
 
 .commentLoading {

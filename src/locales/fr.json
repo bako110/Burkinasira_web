@@ -1009,6 +1009,7 @@
     "postRequiresAuth": "Connectez-vous pour publier",
     "likeRequiresAuth": "Connectez-vous pour aimer une publication",
     "commentRequiresAuth": "Connectez-vous pour commenter",
+    "commentsTitle": "Commentaires",
     "noComments": "Aucun commentaire pour le moment",
     "commentPlaceholder": "Écrire un commentaire...",
     "noPosts": "Aucune publication pour le moment",
