@@ -1,11 +1,26 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-4);
   border-radius: var(--radius-lg);
+  overflow: hidden;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-raised);
+}
+
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88px;
+  background: linear-gradient(135deg, var(--color-brand-surface), var(--color-bg-inset));
+  color: var(--color-brand);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) var(--space-4);
 }
 
 .header {

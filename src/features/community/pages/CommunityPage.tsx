@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus, Users } from 'lucide-react';
+import { Plus, Users, Image, HelpCircle, Heart, UsersRound } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults, RegionProvinceFilter } from '../../../shared/ui';
@@ -95,34 +95,58 @@ export function CommunityPage() {
       </section>
 
       <div className={styles.body}>
-        <div className={styles.tabs}>
+        <div className={styles.navGrid}>
           <button
             type="button"
-            className={clsx(styles.tab, tab === 'posts' && styles.tabActive)}
+            className={clsx(styles.navCard, tab === 'posts' && styles.navCardActive)}
             onClick={() => setTab('posts')}
           >
-            {t('community.tabPostsFeed')}
+            <span className={clsx(styles.navIcon, styles.navIconPosts)}>
+              <Image size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.navText}>
+              <span className={styles.navLabel}>{t('community.tabPostsFeed')}</span>
+              <span className={styles.navHint}>{t('community.navHintPosts')}</span>
+            </span>
           </button>
           <button
             type="button"
-            className={clsx(styles.tab, tab === 'questions' && styles.tabActive)}
+            className={clsx(styles.navCard, tab === 'questions' && styles.navCardActive)}
             onClick={() => setTab('questions')}
           >
-            {t('community.tabQuestions')}
+            <span className={clsx(styles.navIcon, styles.navIconQuestions)}>
+              <HelpCircle size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.navText}>
+              <span className={styles.navLabel}>{t('community.tabQuestions')}</span>
+              <span className={styles.navHint}>{t('community.navHintQuestions')}</span>
+            </span>
           </button>
           <button
             type="button"
-            className={clsx(styles.tab, tab === 'favorites' && styles.tabActive)}
+            className={clsx(styles.navCard, tab === 'favorites' && styles.navCardActive)}
             onClick={() => setTab('favorites')}
           >
-            {t('community.tabFavorites')}
+            <span className={clsx(styles.navIcon, styles.navIconFavorites)}>
+              <Heart size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.navText}>
+              <span className={styles.navLabel}>{t('community.tabFavorites')}</span>
+              <span className={styles.navHint}>{t('community.navHintFavorites')}</span>
+            </span>
           </button>
           <button
             type="button"
-            className={clsx(styles.tab, tab === 'groups' && styles.tabActive)}
+            className={clsx(styles.navCard, tab === 'groups' && styles.navCardActive)}
             onClick={() => setTab('groups')}
           >
-            {t('community.tabGroups')}
+            <span className={clsx(styles.navIcon, styles.navIconGroups)}>
+              <UsersRound size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.navText}>
+              <span className={styles.navLabel}>{t('community.tabGroups')}</span>
+              <span className={styles.navHint}>{t('community.navHintGroups')}</span>
+            </span>
           </button>
         </div>
 
