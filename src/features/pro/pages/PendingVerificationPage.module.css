@@ -207,6 +207,12 @@
   white-space: nowrap;
 }
 
+.fileHint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-subtle);
+}
+
 .divider {
   margin: var(--space-5) 0;
   border: none;

@@ -131,6 +131,7 @@ export function PendingVerificationPage() {
           </>
         )}
 
+        <h2 className={styles.listTitle}>{t('pro.submitDocumentTitle')}</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
             <label htmlFor="document_type" className={styles.label}>
@@ -168,6 +169,7 @@ export function PendingVerificationPage() {
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
             />
           </div>
+          <p className={styles.fileHint}>{t('pro.fileFormatsHint')}</p>
 
           <Button type="submit" fullWidth disabled={isSubmitting}>
             {isSubmitting ? <Spinner size={18} /> : t('pro.submitDocument')}
