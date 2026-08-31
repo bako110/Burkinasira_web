@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Users } from 'lucide-react';
 import clsx from 'clsx';
@@ -8,9 +8,12 @@ import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useAuthStore } from '../../../store/auth.store';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { usePosts } from '../hooks/usePosts';
 import { useQuestions } from '../hooks/useQuestions';
 import { useMyFavoriteLists, useDeleteFavoriteList } from '../hooks/useFavoriteLists';
 import { useGroups } from '../hooks/useGroups';
+import { PostCard } from '../components/PostCard';
+import { CreatePostModal } from '../components/CreatePostModal';
 import { QuestionCard } from '../components/QuestionCard';
 import { AskQuestionModal } from '../components/AskQuestionModal';
 import { QuestionDetailModal } from '../components/QuestionDetailModal';
@@ -18,17 +21,35 @@ import { FavoriteListCard } from '../components/FavoriteListCard';
 import { CreateFavoriteListModal } from '../components/CreateFavoriteListModal';
 import { GroupCard } from '../components/GroupCard';
 import { CreateGroupModal } from '../components/CreateGroupModal';
-import { GROUP_THEMES, type Question } from '../types';
+import { GROUP_THEMES, type Post, type Question } from '../types';
 import styles from './CommunityPage.module.css';
 
-type Tab = 'questions' | 'favorites' | 'groups';
+type Tab = 'posts' | 'questions' | 'favorites' | 'groups';
+
+const POSTS_PAGE_SIZE = 12;
 
 export function CommunityPage() {
   const { t } = useTranslation();
   const requireAuth = useRequireAuth();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const push = useToastStore((s) => s.push);
-  const [tab, setTab] = useState<Tab>('questions');
+  const [tab, setTab] = useState<Tab>('posts');
+
+  const [createPostOpen, setCreatePostOpen] = useState(false);
+  const [postsPage, setPostsPage] = useState(1);
+  const [accumulatedPosts, setAccumulatedPosts] = useState<Post[]>([]);
+  const { data: postsData, isLoading: isLoadingPosts, isFetching: isFetchingPosts } = usePosts({
+    page: postsPage,
+    page_size: POSTS_PAGE_SIZE,
+  });
+
+  useEffect(() => {
+    if (!postsData) return;
+    setAccumulatedPosts((prev) => (postsPage === 1 ? postsData.items : [...prev, ...postsData.items]));
+  }, [postsData, postsPage]);
+
+  const postsTotal = postsData?.total ?? 0;
+  const hasMorePosts = accumulatedPosts.length > 0 && accumulatedPosts.length < postsTotal;
 
   const [askOpen, setAskOpen] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState<Question | null>(null);
@@ -77,6 +98,13 @@ export function CommunityPage() {
         <div className={styles.tabs}>
           <button
             type="button"
+            className={clsx(styles.tab, tab === 'posts' && styles.tabActive)}
+            onClick={() => setTab('posts')}
+          >
+            {t('community.tabPostsFeed')}
+          </button>
+          <button
+            type="button"
             className={clsx(styles.tab, tab === 'questions' && styles.tabActive)}
             onClick={() => setTab('questions')}
           >
@@ -97,6 +125,49 @@ export function CommunityPage() {
             {t('community.tabGroups')}
           </button>
         </div>
+
+        {tab === 'posts' && (
+          <div className={styles.tabContent}>
+            <div className={styles.tabHeader}>
+              <Button onClick={() => requireAuth(() => setCreatePostOpen(true), t('community.postRequiresAuth'))}>
+                <Plus size={16} strokeWidth={2} />
+                {t('community.createPost')}
+              </Button>
+            </div>
+
+            {isLoadingPosts && (
+              <div className={styles.center}>
+                <Spinner size={24} />
+              </div>
+            )}
+
+            {!isLoadingPosts && accumulatedPosts.length === 0 && (
+              <EmptyResults variant="empty" title={t('community.noPosts')} text={t('community.noPostsText')} />
+            )}
+
+            {!isLoadingPosts && accumulatedPosts.length > 0 && (
+              <>
+                <div className={styles.postList}>
+                  {accumulatedPosts.map((post) => (
+                    <PostCard key={post.id} post={post} />
+                  ))}
+                </div>
+
+                {hasMorePosts && (
+                  <div className={styles.loadMoreRow}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setPostsPage((p) => p + 1)}
+                      disabled={isFetchingPosts}
+                    >
+                      {isFetchingPosts ? t('common.loading') : t('explore.loadMore')}
+                    </Button>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        )}
 
         {tab === 'questions' && (
           <div className={styles.tabContent}>
@@ -223,6 +294,7 @@ export function CommunityPage() {
         )}
       </div>
 
+      <CreatePostModal open={createPostOpen} onClose={() => setCreatePostOpen(false)} />
       <AskQuestionModal open={askOpen} onClose={() => setAskOpen(false)} />
       <QuestionDetailModal question={activeQuestion} onClose={() => setActiveQuestion(null)} />
       <CreateFavoriteListModal open={createListOpen} onClose={() => setCreateListOpen(false)} />

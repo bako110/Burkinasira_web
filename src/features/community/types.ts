@@ -18,6 +18,7 @@ export interface Post {
   location?: GeoPoint;
   like_count: number;
   comment_count: number;
+  is_liked_by_me: boolean;
   created_at: string;
 }
 

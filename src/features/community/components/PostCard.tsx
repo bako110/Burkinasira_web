@@ -1,21 +1,32 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, MessageCircle, User, ImageOff } from 'lucide-react';
+import { Heart, MessageCircle, User, ImageOff, ChevronLeft, ChevronRight, Send } from 'lucide-react';
 import clsx from 'clsx';
 
+import { Spinner } from '../../../shared/ui';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useLikePost } from '../hooks/useLikePost';
+import { useComments, useAddComment } from '../hooks/useComments';
 import type { Post } from '../types';
 import styles from './PostCard.module.css';
 
 export function PostCard({ post }: { post: Post }) {
   const { t, i18n } = useTranslation();
-  const { mutate: like, isPending } = useLikePost();
-  const [liked, setLiked] = useState(false);
-  const cover = post.media_urls[0];
+  const requireAuth = useRequireAuth();
+  const { mutate: like, isPending: isLiking } = useLikePost();
+  const [mediaIndex, setMediaIndex] = useState(0);
+  const [commentsOpen, setCommentsOpen] = useState(false);
+
+  const media = post.media_urls;
+  const activeMedia = media[mediaIndex];
 
   function handleLike() {
-    if (liked || isPending) return;
-    like(post.id, { onSuccess: () => setLiked(true) });
+    if (isLiking) return;
+    requireAuth(() => like(post.id), t('community.likeRequiresAuth'));
+  }
+
+  function goTo(delta: number) {
+    setMediaIndex((i) => (i + delta + media.length) % media.length);
   }
 
   return (
@@ -39,17 +50,30 @@ export function PostCard({ post }: { post: Post }) {
 
       {post.caption && <p className={styles.caption}>{post.caption}</p>}
 
-      {cover && (
+      {activeMedia && (
         <div className={styles.media}>
-          {post.type === 'video' ? (
-            <video src={cover} controls className={styles.mediaEl} />
+          {post.type === 'video' || /\.(mp4|webm|mov)$/i.test(activeMedia) ? (
+            <video src={activeMedia} controls className={styles.mediaEl} />
           ) : (
-            <img src={cover} alt="" className={styles.mediaEl} />
+            <img src={activeMedia} alt="" className={styles.mediaEl} />
+          )}
+          {media.length > 1 && (
+            <>
+              <button type="button" className={clsx(styles.mediaNav, styles.mediaNavLeft)} onClick={() => goTo(-1)}>
+                <ChevronLeft size={18} strokeWidth={2} />
+              </button>
+              <button type="button" className={clsx(styles.mediaNav, styles.mediaNavRight)} onClick={() => goTo(1)}>
+                <ChevronRight size={18} strokeWidth={2} />
+              </button>
+              <span className={styles.mediaCounter}>
+                {mediaIndex + 1}/{media.length}
+              </span>
+            </>
           )}
         </div>
       )}
 
-      {!cover && post.type !== 'recommandation' && (
+      {!activeMedia && post.type !== 'recommandation' && (
         <div className={styles.mediaPlaceholder}>
           <ImageOff size={28} strokeWidth={1.5} />
         </div>
@@ -58,18 +82,81 @@ export function PostCard({ post }: { post: Post }) {
       <div className={styles.footer}>
         <button
           type="button"
-          className={clsx(styles.actionBtn, liked && styles.actionBtnActive)}
+          className={clsx(styles.actionBtn, post.is_liked_by_me && styles.actionBtnActive)}
           onClick={handleLike}
-          disabled={isPending}
+          disabled={isLiking}
         >
-          <Heart size={15} strokeWidth={2} fill={liked ? 'currentColor' : 'none'} />
-          {post.like_count + (liked ? 1 : 0)}
+          <Heart size={15} strokeWidth={2} fill={post.is_liked_by_me ? 'currentColor' : 'none'} />
+          {post.like_count}
         </button>
-        <span className={styles.actionBtn}>
+        <button type="button" className={styles.actionBtn} onClick={() => setCommentsOpen((v) => !v)}>
           <MessageCircle size={15} strokeWidth={2} />
           {post.comment_count}
-        </span>
+        </button>
       </div>
+
+      {commentsOpen && <CommentSection postId={post.id} />}
+    </div>
+  );
+}
+
+function CommentSection({ postId }: { postId: string }) {
+  const { t } = useTranslation();
+  const requireAuth = useRequireAuth();
+  const { data: comments, isLoading } = useComments(postId);
+  const { mutate: addComment, isPending } = useAddComment(postId);
+  const [content, setContent] = useState('');
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (!content.trim()) return;
+    requireAuth(
+      () =>
+        addComment(
+          { content: content.trim() },
+          {
+            onSuccess: () => setContent(''),
+          },
+        ),
+      t('community.commentRequiresAuth'),
+    );
+  }
+
+  return (
+    <div className={styles.commentSection}>
+      {isLoading && (
+        <div className={styles.commentLoading}>
+          <Spinner size={18} />
+        </div>
+      )}
+
+      {!isLoading && comments && comments.length === 0 && (
+        <p className={styles.noComments}>{t('community.noComments')}</p>
+      )}
+
+      {!isLoading && comments && comments.length > 0 && (
+        <div className={styles.commentList}>
+          {comments.map((c) => (
+            <div key={c.id} className={styles.commentItem}>
+              <span className={styles.commentAuthor}>{t('community.someMember')}</span>
+              <span className={styles.commentContent}>{c.content}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <form className={styles.commentForm} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className={styles.commentInput}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder={t('community.commentPlaceholder')}
+        />
+        <button type="submit" className={styles.commentSubmit} disabled={isPending || !content.trim()}>
+          {isPending ? <Spinner size={14} /> : <Send size={14} strokeWidth={2} />}
+        </button>
+      </form>
     </div>
   );
 }
