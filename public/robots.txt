@@ -1,0 +1,17 @@
+# robots.txt - FasoViva
+User-agent: *
+Allow: /
+
+# Zones privées / non pertinentes pour l'indexation
+Disallow: /login
+Disallow: /register
+Disallow: /profile
+Disallow: /passport
+Disallow: /notifications
+Disallow: /messages
+Disallow: /bookings
+Disallow: /trips
+Disallow: /market/orders
+Disallow: /pro/
+
+Sitemap: https://fasoviva.com/sitemap.xml
