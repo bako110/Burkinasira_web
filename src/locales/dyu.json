@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "GoTours",
+    "appName": "FasoViva",
     "loading": "A bɛ na...",
     "error": "Fili dɔ kɛra",
     "retry": "K'a lajɛ tugun",
@@ -53,7 +53,7 @@
     "notifications": "Kunnafoniw",
     "messages": "Bataki",
     "profile": "N ka kunnafoni",
-    "passport": "GoTours Paspɔri"
+    "passport": "FasoViva Paspɔri"
   },
   "auth": {
     "login": "Don",
@@ -76,7 +76,7 @@
     "step1Subtitle": "An bɛna i wele cogo di?",
     "step2Subtitle": "An bɛ se ka i sɔrɔ cogo di?",
     "step3Subtitle": "Gundo daanu lakananen sugandi",
-    "step4Subtitle": "I bɛna GoTours baara cogo di?",
+    "step4Subtitle": "I bɛna FasoViva baara cogo di?",
     "orContinueWith": "walima ka taa ɲɛ ni",
     "continueWithGoogle": "Taa ɲɛ ni Google ye",
     "continueWithApple": "Taa ɲɛ ni Apple ye",
@@ -135,7 +135,7 @@
     "moreFeaturesComingSoon": "Ko wɛrɛw bɛna na sɔɔni.",
     "guideProfileTitle": "I ka ɲɛminɛbaga jatebɔ",
     "providerProfileTitle": "I ka baara jatebɔ",
-    "providerProfileHint": "I ka baara-yɔrɔ kelen fɔ (lotɛli, rɛsitɔrannin, mobiliti walima baaraw) walasa GoTours ka se ka i ka fɛn lajɛ.",
+    "providerProfileHint": "I ka baara-yɔrɔ kelen fɔ (lotɛli, rɛsitɔrannin, mobiliti walima baaraw) walasa FasoViva ka se ka i ka fɛn lajɛ.",
     "submittedEstablishments": "Baara-yɔrɔ minnu cikoro",
     "statusPublished": "A bɔra kɛnɛ ma",
     "statusDraft": "A bɛ lajɛli la",
@@ -215,7 +215,7 @@
     "noReviews": "Hakilina si tɛ",
     "noReviewsDesc": "I ma kiliyanɛ hakilina sɔrɔ fɔlɔ.",
     "reviewCount": "Hakilina {{count}}",
-    "anonymousAuthor": "GoTours kiliyanɛ",
+    "anonymousAuthor": "FasoViva kiliyanɛ",
     "yourReply": "I ka jaabi",
 
     "tab_overview": "Fɔlɔ ɲɛfɔli",
@@ -564,7 +564,7 @@
     "successTitle": "Tarawu dafara",
     "successText": "I bɛna a sɔrɔ \"N ka sigi-yɔrɔ tarawu\" kɔnɔ.",
     "empty": "Tarawu si tɛ i bolo fɔlɔ",
-    "emptyText": "GoTours lajɛ ka i ka fɔlɔ ko ta.",
+    "emptyText": "FasoViva lajɛ ka i ka fɔlɔ ko ta.",
     "reference": "Jatebɔ",
     "cancel": "Dabila",
     "cancelConfirm": "Dabilali sɛbɛnni",
@@ -698,7 +698,7 @@
       "touriste_restaurant": "Rɛsutɔrɛn",
       "touriste_artisan": "Baarakɛla",
       "entreprise_prestataire": "Baarakɛla",
-      "support_client": "GoTours dɛmɛni",
+      "support_client": "FasoViva dɛmɛni",
       "groupe_voyageurs": "Taamakɛlaw jɛkulu"
     }
   },
@@ -719,7 +719,7 @@
     "deleteSuccess": "Jamanan jɔsira"
   },
   "passport": {
-    "title": "GoTours Paspɔri",
+    "title": "FasoViva Paspɔri",
     "points": "wolomaw",
     "badgesTitle": "Badiziw",
     "stampsTitle": "Tikitiw dilennenw",
@@ -879,7 +879,7 @@
     }
   },
   "market": {
-    "title": "GoTours Market",
+    "title": "FasoViva Market",
     "subtitle": "Baara-fɛn sɛbɛw Burkina Faso ka bonya.",
     "searchPlaceholder": "Fɛn dɔ, baarakɛla dɔ...",
     "empty": "Fɛn si ma sɔrɔ",
@@ -920,7 +920,7 @@
     }
   },
   "community": {
-    "title": "GoTours Jɛkulu",
+    "title": "FasoViva Jɛkulu",
     "subtitle": "Ɲininkaliw, kanuya fɛnw ni taamakɛlaw jɛkulu.",
     "tabQuestions": "Ɲininkaliw",
     "tabFavorites": "Kanuya fɛnw",
@@ -1043,13 +1043,13 @@
     "floatRating": "4.8/5 taamakɛlaw fɛ",
     "seeAllResults": "Jaabi bɛɛ lajɛ « {{query}} » kama",
     "noSuggestions": "Jaabi si tɛ ɲini in na",
-    "categoriesTitle": "GoTours bɛɛ, yɔrɔ kelen na",
+    "categoriesTitle": "FasoViva bɛɛ, yɔrɔ kelen na",
     "categoriesSubtitle": "Taama fan bɛɛ, dilanna Burkina Faso kama.",
     "categories": {
       "stay": { "title": "Sigi-yɔrɔw", "text": "Hotɛliw ni sigi-yɔrɔ sɛbɛw" },
-      "food": { "title": "Dumuni", "text": "Dumuni suguya ni GoTours Food" },
+      "food": { "title": "Dumuni", "text": "Dumuni suguya ni FasoViva Food" },
       "mobility": { "title": "Taama", "text": "Sira ni yɔrɔ-yɔrɔ taama" },
-      "market": { "title": "Baaraw", "text": "GoTours Market feereyɔrɔ" },
+      "market": { "title": "Baaraw", "text": "FasoViva Market feereyɔrɔ" },
       "guides": { "title": "Ɲɛminɛbagaw", "text": "Ɲɛminɛbaga sɛbɛnnenw" },
       "events": { "title": "Waati-kunw", "text": "Laadaw ni jamana kalanda" }
     },
@@ -1068,7 +1068,7 @@
       "provinces": "Mara caman",
       "travelers": "Taamakɛlaw dɛmɛnenw"
     },
-    "whyTitle": "Mun na GoTours ka ɲi",
+    "whyTitle": "Mun na FasoViva ka ɲi",
     "whySubtitle": "Platform dilannen taama sɛbɛ ni sigida kama.",
     "why": {
       "verified": { "title": "Yɔrɔ sɛbɛw", "text": "Yɔrɔ bɛɛ lajɛlen don walasa kunnafoni ka ɲi." },
@@ -1077,7 +1077,7 @@
       "secure": { "title": "Wari sara sɛbɛ", "text": "Sigi-yɔrɔ tarawu ni wari sara bɛɛ lakananen." }
     },
     "ctaTitle": "I labɛnnen don ka Burkina Faso lajɛ wa?",
-    "ctaText": "I don GoTours la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
+    "ctaText": "I don FasoViva la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
     "ctaButton": "Ɲini daminɛ"
   }
 }

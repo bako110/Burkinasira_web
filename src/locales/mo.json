@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "GoTours",
+    "appName": "FasoViva",
     "loading": "A bee n na...",
     "error": "Yell-kãseng n zĩnda",
     "retry": "Le maan",
@@ -53,7 +53,7 @@
     "notifications": "Kibare",
     "messages": "Kʋʋg-goam",
     "profile": "Mam yell",
-    "passport": "GoTours Pasepɔr"
+    "passport": "FasoViva Pasepɔr"
   },
   "auth": {
     "login": "Kẽ",
@@ -76,7 +76,7 @@
     "step1Subtitle": "D na bool-yã lame wãn n?",
     "step2Subtitle": "D na paam-y-yã wãn n?",
     "step3Subtitle": "Yãk gũusg-goam sẽn tar bĩnga",
-    "step4Subtitle": "Y na tũ-y GoTours wãn n?",
+    "step4Subtitle": "Y na tũ-y FasoViva wãn n?",
     "orContinueWith": "bɩ kell n taas ne",
     "continueWithGoogle": "Kell n taas ne Google",
     "continueWithApple": "Kell n taas ne Apple",
@@ -135,7 +135,7 @@
     "moreFeaturesComingSoon": "Tʋʋm a taab wata woto sɛka.",
     "guideProfileTitle": "Y sor-wilgda konte",
     "providerProfileTitle": "Y tʋʋm konte",
-    "providerProfileHint": "Kɩt-y y tʋʋm-zĩig a yembre (roog, rɛstora, mobiliti bɩ tʋʋmd) tɩ GoTours neba tõog n ges-a.",
+    "providerProfileHint": "Kɩt-y y tʋʋm-zĩig a yembre (roog, rɛstora, mobiliti bɩ tʋʋmd) tɩ FasoViva neba tõog n ges-a.",
     "submittedEstablishments": "Tʋʋm-zĩis sẽn kõ",
     "statusPublished": "Yaa vẽenega",
     "statusDraft": "A get n paase",
@@ -215,7 +215,7 @@
     "noReviews": "Ka sagl ye",
     "noReviewsDesc": "Y nan ka paam yamb-neb sagl ye.",
     "reviewCount": "Sagl {{count}}",
-    "anonymousAuthor": "GoTours yamb-neda",
+    "anonymousAuthor": "FasoViva yamb-neda",
     "yourReply": "Y leoor",
 
     "tab_overview": "Yɩlemd",
@@ -564,7 +564,7 @@
     "successTitle": "Reereem paas-la",
     "successText": "Ges a woto \"Mam reereems\" pʋgẽ.",
     "empty": "F ka tar reereem baa a yembre",
-    "emptyText": "Bao GoTours n reere f pipi tʋʋm-tʋmde.",
+    "emptyText": "Bao FasoViva n reere f pipi tʋʋm-tʋmde.",
     "reference": "Sɩgen-koeese",
     "cancel": "Bas",
     "cancelConfirm": "Kõ bas-la",
@@ -698,7 +698,7 @@
       "touriste_restaurant": "Restora",
       "touriste_artisan": "Tʋm-tʋmda",
       "entreprise_prestataire": "Tʋm-tʋmd-soaba",
-      "support_client": "GoTours sõngo",
+      "support_client": "FasoViva sõngo",
       "groupe_voyageurs": "Sor-tʋmdb tigim"
     }
   },
@@ -719,7 +719,7 @@
     "deleteSuccess": "Kʋdgẽ yiisame"
   },
   "passport": {
-    "title": "GoTours Pasepɔr",
+    "title": "FasoViva Pasepɔr",
     "points": "poɛ̃",
     "badgesTitle": "Badzhã",
     "stampsTitle": "Tɩmbre sẽn bao",
@@ -879,7 +879,7 @@
     }
   },
   "market": {
-    "title": "GoTours Market",
+    "title": "FasoViva Market",
     "subtitle": "Tʋʋmd hakɩkã sẽn yit Burkina Faso.",
     "searchPlaceholder": "Bũmb bɩ tʋm-tʋmda...",
     "empty": "Ka bũmb baa a yembre",
@@ -920,7 +920,7 @@
     }
   },
   "community": {
-    "title": "GoTours tigims",
+    "title": "FasoViva tigims",
     "subtitle": "Sokre, sẽn nong-a la sor-tʋmdb tigims.",
     "tabQuestions": "Sokre",
     "tabFavorites": "Sẽn nong-a",
@@ -1043,13 +1043,13 @@
     "floatRating": "4.8/5 sont-rãmbã nengẽ",
     "seeAllResults": "Ges bũmb fãa sẽn yaa « {{query}} »",
     "noSuggestions": "Ka bũmb baa a yembr sẽn yaa woto ye",
-    "categoriesTitle": "GoTours fãa, zĩig a yembre",
+    "categoriesTitle": "FasoViva fãa, zĩig a yembre",
     "categoriesSubtitle": "Sã-sore fãa n zĩnd Burkina Faso yĩnga.",
     "categories": {
       "stay": { "title": "Zaka-kɩʋʋg", "text": "Hotɛl la zĩis sẽn tigme" },
-      "food": { "title": "Rɩɩb", "text": "Rɩɩb-buud la GoTours Food" },
+      "food": { "title": "Rɩɩb", "text": "Rɩɩb-buud la FasoViva Food" },
       "mobility": { "title": "Sore", "text": "Sor la wagd-taab" },
-      "market": { "title": "Tʋʋmd", "text": "GoTours Market rat-zĩig" },
+      "market": { "title": "Tʋʋmd", "text": "FasoViva Market rat-zĩig" },
       "guides": { "title": "Sor-tʋmdb", "text": "Sor-tʋmdb sẽn zãms" },
       "events": { "title": "Kibs", "text": "Yʋʋm-sɛb la tẽng kibs" }
     },
@@ -1068,7 +1068,7 @@
       "provinces": "Soolem-kãsemse",
       "travelers": "Sont-rãmb sẽn sõng"
     },
-    "whyTitle": "Bõe yĩng GoTours",
+    "whyTitle": "Bõe yĩng FasoViva",
     "whySubtitle": "Zĩig sẽn maan-b ne tẽeb la neb sẽn be zĩigã.",
     "why": {
       "verified": { "title": "Zĩis sẽn tigme", "text": "Zĩig fãa b geta n bãng t'a yaa hakɩkã." },
@@ -1077,7 +1077,7 @@
       "secure": { "title": "Ligd-lubdo sẽn tar bĩnga", "text": "Reereems la ligd-lubdo b gũusdame." }
     },
     "ctaTitle": "Fo sɩd n dat n ges Burkina Faso?",
-    "ctaText": "Wa naan GoTours n sɔsg n bao zĩis la nedbã sẽn zĩnd tẽngã pʋgẽ.",
+    "ctaText": "Wa naan FasoViva n sɔsg n bao zĩis la nedbã sẽn zĩnd tẽngã pʋgẽ.",
     "ctaButton": "Sɔsg baorã"
   }
 }

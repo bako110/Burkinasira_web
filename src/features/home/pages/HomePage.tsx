@@ -4,7 +4,7 @@ import { TrustBand } from '../components/TrustBand';
 import { CategoryShowcase } from '../components/CategoryShowcase';
 import { FeaturedDestinations } from '../components/FeaturedDestinations';
 import { StatsBand } from '../components/StatsBand';
-import { WhyGoTours } from '../components/WhyGoTours';
+import { WhyFasoViva } from '../components/WhyFasoViva';
 import { FinalCta } from '../components/FinalCta';
 
 export function HomePage() {
@@ -16,7 +16,7 @@ export function HomePage() {
       <CategoryShowcase />
       <FeaturedDestinations />
       <StatsBand />
-      <WhyGoTours />
+      <WhyFasoViva />
       <FinalCta />
     </>
   );

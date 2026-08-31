@@ -3,7 +3,7 @@ import { ShieldCheck, MapPinned, LayoutGrid, Lock } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui/Reveal';
 import { FloatingFlags } from '../../../shared/ui';
-import styles from './WhyGoTours.module.css';
+import styles from './WhyFasoViva.module.css';
 
 const REASONS = [
   { key: 'verified', Icon: ShieldCheck },
@@ -12,7 +12,7 @@ const REASONS = [
   { key: 'secure', Icon: Lock },
 ] as const;
 
-export function WhyGoTours() {
+export function WhyFasoViva() {
   const { t } = useTranslation();
 
   return (

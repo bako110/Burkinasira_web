@@ -7,7 +7,7 @@ interface ThemeState {
   setMode: (mode: ThemeMode) => void;
 }
 
-const STORAGE_KEY = 'gotours:theme';
+const STORAGE_KEY = 'fasoviva:theme';
 
 function applyThemeToDocument(mode: ThemeMode) {
   const root = document.documentElement;

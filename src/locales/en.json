@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "GoTours",
+    "appName": "FasoViva",
     "loading": "Loading...",
     "error": "Something went wrong",
     "retry": "Retry",
@@ -53,7 +53,7 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "profile": "Profile",
-    "passport": "GoTours Passport"
+    "passport": "FasoViva Passport"
   },
   "auth": {
     "login": "Login",
@@ -76,7 +76,7 @@
     "step1Subtitle": "What should we call you?",
     "step2Subtitle": "How can we reach you?",
     "step3Subtitle": "Choose a secure password",
-    "step4Subtitle": "How will you use GoTours?",
+    "step4Subtitle": "How will you use FasoViva?",
     "orContinueWith": "or continue with",
     "continueWithGoogle": "Continue with Google",
     "continueWithApple": "Continue with Apple",
@@ -135,7 +135,7 @@
     "moreFeaturesComingSoon": "More features coming soon.",
     "guideProfileTitle": "Your guide profile",
     "providerProfileTitle": "Your business profile",
-    "providerProfileHint": "Provide at least one establishment (hotel, restaurant, transport or craft) so the GoTours team can review your application.",
+    "providerProfileHint": "Provide at least one establishment (hotel, restaurant, transport or craft) so the FasoViva team can review your application.",
     "submittedEstablishments": "Submitted establishments",
     "statusPublished": "Published",
     "statusDraft": "Pending draft",
@@ -215,7 +215,7 @@
     "noReviews": "No reviews",
     "noReviewsDesc": "You haven't received any customer reviews yet.",
     "reviewCount": "{{count}} reviews",
-    "anonymousAuthor": "GoTours customer",
+    "anonymousAuthor": "FasoViva customer",
     "yourReply": "Your reply",
 
     "tab_overview": "Overview",
@@ -564,7 +564,7 @@
     "successTitle": "Booking confirmed",
     "successText": "Find the details under \"My bookings\".",
     "empty": "You have no bookings yet",
-    "emptyText": "Explore GoTours and book your first experience.",
+    "emptyText": "Explore FasoViva and book your first experience.",
     "reference": "Reference",
     "cancel": "Cancel",
     "cancelConfirm": "Confirm cancellation",
@@ -698,7 +698,7 @@
       "touriste_restaurant": "Restaurant",
       "touriste_artisan": "Artisan",
       "entreprise_prestataire": "Provider",
-      "support_client": "GoTours support",
+      "support_client": "FasoViva support",
       "groupe_voyageurs": "Traveler group"
     }
   },
@@ -719,7 +719,7 @@
     "deleteSuccess": "Account deleted"
   },
   "passport": {
-    "title": "GoTours Passport",
+    "title": "FasoViva Passport",
     "points": "points",
     "badgesTitle": "Badges",
     "stampsTitle": "Collected stamps",
@@ -879,7 +879,7 @@
     }
   },
   "market": {
-    "title": "GoTours Market",
+    "title": "FasoViva Market",
     "subtitle": "Authentic handmade products from Burkina Faso.",
     "searchPlaceholder": "A product, an artisan...",
     "empty": "No product found",
@@ -920,7 +920,7 @@
     }
   },
   "community": {
-    "title": "GoTours Community",
+    "title": "FasoViva Community",
     "subtitle": "Questions, favorites and traveler groups.",
     "tabQuestions": "Questions",
     "tabFavorites": "Favorites",
@@ -1043,13 +1043,13 @@
     "floatRating": "4.8/5 from travelers",
     "seeAllResults": "See all results for \"{{query}}\"",
     "noSuggestions": "No results for this search",
-    "categoriesTitle": "All of GoTours, at a glance",
+    "categoriesTitle": "All of FasoViva, at a glance",
     "categoriesSubtitle": "Every corner of travel, built for Burkina Faso.",
     "categories": {
       "stay": { "title": "Stays", "text": "Hotels, guesthouses and verified accommodation" },
-      "food": { "title": "Food", "text": "Local gastronomy and GoTours Food picks" },
+      "food": { "title": "Food", "text": "Local gastronomy and FasoViva Food picks" },
       "mobility": { "title": "Transport", "text": "Mobility, roads and getting around" },
-      "market": { "title": "Crafts", "text": "GoTours Market marketplace" },
+      "market": { "title": "Crafts", "text": "FasoViva Market marketplace" },
       "guides": { "title": "Guides", "text": "Certified tourist guides" },
       "events": { "title": "Events", "text": "Cultural and national calendar" }
     },
@@ -1068,7 +1068,7 @@
       "provinces": "Provinces covered",
       "travelers": "Travelers served"
     },
-    "whyTitle": "Why choose GoTours",
+    "whyTitle": "Why choose FasoViva",
     "whySubtitle": "A platform built for reliable, local and responsible tourism.",
     "why": {
       "verified": { "title": "Verified places", "text": "Every destination is checked to ensure reliable, up-to-date information." },
@@ -1077,7 +1077,7 @@
       "secure": { "title": "Secure payments", "text": "Bookings and transactions protected at every step." }
     },
     "ctaTitle": "Ready to explore Burkina Faso?",
-    "ctaText": "Join GoTours and start discovering authentic places, experiences and encounters.",
+    "ctaText": "Join FasoViva and start discovering authentic places, experiences and encounters.",
     "ctaButton": "Start exploring"
   }
 }
