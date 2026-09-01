@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { QRCodeCanvas } from 'qrcode.react';
 import { toPng } from 'html-to-image';
@@ -14,11 +14,42 @@ interface FasoVivaIdCardProps {
   points: number;
 }
 
+async function toDataUrl(url: string): Promise<string | null> {
+  try {
+    const response = await fetch(url, { mode: 'cors' });
+    if (!response.ok) return null;
+    const blob = await response.blob();
+    return await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
+
 export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
   const { t, i18n } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const push = useToastStore((s) => s.push);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [avatarDataUrl, setAvatarDataUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!user.avatar_url) {
+      setAvatarDataUrl(null);
+      return;
+    }
+    toDataUrl(user.avatar_url).then((dataUrl) => {
+      if (!cancelled) setAvatarDataUrl(dataUrl);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [user.avatar_url]);
 
   const memberSince = user.id
     ? new Date(parseInt(user.id.slice(0, 8), 16) * 1000).toLocaleDateString(i18n.language, {
@@ -56,8 +87,8 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
 
         <div className={styles.body}>
           <div className={styles.photoWrap}>
-            {user.avatar_url ? (
-              <img src={user.avatar_url} alt={user.full_name} className={styles.photo} />
+            {avatarDataUrl ? (
+              <img src={avatarDataUrl} alt={user.full_name} className={styles.photo} />
             ) : (
               <div className={styles.photoPlaceholder}>
                 <User size={36} strokeWidth={1.5} />
