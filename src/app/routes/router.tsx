@@ -44,6 +44,7 @@ import { ChangePasswordPage } from '../../features/profile/pages/ChangePasswordP
 import { DangerZonePage } from '../../features/profile/pages/DangerZonePage';
 import { PassportPage } from '../../features/passport/pages/PassportPage';
 import { PrivacyPolicyPage } from '../../features/legal/pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from '../../features/legal/pages/TermsOfServicePage';
 import { PlannerPage } from '../../features/planner/pages/PlannerPage';
 import { TripRecapPage } from '../../features/planner/pages/TripRecapPage';
 import { ItinerariesPage } from '../../features/itineraries/pages/ItinerariesPage';
@@ -106,6 +107,8 @@ export const router = createBrowserRouter([
           { path: '/market/:id', element: <ProductDetailPage /> },
           { path: '/privacy', element: <PrivacyPolicyPage /> },
           { path: '/confidentialite', element: <PrivacyPolicyPage /> },
+          { path: '/terms', element: <TermsOfServicePage /> },
+          { path: '/cgu', element: <TermsOfServicePage /> },
           {
             element: <ProtectedRoute />,
             children: [
