@@ -45,12 +45,14 @@
     "market": "Artisanat et marché",
     "community": "Communauté",
     "practical": "Pratique",
+    "edu": "Tourisme éducatif",
     "health": "Santé",
     "emergency": "Urgences et sécurité",
     "finance": "Argent et banques",
     "connectivity": "Connectivité",
     "weather": "Météo",
     "bookings": "Réservations",
+    "eduBookings": "Sorties éducatives",
     "orders": "Mes commandes",
     "trips": "Mes voyages",
     "notifications": "Notifications",
@@ -728,6 +730,44 @@
       "hebergement_habitant": "Hébergement chez l'habitant",
       "rencontre_artiste": "Rencontre avec un artiste",
       "autre": "Autre expérience"
+    },
+    "filters": {
+      "all": "Toutes"
+    }
+  },
+  "edu": {
+    "title": "Tourisme éducatif",
+    "subtitle": "Sorties scolaires et universitaires : visites historiques, culturelles, scientifiques, agricoles et industrielles.",
+    "searchPlaceholder": "Rechercher une sortie...",
+    "empty": "Aucune sortie éducative trouvée",
+    "detailNotFound": "Sortie introuvable",
+    "details": "Détails pratiques",
+    "maxParticipants": "{{count}} participants maximum",
+    "perParticipant": "participant",
+    "priceOnRequest": "Prix sur demande",
+    "bookForGroup": "Réserver pour un groupe",
+    "bookRequiresAuth": "Connectez-vous pour réserver une sortie éducative",
+    "bookTitle": "Réserver cette sortie",
+    "bookHint": "Indiquez le nom du groupe et le nombre de participants. L'organisateur confirmera la réservation.",
+    "groupName": "Nom du groupe",
+    "participantCount": "Nombre de participants",
+    "confirmBooking": "Confirmer la réservation",
+    "bookSuccessText": "Votre demande de réservation a été envoyée à l'organisateur.",
+    "myBookings": "Mes sorties éducatives",
+    "myBookingsEmpty": "Vous n'avez encore réservé aucune sortie éducative",
+    "participantCountValue": "{{count}} participants",
+    "bookingStatus": {
+      "requested": "Demandée",
+      "confirmed": "Confirmée",
+      "cancelled": "Annulée"
+    },
+    "types": {
+      "visite_historique": "Visite historique",
+      "visite_culturelle": "Visite culturelle",
+      "visite_scientifique": "Visite scientifique",
+      "visite_agricole": "Visite agricole",
+      "visite_industrielle": "Visite industrielle",
+      "excursion_universitaire": "Excursion universitaire"
     },
     "filters": {
       "all": "Toutes"

@@ -45,12 +45,14 @@
     "market": "Baaraw ni feereyɔrɔ",
     "community": "Jɛkulu",
     "practical": "Nafama",
+    "edu": "Kalan-taama",
     "health": "Kɛnɛya",
     "emergency": "Kɔrɔfɛtaw ni lakana",
     "finance": "Wari ni bangeku",
     "connectivity": "Ɛntɛrinɛti sennkɛ",
     "weather": "Waati sanni",
     "bookings": "Sigi-yɔrɔw",
+    "eduBookings": "Kalan-taamaw",
     "orders": "N ka minɛnw",
     "trips": "N ka taamaw",
     "notifications": "Kunnafoniw",
@@ -728,6 +730,44 @@
       "hebergement_habitant": "Sigi jatigila fɛ",
       "rencontre_artiste": "Dɔnkilidala dɔ kunbɛn",
       "autre": "Kɔrɔbɔli wɛrɛ"
+    },
+    "filters": {
+      "all": "Bɛɛ"
+    }
+  },
+  "edu": {
+    "title": "Kalan-taama",
+    "subtitle": "Lakɔli ni iniwɛrisite taamaw: tariku bɔliw, laadaw, dɔnniya, sɛnɛkɛ ni izini bɔliw.",
+    "searchPlaceholder": "Taama dɔ ɲini...",
+    "empty": "Kalan-taama si ma sɔrɔ",
+    "detailNotFound": "Taama ma sɔrɔ",
+    "details": "Kunnafoni jɛlenw",
+    "maxParticipants": "Mɔgɔ {{count}} dama",
+    "perParticipant": "mɔgɔ kelen",
+    "priceOnRequest": "Sɔngɔ ɲininkali kɔfɛ",
+    "bookForGroup": "A sigi jɛkulu dɔ ye",
+    "bookRequiresAuth": "I ka don walasa ka kalan-taama sigi",
+    "bookTitle": "Nin taama sigi",
+    "bookHint": "Jɛkulu tɔgɔ ni mɔgɔ hakɛ fɔ. Ɲɛminɛbaga bɛna sigili dabali.",
+    "groupName": "Jɛkulu tɔgɔ",
+    "participantCount": "Mɔgɔ hakɛ",
+    "confirmBooking": "Sigili sabati",
+    "bookSuccessText": "I ka sigili ɲinini cilen bɛ ɲɛminɛbaga ma.",
+    "myBookings": "N ka kalan-taamaw",
+    "myBookingsEmpty": "I ma kalan-taama si sigi fɔlɔ",
+    "participantCountValue": "Mɔgɔ {{count}}",
+    "bookingStatus": {
+      "requested": "A ɲinina",
+      "confirmed": "A sabatira",
+      "cancelled": "A dabilara"
+    },
+    "types": {
+      "visite_historique": "Tariku bɔli",
+      "visite_culturelle": "Laada bɔli",
+      "visite_scientifique": "Dɔnniya bɔli",
+      "visite_agricole": "Sɛnɛkɛ bɔli",
+      "visite_industrielle": "Izini bɔli",
+      "excursion_universitaire": "Iniwɛrisite taama"
     },
     "filters": {
       "all": "Bɛɛ"

@@ -14,6 +14,7 @@ import {
   ShoppingBag,
   Lock,
   AlertTriangle,
+  GraduationCap,
 } from 'lucide-react';
 
 import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
@@ -29,6 +30,7 @@ import styles from './ProfilePage.module.css';
 
 const HUB_LINKS = [
   { to: '/bookings', key: 'bookings', Icon: Ticket },
+  { to: '/edu/bookings/me', key: 'eduBookings', Icon: GraduationCap },
   { to: '/market/orders', key: 'orders', Icon: ShoppingBag },
   { to: '/trips', key: 'trips', Icon: Map },
   { to: '/messages', key: 'messages', Icon: MessageCircle },

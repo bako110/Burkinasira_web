@@ -45,12 +45,14 @@
     "market": "Tʋʋmd la rat-zĩig",
     "community": "Tigims",
     "practical": "Sõngo",
+    "edu": "Zãmsg-sore-yalse",
     "health": "Laafi",
     "emergency": "Yell-kãse la lɛɛgengo",
     "finance": "Ligd la bãnk",
     "connectivity": "Internet zoodo",
     "weather": "Sa wakat",
     "bookings": "Reereems",
+    "eduBookings": "Zãmsg-sore-yalse",
     "orders": "Mam kʋmandẽ wã",
     "trips": "Mam sore-yalse",
     "notifications": "Kibare",
@@ -728,6 +730,44 @@
       "hebergement_habitant": "Zĩ-gũusg nebãmb nengẽ",
       "rencontre_artiste": "Segl ne nug-tʋm-mit a yembr",
       "autre": "Yɛlg a to"
+    },
+    "filters": {
+      "all": "Fãa"
+    }
+  },
+  "edu": {
+    "title": "Zãmsg-sore-yalse",
+    "subtitle": "Karen-biis la iniversite sore-yalse: yɛl-vẽkr, rog-n-mikde, sɩd-bãngre, pʋʋgo la tʋʋm-doogo yɛlse.",
+    "searchPlaceholder": "Bao-y sore-yalgo...",
+    "empty": "Zãmsg-sore-yalg baa a yembr ka mik ye",
+    "detailNotFound": "Sore-yalg ka mik ye",
+    "details": "Tigsg-vẽkr",
+    "maxParticipants": "Neb {{count}} bal n tõe n bee",
+    "perParticipant": "sẽn dɩta yembr",
+    "priceOnRequest": "Ligd sã n sok-a",
+    "bookForGroup": "Reere-y sull a yembr yĩnga",
+    "bookRequiresAuth": "Kẽ-y y zãmsg-sore-yalg reeregã yĩnga",
+    "bookTitle": "Reere-y sore-yalg kãnga",
+    "bookHint": "Wilg-y sullã yʋʋr la neb sẽn na n bee kaeb. Taoor soab na n kõ-y bãngre.",
+    "groupName": "Sullã yʋʋr",
+    "participantCount": "Neb sẽn na n bee kaeb",
+    "confirmBooking": "Kɩt-y reeregã tɩ tal",
+    "bookSuccessText": "Y reereg sokr tʋm-a taoor soabã nengẽ.",
+    "myBookings": "Mam zãmsg-sore-yalse",
+    "myBookingsEmpty": "Y nan pʋd zãmsg-sore-yalg baa a yembr reereg ye",
+    "participantCountValue": "Neb {{count}}",
+    "bookingStatus": {
+      "requested": "Sokame",
+      "confirmed": "Bãngame",
+      "cancelled": "Basame"
+    },
+    "types": {
+      "visite_historique": "Yɛl-vẽkr sẽn zoe n paam-a",
+      "visite_culturelle": "Rog-n-mikd vẽkr",
+      "visite_scientifique": "Sɩd-bãngr vẽkr",
+      "visite_agricole": "Pʋʋgo vẽkr",
+      "visite_industrielle": "Tʋʋm-doogo vẽkr",
+      "excursion_universitaire": "Iniversite sore-yalgo"
     },
     "filters": {
       "all": "Fãa"

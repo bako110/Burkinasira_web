@@ -153,6 +153,9 @@ export function AppLayout() {
         <div className={styles.drawerDivider} />
 
         <nav className={styles.drawerNav}>
+          <NavLink to="/edu" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            {t('nav.edu')}
+          </NavLink>
           <NavLink to="/health" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
             {t('nav.health')}
           </NavLink>

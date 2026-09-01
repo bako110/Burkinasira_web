@@ -17,6 +17,7 @@ import {
   CloudSun,
   Users,
   Handshake,
+  GraduationCap,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -35,6 +36,7 @@ const DISCOVER_LINKS = [
 ] as const;
 
 const PRACTICAL_LINKS = [
+  { to: '/edu', key: 'edu', Icon: GraduationCap },
   { to: '/health', key: 'health', Icon: Stethoscope },
   { to: '/emergency', key: 'emergency', Icon: ShieldAlert },
   { to: '/finance', key: 'finance', Icon: Landmark },

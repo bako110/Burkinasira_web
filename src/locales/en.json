@@ -45,12 +45,14 @@
     "market": "Crafts & market",
     "community": "Community",
     "practical": "Practical",
+    "edu": "Educational tourism",
     "health": "Health",
     "emergency": "Emergency & safety",
     "finance": "Money & banking",
     "connectivity": "Connectivity",
     "weather": "Weather",
     "bookings": "Bookings",
+    "eduBookings": "Educational outings",
     "orders": "My orders",
     "trips": "My trips",
     "notifications": "Notifications",
@@ -728,6 +730,44 @@
       "hebergement_habitant": "Homestay",
       "rencontre_artiste": "Meet an artist",
       "autre": "Other experience"
+    },
+    "filters": {
+      "all": "All"
+    }
+  },
+  "edu": {
+    "title": "Educational tourism",
+    "subtitle": "School and university outings: historical, cultural, scientific, agricultural and industrial visits.",
+    "searchPlaceholder": "Search an outing...",
+    "empty": "No educational outings found",
+    "detailNotFound": "Outing not found",
+    "details": "Practical details",
+    "maxParticipants": "{{count}} participants max",
+    "perParticipant": "participant",
+    "priceOnRequest": "Price on request",
+    "bookForGroup": "Book for a group",
+    "bookRequiresAuth": "Log in to book an educational outing",
+    "bookTitle": "Book this outing",
+    "bookHint": "Enter the group name and number of participants. The organizer will confirm the booking.",
+    "groupName": "Group name",
+    "participantCount": "Number of participants",
+    "confirmBooking": "Confirm booking",
+    "bookSuccessText": "Your booking request has been sent to the organizer.",
+    "myBookings": "My educational outings",
+    "myBookingsEmpty": "You haven't booked any educational outing yet",
+    "participantCountValue": "{{count}} participants",
+    "bookingStatus": {
+      "requested": "Requested",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "visite_historique": "Historical visit",
+      "visite_culturelle": "Cultural visit",
+      "visite_scientifique": "Scientific visit",
+      "visite_agricole": "Agricultural visit",
+      "visite_industrielle": "Industrial visit",
+      "excursion_universitaire": "University excursion"
     },
     "filters": {
       "all": "All"
