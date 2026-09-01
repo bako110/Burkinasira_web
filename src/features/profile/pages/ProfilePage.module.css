@@ -161,12 +161,54 @@
 }
 
 .logoutBtn {
-  color: var(--color-danger);
+  width: 100%;
 }
 
 @media (min-width: 900px) {
   .logoutBtn {
     align-self: stretch;
+  }
+}
+
+.settingsNav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
+}
+
+.settingsLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.settingsLink:hover {
+  background-color: var(--color-bg-inset);
+}
+
+.settingsLinkIcon {
+  flex-shrink: 0;
+  color: var(--color-brand);
+}
+
+.settingsLinkDanger,
+.settingsLinkDanger .settingsLinkIcon {
+  color: var(--color-danger);
+}
+
+@media (min-width: 900px) {
+  .settingsNav {
+    display: none;
   }
 }
 
@@ -176,6 +218,12 @@
   gap: var(--space-4);
   min-width: 0;
   flex: 1;
+}
+
+@media (max-width: 899px) {
+  .main {
+    display: none;
+  }
 }
 
 .section {

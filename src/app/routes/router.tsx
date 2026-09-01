@@ -39,7 +39,11 @@ import { CommunityPage } from '../../features/community/pages/CommunityPage';
 import { GroupDetailPage } from '../../features/community/pages/GroupDetailPage';
 import { MessagesPage } from '../../features/messaging/pages/MessagesPage';
 import { ProfilePage } from '../../features/profile/pages/ProfilePage';
+import { PersonalInfoPage } from '../../features/profile/pages/PersonalInfoPage';
+import { ChangePasswordPage } from '../../features/profile/pages/ChangePasswordPage';
+import { DangerZonePage } from '../../features/profile/pages/DangerZonePage';
 import { PassportPage } from '../../features/passport/pages/PassportPage';
+import { PrivacyPolicyPage } from '../../features/legal/pages/PrivacyPolicyPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
 import { ProLayout } from '../layout/ProLayout';
@@ -93,6 +97,8 @@ export const router = createBrowserRouter([
           { path: '/culture/:id', element: <CultureContentDetailPage /> },
           { path: '/market', element: <MarketPage /> },
           { path: '/market/:id', element: <ProductDetailPage /> },
+          { path: '/privacy', element: <PrivacyPolicyPage /> },
+          { path: '/confidentialite', element: <PrivacyPolicyPage /> },
           {
             element: <ProtectedRoute />,
             children: [
@@ -103,6 +109,9 @@ export const router = createBrowserRouter([
               { path: '/notifications', element: <NotificationsPage /> },
               { path: '/messages', element: <MessagesPage /> },
               { path: '/profile', element: <ProfilePage /> },
+              { path: '/profile/personal-info', element: <PersonalInfoPage /> },
+              { path: '/profile/password', element: <ChangePasswordPage /> },
+              { path: '/profile/danger-zone', element: <DangerZonePage /> },
               { path: '/passport', element: <PassportPage /> },
             ],
           },

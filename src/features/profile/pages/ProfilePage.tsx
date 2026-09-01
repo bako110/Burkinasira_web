@@ -1,7 +1,20 @@
 import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { LogOut, User, Trophy, Ticket, Map, MessageCircle, ChevronRight, Trash2, ShoppingBag } from 'lucide-react';
+import clsx from 'clsx';
+import {
+  LogOut,
+  User,
+  Trophy,
+  Ticket,
+  Map,
+  MessageCircle,
+  ChevronRight,
+  Trash2,
+  ShoppingBag,
+  Lock,
+  AlertTriangle,
+} from 'lucide-react';
 
 import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
@@ -20,6 +33,12 @@ const HUB_LINKS = [
   { to: '/trips', key: 'trips', Icon: Map },
   { to: '/messages', key: 'messages', Icon: MessageCircle },
 ] as const;
+
+const SETTINGS_LINKS: { to: string; labelKey: string; Icon: typeof User; danger?: boolean }[] = [
+  { to: '/profile/personal-info', labelKey: 'profile.editTitle', Icon: User },
+  { to: '/profile/password', labelKey: 'profile.passwordTitle', Icon: Lock },
+  { to: '/profile/danger-zone', labelKey: 'profile.dangerZone', Icon: AlertTriangle, danger: true },
+];
 
 export function ProfilePage() {
   const { t } = useTranslation();
@@ -118,7 +137,21 @@ export function ProfilePage() {
           ))}
         </nav>
 
-        <Button variant="ghost" onClick={requestLogout} className={styles.logoutBtn}>
+        <nav className={styles.settingsNav}>
+          {SETTINGS_LINKS.map(({ to, labelKey, Icon, danger }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={clsx(styles.settingsLink, danger && styles.settingsLinkDanger)}
+            >
+              <Icon size={18} strokeWidth={2} className={styles.settingsLinkIcon} />
+              <span>{t(labelKey)}</span>
+              <ChevronRight size={16} strokeWidth={2} className={styles.hubLinkChevron} />
+            </NavLink>
+          ))}
+        </nav>
+
+        <Button variant="danger" onClick={requestLogout} className={styles.logoutBtn}>
           <LogOut size={16} strokeWidth={2} />
           {t('auth.logout')}
         </Button>
