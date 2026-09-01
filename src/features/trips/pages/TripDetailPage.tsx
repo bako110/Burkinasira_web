@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Plus, Trash2, MapPin, Wallet, Calendar } from 'lucide-react';
+import { Plus, Trash2, MapPin, Wallet, Calendar, Route, FileText } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, Input } from '../../../shared/ui';
@@ -131,6 +131,14 @@ export function TripDetailPage() {
 
       <div className={styles.body}>
         <div className={styles.actionsRow}>
+          <Button size="sm" onClick={() => navigate(`/trips/${trip.id}/plan`)}>
+            <Route size={15} strokeWidth={2} />
+            {t('planner.planAndBudget')}
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => navigate(`/trips/${trip.id}/recap`)}>
+            <FileText size={15} strokeWidth={2} />
+            {t('recap.recapCta')}
+          </Button>
           <Button variant="danger" size="sm" onClick={() => setDeleteOpen(true)}>
             <Trash2 size={15} strokeWidth={2} />
             {t('trips.deleteTrip')}

@@ -1186,5 +1186,64 @@
     "ctaTitle": "Ready to explore Burkina Faso?",
     "ctaText": "Join FasoViva and start discovering authentic places, experiences and encounters.",
     "ctaButton": "Start exploring"
+  },
+  "planner": {
+    "kicker": "Trip planner",
+    "subtitle": "Build your stay: lodging, meals, transport, guides — and estimate the overall spend.",
+    "planATrip": "Plan a trip",
+    "planAndBudget": "Plan & budget",
+    "planRequiresAuth": "Sign in to plan a trip.",
+    "tripTitleFor": "Trip — {{name}}",
+    "tripTitleForShort": "My trip",
+    "travelers": "Travelers",
+    "comfort": "Comfort level",
+    "comfortLevels": {
+      "eco": "Budget",
+      "standard": "Standard",
+      "confort": "Comfort"
+    },
+    "comfortHint": "Base: night ~ {{nuitee}} · meal ~ {{repas}} (overridden by real prices when available).",
+    "budgetTitle": "Estimated budget",
+    "budgetMeta": "{{days}} day(s) · {{nights}} night(s) · {{travelers}} traveler(s)",
+    "perPerson": "That is {{amount}} per person",
+    "viewRecap": "View summary",
+    "exploreZone": "Explore the area",
+    "tabs": {
+      "hotels": "Hotels",
+      "restaurants": "Restaurants",
+      "guides": "Guides",
+      "transport": "Transport"
+    },
+    "categories": {
+      "hebergement": "Lodging",
+      "nourriture": "Food",
+      "transport": "Transport",
+      "guides": "Guides",
+      "activites": "Activities",
+      "autres": "Other"
+    },
+    "add": "Add",
+    "inTrip": "Added",
+    "added": "Added to trip",
+    "noResults": "No results in this area",
+    "noResultsText": "Widen the area or switch tabs."
+  },
+  "recap": {
+    "kicker": "Summary",
+    "recapCta": "Summary",
+    "travelersCount": "{{count}} traveler",
+    "travelersCount_other": "{{count}} travelers",
+    "itineraryTitle": "Day-by-day itinerary",
+    "noPlan": "No steps planned yet.",
+    "total": "Estimated total",
+    "perPersonShort": "Per person",
+    "perDay": "Per day",
+    "exportPdf": "Export as PDF",
+    "exported": "PDF generated",
+    "disclaimer": "Indicative estimates in XOF, excluding international flights and visa. Real provider prices take precedence when set. Planning is not booking.",
+    "pdfTitle": "Trip summary",
+    "generatedOn": "Generated on {{date}}",
+    "tripDates": "Dates",
+    "zone": "Area"
   }
 }

@@ -1,0 +1,137 @@
+.wrap {
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.header {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  color: var(--color-brand);
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.phase {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.phaseOpen {
+  border-color: var(--color-brand-300);
+}
+
+.phaseHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.phaseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  flex-shrink: 0;
+}
+
+.phaseLabel {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.phaseCount {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-subtle);
+  background-color: var(--color-bg-inset);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+}
+
+.phaseChevron {
+  color: var(--color-text-subtle);
+  transition: transform var(--transition-fast);
+}
+
+.phaseOpen .phaseChevron {
+  transform: rotate(180deg);
+}
+
+.list {
+  margin: 0;
+  padding: 0 var(--space-3) var(--space-3);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.itemIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.itemText {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.disclaimer {
+  margin: 0;
+  font-size: 0.6875rem;
+  color: var(--color-text-subtle);
+  line-height: 1.5;
+}

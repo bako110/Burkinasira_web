@@ -1186,5 +1186,64 @@
     "ctaTitle": "Fo sɩd n dat n ges Burkina Faso?",
     "ctaText": "Wa naan FasoViva n sɔsg n bao zĩis la nedbã sẽn zĩnd tẽngã pʋgẽ.",
     "ctaButton": "Sɔsg baorã"
+  },
+  "planner": {
+    "kicker": "Planificateur de voyage",
+    "subtitle": "Composez votre séjour : hébergement, repas, transport, guides — et estimez la dépense globale.",
+    "planATrip": "Planifier un voyage",
+    "planAndBudget": "Planifier & budget",
+    "planRequiresAuth": "Connectez-vous pour planifier un voyage.",
+    "tripTitleFor": "Voyage — {{name}}",
+    "tripTitleForShort": "Mon voyage",
+    "travelers": "Voyageurs",
+    "comfort": "Niveau de confort",
+    "comfortLevels": {
+      "eco": "Éco",
+      "standard": "Standard",
+      "confort": "Confort"
+    },
+    "comfortHint": "Base : nuitée ~ {{nuitee}} · repas ~ {{repas}} (ajusté si un prix réel existe).",
+    "budgetTitle": "Budget estimé",
+    "budgetMeta": "{{days}} jour(s) · {{nights}} nuit(s) · {{travelers}} voyageur(s)",
+    "perPerson": "Soit {{amount}} par personne",
+    "viewRecap": "Voir le récapitulatif",
+    "exploreZone": "Explorer la zone",
+    "tabs": {
+      "hotels": "Hôtels",
+      "restaurants": "Restaurants",
+      "guides": "Guides",
+      "transport": "Transport"
+    },
+    "categories": {
+      "hebergement": "Hébergement",
+      "nourriture": "Nourriture",
+      "transport": "Transport",
+      "guides": "Guides",
+      "activites": "Activités",
+      "autres": "Autres"
+    },
+    "add": "Ajouter",
+    "inTrip": "Ajouté",
+    "added": "Ajouté au voyage",
+    "noResults": "Aucun résultat dans cette zone",
+    "noResultsText": "Élargissez la zone ou changez d'onglet."
+  },
+  "recap": {
+    "kicker": "Récapitulatif",
+    "recapCta": "Récapitulatif",
+    "travelersCount": "{{count}} voyageur",
+    "travelersCount_other": "{{count}} voyageurs",
+    "itineraryTitle": "Itinéraire jour par jour",
+    "noPlan": "Aucune étape planifiée pour l'instant.",
+    "total": "Total estimé",
+    "perPersonShort": "Par personne",
+    "perDay": "Par jour",
+    "exportPdf": "Exporter en PDF",
+    "exported": "PDF généré",
+    "disclaimer": "Estimations indicatives en FCFA, hors billets d'avion internationaux et visa. Les prix réels des prestataires priment lorsqu'ils sont renseignés. Planifier n'est pas réserver.",
+    "pdfTitle": "Récapitulatif de voyage",
+    "generatedOn": "Généré le {{date}}",
+    "tripDates": "Dates",
+    "zone": "Zone"
   }
 }

@@ -12,11 +12,15 @@ import {
   ArrowLeft,
   ExternalLink,
   Accessibility,
+  Route,
 } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { useToastStore } from '../../../store/toast.store';
+import { extractApiErrorMessage } from '../../../shared/api/client';
 import { BookingModal } from '../../bookings/components/BookingModal';
+import { useCreateTrip } from '../../trips/hooks/useCreateTrip';
 import { useDestinationDetail } from '../hooks/useDestinationDetail';
 import styles from './DestinationDetailPage.module.css';
 
@@ -25,13 +29,33 @@ export function DestinationDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const requireAuth = useRequireAuth();
+  const push = useToastStore((s) => s.push);
   const [modalOpen, setModalOpen] = useState(false);
 
   const { data: destination, isLoading, isError, refetch } = useDestinationDetail(slug);
+  const { mutate: createTrip, isPending: isCreatingTrip } = useCreateTrip();
 
   function handleBook() {
     if (!destination) return;
     requireAuth(() => setModalOpen(true), t('destinations.bookRequiresAuth'));
+  }
+
+  function handlePlanTrip() {
+    if (!destination) return;
+    requireAuth(() => {
+      createTrip(
+        {
+          title: t('planner.tripTitleFor', { name: destination.name }),
+          region: destination.region || undefined,
+          themes: ['region'],
+        },
+        {
+          onSuccess: (trip) => navigate(`/trips/${trip.id}/plan`),
+          onError: (err) =>
+            push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
+        },
+      );
+    }, t('planner.planRequiresAuth'));
   }
 
   if (isLoading) {
@@ -180,7 +204,12 @@ export function DestinationDetailPage() {
           <div className={styles.infoCard}>
             {destination.price_info && <p className={styles.priceInfo}>{destination.price_info}</p>}
 
-            <Button fullWidth onClick={handleBook}>
+            <Button fullWidth onClick={handlePlanTrip} disabled={isCreatingTrip}>
+              <Route size={16} strokeWidth={2} />
+              {t('planner.planATrip')}
+            </Button>
+
+            <Button variant="secondary" fullWidth onClick={handleBook}>
               {t('destinations.planVisit')}
             </Button>
 
