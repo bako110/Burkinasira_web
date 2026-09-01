@@ -15,6 +15,8 @@ interface FasoVivaIdCardProps {
   points: number;
 }
 
+const PUBLIC_SITE_URL = 'https://fasoviva.com';
+
 async function toDataUrl(url: string): Promise<string | null> {
   try {
     const response = await fetch(url, { mode: 'cors' });
@@ -115,7 +117,7 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
           <div className={styles.qrWrap}>
             {cardTokenData && (
               <QRCodeCanvas
-                value={`${window.location.origin}/verify/${cardTokenData.card_token}`}
+                value={`${PUBLIC_SITE_URL}/verify/${cardTokenData.card_token}`}
                 size={84}
                 bgColor="#ffffff"
                 fgColor="#1a1a1a"
