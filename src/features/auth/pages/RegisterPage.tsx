@@ -35,11 +35,23 @@ export function RegisterPage() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
   const [role, setRole] = useState<SignupRole>('tourist');
 
   function goNext(e: FormEvent) {
     e.preventDefault();
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  }
+
+  function handlePasswordStepSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setPasswordError(true);
+      return;
+    }
+    setPasswordError(false);
+    goNext(e);
   }
 
   function goBack() {
@@ -114,7 +126,7 @@ export function RegisterPage() {
         )}
 
         {step === 3 && (
-          <form onSubmit={goNext} className={styles.form}>
+          <form onSubmit={handlePasswordStepSubmit} className={styles.form}>
             <Input
               label={t('auth.password')}
               type="password"
@@ -124,8 +136,25 @@ export function RegisterPage() {
               autoFocus
               minLength={8}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordError(false);
+              }}
             />
+            <Input
+              label={t('auth.confirmPassword')}
+              type="password"
+              name="confirmPassword"
+              autoComplete="new-password"
+              required
+              minLength={8}
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                setPasswordError(false);
+              }}
+            />
+            {passwordError && <p className={styles.error}>{t('auth.passwordMismatch')}</p>}
             <div className={styles.stepActions}>
               <button type="button" className={styles.backLink} onClick={goBack}>
                 <ArrowLeft size={15} strokeWidth={2} />

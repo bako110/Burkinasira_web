@@ -62,6 +62,8 @@
     "logout": "Logout",
     "email": "Email address",
     "password": "Password",
+    "confirmPassword": "Confirm password",
+    "passwordMismatch": "Passwords do not match",
     "fullName": "Full name",
     "phone": "Phone",
     "loginCta": "Sign in",

@@ -62,6 +62,8 @@
     "logout": "Yi",
     "email": "Email",
     "password": "Gũusg-goam",
+    "confirmPassword": "Lebg gom-kãseng wã",
+    "passwordMismatch": "Gũusg-goam wã ka zemse ye",
     "fullName": "Yʋʋr fãa",
     "phone": "Telefon",
     "loginCta": "Kẽ",

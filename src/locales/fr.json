@@ -62,6 +62,8 @@
     "logout": "Déconnexion",
     "email": "Adresse e-mail",
     "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
     "fullName": "Nom complet",
     "phone": "Téléphone",
     "loginCta": "Se connecter",

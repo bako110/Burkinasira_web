@@ -62,6 +62,8 @@
     "logout": "Bɔ",
     "email": "Imeli",
     "password": "Gundo daanu",
+    "confirmPassword": "Gundo daanu lasɔrɔ",
+    "passwordMismatch": "Gundo daanuw tɛ kelen ye",
     "fullName": "Tɔgɔ bɛɛ",
     "phone": "Telefɔni",
     "loginCta": "Don",
