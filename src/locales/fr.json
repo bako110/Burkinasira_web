@@ -702,6 +702,16 @@
       "rappel_voyage": "Rappel de voyage"
     }
   },
+  "dataQuality": {
+    "reportError": "Signaler une erreur",
+    "reportRequiresAuth": "Connectez-vous pour signaler une erreur",
+    "reportTitle": "Signaler une information incorrecte",
+    "reportHint": "Décrivez ce qui vous semble incorrect sur cette fiche (horaires, prix, adresse, photo...). Notre équipe vérifiera votre signalement.",
+    "descriptionPlaceholder": "Ex : le numéro de téléphone affiché ne fonctionne plus...",
+    "submitReport": "Envoyer le signalement",
+    "reportSuccess": "Signalement envoyé, merci !",
+    "reportSuccessText": "Merci pour votre signalement, notre équipe va le vérifier."
+  },
   "assistant": {
     "title": "Assistant FasoViva",
     "welcome": "Bonjour ! Posez-moi une question sur votre séjour au Burkina Faso : hébergements, transport, culture, sécurité...",

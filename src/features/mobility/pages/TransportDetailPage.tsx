@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximize2 } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
 
@@ -151,6 +152,7 @@ export function TransportDetailPage() {
               )}
             </div>
           </div>
+          <ReportErrorButton itemType="transport" itemId={provider.id} className={styles.reportBtn} />
         </aside>
       </div>
 

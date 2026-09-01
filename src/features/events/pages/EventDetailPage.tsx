@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Calendar, ImageOff, ArrowLeft, ExternalLink, Ticket, Clock } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { useEventDetail } from '../hooks/useEventDetail';
@@ -202,6 +203,7 @@ export function EventDetailPage() {
               )}
             </div>
           </div>
+          <ReportErrorButton itemType="event" itemId={event.id} className={styles.reportBtn} />
         </aside>
       </div>
 

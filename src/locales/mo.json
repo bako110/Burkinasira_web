@@ -702,6 +702,16 @@
       "rappel_voyage": "Sore-yalg tẽesgo"
     }
   },
+  "dataQuality": {
+    "reportError": "Wilg belgre",
+    "reportRequiresAuth": "Kẽ-y n tõe n wilg belgre",
+    "reportTitle": "Wilg kibar sẽn ka zems",
+    "reportHint": "Bilg-y bũmb ning sẽn ka zems seb-kãngã zutu (wakat, ligd, zĩiga, foto...). Tõnd zamaan na n ges-a.",
+    "descriptionPlaceholder": "Wala: telefon nomburu ning sẽn be ka le tʋmda ye...",
+    "submitReport": "Tʋm wilgri",
+    "reportSuccess": "Wilgri tʋma, barka!",
+    "reportSuccessText": "Barka ne y wilgri, tõnd zamaan na n ges-a."
+  },
   "assistant": {
     "title": "FasoViva Sõngda",
     "welcome": "Ne y sõma! Sok-y mam sogsg y sore zugu Burkina Faso: zaka, sore, rog-n-mikde, laafi...",

@@ -702,6 +702,16 @@
       "rappel_voyage": "Taama hakili jigin"
     }
   },
+  "dataQuality": {
+    "reportError": "Fili lasɔmi",
+    "reportRequiresAuth": "I ka don walasa ka fili lasɔmi",
+    "reportTitle": "Kunnafoni jugu lasɔmi",
+    "reportHint": "I ka fɛn dɔn min tɛ bɛn nin ɲɛ in na (waati, sɔngɔ, ladɛrɛsi, foto...). An ka jɛkulu bɛna a lajɛ.",
+    "descriptionPlaceholder": "Ɲɛyirali: telefɔni nimɔrɔ min filɛ ka tɛ baara kɛ tugun...",
+    "submitReport": "Lasɔmi ci",
+    "reportSuccess": "Lasɔmi cira, i ni ce!",
+    "reportSuccessText": "I ni ce i ka lasɔmi la, an ka jɛkulu bɛna a lajɛ."
+  },
   "assistant": {
     "title": "FasoViva dɛmɛbaga",
     "welcome": "I ni ce! I ka ɲininkali kɛ n ye i ka taama kan Burkina Faso la: siginyɔrɔw, taama, laadaya, lakana...",

@@ -328,6 +328,11 @@
   }
 }
 
+.reportBtn {
+  margin-top: var(--space-3);
+  align-self: center;
+}
+
 .infoCard {
   display: flex;
   flex-direction: column;

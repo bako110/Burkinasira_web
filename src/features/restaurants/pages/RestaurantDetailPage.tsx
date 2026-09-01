@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2 } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
 
@@ -216,6 +217,7 @@ export function RestaurantDetailPage() {
               )}
             </div>
           </div>
+          <ReportErrorButton itemType="restaurant" itemId={restaurant.id} className={styles.reportBtn} />
         </aside>
       </div>
 

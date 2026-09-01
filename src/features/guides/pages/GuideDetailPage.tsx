@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2 } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useGuideDetail } from '../hooks/useGuideDetail';
 import { GuideBookingSection } from '../components/GuideBookingSection';
 import styles from './GuideDetailPage.module.css';
@@ -144,6 +145,7 @@ export function GuideDetailPage() {
           <div className={styles.infoCard}>
             <GuideBookingSection guide={guide} />
           </div>
+          <ReportErrorButton itemType="guide" itemId={guide.id} className={styles.reportBtn} />
         </aside>
       </div>
 

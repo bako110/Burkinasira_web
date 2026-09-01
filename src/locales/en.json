@@ -702,6 +702,16 @@
       "rappel_voyage": "Trip reminder"
     }
   },
+  "dataQuality": {
+    "reportError": "Report an error",
+    "reportRequiresAuth": "Sign in to report an error",
+    "reportTitle": "Report incorrect information",
+    "reportHint": "Describe what seems incorrect on this listing (hours, price, address, photo...). Our team will review your report.",
+    "descriptionPlaceholder": "E.g.: the phone number listed no longer works...",
+    "submitReport": "Send report",
+    "reportSuccess": "Report sent, thank you!",
+    "reportSuccessText": "Thanks for your report, our team will review it."
+  },
   "assistant": {
     "title": "FasoViva Assistant",
     "welcome": "Hi! Ask me anything about your trip to Burkina Faso: places to stay, transport, culture, safety...",
