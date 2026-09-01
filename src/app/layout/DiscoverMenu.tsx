@@ -20,6 +20,7 @@ import {
   GraduationCap,
   Users2,
   Wrench,
+  Globe2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -31,6 +32,7 @@ const DISCOVER_LINKS = [
   { to: '/mobility', key: 'mobility', Icon: Bus },
   { to: '/guides', key: 'guides', Icon: Compass },
   { to: '/experiences', key: 'experiences', Icon: Handshake },
+  { to: '/diaspora', key: 'diaspora', Icon: Globe2 },
   { to: '/events', key: 'events', Icon: PartyPopper },
   { to: '/culture', key: 'culture', Icon: ScrollText },
   { to: '/market', key: 'market', Icon: ShoppingBasket },

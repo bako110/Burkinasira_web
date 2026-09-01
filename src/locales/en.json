@@ -40,6 +40,7 @@
     "mobility": "Transport",
     "guides": "Guides",
     "experiences": "Experiences",
+    "diaspora": "Diaspora",
     "events": "Events",
     "culture": "Culture & heritage",
     "market": "Crafts & market",
@@ -850,6 +851,39 @@
       "pieces_auto": "Auto parts",
       "parking": "Parking",
       "borne_recharge": "Charging station"
+    },
+    "filters": {
+      "all": "All"
+    }
+  },
+  "diaspora": {
+    "title": "Diaspora & return tourism",
+    "subtitle": "Cultural circuits, family heritage and community meetups for returning visitors.",
+    "searchPlaceholder": "Search...",
+    "empty": "No content found",
+    "emptyMeetups": "No meetups planned yet",
+    "detailNotFound": "Content not found",
+    "tabContent": "Discover",
+    "tabMeetups": "Meetups",
+    "organizeMeetup": "Organize a meetup",
+    "createMeetupRequiresAuth": "Log in to organize a meetup",
+    "createMeetupTitle": "Organize a community meetup",
+    "meetupTitleLabel": "Meetup title",
+    "meetupRegionLabel": "Region",
+    "meetupDateLabel": "Date and time",
+    "confirmCreateMeetup": "Create meetup",
+    "createMeetupSuccessText": "Your community meetup has been created.",
+    "joinMeetup": "Join",
+    "joinMeetupRequiresAuth": "Log in to join this meetup",
+    "alreadyJoined": "Already joined",
+    "participantCount": "{{count}} participants",
+    "types": {
+      "circuit_culturel": "Cultural circuit",
+      "patrimoine_familial": "Family heritage",
+      "hebergement": "Accommodation",
+      "transport": "Transport",
+      "evenement_culturel": "Cultural event",
+      "service_visiteur_retour": "Returning visitor service"
     },
     "filters": {
       "all": "All"

@@ -27,6 +27,8 @@ import { MyChildcareBookingsPage } from '../../features/family/pages/MyChildcare
 import { RoadServicesPage } from '../../features/roads/pages/RoadServicesPage';
 import { RoadServiceDetailPage } from '../../features/roads/pages/RoadServiceDetailPage';
 import { MyBreakdownsPage } from '../../features/roads/pages/MyBreakdownsPage';
+import { DiasporaHubPage } from '../../features/diaspora/pages/DiasporaHubPage';
+import { DiasporaContentDetailPage } from '../../features/diaspora/pages/DiasporaContentDetailPage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -102,6 +104,8 @@ export const router = createBrowserRouter([
           { path: '/guides/:id', element: <GuideDetailPage /> },
           { path: '/experiences', element: <ExperiencesPage /> },
           { path: '/experiences/:id', element: <ExperienceDetailPage /> },
+          { path: '/diaspora', element: <DiasporaHubPage /> },
+          { path: '/diaspora/:id', element: <DiasporaContentDetailPage /> },
           { path: '/edu', element: <EduOutingsPage /> },
           { path: '/edu/:id', element: <EduOutingDetailPage /> },
           { path: '/family', element: <FamilyServicesPage /> },

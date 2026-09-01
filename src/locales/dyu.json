@@ -40,6 +40,7 @@
     "mobility": "Taama",
     "guides": "Ɲɛminɛbagaw",
     "experiences": "Kɔrɔbɔliw",
+    "diaspora": "Diaspora",
     "events": "Waati-kunw",
     "culture": "Laada ni ninanko",
     "market": "Baaraw ni feereyɔrɔ",
@@ -850,6 +851,39 @@
       "pieces_auto": "Mɔbili minɛnw",
       "parking": "Mɔbili dogoyɔrɔ",
       "borne_recharge": "Kuran fasoyɔrɔ"
+    },
+    "filters": {
+      "all": "Bɛɛ"
+    }
+  },
+  "diaspora": {
+    "title": "Diaspora ni segintaama",
+    "subtitle": "Laada bɔliw, denbaya ninanko ni jɛkulu kunbɛnw mɔgɔw ye minnu bɛ segin.",
+    "searchPlaceholder": "Ɲini...",
+    "empty": "Kunnafoni si ma sɔrɔ",
+    "emptyMeetups": "Kunbɛn si ma latigɛ fɔlɔ",
+    "detailNotFound": "Kunnafoni ma sɔrɔ",
+    "tabContent": "Bɔliw",
+    "tabMeetups": "Kunbɛnw",
+    "organizeMeetup": "Kunbɛn dɔ labɛn",
+    "createMeetupRequiresAuth": "I ka don walasa ka kunbɛn labɛn",
+    "createMeetupTitle": "Jɛkulu kunbɛn labɛn",
+    "meetupTitleLabel": "Kunbɛn tɔgɔ",
+    "meetupRegionLabel": "Mara",
+    "meetupDateLabel": "Don ni waati",
+    "confirmCreateMeetup": "Kunbɛn dilan",
+    "createMeetupSuccessText": "I ka jɛkulu kunbɛn dilanna.",
+    "joinMeetup": "A don",
+    "joinMeetupRequiresAuth": "I ka don walasa ka don nin kunbɛn in na",
+    "alreadyJoined": "I dontɔlen bɛ",
+    "participantCount": "Mɔgɔ {{count}}",
+    "types": {
+      "circuit_culturel": "Laada bɔli",
+      "patrimoine_familial": "Denbaya ninanko",
+      "hebergement": "Sigiyɔrɔ",
+      "transport": "Taama minɛnw",
+      "evenement_culturel": "Laada waati-kun",
+      "service_visiteur_retour": "Seginbaga dɛmɛni"
     },
     "filters": {
       "all": "Bɛɛ"

@@ -40,6 +40,7 @@
     "mobility": "Transport",
     "guides": "Guides",
     "experiences": "Expériences",
+    "diaspora": "Diaspora",
     "events": "Événements",
     "culture": "Culture et patrimoine",
     "market": "Artisanat et marché",
@@ -850,6 +851,39 @@
       "pieces_auto": "Pièces auto",
       "parking": "Parking",
       "borne_recharge": "Borne de recharge"
+    },
+    "filters": {
+      "all": "Tous"
+    }
+  },
+  "diaspora": {
+    "title": "Diaspora et tourisme de retour",
+    "subtitle": "Circuits culturels, patrimoine familial et rencontres communautaires pour les visiteurs de retour.",
+    "searchPlaceholder": "Rechercher...",
+    "empty": "Aucun contenu trouvé",
+    "emptyMeetups": "Aucune rencontre prévue pour le moment",
+    "detailNotFound": "Contenu introuvable",
+    "tabContent": "Découvrir",
+    "tabMeetups": "Rencontres",
+    "organizeMeetup": "Organiser une rencontre",
+    "createMeetupRequiresAuth": "Connectez-vous pour organiser une rencontre",
+    "createMeetupTitle": "Organiser une rencontre communautaire",
+    "meetupTitleLabel": "Titre de la rencontre",
+    "meetupRegionLabel": "Région",
+    "meetupDateLabel": "Date et heure",
+    "confirmCreateMeetup": "Créer la rencontre",
+    "createMeetupSuccessText": "Votre rencontre communautaire a été créée.",
+    "joinMeetup": "Participer",
+    "joinMeetupRequiresAuth": "Connectez-vous pour participer à cette rencontre",
+    "alreadyJoined": "Déjà inscrit",
+    "participantCount": "{{count}} participants",
+    "types": {
+      "circuit_culturel": "Circuit culturel",
+      "patrimoine_familial": "Patrimoine familial",
+      "hebergement": "Hébergement",
+      "transport": "Transport",
+      "evenement_culturel": "Événement culturel",
+      "service_visiteur_retour": "Service visiteur de retour"
     },
     "filters": {
       "all": "Tous"

@@ -40,6 +40,7 @@
     "mobility": "Sore",
     "guides": "Sor-tʋmdb",
     "experiences": "Zãmsg-tigsa",
+    "diaspora": "Diaspora",
     "events": "Kibs",
     "culture": "Rog-n-mikde",
     "market": "Tʋʋmd la rat-zĩig",
@@ -850,6 +851,39 @@
       "pieces_auto": "Loaad kʋʋns",
       "parking": "Parking",
       "borne_recharge": "Kãsem pʋʋsg zĩig"
+    },
+    "filters": {
+      "all": "Fãa"
+    }
+  },
+  "diaspora": {
+    "title": "Diaspora la leb-n-wa sore-yalse",
+    "subtitle": "Rog-n-mikd sore-yalse, zaka rogem la tigims sẽn maand neb sẽn leb n wa wã yĩnga.",
+    "searchPlaceholder": "Bao-y...",
+    "empty": "Bũmb baa a yembr ka mik ye",
+    "emptyMeetups": "Tigims baa a yembr nan ka be ye",
+    "detailNotFound": "Bũmbã ka mik ye",
+    "tabContent": "Bãng-y",
+    "tabMeetups": "Tigims",
+    "organizeMeetup": "Segl-y tigim a yembr",
+    "createMeetupRequiresAuth": "Kẽ-y tigim segelgã yĩnga",
+    "createMeetupTitle": "Segl-y tigim a yembr",
+    "meetupTitleLabel": "Tigimã yʋʋre",
+    "meetupRegionLabel": "Tẽnga",
+    "meetupDateLabel": "Daar la wakat",
+    "confirmCreateMeetup": "Naan-y tigimã",
+    "createMeetupSuccessText": "Y tigimã naana.",
+    "joinMeetup": "Naag-y",
+    "joinMeetupRequiresAuth": "Kẽ-y tigim kãngã naagrã yĩnga",
+    "alreadyJoined": "Y naaga zĩ",
+    "participantCount": "Neb {{count}}",
+    "types": {
+      "circuit_culturel": "Rog-n-mikd sore-yalgo",
+      "patrimoine_familial": "Zaka rogem",
+      "hebergement": "Zĩ-gũusgo",
+      "transport": "Loaad pekre",
+      "evenement_culturel": "Rog-n-mikd kibare",
+      "service_visiteur_retour": "Leb-n-wa soab sõngo"
     },
     "filters": {
       "all": "Fãa"
