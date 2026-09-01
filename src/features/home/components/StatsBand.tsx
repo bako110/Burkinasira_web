@@ -6,10 +6,10 @@ import { FloatingFlags } from '../../../shared/ui';
 import styles from './StatsBand.module.css';
 
 const STATS = [
-  { key: 'destinations', target: 450, suffix: '+' },
-  { key: 'guides', target: 120, suffix: '+' },
-  { key: 'provinces', target: 45, suffix: '' },
-  { key: 'travelers', target: 12000, suffix: '+' },
+  { key: 'sites', target: 1080, suffix: '' },
+  { key: 'regions', target: 17, suffix: '' },
+  { key: 'provinces', target: 47, suffix: '' },
+  { key: 'majorSites', target: 399, suffix: '' },
 ] as const;
 
 export function StatsBand() {

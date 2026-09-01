@@ -14,6 +14,7 @@ import {
   COMFORT_SCALES,
   type ComfortLevel,
 } from '../budget';
+import { TravelAdvice } from '../components/TravelAdvice';
 import styles from './TripRecapPage.module.css';
 
 const COMFORT_LEVELS: ComfortLevel[] = ['eco', 'standard', 'confort'];
@@ -265,6 +266,10 @@ export function TripRecapPage() {
             </>
           )}
         </Button>
+
+        <div className={styles.adviceBlock}>
+          <TravelAdvice />
+        </div>
 
         <p className={styles.disclaimer}>{t('recap.disclaimer')}</p>
       </div>

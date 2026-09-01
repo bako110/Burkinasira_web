@@ -4,10 +4,12 @@ import { useRefreshedUser } from '../../features/pro/hooks/useRefreshedUser';
 import { getPostLoginPath } from '../../features/pro/utils/postLoginRedirect';
 
 // Utility screens shared between the tourist and pro trees. Messages/notifications
-// now have dedicated /pro/{role}/messages and /pro/{role}/notifications routes
-// wrapped in ProLayout, so guides/providers no longer need this tourist tree.
+// have dedicated /pro/{role}/messages and /pro/{role}/notifications routes wrapped
+// in ProLayout, so those stay out of here. The FasoViva card (/passport) is the
+// same for every role — a guide/provider must be able to open it too, so the
+// RoleGate lets it through instead of bouncing them back to their pro dashboard.
 // Never add tourist-discovery pages (home, explore, etc.) here.
-const SHARED_UTILITY_PATHS: string[] = [];
+const SHARED_UTILITY_PATHS: string[] = ['/passport'];
 
 /**
  * Wraps the tourist-facing route tree. Re-checks the account's role/verification

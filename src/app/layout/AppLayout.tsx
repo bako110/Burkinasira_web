@@ -52,6 +52,12 @@ export function AppLayout() {
               {t('nav.home')}
             </NavLink>
             <ExploreMenu />
+            <NavLink
+              to="/itineraries"
+              className={({ isActive }) => clsx(styles.navLink, isActive && styles.navLinkActive)}
+            >
+              {t('nav.itineraries')}
+            </NavLink>
             <DiscoverMenu />
           </nav>
 
@@ -110,6 +116,9 @@ export function AppLayout() {
           </NavLink>
           <NavLink to="/explore" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
             {t('nav.explore')}
+          </NavLink>
+          <NavLink to="/itineraries" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            {t('nav.itineraries')}
           </NavLink>
           <NavLink to="/hotels" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
             {t('nav.hotels')}

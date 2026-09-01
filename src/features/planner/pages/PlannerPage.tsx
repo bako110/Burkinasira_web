@@ -32,6 +32,7 @@ import {
   COMFORT_SCALES,
   type ComfortLevel,
 } from '../budget';
+import { TravelAdvice } from '../components/TravelAdvice';
 import styles from './PlannerPage.module.css';
 
 type ResourceTab = 'hotels' | 'restaurants' | 'guides' | 'transport';
@@ -121,155 +122,181 @@ export function PlannerPage() {
       </section>
 
       <div className={styles.body}>
-        {/* --- Paramètres du voyage --- */}
-        <div className={styles.paramsCard}>
-          <div className={styles.paramRow}>
-            <label className={styles.paramLabel}>
-              <Users size={15} strokeWidth={2} />
-              {t('planner.travelers')}
-            </label>
-            <div className={styles.stepper}>
-              <button type="button" onClick={() => setTravelers((n) => Math.max(1, n - 1))}>
-                −
-              </button>
-              <span>{travelers}</span>
-              <button type="button" onClick={() => setTravelers((n) => Math.min(20, n + 1))}>
-                +
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.paramRow}>
-            <span className={styles.paramLabel}>{t('planner.comfort')}</span>
-            <div className={styles.comfortGroup}>
-              {COMFORT_LEVELS.map((lvl) => (
-                <button
-                  key={lvl}
-                  type="button"
-                  className={clsx(styles.comfortChip, comfort === lvl && styles.comfortChipActive)}
-                  onClick={() => setComfort(lvl)}
-                >
-                  {t(`planner.comfortLevels.${lvl}`)}
+        <div className={styles.mainCol}>
+          {/* --- Paramètres du voyage --- */}
+          <div className={styles.paramsCard}>
+            <div className={styles.paramRow}>
+              <label className={styles.paramLabel}>
+                <Users size={15} strokeWidth={2} />
+                {t('planner.travelers')}
+              </label>
+              <div className={styles.stepper}>
+                <button type="button" onClick={() => setTravelers((n) => Math.max(1, n - 1))}>
+                  −
                 </button>
-              ))}
-            </div>
-          </div>
-
-          <p className={styles.comfortHint}>
-            {t('planner.comfortHint', {
-              nuitee: formatXof(COMFORT_SCALES[comfort].nuitee),
-              repas: formatXof(COMFORT_SCALES[comfort].repas),
-            })}
-          </p>
-        </div>
-
-        {/* --- Budget estimé --- */}
-        {budget && (
-          <div className={styles.budgetCard}>
-            <div className={styles.budgetHeader}>
-              <h2 className={styles.budgetTitle}>
-                <Wallet size={17} strokeWidth={2} />
-                {t('planner.budgetTitle')}
-              </h2>
-              <span className={styles.budgetTotal}>{formatXof(budget.total)}</span>
+                <span>{travelers}</span>
+                <button type="button" onClick={() => setTravelers((n) => Math.min(20, n + 1))}>
+                  +
+                </button>
+              </div>
             </div>
 
-            <p className={styles.budgetMeta}>
-              {t('planner.budgetMeta', {
-                days: budget.days,
-                nights: budget.nights,
-                travelers: budget.travelers,
+            <div className={styles.paramRow}>
+              <span className={styles.paramLabel}>{t('planner.comfort')}</span>
+              <div className={styles.comfortGroup}>
+                {COMFORT_LEVELS.map((lvl) => (
+                  <button
+                    key={lvl}
+                    type="button"
+                    className={clsx(styles.comfortChip, comfort === lvl && styles.comfortChipActive)}
+                    onClick={() => setComfort(lvl)}
+                  >
+                    {t(`planner.comfortLevels.${lvl}`)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <p className={styles.comfortHint}>
+              {t('planner.comfortHint', {
+                nuitee: formatXof(COMFORT_SCALES[comfort].nuitee),
+                repas: formatXof(COMFORT_SCALES[comfort].repas),
               })}
             </p>
-
-            <div className={styles.budgetBars}>
-              {BUDGET_CATEGORIES.map((cat) => {
-                const value = budget.byCategory[cat];
-                if (value <= 0) return null;
-                const pct = budget.total > 0 ? Math.round((value / budget.total) * 100) : 0;
-                return (
-                  <div key={cat} className={styles.budgetBarRow}>
-                    <span className={styles.budgetBarLabel}>{t(`planner.categories.${cat}`)}</span>
-                    <span className={styles.budgetBarTrack}>
-                      <span className={styles.budgetBarFill} style={{ width: `${pct}%` }} />
-                    </span>
-                    <span className={styles.budgetBarValue}>{formatXof(value)}</span>
-                  </div>
-                );
-              })}
-            </div>
-
-            <p className={styles.perPerson}>
-              {t('planner.perPerson', {
-                amount: formatXof(budget.total / Math.max(budget.travelers, 1)),
-              })}
-            </p>
-
-            <Button variant="secondary" fullWidth onClick={() => navigate(`/trips/${tripId}/recap`)}>
-              <FileText size={15} strokeWidth={2} />
-              {t('planner.viewRecap')}
-            </Button>
           </div>
-        )}
 
-        {/* --- Explorer la zone --- */}
-        <div className={styles.exploreHeader}>
-          <h2 className={styles.exploreTitle}>
-            <MapPin size={16} strokeWidth={2} />
-            {t('planner.exploreZone')}
-          </h2>
-          <RegionProvinceFilter
-            region={effectiveRegion}
-            province={province}
-            showProvince
-            onChange={(r, p) => {
-              setRegion(r);
-              setProvince(p);
-            }}
-          />
+          {/* --- Budget (mobile : ici ; desktop : colonne latérale) --- */}
+          {budget && <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} className={styles.budgetMobile} />}
+
+          {/* --- Explorer la zone --- */}
+          <div className={styles.exploreHeader}>
+            <h2 className={styles.exploreTitle}>
+              <MapPin size={16} strokeWidth={2} />
+              {t('planner.exploreZone')}
+            </h2>
+            <RegionProvinceFilter
+              region={effectiveRegion}
+              province={province}
+              showProvince
+              onChange={(r, p) => {
+                setRegion(r);
+                setProvince(p);
+              }}
+            />
+          </div>
+
+          <Tabs items={tabs} active={tab} onChange={(k) => setTab(k as ResourceTab)} />
+
+          <div className={styles.resourceList}>
+            {tab === 'hotels' && (
+              <HotelList
+                region={effectiveRegion}
+                province={province}
+                disabled={isAdding}
+                added={justAdded}
+                onAdd={handleAdd}
+              />
+            )}
+            {tab === 'restaurants' && (
+              <RestaurantList
+                region={effectiveRegion}
+                province={province}
+                disabled={isAdding}
+                added={justAdded}
+                onAdd={handleAdd}
+              />
+            )}
+            {tab === 'guides' && (
+              <GuideList
+                region={effectiveRegion}
+                province={province}
+                disabled={isAdding}
+                added={justAdded}
+                onAdd={handleAdd}
+              />
+            )}
+            {tab === 'transport' && (
+              <TransportList
+                region={effectiveRegion}
+                province={province}
+                disabled={isAdding}
+                added={justAdded}
+                onAdd={handleAdd}
+              />
+            )}
+          </div>
+
+          {/* --- Conseils (mobile : ici) --- */}
+          <div className={styles.adviceMobile}>
+            <TravelAdvice />
+          </div>
         </div>
 
-        <Tabs items={tabs} active={tab} onChange={(k) => setTab(k as ResourceTab)} />
-
-        <div className={styles.resourceList}>
-          {tab === 'hotels' && (
-            <HotelList
-              region={effectiveRegion}
-              province={province}
-              disabled={isAdding}
-              added={justAdded}
-              onAdd={handleAdd}
-            />
+        {/* --- Colonne latérale (desktop) --- */}
+        <aside className={styles.sideCol}>
+          {budget && (
+            <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} />
           )}
-          {tab === 'restaurants' && (
-            <RestaurantList
-              region={effectiveRegion}
-              province={province}
-              disabled={isAdding}
-              added={justAdded}
-              onAdd={handleAdd}
-            />
-          )}
-          {tab === 'guides' && (
-            <GuideList
-              region={effectiveRegion}
-              province={province}
-              disabled={isAdding}
-              added={justAdded}
-              onAdd={handleAdd}
-            />
-          )}
-          {tab === 'transport' && (
-            <TransportList
-              region={effectiveRegion}
-              province={province}
-              disabled={isAdding}
-              added={justAdded}
-              onAdd={handleAdd}
-            />
-          )}
-        </div>
+          <TravelAdvice collapsedByDefault />
+        </aside>
       </div>
+    </div>
+  );
+}
+
+interface BudgetCardProps {
+  budget: ReturnType<typeof buildBudget>;
+  onRecap: () => void;
+  className?: string;
+}
+
+function BudgetCard({ budget, onRecap, className }: BudgetCardProps) {
+  const { t } = useTranslation();
+  return (
+    <div className={clsx(styles.budgetCard, className)}>
+      <div className={styles.budgetHeader}>
+        <h2 className={styles.budgetTitle}>
+          <Wallet size={17} strokeWidth={2} />
+          {t('planner.budgetTitle')}
+        </h2>
+        <span className={styles.budgetTotal}>{formatXof(budget.total)}</span>
+      </div>
+
+      <p className={styles.budgetMeta}>
+        {t('planner.budgetMeta', {
+          days: budget.days,
+          nights: budget.nights,
+          travelers: budget.travelers,
+        })}
+      </p>
+
+      <div className={styles.budgetBars}>
+        {BUDGET_CATEGORIES.map((cat) => {
+          const value = budget.byCategory[cat];
+          if (value <= 0) return null;
+          const pct = budget.total > 0 ? Math.round((value / budget.total) * 100) : 0;
+          return (
+            <div key={cat} className={styles.budgetBarRow}>
+              <span className={styles.budgetBarLabel}>{t(`planner.categories.${cat}`)}</span>
+              <span className={styles.budgetBarTrack}>
+                <span className={styles.budgetBarFill} style={{ width: `${pct}%` }} />
+              </span>
+              <span className={styles.budgetBarValue}>{formatXof(value)}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <p className={styles.perPerson}>
+        {t('planner.perPerson', {
+          amount: formatXof(budget.total / Math.max(budget.travelers, 1)),
+        })}
+      </p>
+
+      <Button variant="secondary" fullWidth onClick={onRecap}>
+        <FileText size={15} strokeWidth={2} />
+        {t('planner.viewRecap')}
+      </Button>
     </div>
   );
 }

@@ -135,7 +135,7 @@ export function Hero() {
       <div className={styles.floatCardLeft} aria-hidden="true">
         <MapPin size={16} strokeWidth={2} />
         <div>
-          <strong>45</strong>
+          <strong>47</strong>
           <span>{t('home.floatProvinces')}</span>
         </div>
       </div>

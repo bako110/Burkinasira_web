@@ -46,6 +46,8 @@ import { PassportPage } from '../../features/passport/pages/PassportPage';
 import { PrivacyPolicyPage } from '../../features/legal/pages/PrivacyPolicyPage';
 import { PlannerPage } from '../../features/planner/pages/PlannerPage';
 import { TripRecapPage } from '../../features/planner/pages/TripRecapPage';
+import { ItinerariesPage } from '../../features/itineraries/pages/ItinerariesPage';
+import { ItineraryDetailPage } from '../../features/itineraries/pages/ItineraryDetailPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
 import { VerifyCardPage } from '../../features/auth/pages/VerifyCardPage';
@@ -76,6 +78,8 @@ export const router = createBrowserRouter([
           { path: '/', element: <HomePage /> },
           { path: '/explore', element: <ExplorePage /> },
           { path: '/explore/:slug', element: <DestinationDetailPage /> },
+          { path: '/itineraries', element: <ItinerariesPage /> },
+          { path: '/itineraries/:slug', element: <ItineraryDetailPage /> },
           { path: '/hotels', element: <HotelsPage /> },
           { path: '/hotels/:id', element: <HotelDetailPage /> },
           { path: '/restaurants', element: <RestaurantsPage /> },

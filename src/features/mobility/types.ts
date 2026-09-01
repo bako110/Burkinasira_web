@@ -27,6 +27,7 @@ export interface MobilityFilters {
   type?: TransportType;
   region?: string;
   province?: string;
+  city?: string;
   page?: number;
   page_size?: number;
 }
