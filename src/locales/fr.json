@@ -46,6 +46,7 @@
     "community": "Communauté",
     "practical": "Pratique",
     "edu": "Tourisme éducatif",
+    "family": "Famille et enfants",
     "health": "Santé",
     "emergency": "Urgences et sécurité",
     "finance": "Argent et banques",
@@ -53,6 +54,7 @@
     "weather": "Météo",
     "bookings": "Réservations",
     "eduBookings": "Sorties éducatives",
+    "childcareBookings": "Garde d'enfants",
     "orders": "Mes commandes",
     "trips": "Mes voyages",
     "notifications": "Notifications",
@@ -771,6 +773,40 @@
     },
     "filters": {
       "all": "Toutes"
+    }
+  },
+  "family": {
+    "title": "Famille et enfants",
+    "subtitle": "Activités familiales, aires de jeux, garde d'enfants vérifiée et services du quotidien.",
+    "searchPlaceholder": "Rechercher un lieu ou service...",
+    "empty": "Aucun service trouvé",
+    "detailNotFound": "Service introuvable",
+    "verifiedProvider": "Prestataire vérifié",
+    "bookChildcare": "Réserver une garde",
+    "bookChildcareRequiresAuth": "Connectez-vous pour réserver une garde d'enfants",
+    "bookChildcareTitle": "Réserver une garde d'enfants",
+    "bookChildcareHint": "Choisissez la date et l'heure souhaitées. Le prestataire confirmera la réservation.",
+    "requestedDate": "Date et heure souhaitées",
+    "notesOptional": "Notes (optionnel)",
+    "confirmChildcareBooking": "Confirmer la réservation",
+    "bookChildcareSuccessText": "Votre demande de garde a été envoyée au prestataire.",
+    "myChildcareBookings": "Mes réservations de garde",
+    "myChildcareBookingsEmpty": "Vous n'avez encore aucune réservation de garde d'enfants",
+    "bookingStatus": {
+      "requested": "Demandée",
+      "confirmed": "Confirmée",
+      "cancelled": "Annulée"
+    },
+    "types": {
+      "activite_familiale": "Activité familiale",
+      "sanitaire_public": "Sanitaires publics",
+      "espace_repos": "Espace de repos",
+      "aire_jeux": "Aire de jeux",
+      "garde_enfants": "Garde d'enfants",
+      "point_eau": "Point d'eau"
+    },
+    "filters": {
+      "all": "Tous"
     }
   },
   "dataQuality": {

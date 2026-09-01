@@ -46,6 +46,7 @@
     "community": "Tigims",
     "practical": "Sõngo",
     "edu": "Zãmsg-sore-yalse",
+    "family": "Zaka la kamba",
     "health": "Laafi",
     "emergency": "Yell-kãse la lɛɛgengo",
     "finance": "Ligd la bãnk",
@@ -53,6 +54,7 @@
     "weather": "Sa wakat",
     "bookings": "Reereems",
     "eduBookings": "Zãmsg-sore-yalse",
+    "childcareBookings": "Kamb gũusg",
     "orders": "Mam kʋmandẽ wã",
     "trips": "Mam sore-yalse",
     "notifications": "Kibare",
@@ -768,6 +770,40 @@
       "visite_agricole": "Pʋʋgo vẽkr",
       "visite_industrielle": "Tʋʋm-doogo vẽkr",
       "excursion_universitaire": "Iniversite sore-yalgo"
+    },
+    "filters": {
+      "all": "Fãa"
+    }
+  },
+  "family": {
+    "title": "Zaka la kamba",
+    "subtitle": "Zaka tʋʋmse, kamb pʋgẽ, kamb gũusg sẽn bãngd la daar fãa sõngo.",
+    "searchPlaceholder": "Bao-y zĩig bɩ tʋʋmd a yembr...",
+    "empty": "Tʋʋmd baa a yembr ka mik ye",
+    "detailNotFound": "Tʋʋmd ka mik ye",
+    "verifiedProvider": "Tʋm-tʋmd sẽn bãngd",
+    "bookChildcare": "Reere-y kamb gũusgo",
+    "bookChildcareRequiresAuth": "Kẽ-y kamb gũusg reeregã yĩnga",
+    "bookChildcareTitle": "Reere-y kamb gũusgo",
+    "bookChildcareHint": "Yãk-y wakat la daar sẽn dat foomẽ. Tʋm-tʋmda na n kõ-y bãngre.",
+    "requestedDate": "Daar la wakat sẽn dat",
+    "notesOptional": "Sɛbendo (yaa ka tɩlae ye)",
+    "confirmChildcareBooking": "Kɩt-y reeregã tɩ tal",
+    "bookChildcareSuccessText": "Y kamb gũusg sokr tʋm-a tʋm-tʋmdã nengẽ.",
+    "myChildcareBookings": "Mam kamb gũusg reereems",
+    "myChildcareBookingsEmpty": "Y nan pʋd kamb gũusg reereg baa a yembr ye",
+    "bookingStatus": {
+      "requested": "Sokame",
+      "confirmed": "Bãngame",
+      "cancelled": "Basame"
+    },
+    "types": {
+      "activite_familiale": "Zaka tʋʋmde",
+      "sanitaire_public": "Neb fãa sɛllg zĩig",
+      "espace_repos": "Vʋʋsg zĩig",
+      "aire_jeux": "Kamb pʋgẽ",
+      "garde_enfants": "Kamb gũusgo",
+      "point_eau": "Koom zĩig"
     },
     "filters": {
       "all": "Fãa"

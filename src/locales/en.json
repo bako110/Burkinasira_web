@@ -46,6 +46,7 @@
     "community": "Community",
     "practical": "Practical",
     "edu": "Educational tourism",
+    "family": "Family & children",
     "health": "Health",
     "emergency": "Emergency & safety",
     "finance": "Money & banking",
@@ -53,6 +54,7 @@
     "weather": "Weather",
     "bookings": "Bookings",
     "eduBookings": "Educational outings",
+    "childcareBookings": "Childcare",
     "orders": "My orders",
     "trips": "My trips",
     "notifications": "Notifications",
@@ -768,6 +770,40 @@
       "visite_agricole": "Agricultural visit",
       "visite_industrielle": "Industrial visit",
       "excursion_universitaire": "University excursion"
+    },
+    "filters": {
+      "all": "All"
+    }
+  },
+  "family": {
+    "title": "Family & children",
+    "subtitle": "Family activities, playgrounds, verified childcare and everyday services.",
+    "searchPlaceholder": "Search a place or service...",
+    "empty": "No services found",
+    "detailNotFound": "Service not found",
+    "verifiedProvider": "Verified provider",
+    "bookChildcare": "Book childcare",
+    "bookChildcareRequiresAuth": "Log in to book childcare",
+    "bookChildcareTitle": "Book childcare",
+    "bookChildcareHint": "Choose the desired date and time. The provider will confirm the booking.",
+    "requestedDate": "Desired date and time",
+    "notesOptional": "Notes (optional)",
+    "confirmChildcareBooking": "Confirm booking",
+    "bookChildcareSuccessText": "Your childcare request has been sent to the provider.",
+    "myChildcareBookings": "My childcare bookings",
+    "myChildcareBookingsEmpty": "You have no childcare bookings yet",
+    "bookingStatus": {
+      "requested": "Requested",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "activite_familiale": "Family activity",
+      "sanitaire_public": "Public restrooms",
+      "espace_repos": "Rest area",
+      "aire_jeux": "Playground",
+      "garde_enfants": "Childcare",
+      "point_eau": "Water point"
     },
     "filters": {
       "all": "All"

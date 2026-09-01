@@ -46,6 +46,7 @@
     "community": "Jɛkulu",
     "practical": "Nafama",
     "edu": "Kalan-taama",
+    "family": "Denbaya ni denmisɛnw",
     "health": "Kɛnɛya",
     "emergency": "Kɔrɔfɛtaw ni lakana",
     "finance": "Wari ni bangeku",
@@ -53,6 +54,7 @@
     "weather": "Waati sanni",
     "bookings": "Sigi-yɔrɔw",
     "eduBookings": "Kalan-taamaw",
+    "childcareBookings": "Denmisɛn kɔlɔsili",
     "orders": "N ka minɛnw",
     "trips": "N ka taamaw",
     "notifications": "Kunnafoniw",
@@ -768,6 +770,40 @@
       "visite_agricole": "Sɛnɛkɛ bɔli",
       "visite_industrielle": "Izini bɔli",
       "excursion_universitaire": "Iniwɛrisite taama"
+    },
+    "filters": {
+      "all": "Bɛɛ"
+    }
+  },
+  "family": {
+    "title": "Denbaya ni denmisɛnw",
+    "subtitle": "Denbaya baaraw, tulon-yɔrɔw, denmisɛn kɔlɔsili sɛbɛnnen ni don o don baaraw.",
+    "searchPlaceholder": "Yɔrɔ walima baara ɲini...",
+    "empty": "Baara si ma sɔrɔ",
+    "detailNotFound": "Baara ma sɔrɔ",
+    "verifiedProvider": "Baarakɛla sɛbɛnnen",
+    "bookChildcare": "Denmisɛn kɔlɔsili sigi",
+    "bookChildcareRequiresAuth": "I ka don walasa ka denmisɛn kɔlɔsili sigi",
+    "bookChildcareTitle": "Denmisɛn kɔlɔsili sigi",
+    "bookChildcareHint": "I ka waati ni don sugandi. Baarakɛla bɛna sigili dabali.",
+    "requestedDate": "Don ni waati wanted",
+    "notesOptional": "Sɛbɛnni (wajibi tɛ)",
+    "confirmChildcareBooking": "Sigili sabati",
+    "bookChildcareSuccessText": "I ka denmisɛn kɔlɔsili ɲinini cilen bɛ baarakɛla ma.",
+    "myChildcareBookings": "N ka denmisɛn kɔlɔsili sigiliw",
+    "myChildcareBookingsEmpty": "I ma denmisɛn kɔlɔsili sigili si kɛ fɔlɔ",
+    "bookingStatus": {
+      "requested": "A ɲinina",
+      "confirmed": "A sabatira",
+      "cancelled": "A dabilara"
+    },
+    "types": {
+      "activite_familiale": "Denbaya baara",
+      "sanitaire_public": "Jama nii-saniya yɔrɔ",
+      "espace_repos": "Lafiɲɛ yɔrɔ",
+      "aire_jeux": "Tulon-yɔrɔ",
+      "garde_enfants": "Denmisɛn kɔlɔsili",
+      "point_eau": "Ji sɔrɔ yɔrɔ"
     },
     "filters": {
       "all": "Bɛɛ"

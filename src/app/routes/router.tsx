@@ -21,6 +21,9 @@ import { ExperienceDetailPage } from '../../features/experiences/pages/Experienc
 import { EduOutingsPage } from '../../features/edu/pages/EduOutingsPage';
 import { EduOutingDetailPage } from '../../features/edu/pages/EduOutingDetailPage';
 import { MyEduBookingsPage } from '../../features/edu/pages/MyEduBookingsPage';
+import { FamilyServicesPage } from '../../features/family/pages/FamilyServicesPage';
+import { FamilyServiceDetailPage } from '../../features/family/pages/FamilyServiceDetailPage';
+import { MyChildcareBookingsPage } from '../../features/family/pages/MyChildcareBookingsPage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -98,6 +101,8 @@ export const router = createBrowserRouter([
           { path: '/experiences/:id', element: <ExperienceDetailPage /> },
           { path: '/edu', element: <EduOutingsPage /> },
           { path: '/edu/:id', element: <EduOutingDetailPage /> },
+          { path: '/family', element: <FamilyServicesPage /> },
+          { path: '/family/:id', element: <FamilyServiceDetailPage /> },
           { path: '/events', element: <EventsPage /> },
           { path: '/events/:id', element: <EventDetailPage /> },
           { path: '/health', element: <HealthPage /> },
@@ -123,6 +128,7 @@ export const router = createBrowserRouter([
             children: [
               { path: '/bookings', element: <MyBookingsPage /> },
               { path: '/edu/bookings/me', element: <MyEduBookingsPage /> },
+              { path: '/family/childcare-bookings/me', element: <MyChildcareBookingsPage /> },
               { path: '/market/orders', element: <MyOrdersPage /> },
               { path: '/trips', element: <MyTripsPage /> },
               { path: '/trips/:tripId', element: <TripDetailPage /> },
