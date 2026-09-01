@@ -6,6 +6,7 @@ import { Download, User, BadgeCheck } from 'lucide-react';
 
 import { Button } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
+import { useCardToken } from '../../auth/hooks/useCardToken';
 import type { UserPublic } from '../../../shared/api/types';
 import styles from './FasoVivaIdCard.module.css';
 
@@ -34,6 +35,7 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
   const { t, i18n } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const push = useToastStore((s) => s.push);
+  const { data: cardTokenData } = useCardToken();
   const [isDownloading, setIsDownloading] = useState(false);
   const [avatarDataUrl, setAvatarDataUrl] = useState<string | null>(null);
 
@@ -111,19 +113,20 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
           </div>
 
           <div className={styles.qrWrap}>
-            <QRCodeCanvas
-              value={`${window.location.origin}/verify/${user.id}`}
-              size={84}
-              bgColor="#ffffff"
-              fgColor="#1a1a1a"
-              level="M"
-              className={styles.qr}
-            />
+            {cardTokenData && (
+              <QRCodeCanvas
+                value={`${window.location.origin}/verify/${cardTokenData.card_token}`}
+                size={84}
+                bgColor="#ffffff"
+                fgColor="#1a1a1a"
+                level="M"
+                className={styles.qr}
+              />
+            )}
           </div>
         </div>
 
         <div className={styles.footer}>
-          <span className={styles.cardId}>ID {user.id.slice(-8).toUpperCase()}</span>
           <span className={styles.tagline}>{t('passport.cardTagline')}</span>
         </div>
       </div>

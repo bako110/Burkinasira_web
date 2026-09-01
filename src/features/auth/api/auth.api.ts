@@ -18,7 +18,6 @@ export async function fetchMe(): Promise<UserPublic> {
 }
 
 export interface UserVerification {
-  id: string;
   full_name: string;
   role: string;
   is_verified: boolean;
@@ -26,7 +25,12 @@ export interface UserVerification {
   member_since: string;
 }
 
-export async function fetchVerification(userId: string): Promise<UserVerification> {
-  const { data } = await apiClient.get<UserVerification>(`/auth/verify/${userId}`);
+export async function fetchVerification(cardToken: string): Promise<UserVerification> {
+  const { data } = await apiClient.get<UserVerification>(`/auth/verify/${cardToken}`);
+  return data;
+}
+
+export async function fetchCardToken(): Promise<{ card_token: string }> {
+  const { data } = await apiClient.get<{ card_token: string }>('/auth/card-token');
   return data;
 }

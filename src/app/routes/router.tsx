@@ -44,6 +44,8 @@ import { ChangePasswordPage } from '../../features/profile/pages/ChangePasswordP
 import { DangerZonePage } from '../../features/profile/pages/DangerZonePage';
 import { PassportPage } from '../../features/passport/pages/PassportPage';
 import { PrivacyPolicyPage } from '../../features/legal/pages/PrivacyPolicyPage';
+import { PlannerPage } from '../../features/planner/pages/PlannerPage';
+import { TripRecapPage } from '../../features/planner/pages/TripRecapPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
 import { VerifyCardPage } from '../../features/auth/pages/VerifyCardPage';
@@ -107,6 +109,8 @@ export const router = createBrowserRouter([
               { path: '/market/orders', element: <MyOrdersPage /> },
               { path: '/trips', element: <MyTripsPage /> },
               { path: '/trips/:tripId', element: <TripDetailPage /> },
+              { path: '/trips/:tripId/plan', element: <PlannerPage /> },
+              { path: '/trips/:tripId/recap', element: <TripRecapPage /> },
               { path: '/notifications', element: <NotificationsPage /> },
               { path: '/messages', element: <MessagesPage /> },
               { path: '/profile', element: <ProfilePage /> },
@@ -122,7 +126,7 @@ export const router = createBrowserRouter([
     ],
   },
   { path: '/login', element: <LoginPage />, errorElement: <ErrorPage /> },
-  { path: '/verify/:userId', element: <VerifyCardPage />, errorElement: <ErrorPage /> },
+  { path: '/verify/:cardToken', element: <VerifyCardPage />, errorElement: <ErrorPage /> },
   { path: '/register', element: <RegisterPage />, errorElement: <ErrorPage /> },
   {
     element: <ProRouteGate />,

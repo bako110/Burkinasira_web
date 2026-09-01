@@ -12,8 +12,8 @@ function capitalize(s: string): string {
 
 export function VerifyCardPage() {
   const { t, i18n } = useTranslation();
-  const { userId } = useParams<{ userId: string }>();
-  const { data, isLoading, isError } = useVerification(userId);
+  const { cardToken } = useParams<{ cardToken: string }>();
+  const { data, isLoading, isError } = useVerification(cardToken);
 
   return (
     <div className={styles.page}>
