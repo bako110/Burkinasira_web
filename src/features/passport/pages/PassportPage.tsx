@@ -6,7 +6,7 @@ import { useAuthStore } from '../../../store/auth.store';
 import { useMyPassport } from '../hooks/useMyPassport';
 import { useBadges } from '../hooks/useBadges';
 import { BadgeTile } from '../components/BadgeTile';
-import { FasoVivaIdCard } from '../components/FasoVivaIdCard';
+import { BurkinaSiraIdCard } from '../components/BurkinaSiraIdCard';
 import styles from './PassportPage.module.css';
 
 export function PassportPage() {
@@ -36,7 +36,7 @@ export function PassportPage() {
         <>
           <section>
             <h2 className={styles.sectionTitle}>{t('passport.cardTitle')}</h2>
-            <FasoVivaIdCard user={user} points={passport.points} />
+            <BurkinaSiraIdCard user={user} points={passport.points} />
           </section>
 
           <Card className={styles.pointsCard}>

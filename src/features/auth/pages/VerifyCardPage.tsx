@@ -18,8 +18,8 @@ export function VerifyCardPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <img src="/logo.png" alt="FasoViva" className={styles.logo} />
-        <span className={styles.brand}>FasoViva</span>
+        <img src="/logo.png" alt="BurkinaSira" className={styles.logo} />
+        <span className={styles.brand}>BurkinaSira</span>
       </div>
 
       {isLoading && (

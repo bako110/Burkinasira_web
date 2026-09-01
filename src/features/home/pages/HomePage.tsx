@@ -4,7 +4,7 @@ import { TrustBand } from '../components/TrustBand';
 import { CategoryShowcase } from '../components/CategoryShowcase';
 import { FeaturedDestinations } from '../components/FeaturedDestinations';
 import { StatsBand } from '../components/StatsBand';
-import { WhyFasoViva } from '../components/WhyFasoViva';
+import { WhyBurkinaSira } from '../components/WhyBurkinaSira';
 import { FinalCta } from '../components/FinalCta';
 
 export function HomePage() {
@@ -16,7 +16,7 @@ export function HomePage() {
       <CategoryShowcase />
       <FeaturedDestinations />
       <StatsBand />
-      <WhyFasoViva />
+      <WhyBurkinaSira />
       <FinalCta />
     </>
   );

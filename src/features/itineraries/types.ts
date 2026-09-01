@@ -2,7 +2,7 @@ import type { TripItemType } from '../trips/types';
 
 /**
  * Un itinéraire premium est un voyage entièrement composé par la rédaction
- * FasoViva : jour par jour, étapes qualifiées, budget indicatif par niveau de
+ * BurkinaSira : jour par jour, étapes qualifiées, budget indicatif par niveau de
  * confort. Le voyageur le « clone » : on crée alors un Trip réel qu'il
  * personnalise ensuite dans le planificateur.
  */

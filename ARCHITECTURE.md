@@ -1,4 +1,4 @@
-# FasoViva — Architecture Frontend (webMobile)
+# BurkinaSira — Architecture Frontend (webMobile)
 
 Web app React responsive (mobile + desktop, une seule codebase), branchée sur le backend FastAPI/MongoDB (`/api/v1`).
 

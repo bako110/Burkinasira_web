@@ -1,5 +1,5 @@
 const UPDATED = '1er septembre 2026';
-const CONTACT_EMAIL = 'contact@fasoviva.com';
+const CONTACT_EMAIL = 'contact@burkinasira.com';
 
 const wrap: React.CSSProperties = {
   maxWidth: 760,
@@ -24,7 +24,7 @@ export function TermsOfServicePage() {
 
       <p style={p}>
         Les présentes conditions générales d'utilisation (« CGU ») régissent l'accès et l'usage de
-        l'application mobile et du site web FasoViva (« le Service »), édité pour valoriser le
+        l'application mobile et du site web BurkinaSira (« le Service »), édité pour valoriser le
         tourisme au Burkina Faso. En créant un compte ou en utilisant le Service, vous acceptez
         sans réserve les présentes CGU. Si vous ne les acceptez pas, vous ne devez pas utiliser le
         Service.
@@ -32,7 +32,7 @@ export function TermsOfServicePage() {
 
       <h2 style={h2}>1. Description du service</h2>
       <p style={p}>
-        FasoViva met en relation des visiteurs et habitants (« Touristes »), des guides
+        BurkinaSira met en relation des visiteurs et habitants (« Touristes »), des guides
         touristiques indépendants (« Guides ») et des prestataires professionnels — hôtels,
         restaurants, transporteurs et artisans (« Prestataires ») — pour découvrir, réserver et
         acheter des services et produits liés au tourisme au Burkina Faso : hébergements,
@@ -40,8 +40,8 @@ export function TermsOfServicePage() {
         espace communautaire (publications, groupes, avis et messagerie).
       </p>
       <p style={p}>
-        FasoViva agit comme intermédiaire technique entre Touristes, Guides et Prestataires. Sauf
-        mention contraire, FasoViva n'est pas partie au contrat de vente ou de prestation conclu
+        BurkinaSira agit comme intermédiaire technique entre Touristes, Guides et Prestataires. Sauf
+        mention contraire, BurkinaSira n'est pas partie au contrat de vente ou de prestation conclu
         entre un Touriste et un Guide ou Prestataire, et n'est pas responsable de l'exécution de ce
         contrat.
       </p>
@@ -58,7 +58,7 @@ export function TermsOfServicePage() {
       </ul>
       <p style={p}>
         Les comptes Guide et Prestataire sont soumis à une vérification d'identité et de documents
-        professionnels avant activation complète. FasoViva se réserve le droit de refuser,
+        professionnels avant activation complète. BurkinaSira se réserve le droit de refuser,
         suspendre ou révoquer une vérification en cas de documents incomplets, invalides ou
         frauduleux.
       </p>
@@ -86,7 +86,7 @@ export function TermsOfServicePage() {
       <h3 style={h3}>3.2 Marché artisanal</h3>
       <p style={p}>
         Les commandes de produits artisanaux sont conclues directement entre le Touriste et
-        l'artisan. FasoViva n'intervient ni dans la fabrication, ni dans l'expédition, ni dans la
+        l'artisan. BurkinaSira n'intervient ni dans la fabrication, ni dans l'expédition, ni dans la
         qualité des produits vendus. Les modalités de livraison ou de retrait sont convenues avec
         l'artisan au moment de la commande.
       </p>
@@ -94,7 +94,7 @@ export function TermsOfServicePage() {
       <h2 style={h2}>4. Paiements</h2>
       <p style={p}>
         Selon les moyens de paiement disponibles sur le Service, le règlement peut s'effectuer en
-        ligne ou directement auprès du Prestataire, du Guide ou de l'artisan. FasoViva ne stocke
+        ligne ou directement auprès du Prestataire, du Guide ou de l'artisan. BurkinaSira ne stocke
         aucune donnée de carte bancaire sur ses propres serveurs. Les frais afférents (frais
         bancaires, frais de plateforme le cas échéant) sont indiqués avant la validation de tout
         paiement.
@@ -103,7 +103,7 @@ export function TermsOfServicePage() {
       <h2 style={h2}>5. Contenu et espace communautaire</h2>
       <p style={p}>
         Vous restez propriétaire du contenu que vous publiez (photos, avis, publications,
-        messages), mais vous accordez à FasoViva une licence non exclusive, gratuite et mondiale
+        messages), mais vous accordez à BurkinaSira une licence non exclusive, gratuite et mondiale
         pour l'héberger, l'afficher et le distribuer dans le cadre du fonctionnement du Service.
       </p>
       <p style={p}>Vous vous engagez à ne pas publier de contenu :</p>
@@ -114,7 +114,7 @@ export function TermsOfServicePage() {
         <li style={li}>à caractère commercial non autorisé (spam, démarchage).</li>
       </ul>
       <p style={p}>
-        FasoViva peut modérer, masquer ou supprimer tout contenu non conforme, et suspendre ou
+        BurkinaSira peut modérer, masquer ou supprimer tout contenu non conforme, et suspendre ou
         résilier le compte de son auteur, sans préavis en cas de manquement grave.
       </p>
 
@@ -123,7 +123,7 @@ export function TermsOfServicePage() {
         Les Guides et Prestataires s'engagent à fournir des informations exactes et à jour sur
         leurs services, tarifs et disponibilités, à honorer les réservations confirmées, et à se
         conformer à la réglementation applicable à leur activité (tourisme, hôtellerie,
-        restauration, transport, artisanat). FasoViva peut demander à tout moment des justificatifs
+        restauration, transport, artisanat). BurkinaSira peut demander à tout moment des justificatifs
         complémentaires et suspendre un compte en cas de non-conformité, de plaintes répétées ou de
         fraude avérée.
       </p>
@@ -139,31 +139,31 @@ export function TermsOfServicePage() {
 
       <h2 style={h2}>8. Propriété intellectuelle</h2>
       <p style={p}>
-        La marque FasoViva, son logo, son design et ses éléments techniques sont la propriété de
-        FasoViva ou de ses concédants et sont protégés par le droit de la propriété intellectuelle.
+        La marque BurkinaSira, son logo, son design et ses éléments techniques sont la propriété de
+        BurkinaSira ou de ses concédants et sont protégés par le droit de la propriété intellectuelle.
         Toute reproduction ou usage non autorisé est interdit.
       </p>
 
       <h2 style={h2}>9. Limitation de responsabilité</h2>
       <p style={p}>
-        FasoViva fournit le Service en l'état, sans garantie d'absence d'erreur ou d'interruption.
-        FasoViva ne garantit pas l'exactitude, la disponibilité ou la qualité des informations
+        BurkinaSira fournit le Service en l'état, sans garantie d'absence d'erreur ou d'interruption.
+        BurkinaSira ne garantit pas l'exactitude, la disponibilité ou la qualité des informations
         fournies par les Guides, Prestataires ou artisans, ni la bonne exécution des prestations et
         commandes conclues via le Service. Dans les limites permises par la loi, la responsabilité
-        de FasoViva ne saurait être engagée pour un dommage indirect résultant de l'utilisation du
+        de BurkinaSira ne saurait être engagée pour un dommage indirect résultant de l'utilisation du
         Service ou d'une prestation fournie par un tiers.
       </p>
 
       <h2 style={h2}>10. Suspension et résiliation</h2>
       <p style={p}>
-        Vous pouvez supprimer votre compte à tout moment depuis les paramètres du Service. FasoViva
+        Vous pouvez supprimer votre compte à tout moment depuis les paramètres du Service. BurkinaSira
         peut suspendre ou résilier un compte en cas de violation des présentes CGU, de fraude, ou
         d'usage abusif, après notification lorsque les circonstances le permettent.
       </p>
 
       <h2 style={h2}>11. Modifications des CGU</h2>
       <p style={p}>
-        FasoViva peut modifier les présentes CGU à tout moment. Toute modification substantielle
+        BurkinaSira peut modifier les présentes CGU à tout moment. Toute modification substantielle
         sera signalée dans l'application ou sur le site avant son entrée en vigueur. La poursuite
         de l'utilisation du Service après une modification vaut acceptation des nouvelles CGU.
       </p>

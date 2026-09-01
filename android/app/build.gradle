@@ -7,10 +7,10 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.fasoviva.app"
+    namespace = "com.burkinasira.app"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.fasoviva.app"
+        applicationId "com.burkinasira.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

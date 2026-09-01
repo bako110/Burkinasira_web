@@ -5,7 +5,7 @@ import { getPostLoginPath } from '../../features/pro/utils/postLoginRedirect';
 
 // Utility screens shared between the tourist and pro trees. Messages/notifications
 // have dedicated /pro/{role}/messages and /pro/{role}/notifications routes wrapped
-// in ProLayout, so those stay out of here. The FasoViva card (/passport) is the
+// in ProLayout, so those stay out of here. The BurkinaSira card (/passport) is the
 // same for every role — a guide/provider must be able to open it too, so the
 // RoleGate lets it through instead of bouncing them back to their pro dashboard.
 // Never add tourist-discovery pages (home, explore, etc.) here.

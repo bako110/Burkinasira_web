@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "FasoViva",
+    "appName": "BurkinaSira",
     "loading": "A bɛ na...",
     "error": "Fili dɔ kɛra",
     "retry": "K'a lajɛ tugun",
@@ -55,7 +55,7 @@
     "notifications": "Kunnafoniw",
     "messages": "Bataki",
     "profile": "N ka kunnafoni",
-    "passport": "FasoViva Paspɔri"
+    "passport": "BurkinaSira Paspɔri"
   },
   "auth": {
     "login": "Don",
@@ -84,7 +84,7 @@
     "step1Subtitle": "An bɛna i wele cogo di?",
     "step2Subtitle": "An bɛ se ka i sɔrɔ cogo di?",
     "step3Subtitle": "Gundo daanu lakananen sugandi",
-    "step4Subtitle": "I bɛna FasoViva baara cogo di?",
+    "step4Subtitle": "I bɛna BurkinaSira baara cogo di?",
     "orContinueWith": "walima ka taa ɲɛ ni",
     "continueWithGoogle": "Taa ɲɛ ni Google ye",
     "continueWithApple": "Taa ɲɛ ni Apple ye",
@@ -150,7 +150,7 @@
     "moreFeaturesComingSoon": "Ko wɛrɛw bɛna na sɔɔni.",
     "guideProfileTitle": "I ka ɲɛminɛbaga jatebɔ",
     "providerProfileTitle": "I ka baara jatebɔ",
-    "providerProfileHint": "I ka baara-yɔrɔ kelen fɔ (lotɛli, rɛsitɔrannin, mobiliti walima baaraw) walasa FasoViva ka se ka i ka fɛn lajɛ.",
+    "providerProfileHint": "I ka baara-yɔrɔ kelen fɔ (lotɛli, rɛsitɔrannin, mobiliti walima baaraw) walasa BurkinaSira ka se ka i ka fɛn lajɛ.",
     "submittedEstablishments": "Baara-yɔrɔ minnu cikoro",
     "statusPublished": "A bɔra kɛnɛ ma",
     "statusDraft": "A bɛ lajɛli la",
@@ -231,7 +231,7 @@
     "noReviews": "Hakilina si tɛ",
     "noReviewsDesc": "I ma kiliyanɛ hakilina sɔrɔ fɔlɔ.",
     "reviewCount": "Hakilina {{count}}",
-    "anonymousAuthor": "FasoViva kiliyanɛ",
+    "anonymousAuthor": "BurkinaSira kiliyanɛ",
     "yourReply": "I ka jaabi",
     "tab_overview": "Fɔlɔ ɲɛfɔli",
     "tab_hotel": "Lotɛli",
@@ -587,7 +587,7 @@
     "successTitle": "Tarawu dafara",
     "successText": "I bɛna a sɔrɔ \"N ka sigi-yɔrɔ tarawu\" kɔnɔ.",
     "empty": "Tarawu si tɛ i bolo fɔlɔ",
-    "emptyText": "FasoViva lajɛ ka i ka fɔlɔ ko ta.",
+    "emptyText": "BurkinaSira lajɛ ka i ka fɔlɔ ko ta.",
     "reference": "Jatebɔ",
     "cancel": "Dabila",
     "cancelConfirm": "Dabilali sɛbɛnni",
@@ -721,7 +721,7 @@
       "touriste_restaurant": "Rɛsutɔrɛn",
       "touriste_artisan": "Baarakɛla",
       "entreprise_prestataire": "Baarakɛla",
-      "support_client": "FasoViva dɛmɛni",
+      "support_client": "BurkinaSira dɛmɛni",
       "groupe_voyageurs": "Taamakɛlaw jɛkulu"
     }
   },
@@ -744,19 +744,19 @@
   },
   "verify": {
     "notFoundTitle": "Karti ma sɔrɔ",
-    "notFoundText": "FasoViva karti nin tɛ yen walima a bɔra yen.",
+    "notFoundText": "BurkinaSira karti nin tɛ yen walima a bɔra yen.",
     "verifiedMember": "Kɔntu dafalen",
-    "cardIsValid": "FasoViva karti sɛbɛnen",
+    "cardIsValid": "BurkinaSira karti sɛbɛnen",
     "disclaimer": "Nin ɲɛ in bɛ karti tigi tɔgɔ dafalen dɔrɔn de lakodɔn. A tɛ se ka don mɔgɔ ka kunnafoni wɛrɛ la."
   },
   "passport": {
-    "title": "FasoViva Paspɔri",
+    "title": "BurkinaSira Paspɔri",
     "points": "wolomaw",
     "badgesTitle": "Badiziw",
     "stampsTitle": "Tikitiw dilennenw",
     "noBadges": "Badizi si tɛ fɔlɔ",
     "noStamps": "Tikiti si ma sɔrɔ fɔlɔ",
-    "cardTitle": "N ka FasoViva karti",
+    "cardTitle": "N ka BurkinaSira karti",
     "cardLabel": "Tɔnbaarakarti",
     "cardTagline": "Bɔ · Ɲɛnamaya · Kafɛnkɛ",
     "memberSince": "Tɔnbaara kabini {{date}}",
@@ -916,7 +916,7 @@
     }
   },
   "market": {
-    "title": "FasoViva Market",
+    "title": "BurkinaSira Market",
     "subtitle": "Baara-fɛn sɛbɛw Burkina Faso ka bonya.",
     "searchPlaceholder": "Fɛn dɔ, baarakɛla dɔ...",
     "empty": "Fɛn si ma sɔrɔ",
@@ -986,7 +986,7 @@
     "fulfillmentMode": "Bilali cogo"
   },
   "community": {
-    "title": "FasoViva Jɛkulu",
+    "title": "BurkinaSira Jɛkulu",
     "subtitle": "I ka waati lasɔmi fɔ ni sigiyɔrɔ mɔgɔw ye, ɲininkali kɛ ani ka don taamakɛlaw jɛkulu la.",
     "tabPostsFeed": "Batakiw",
     "navHintPosts": "Fotow ni lakalili",
@@ -1130,7 +1130,7 @@
     "floatRating": "4.8/5 taamakɛlaw fɛ",
     "seeAllResults": "Jaabi bɛɛ lajɛ « {{query}} » kama",
     "noSuggestions": "Jaabi si tɛ ɲini in na",
-    "categoriesTitle": "FasoViva bɛɛ, yɔrɔ kelen na",
+    "categoriesTitle": "BurkinaSira bɛɛ, yɔrɔ kelen na",
     "categoriesSubtitle": "Taama fan bɛɛ, dilanna Burkina Faso kama.",
     "categories": {
       "stay": {
@@ -1139,7 +1139,7 @@
       },
       "food": {
         "title": "Dumuni",
-        "text": "Dumuni suguya ni FasoViva Food"
+        "text": "Dumuni suguya ni BurkinaSira Food"
       },
       "mobility": {
         "title": "Taama",
@@ -1147,7 +1147,7 @@
       },
       "market": {
         "title": "Baaraw",
-        "text": "FasoViva Market feereyɔrɔ"
+        "text": "BurkinaSira Market feereyɔrɔ"
       },
       "guides": {
         "title": "Ɲɛminɛbagaw",
@@ -1173,7 +1173,7 @@
       "provinces": "Marabolow",
       "majorSites": "Yɔrɔ ni fɛn cɛɲuman babaw"
     },
-    "whyTitle": "Mun na FasoViva ka ɲi",
+    "whyTitle": "Mun na BurkinaSira ka ɲi",
     "whySubtitle": "Platform dilannen taama sɛbɛ ni sigida kama.",
     "why": {
       "verified": {
@@ -1194,7 +1194,7 @@
       }
     },
     "ctaTitle": "I labɛnnen don ka Burkina Faso lajɛ wa?",
-    "ctaText": "I don FasoViva la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
+    "ctaText": "I don BurkinaSira la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
     "ctaButton": "Ɲini daminɛ"
   },
   "planner": {
@@ -1335,7 +1335,7 @@
   "itineraries": {
     "kicker": "Itineraires signature",
     "title": "Voyages cle en main",
-    "subtitle": "Des parcours composes par la redaction FasoViva : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
+    "subtitle": "Des parcours composes par la redaction BurkinaSira : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
     "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de depart : ajustez tout dans le planificateur apres avoir clone l'itineraire.",
     "days_one": "{{count}} jour",
     "days_other": "{{count}} jours",

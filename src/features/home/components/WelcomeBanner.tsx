@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { BurkinaFlag } from '../../../shared/ui';
 import styles from './WelcomeBanner.module.css';
 
-const SEEN_KEY = 'fasoviva:welcome-banner-seen';
+const SEEN_KEY = 'burkinasira:welcome-banner-seen';
 
 function alreadySeen() {
   return typeof window !== 'undefined' && sessionStorage.getItem(SEEN_KEY) === '1';

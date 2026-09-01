@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.fasoviva.app',
-  appName: 'FasoViva',
+  appId: 'com.burkinasira.app',
+  appName: 'BurkinaSira',
   webDir: 'dist',
   server: {
     androidScheme: 'https',

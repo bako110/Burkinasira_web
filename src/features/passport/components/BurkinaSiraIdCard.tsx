@@ -8,9 +8,9 @@ import { Button } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { useCardToken } from '../../auth/hooks/useCardToken';
 import type { UserPublic } from '../../../shared/api/types';
-import styles from './FasoVivaIdCard.module.css';
+import styles from './BurkinaSiraIdCard.module.css';
 
-interface FasoVivaIdCardProps {
+interface BurkinaSiraIdCardProps {
   user: UserPublic;
   points: number;
 }
@@ -33,7 +33,7 @@ async function toDataUrl(url: string): Promise<string | null> {
   }
 }
 
-export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
+export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
   const { t, i18n } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const push = useToastStore((s) => s.push);
@@ -68,7 +68,7 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
     try {
       const dataUrl = await toPng(cardRef.current, { pixelRatio: 3, cacheBust: true });
       const link = document.createElement('a');
-      link.download = `fasoviva-carte-${user.full_name.replace(/\s+/g, '-').toLowerCase()}.png`;
+      link.download = `burkinasira-carte-${user.full_name.replace(/\s+/g, '-').toLowerCase()}.png`;
       link.href = dataUrl;
       link.click();
     } catch {
@@ -85,7 +85,7 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
         <div className={styles.overlay} />
 
         <div className={styles.header}>
-          <span className={styles.brand}>FasoViva</span>
+          <span className={styles.brand}>BurkinaSira</span>
           <span className={styles.cardLabel}>{t('passport.cardLabel')}</span>
         </div>
 

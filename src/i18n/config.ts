@@ -16,7 +16,7 @@ export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
   dyu: 'Dioula',
 };
 
-const STORAGE_KEY = 'fasoviva:lang';
+const STORAGE_KEY = 'burkinasira:lang';
 
 function getInitialLanguage(): SupportedLanguage {
   const stored = localStorage.getItem(STORAGE_KEY);

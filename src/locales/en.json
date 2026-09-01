@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "FasoViva",
+    "appName": "BurkinaSira",
     "loading": "Loading...",
     "error": "Something went wrong",
     "retry": "Retry",
@@ -55,7 +55,7 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "profile": "Profile",
-    "passport": "FasoViva Passport"
+    "passport": "BurkinaSira Passport"
   },
   "auth": {
     "login": "Login",
@@ -84,7 +84,7 @@
     "step1Subtitle": "What should we call you?",
     "step2Subtitle": "How can we reach you?",
     "step3Subtitle": "Choose a secure password",
-    "step4Subtitle": "How will you use FasoViva?",
+    "step4Subtitle": "How will you use BurkinaSira?",
     "orContinueWith": "or continue with",
     "continueWithGoogle": "Continue with Google",
     "continueWithApple": "Continue with Apple",
@@ -150,7 +150,7 @@
     "moreFeaturesComingSoon": "More features coming soon.",
     "guideProfileTitle": "Your guide profile",
     "providerProfileTitle": "Your business profile",
-    "providerProfileHint": "Provide at least one establishment (hotel, restaurant, transport or craft) so the FasoViva team can review your application.",
+    "providerProfileHint": "Provide at least one establishment (hotel, restaurant, transport or craft) so the BurkinaSira team can review your application.",
     "submittedEstablishments": "Submitted establishments",
     "statusPublished": "Published",
     "statusDraft": "Pending draft",
@@ -231,7 +231,7 @@
     "noReviews": "No reviews",
     "noReviewsDesc": "You haven't received any customer reviews yet.",
     "reviewCount": "{{count}} reviews",
-    "anonymousAuthor": "FasoViva customer",
+    "anonymousAuthor": "BurkinaSira customer",
     "yourReply": "Your reply",
     "tab_overview": "Overview",
     "tab_hotel": "Hotel",
@@ -587,7 +587,7 @@
     "successTitle": "Booking confirmed",
     "successText": "Find the details under \"My bookings\".",
     "empty": "You have no bookings yet",
-    "emptyText": "Explore FasoViva and book your first experience.",
+    "emptyText": "Explore BurkinaSira and book your first experience.",
     "reference": "Reference",
     "cancel": "Cancel",
     "cancelConfirm": "Confirm cancellation",
@@ -721,7 +721,7 @@
       "touriste_restaurant": "Restaurant",
       "touriste_artisan": "Artisan",
       "entreprise_prestataire": "Provider",
-      "support_client": "FasoViva support",
+      "support_client": "BurkinaSira support",
       "groupe_voyageurs": "Traveler group"
     }
   },
@@ -744,19 +744,19 @@
   },
   "verify": {
     "notFoundTitle": "Card not found",
-    "notFoundText": "This FasoViva card does not exist or has been removed.",
+    "notFoundText": "This BurkinaSira card does not exist or has been removed.",
     "verifiedMember": "Verified account",
-    "cardIsValid": "Genuine FasoViva card",
-    "disclaimer": "This page only confirms the identity of the FasoViva card holder. It does not give access to any personal data."
+    "cardIsValid": "Genuine BurkinaSira card",
+    "disclaimer": "This page only confirms the identity of the BurkinaSira card holder. It does not give access to any personal data."
   },
   "passport": {
-    "title": "FasoViva Passport",
+    "title": "BurkinaSira Passport",
     "points": "points",
     "badgesTitle": "Badges",
     "stampsTitle": "Collected stamps",
     "noBadges": "No badges yet",
     "noStamps": "No stamps collected yet",
-    "cardTitle": "My FasoViva card",
+    "cardTitle": "My BurkinaSira card",
     "cardLabel": "Member card",
     "cardTagline": "Discover · Live · Share",
     "memberSince": "Member since {{date}}",
@@ -916,7 +916,7 @@
     }
   },
   "market": {
-    "title": "FasoViva Market",
+    "title": "BurkinaSira Market",
     "subtitle": "Authentic handmade products from Burkina Faso.",
     "searchPlaceholder": "A product, an artisan...",
     "empty": "No product found",
@@ -986,7 +986,7 @@
     "fulfillmentMode": "Delivery method"
   },
   "community": {
-    "title": "FasoViva Community",
+    "title": "BurkinaSira Community",
     "subtitle": "Share your moments with locals, ask questions and join traveler groups.",
     "tabPostsFeed": "Posts",
     "navHintPosts": "Photos and stories",
@@ -1130,7 +1130,7 @@
     "floatRating": "4.8/5 from travelers",
     "seeAllResults": "See all results for \"{{query}}\"",
     "noSuggestions": "No results for this search",
-    "categoriesTitle": "All of FasoViva, at a glance",
+    "categoriesTitle": "All of BurkinaSira, at a glance",
     "categoriesSubtitle": "Every corner of travel, built for Burkina Faso.",
     "categories": {
       "stay": {
@@ -1139,7 +1139,7 @@
       },
       "food": {
         "title": "Food",
-        "text": "Local gastronomy and FasoViva Food picks"
+        "text": "Local gastronomy and BurkinaSira Food picks"
       },
       "mobility": {
         "title": "Transport",
@@ -1147,7 +1147,7 @@
       },
       "market": {
         "title": "Crafts",
-        "text": "FasoViva Market marketplace"
+        "text": "BurkinaSira Market marketplace"
       },
       "guides": {
         "title": "Guides",
@@ -1173,7 +1173,7 @@
       "provinces": "Provinces",
       "majorSites": "Major sites & attractions"
     },
-    "whyTitle": "Why choose FasoViva",
+    "whyTitle": "Why choose BurkinaSira",
     "whySubtitle": "A platform built for reliable, local and responsible tourism.",
     "why": {
       "verified": {
@@ -1194,7 +1194,7 @@
       }
     },
     "ctaTitle": "Ready to explore Burkina Faso?",
-    "ctaText": "Join FasoViva and start discovering authentic places, experiences and encounters.",
+    "ctaText": "Join BurkinaSira and start discovering authentic places, experiences and encounters.",
     "ctaButton": "Start exploring"
   },
   "planner": {
@@ -1335,7 +1335,7 @@
   "itineraries": {
     "kicker": "Signature itineraries",
     "title": "Ready-made trips",
-    "subtitle": "Routes curated by the FasoViva editors: qualified stops, indicative budget, practical tips. Clone the one that inspires you and make it yours.",
+    "subtitle": "Routes curated by the BurkinaSira editors: qualified stops, indicative budget, practical tips. Clone the one that inspires you and make it yours.",
     "note": "Per-person estimates in XOF, excluding international flights and visa. They are a starting point: adjust everything in the planner after cloning the itinerary.",
     "days_one": "{{count}} day",
     "days_other": "{{count}} days",

@@ -3,7 +3,7 @@ import { ShieldCheck, MapPinned, LayoutGrid, Lock } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui/Reveal';
 import { FloatingFlags } from '../../../shared/ui';
-import styles from './WhyFasoViva.module.css';
+import styles from './WhyBurkinaSira.module.css';
 
 const REASONS = [
   { key: 'verified', Icon: ShieldCheck },
@@ -12,7 +12,7 @@ const REASONS = [
   { key: 'secure', Icon: Lock },
 ] as const;
 
-export function WhyFasoViva() {
+export function WhyBurkinaSira() {
   const { t } = useTranslation();
 
   return (

@@ -1,7 +1,7 @@
 import type { Itinerary } from './types';
 
 /**
- * Itinéraires premium FasoViva — sélection éditoriale.
+ * Itinéraires premium BurkinaSira — sélection éditoriale.
  *
  * Les montants sont des estimations par personne en FCFA (XOF), hors vols
  * internationaux et visa. Ils servent de point de départ : le voyageur les

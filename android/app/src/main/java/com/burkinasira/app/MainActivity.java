@@ -1,4 +1,4 @@
-package com.fasoviva.app;
+package com.burkinasira.app;
 
 import com.getcapacitor.BridgeActivity;
 

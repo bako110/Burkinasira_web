@@ -21,7 +21,7 @@ interface CartState {
   clear: () => void;
 }
 
-const CART_KEY = 'fasoviva:cart';
+const CART_KEY = 'burkinasira:cart';
 
 function readStoredItems(): CartItem[] {
   const raw = localStorage.getItem(CART_KEY);

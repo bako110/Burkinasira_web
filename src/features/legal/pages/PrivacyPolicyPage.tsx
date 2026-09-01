@@ -1,5 +1,5 @@
 const UPDATED = '1er septembre 2026';
-const CONTACT_EMAIL = 'contact@fasoviva.com';
+const CONTACT_EMAIL = 'contact@burkinasira.com';
 
 const wrap: React.CSSProperties = {
   maxWidth: 760,
@@ -21,7 +21,7 @@ export function PrivacyPolicyPage() {
       <p style={muted}>Dernière mise à jour : {UPDATED}</p>
 
       <p style={p}>
-        FasoViva (« nous ») édite l'application mobile et le site web FasoViva, un guide touristique
+        BurkinaSira (« nous ») édite l'application mobile et le site web BurkinaSira, un guide touristique
         du Burkina Faso. Cette politique explique quelles données nous collectons, pourquoi, et
         quels sont vos droits.
       </p>

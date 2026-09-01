@@ -7,7 +7,7 @@ interface ThemeState {
   setMode: (mode: ThemeMode) => void;
 }
 
-const STORAGE_KEY = 'fasoviva:theme';
+const STORAGE_KEY = 'burkinasira:theme';
 
 function applyThemeToDocument(mode: ThemeMode) {
   const root = document.documentElement;

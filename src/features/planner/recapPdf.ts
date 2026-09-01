@@ -47,7 +47,7 @@ export function generateRecapPdf({ trip, comfort, travelers, labels }: RecapPara
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(20);
   doc.setTextColor('#dc5c0a');
-  doc.text('FasoViva', margin, y);
+  doc.text('BurkinaSira', margin, y);
   doc.setTextColor('#111111');
   doc.setFontSize(13);
   doc.text(labels.title, pageW - margin, y, { align: 'right' });
@@ -187,5 +187,5 @@ export function generateRecapPdf({ trip, comfort, travelers, labels }: RecapPara
   doc.text(disclaimerLines, margin, y);
 
   const safeTitle = trip.title.replace(/[^a-z0-9]+/gi, '-').toLowerCase().slice(0, 40);
-  doc.save(`fasoviva-voyage-${safeTitle || trip.id}.pdf`);
+  doc.save(`burkinasira-voyage-${safeTitle || trip.id}.pdf`);
 }
