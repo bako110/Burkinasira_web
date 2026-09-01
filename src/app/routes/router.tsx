@@ -32,6 +32,7 @@ import { DiasporaContentDetailPage } from '../../features/diaspora/pages/Diaspor
 import { MyQuoteRequestsPage } from '../../features/business/pages/MyQuoteRequestsPage';
 import { NewQuoteRequestPage } from '../../features/business/pages/NewQuoteRequestPage';
 import { QuoteRequestDetailPage } from '../../features/business/pages/QuoteRequestDetailPage';
+import { FirstVisitGuidePage } from '../../features/international/pages/FirstVisitGuidePage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -115,6 +116,7 @@ export const router = createBrowserRouter([
           { path: '/family/:id', element: <FamilyServiceDetailPage /> },
           { path: '/roads', element: <RoadServicesPage /> },
           { path: '/roads/:id', element: <RoadServiceDetailPage /> },
+          { path: '/international', element: <FirstVisitGuidePage /> },
           { path: '/events', element: <EventsPage /> },
           { path: '/events/:id', element: <EventDetailPage /> },
           { path: '/health', element: <HealthPage /> },

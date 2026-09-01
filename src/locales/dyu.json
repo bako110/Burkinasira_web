@@ -50,6 +50,7 @@
     "family": "Denbaya ni denmisɛnw",
     "roads": "Sira baaraw",
     "business": "Jago-taama",
+    "international": "Taama fɔlɔ ɲɛminɛbaga",
     "health": "Kɛnɛya",
     "emergency": "Kɔrɔfɛtaw ni lakana",
     "finance": "Wari ni bangeku",
@@ -928,6 +929,18 @@
       "restauration_groupe": "Jɛkulu dumuni",
       "prestataire_evenementiel": "Waati-kun baarakɛla",
       "photographie_audiovisuel": "Fotow ni videyow"
+    }
+  },
+  "international": {
+    "title": "Taama fɔlɔ ɲɛminɛbaga",
+    "subtitle": "Fɛn bɛɛ i mago bɛ min na dɔn sani i ka taama fɔlɔ Burkina Faso: laada, wari, sariyaw, kɛnɛya ni taama minɛnw.",
+    "empty": "Ɲɛminɛbaga in ma sɔrɔ kan in na fɔlɔ",
+    "categories": {
+      "culture_usages": "Laada ni delenw",
+      "monnaie": "Wari",
+      "formalites": "Sariyaw",
+      "sante_securite": "Kɛnɛya ni lakana",
+      "transport": "Taama minɛnw"
     }
   },
   "dataQuality": {

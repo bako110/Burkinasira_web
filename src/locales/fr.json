@@ -50,6 +50,7 @@
     "family": "Famille et enfants",
     "roads": "Services routiers",
     "business": "Tourisme d'affaires",
+    "international": "Guide première visite",
     "health": "Santé",
     "emergency": "Urgences et sécurité",
     "finance": "Argent et banques",
@@ -928,6 +929,18 @@
       "restauration_groupe": "Restauration de groupe",
       "prestataire_evenementiel": "Prestataire événementiel",
       "photographie_audiovisuel": "Photographie et audiovisuel"
+    }
+  },
+  "international": {
+    "title": "Guide de première visite",
+    "subtitle": "Tout ce qu'il faut savoir avant votre premier voyage au Burkina Faso : culture, monnaie, formalités, santé et transport.",
+    "empty": "Le guide n'est pas encore disponible dans cette langue",
+    "categories": {
+      "culture_usages": "Culture et usages",
+      "monnaie": "Monnaie",
+      "formalites": "Formalités",
+      "sante_securite": "Santé et sécurité",
+      "transport": "Transport"
     }
   },
   "dataQuality": {

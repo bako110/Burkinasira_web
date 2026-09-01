@@ -50,6 +50,7 @@
     "family": "Zaka la kamba",
     "roads": "Sore-tʋʋmse",
     "business": "Koud-tʋʋmd sore-yalse",
+    "international": "Sɩngr sore-yalg sor-tʋmd",
     "health": "Laafi",
     "emergency": "Yell-kãse la lɛɛgengo",
     "finance": "Ligd la bãnk",
@@ -928,6 +929,18 @@
       "restauration_groupe": "Sull rɩɩb kõre",
       "prestataire_evenementiel": "Kibar tʋm-tʋmda",
       "photographie_audiovisuel": "Fototãka la wilgr"
+    }
+  },
+  "international": {
+    "title": "Sɩngr sore-yalg sor-tʋmd",
+    "subtitle": "Bũmb fãa f sẽn dat n bãng taoor n yɩ f sore-yalgã Burkina Faso: rog-n-mikde, ligde, tigsg-vẽkr, laafi la loaad pekre.",
+    "empty": "Sor-tʋmdã nan ka be goamã pʋgẽ ye",
+    "categories": {
+      "culture_usages": "Rog-n-mikd la minim",
+      "monnaie": "Ligde",
+      "formalites": "Tigsg-vẽkr",
+      "sante_securite": "Laafi la lɛɛgengo",
+      "transport": "Loaad pekre"
     }
   },
   "dataQuality": {
