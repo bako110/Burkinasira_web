@@ -49,6 +49,7 @@
     "edu": "Educational tourism",
     "family": "Family & children",
     "roads": "Road services",
+    "business": "Business tourism",
     "health": "Health",
     "emergency": "Emergency & safety",
     "finance": "Money & banking",
@@ -887,6 +888,46 @@
     },
     "filters": {
       "all": "All"
+    }
+  },
+  "business": {
+    "title": "Business tourism",
+    "subtitle": "Request a group quote for your seminars, conferences and corporate events.",
+    "newQuoteButton": "New quote request",
+    "myQuotes": "My quote requests",
+    "myQuotesEmpty": "You haven't made any quote request yet",
+    "detailNotFound": "Request not found",
+    "newQuoteTitle": "Request a group quote",
+    "newQuoteSubtitle": "Describe your event, a provider will reply with a quote.",
+    "companyName": "Company name",
+    "serviceTypesLabel": "Desired services",
+    "regionOptional": "Region (optional)",
+    "eventDateOptional": "Event date (optional)",
+    "participantCount": "Number of participants",
+    "participantCountValue": "{{count}} participants",
+    "submitQuoteRequest": "Send request",
+    "quotedAmount": "Quoted amount",
+    "participantsTitle": "Participants",
+    "participantName": "Participant name",
+    "participantEmailOptional": "Email (optional)",
+    "addParticipant": "Add",
+    "removeParticipant": "Remove",
+    "quoteStatus": {
+      "submitted": "Submitted",
+      "in_review": "Under review",
+      "quoted": "Quoted",
+      "accepted": "Accepted",
+      "declined": "Declined"
+    },
+    "serviceTypes": {
+      "salle_conference": "Conference room",
+      "seminaire": "Seminar",
+      "congres": "Conference",
+      "team_building": "Team building",
+      "transport_groupe": "Group transport",
+      "restauration_groupe": "Group catering",
+      "prestataire_evenementiel": "Event provider",
+      "photographie_audiovisuel": "Photography & audiovisual"
     }
   },
   "dataQuality": {

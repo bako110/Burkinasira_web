@@ -1,0 +1,99 @@
+.link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.companyName {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.statusBadge {
+  flex-shrink: 0;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status_submitted {
+  background-color: var(--color-warning-surface, #fef3c7);
+  color: var(--color-warning, #b45309);
+}
+
+.status_in_review {
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+}
+
+.status_quoted {
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+}
+
+.status_accepted {
+  background-color: var(--color-success-surface, #d1fae5);
+  color: var(--color-success, #047857);
+}
+
+.status_declined {
+  background-color: var(--color-danger-surface, #fee2e2);
+  color: var(--color-danger, #b91c1c);
+}
+
+.serviceTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.serviceTag {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-inset);
+  color: var(--color-text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.cardRow svg {
+  flex-shrink: 0;
+  color: var(--color-text-subtle);
+}
+
+.quotedAmount {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}

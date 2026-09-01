@@ -49,6 +49,7 @@
     "edu": "Zãmsg-sore-yalse",
     "family": "Zaka la kamba",
     "roads": "Sore-tʋʋmse",
+    "business": "Koud-tʋʋmd sore-yalse",
     "health": "Laafi",
     "emergency": "Yell-kãse la lɛɛgengo",
     "finance": "Ligd la bãnk",
@@ -887,6 +888,46 @@
     },
     "filters": {
       "all": "Fãa"
+    }
+  },
+  "business": {
+    "title": "Koud-tʋʋmd sore-yalse",
+    "subtitle": "Sok-y ligd sull yĩnga y seminɛɛr, kongrɛ la kʋdemd tʋʋmse yĩnga.",
+    "newQuoteButton": "Ligd sokr paalga",
+    "myQuotes": "Mam ligd sokse",
+    "myQuotesEmpty": "Y nan pʋd ligd sokr baa a yembr maan ye",
+    "detailNotFound": "Sokrã ka mik ye",
+    "newQuoteTitle": "Sok-y ligd sull yĩnga",
+    "newQuoteSubtitle": "Wilg-y y kibarã, tʋm-tʋmd a yembr na n leok-y ligd yĩnga.",
+    "companyName": "Kʋdemdã yʋʋre",
+    "serviceTypesLabel": "Tʋʋmse y sẽn dat",
+    "regionOptional": "Tẽnga (yaa ka tɩlae ye)",
+    "eventDateOptional": "Kibarã daare (yaa ka tɩlae ye)",
+    "participantCount": "Neb sẽn na n bee kaeb",
+    "participantCountValue": "Neb {{count}}",
+    "submitQuoteRequest": "Tʋm-y sokrã",
+    "quotedAmount": "Ligd sẽn kõ-a",
+    "participantsTitle": "Neb sẽn bee",
+    "participantName": "Nin-kãngã yʋʋre",
+    "participantEmailOptional": "Email (yaa ka tɩlae ye)",
+    "addParticipant": "Paas-y",
+    "removeParticipant": "Yiis-y",
+    "quoteStatus": {
+      "submitted": "Tʋmame",
+      "in_review": "B gũusdame",
+      "quoted": "Ligd paamame",
+      "accepted": "Sakame",
+      "declined": "Zãgsame"
+    },
+    "serviceTypes": {
+      "salle_conference": "Goam-zĩig",
+      "seminaire": "Seminɛɛre",
+      "congres": "Kongrɛ",
+      "team_building": "Sull-paasgo",
+      "transport_groupe": "Sull loaad pekre",
+      "restauration_groupe": "Sull rɩɩb kõre",
+      "prestataire_evenementiel": "Kibar tʋm-tʋmda",
+      "photographie_audiovisuel": "Fototãka la wilgr"
     }
   },
   "dataQuality": {

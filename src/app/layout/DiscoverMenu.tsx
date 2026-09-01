@@ -21,6 +21,7 @@ import {
   Users2,
   Wrench,
   Globe2,
+  Briefcase,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -43,6 +44,7 @@ const PRACTICAL_LINKS = [
   { to: '/edu', key: 'edu', Icon: GraduationCap },
   { to: '/family', key: 'family', Icon: Users2 },
   { to: '/roads', key: 'roads', Icon: Wrench },
+  { to: '/business', key: 'business', Icon: Briefcase },
   { to: '/health', key: 'health', Icon: Stethoscope },
   { to: '/emergency', key: 'emergency', Icon: ShieldAlert },
   { to: '/finance', key: 'finance', Icon: Landmark },

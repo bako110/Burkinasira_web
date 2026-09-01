@@ -29,6 +29,9 @@ import { RoadServiceDetailPage } from '../../features/roads/pages/RoadServiceDet
 import { MyBreakdownsPage } from '../../features/roads/pages/MyBreakdownsPage';
 import { DiasporaHubPage } from '../../features/diaspora/pages/DiasporaHubPage';
 import { DiasporaContentDetailPage } from '../../features/diaspora/pages/DiasporaContentDetailPage';
+import { MyQuoteRequestsPage } from '../../features/business/pages/MyQuoteRequestsPage';
+import { NewQuoteRequestPage } from '../../features/business/pages/NewQuoteRequestPage';
+import { QuoteRequestDetailPage } from '../../features/business/pages/QuoteRequestDetailPage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -139,6 +142,9 @@ export const router = createBrowserRouter([
               { path: '/edu/bookings/me', element: <MyEduBookingsPage /> },
               { path: '/family/childcare-bookings/me', element: <MyChildcareBookingsPage /> },
               { path: '/roads/breakdowns/me', element: <MyBreakdownsPage /> },
+              { path: '/business', element: <MyQuoteRequestsPage /> },
+              { path: '/business/new', element: <NewQuoteRequestPage /> },
+              { path: '/business/quotes/:id', element: <QuoteRequestDetailPage /> },
               { path: '/market/orders', element: <MyOrdersPage /> },
               { path: '/trips', element: <MyTripsPage /> },
               { path: '/trips/:tripId', element: <TripDetailPage /> },

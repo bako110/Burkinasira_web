@@ -49,6 +49,7 @@
     "edu": "Kalan-taama",
     "family": "Denbaya ni denmisɛnw",
     "roads": "Sira baaraw",
+    "business": "Jago-taama",
     "health": "Kɛnɛya",
     "emergency": "Kɔrɔfɛtaw ni lakana",
     "finance": "Wari ni bangeku",
@@ -887,6 +888,46 @@
     },
     "filters": {
       "all": "Bɛɛ"
+    }
+  },
+  "business": {
+    "title": "Jago-taama",
+    "subtitle": "Sɔngɔ ɲini jɛkulu ye i ka seminɛriw, lajɛw ni sosiyete waati-kunw kama.",
+    "newQuoteButton": "Sɔngɔ ɲinini kura",
+    "myQuotes": "N ka sɔngɔ ɲininiw",
+    "myQuotesEmpty": "I ma sɔngɔ ɲinini si kɛ fɔlɔ",
+    "detailNotFound": "Ɲinini ma sɔrɔ",
+    "newQuoteTitle": "Sɔngɔ ɲini jɛkulu ye",
+    "newQuoteSubtitle": "I ka waati-kun ɲɛfɔ, baarakɛla dɔ bɛna sɔngɔ di.",
+    "companyName": "Sosiyete tɔgɔ",
+    "serviceTypesLabel": "Baaraw i bɛ minnu fɛ",
+    "regionOptional": "Mara (wajibi tɛ)",
+    "eventDateOptional": "Waati-kun don (wajibi tɛ)",
+    "participantCount": "Mɔgɔ hakɛ",
+    "participantCountValue": "Mɔgɔ {{count}}",
+    "submitQuoteRequest": "Ɲinini ci",
+    "quotedAmount": "Sɔngɔ di sɔnna",
+    "participantsTitle": "Mɔgɔw",
+    "participantName": "Mɔgɔ tɔgɔ",
+    "participantEmailOptional": "Imɛli (wajibi tɛ)",
+    "addParticipant": "A fara",
+    "removeParticipant": "A bɔ",
+    "quoteStatus": {
+      "submitted": "A cira",
+      "in_review": "A bɛ lajɛ",
+      "quoted": "Sɔngɔ sɔrɔla",
+      "accepted": "A sɔnna",
+      "declined": "A banna"
+    },
+    "serviceTypes": {
+      "salle_conference": "Lajɛ-so",
+      "seminaire": "Seminɛri",
+      "congres": "Lajɛba",
+      "team_building": "Jɛkulu sabatili",
+      "transport_groupe": "Jɛkulu taama minɛnw",
+      "restauration_groupe": "Jɛkulu dumuni",
+      "prestataire_evenementiel": "Waati-kun baarakɛla",
+      "photographie_audiovisuel": "Fotow ni videyow"
     }
   },
   "dataQuality": {

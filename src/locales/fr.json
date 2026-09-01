@@ -49,6 +49,7 @@
     "edu": "Tourisme éducatif",
     "family": "Famille et enfants",
     "roads": "Services routiers",
+    "business": "Tourisme d'affaires",
     "health": "Santé",
     "emergency": "Urgences et sécurité",
     "finance": "Argent et banques",
@@ -887,6 +888,46 @@
     },
     "filters": {
       "all": "Tous"
+    }
+  },
+  "business": {
+    "title": "Tourisme d'affaires",
+    "subtitle": "Demandez un devis groupé pour vos séminaires, congrès et événements d'entreprise.",
+    "newQuoteButton": "Nouvelle demande de devis",
+    "myQuotes": "Mes demandes de devis",
+    "myQuotesEmpty": "Vous n'avez encore fait aucune demande de devis",
+    "detailNotFound": "Demande introuvable",
+    "newQuoteTitle": "Demander un devis groupé",
+    "newQuoteSubtitle": "Décrivez votre événement, un prestataire vous répondra avec un devis.",
+    "companyName": "Nom de l'entreprise",
+    "serviceTypesLabel": "Services souhaités",
+    "regionOptional": "Région (optionnel)",
+    "eventDateOptional": "Date de l'événement (optionnel)",
+    "participantCount": "Nombre de participants",
+    "participantCountValue": "{{count}} participants",
+    "submitQuoteRequest": "Envoyer la demande",
+    "quotedAmount": "Montant proposé",
+    "participantsTitle": "Participants",
+    "participantName": "Nom du participant",
+    "participantEmailOptional": "Email (optionnel)",
+    "addParticipant": "Ajouter",
+    "removeParticipant": "Retirer",
+    "quoteStatus": {
+      "submitted": "Envoyée",
+      "in_review": "En cours d'examen",
+      "quoted": "Devis reçu",
+      "accepted": "Acceptée",
+      "declined": "Refusée"
+    },
+    "serviceTypes": {
+      "salle_conference": "Salle de conférence",
+      "seminaire": "Séminaire",
+      "congres": "Congrès",
+      "team_building": "Team building",
+      "transport_groupe": "Transport de groupe",
+      "restauration_groupe": "Restauration de groupe",
+      "prestataire_evenementiel": "Prestataire événementiel",
+      "photographie_audiovisuel": "Photographie et audiovisuel"
     }
   },
   "dataQuality": {
