@@ -75,6 +75,18 @@ export function LoginPage() {
           </Button>
         </form>
 
+        <p className={styles.termsNotice}>
+          {t('auth.loginTermsNoticePrefix')}{' '}
+          <Link to="/cgu" target="_blank" rel="noreferrer">
+            {t('auth.termsLink')}
+          </Link>{' '}
+          {t('auth.acceptTermsAnd')}{' '}
+          <Link to="/confidentialite" target="_blank" rel="noreferrer">
+            {t('auth.privacyLink')}
+          </Link>
+          .
+        </p>
+
         <div className={styles.divider}>
           <span>{t('auth.orContinueWith')}</span>
         </div>

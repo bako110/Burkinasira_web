@@ -129,6 +129,49 @@
   color: var(--color-text-muted);
 }
 
+.termsNotice {
+  margin: var(--space-4) 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
+.termsNotice a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.termsNotice a:hover {
+  text-decoration: underline;
+}
+
+.termsCheck {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.termsCheck input {
+  margin-top: 3px;
+  accent-color: var(--color-brand);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.termsCheck a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.termsCheck a:hover {
+  text-decoration: underline;
+}
+
 .switch {
   margin: var(--space-5) 0 0;
   text-align: center;

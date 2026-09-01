@@ -45,6 +45,7 @@ export function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [role, setRole] = useState<SignupRole>('tourist');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   function goNext(e: FormEvent) {
     e.preventDefault();
@@ -208,6 +209,24 @@ export function RegisterPage() {
                 </label>
               ))}
             </div>
+            <label className={styles.termsCheck}>
+              <input
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                required
+              />
+              <span>
+                {t('auth.acceptTermsPrefix')}{' '}
+                <Link to="/cgu" target="_blank" rel="noreferrer">
+                  {t('auth.termsLink')}
+                </Link>{' '}
+                {t('auth.acceptTermsAnd')}{' '}
+                <Link to="/confidentialite" target="_blank" rel="noreferrer">
+                  {t('auth.privacyLink')}
+                </Link>
+              </span>
+            </label>
             {error && (
               <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>
             )}
@@ -216,7 +235,7 @@ export function RegisterPage() {
                 <ArrowLeft size={15} strokeWidth={2} />
                 {t('common.back')}
               </button>
-              <Button type="submit" fullWidth disabled={isPending}>
+              <Button type="submit" fullWidth disabled={isPending || !acceptedTerms}>
                 {isPending ? t('common.loading') : t('auth.finish')}
               </Button>
             </div>
