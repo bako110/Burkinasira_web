@@ -47,6 +47,7 @@
     "practical": "Nafama",
     "edu": "Kalan-taama",
     "family": "Denbaya ni denmisɛnw",
+    "roads": "Sira baaraw",
     "health": "Kɛnɛya",
     "emergency": "Kɔrɔfɛtaw ni lakana",
     "finance": "Wari ni bangeku",
@@ -55,6 +56,7 @@
     "bookings": "Sigi-yɔrɔw",
     "eduBookings": "Kalan-taamaw",
     "childcareBookings": "Denmisɛn kɔlɔsili",
+    "breakdownReports": "Mɔbili tiɲɛni lasɔmiw",
     "orders": "N ka minɛnw",
     "trips": "N ka taamaw",
     "notifications": "Kunnafoniw",
@@ -804,6 +806,50 @@
       "aire_jeux": "Tulon-yɔrɔ",
       "garde_enfants": "Denmisɛn kɔlɔsili",
       "point_eau": "Ji sɔrɔ yɔrɔ"
+    },
+    "filters": {
+      "all": "Bɛɛ"
+    }
+  },
+  "roads": {
+    "title": "Sira ni mɔbili baaraw",
+    "subtitle": "Esansi-yɔrɔw, garasiw, mekanisiyɛnw, dɛmɛni ni sanginni i gɛrɛfɛ.",
+    "searchPlaceholder": "Baara dɔ ɲini...",
+    "empty": "Baara si ma sɔrɔ",
+    "detailNotFound": "Baara ma sɔrɔ",
+    "open24h": "A dayɛlɛlen lɛrɛ 24 kɔnɔ",
+    "nearMe": "N gɛrɛfɛ",
+    "locating": "Yɔrɔ ɲinini...",
+    "reportBreakdown": "Mɔbili tiɲɛni lasɔmi",
+    "reportBreakdownRequiresAuth": "I ka don walasa ka mɔbili tiɲɛni lasɔmi",
+    "reportBreakdownTitle": "Mɔbili tiɲɛni lasɔmi",
+    "reportBreakdownHint": "I ka yɔrɔ bɛna kɛ walasa ka i bila baara min bɛ i gɛrɛfɛ.",
+    "locationFound": "Yɔrɔ sɔrɔla",
+    "locationDenied": "Yɔrɔ banna",
+    "locationUnknown": "Yɔrɔ ma dɔn",
+    "retryLocation": "A ɲini tugun",
+    "breakdownDescriptionPlaceholder": "Tiɲɛni ɲɛfɔ (wajibi tɛ)",
+    "submitBreakdown": "Lasɔmi ci",
+    "reportBreakdownSuccessText": "I ka mɔbili tiɲɛni lasɔmi cira.",
+    "myBreakdowns": "N ka tiɲɛni lasɔmiw",
+    "myBreakdownsEmpty": "I ma tiɲɛni si lasɔmi",
+    "breakdownStatus": {
+      "open": "A bɛ makɔnɔ",
+      "assigned": "A dilen bɛ",
+      "resolved": "A ɲɛnabɔra",
+      "cancelled": "A dabilara"
+    },
+    "types": {
+      "station_service": "Esansi-yɔrɔ",
+      "garage": "Garasi",
+      "mecanicien": "Mekanisiyɛn",
+      "vulcanisateur": "Pinu dilanbaga",
+      "depannage": "Dɛmɛni",
+      "remorquage": "Sanginni",
+      "lavage_auto": "Mɔbili kolonbaga",
+      "pieces_auto": "Mɔbili minɛnw",
+      "parking": "Mɔbili dogoyɔrɔ",
+      "borne_recharge": "Kuran fasoyɔrɔ"
     },
     "filters": {
       "all": "Bɛɛ"

@@ -159,6 +159,9 @@ export function AppLayout() {
           <NavLink to="/family" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
             {t('nav.family')}
           </NavLink>
+          <NavLink to="/roads" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            {t('nav.roads')}
+          </NavLink>
           <NavLink to="/health" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
             {t('nav.health')}
           </NavLink>

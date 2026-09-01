@@ -19,6 +19,7 @@ import {
   Handshake,
   GraduationCap,
   Users2,
+  Wrench,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -39,6 +40,7 @@ const DISCOVER_LINKS = [
 const PRACTICAL_LINKS = [
   { to: '/edu', key: 'edu', Icon: GraduationCap },
   { to: '/family', key: 'family', Icon: Users2 },
+  { to: '/roads', key: 'roads', Icon: Wrench },
   { to: '/health', key: 'health', Icon: Stethoscope },
   { to: '/emergency', key: 'emergency', Icon: ShieldAlert },
   { to: '/finance', key: 'finance', Icon: Landmark },

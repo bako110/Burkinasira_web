@@ -16,6 +16,7 @@ import {
   AlertTriangle,
   GraduationCap,
   Users2,
+  Wrench,
 } from 'lucide-react';
 
 import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
@@ -33,6 +34,7 @@ const HUB_LINKS = [
   { to: '/bookings', key: 'bookings', Icon: Ticket },
   { to: '/edu/bookings/me', key: 'eduBookings', Icon: GraduationCap },
   { to: '/family/childcare-bookings/me', key: 'childcareBookings', Icon: Users2 },
+  { to: '/roads/breakdowns/me', key: 'breakdownReports', Icon: Wrench },
   { to: '/market/orders', key: 'orders', Icon: ShoppingBag },
   { to: '/trips', key: 'trips', Icon: Map },
   { to: '/messages', key: 'messages', Icon: MessageCircle },

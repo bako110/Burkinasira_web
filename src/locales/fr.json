@@ -47,6 +47,7 @@
     "practical": "Pratique",
     "edu": "Tourisme éducatif",
     "family": "Famille et enfants",
+    "roads": "Services routiers",
     "health": "Santé",
     "emergency": "Urgences et sécurité",
     "finance": "Argent et banques",
@@ -55,6 +56,7 @@
     "bookings": "Réservations",
     "eduBookings": "Sorties éducatives",
     "childcareBookings": "Garde d'enfants",
+    "breakdownReports": "Signalements de panne",
     "orders": "Mes commandes",
     "trips": "Mes voyages",
     "notifications": "Notifications",
@@ -804,6 +806,50 @@
       "aire_jeux": "Aire de jeux",
       "garde_enfants": "Garde d'enfants",
       "point_eau": "Point d'eau"
+    },
+    "filters": {
+      "all": "Tous"
+    }
+  },
+  "roads": {
+    "title": "Services automobiles et routiers",
+    "subtitle": "Stations-service, garages, mécaniciens, dépannage et remorquage près de vous.",
+    "searchPlaceholder": "Rechercher un service...",
+    "empty": "Aucun service trouvé",
+    "detailNotFound": "Service introuvable",
+    "open24h": "Ouvert 24h/24",
+    "nearMe": "Près de moi",
+    "locating": "Localisation...",
+    "reportBreakdown": "Signaler une panne",
+    "reportBreakdownRequiresAuth": "Connectez-vous pour signaler une panne",
+    "reportBreakdownTitle": "Signaler une panne",
+    "reportBreakdownHint": "Votre position sera utilisée pour vous orienter vers le service le plus proche.",
+    "locationFound": "Position trouvée",
+    "locationDenied": "Localisation refusée",
+    "locationUnknown": "Position inconnue",
+    "retryLocation": "Réessayer",
+    "breakdownDescriptionPlaceholder": "Décrivez la panne (optionnel)",
+    "submitBreakdown": "Envoyer le signalement",
+    "reportBreakdownSuccessText": "Votre signalement de panne a été envoyé.",
+    "myBreakdowns": "Mes signalements de panne",
+    "myBreakdownsEmpty": "Vous n'avez signalé aucune panne",
+    "breakdownStatus": {
+      "open": "En attente",
+      "assigned": "Assignée",
+      "resolved": "Résolue",
+      "cancelled": "Annulée"
+    },
+    "types": {
+      "station_service": "Station-service",
+      "garage": "Garage",
+      "mecanicien": "Mécanicien",
+      "vulcanisateur": "Vulcanisateur",
+      "depannage": "Dépannage",
+      "remorquage": "Remorquage",
+      "lavage_auto": "Lavage auto",
+      "pieces_auto": "Pièces auto",
+      "parking": "Parking",
+      "borne_recharge": "Borne de recharge"
     },
     "filters": {
       "all": "Tous"

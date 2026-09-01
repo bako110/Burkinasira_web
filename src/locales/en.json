@@ -47,6 +47,7 @@
     "practical": "Practical",
     "edu": "Educational tourism",
     "family": "Family & children",
+    "roads": "Road services",
     "health": "Health",
     "emergency": "Emergency & safety",
     "finance": "Money & banking",
@@ -55,6 +56,7 @@
     "bookings": "Bookings",
     "eduBookings": "Educational outings",
     "childcareBookings": "Childcare",
+    "breakdownReports": "Breakdown reports",
     "orders": "My orders",
     "trips": "My trips",
     "notifications": "Notifications",
@@ -804,6 +806,50 @@
       "aire_jeux": "Playground",
       "garde_enfants": "Childcare",
       "point_eau": "Water point"
+    },
+    "filters": {
+      "all": "All"
+    }
+  },
+  "roads": {
+    "title": "Road & automotive services",
+    "subtitle": "Gas stations, garages, mechanics, breakdown and towing services near you.",
+    "searchPlaceholder": "Search a service...",
+    "empty": "No services found",
+    "detailNotFound": "Service not found",
+    "open24h": "Open 24/7",
+    "nearMe": "Near me",
+    "locating": "Locating...",
+    "reportBreakdown": "Report a breakdown",
+    "reportBreakdownRequiresAuth": "Log in to report a breakdown",
+    "reportBreakdownTitle": "Report a breakdown",
+    "reportBreakdownHint": "Your location will be used to direct you to the nearest service.",
+    "locationFound": "Location found",
+    "locationDenied": "Location denied",
+    "locationUnknown": "Unknown location",
+    "retryLocation": "Retry",
+    "breakdownDescriptionPlaceholder": "Describe the breakdown (optional)",
+    "submitBreakdown": "Send report",
+    "reportBreakdownSuccessText": "Your breakdown report has been sent.",
+    "myBreakdowns": "My breakdown reports",
+    "myBreakdownsEmpty": "You haven't reported any breakdown",
+    "breakdownStatus": {
+      "open": "Pending",
+      "assigned": "Assigned",
+      "resolved": "Resolved",
+      "cancelled": "Cancelled"
+    },
+    "types": {
+      "station_service": "Gas station",
+      "garage": "Garage",
+      "mecanicien": "Mechanic",
+      "vulcanisateur": "Tire repair",
+      "depannage": "Roadside assistance",
+      "remorquage": "Towing",
+      "lavage_auto": "Car wash",
+      "pieces_auto": "Auto parts",
+      "parking": "Parking",
+      "borne_recharge": "Charging station"
     },
     "filters": {
       "all": "All"

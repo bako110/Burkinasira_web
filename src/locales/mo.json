@@ -47,6 +47,7 @@
     "practical": "Sõngo",
     "edu": "Zãmsg-sore-yalse",
     "family": "Zaka la kamba",
+    "roads": "Sore-tʋʋmse",
     "health": "Laafi",
     "emergency": "Yell-kãse la lɛɛgengo",
     "finance": "Ligd la bãnk",
@@ -55,6 +56,7 @@
     "bookings": "Reereems",
     "eduBookings": "Zãmsg-sore-yalse",
     "childcareBookings": "Kamb gũusg",
+    "breakdownReports": "Loees wilgre",
     "orders": "Mam kʋmandẽ wã",
     "trips": "Mam sore-yalse",
     "notifications": "Kibare",
@@ -804,6 +806,50 @@
       "aire_jeux": "Kamb pʋgẽ",
       "garde_enfants": "Kamb gũusgo",
       "point_eau": "Koom zĩig"
+    },
+    "filters": {
+      "all": "Fãa"
+    }
+  },
+  "roads": {
+    "title": "Loees la sor-tʋʋmse",
+    "subtitle": "Esaans-zĩise, garaze, mekanisɛ, loees paboor la remorkaze sẽn be foom nengẽ.",
+    "searchPlaceholder": "Bao-y tʋʋmd a yembr...",
+    "empty": "Tʋʋmd baa a yembr ka mik ye",
+    "detailNotFound": "Tʋʋmd ka mik ye",
+    "open24h": "Pak wakat fãa",
+    "nearMe": "Sẽn be mam nengẽ",
+    "locating": "Bãng-y zĩigẽ...",
+    "reportBreakdown": "Wilg-y loees",
+    "reportBreakdownRequiresAuth": "Kẽ-y loees wilgrã yĩnga",
+    "reportBreakdownTitle": "Wilg-y loees",
+    "reportBreakdownHint": "Y zĩig na n dõm-a tɩ f paam tʋʋmd sẽn be foom nengẽ.",
+    "locationFound": "Zĩig mikame",
+    "locationDenied": "Zĩig bãngr zãgsame",
+    "locationUnknown": "Zĩig ka bãngr ye",
+    "retryLocation": "Le maan-y ye",
+    "breakdownDescriptionPlaceholder": "Wilg-y loeesã (yaa ka tɩlae ye)",
+    "submitBreakdown": "Tʋm-y wilgrã",
+    "reportBreakdownSuccessText": "Y loees wilgr tʋmame.",
+    "myBreakdowns": "Mam loees wilgse",
+    "myBreakdownsEmpty": "Y nan pʋd loees baa a yembr wilg ye",
+    "breakdownStatus": {
+      "open": "Gũusame",
+      "assigned": "Bilgame",
+      "resolved": "Yikame",
+      "cancelled": "Basame"
+    },
+    "types": {
+      "station_service": "Esaans-zĩig",
+      "garage": "Garaze",
+      "mecanicien": "Mekanisɛ",
+      "vulcanisateur": "Pinu-vʋʋsg soab",
+      "depannage": "Loees paboor",
+      "remorquage": "Remorkaze",
+      "lavage_auto": "Loaad pekre",
+      "pieces_auto": "Loaad kʋʋns",
+      "parking": "Parking",
+      "borne_recharge": "Kãsem pʋʋsg zĩig"
     },
     "filters": {
       "all": "Fãa"

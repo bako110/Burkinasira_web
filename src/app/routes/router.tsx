@@ -24,6 +24,9 @@ import { MyEduBookingsPage } from '../../features/edu/pages/MyEduBookingsPage';
 import { FamilyServicesPage } from '../../features/family/pages/FamilyServicesPage';
 import { FamilyServiceDetailPage } from '../../features/family/pages/FamilyServiceDetailPage';
 import { MyChildcareBookingsPage } from '../../features/family/pages/MyChildcareBookingsPage';
+import { RoadServicesPage } from '../../features/roads/pages/RoadServicesPage';
+import { RoadServiceDetailPage } from '../../features/roads/pages/RoadServiceDetailPage';
+import { MyBreakdownsPage } from '../../features/roads/pages/MyBreakdownsPage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -103,6 +106,8 @@ export const router = createBrowserRouter([
           { path: '/edu/:id', element: <EduOutingDetailPage /> },
           { path: '/family', element: <FamilyServicesPage /> },
           { path: '/family/:id', element: <FamilyServiceDetailPage /> },
+          { path: '/roads', element: <RoadServicesPage /> },
+          { path: '/roads/:id', element: <RoadServiceDetailPage /> },
           { path: '/events', element: <EventsPage /> },
           { path: '/events/:id', element: <EventDetailPage /> },
           { path: '/health', element: <HealthPage /> },
@@ -129,6 +134,7 @@ export const router = createBrowserRouter([
               { path: '/bookings', element: <MyBookingsPage /> },
               { path: '/edu/bookings/me', element: <MyEduBookingsPage /> },
               { path: '/family/childcare-bookings/me', element: <MyChildcareBookingsPage /> },
+              { path: '/roads/breakdowns/me', element: <MyBreakdownsPage /> },
               { path: '/market/orders', element: <MyOrdersPage /> },
               { path: '/trips', element: <MyTripsPage /> },
               { path: '/trips/:tripId', element: <TripDetailPage /> },
