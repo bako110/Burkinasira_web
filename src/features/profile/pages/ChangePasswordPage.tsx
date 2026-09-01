@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Card, Input, Button, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { useAuthStore } from '../../../store/auth.store';
 import { useChangePassword } from '../hooks/useChangePassword';
 import styles from './ProfileSubPage.module.css';
 
 export function ChangePasswordPage() {
   const { t } = useTranslation();
+  const user = useAuthStore((s) => s.user);
   const { mutate: changePassword, isPending, isSuccess, error, reset } = useChangePassword();
 
   const [currentPassword, setCurrentPassword] = useState('');
@@ -35,6 +37,14 @@ export function ChangePasswordPage() {
 
       <Card className={styles.section}>
         <form onSubmit={handleSubmit} className={styles.form}>
+          <input
+            type="text"
+            name="username"
+            autoComplete="username"
+            value={user?.email ?? ''}
+            readOnly
+            hidden
+          />
           <Input
             label={t('profile.currentPassword')}
             name="profile-current-password"
