@@ -39,6 +39,7 @@
     "restaurants": "Dumuni",
     "mobility": "Taama",
     "guides": "Ɲɛminɛbagaw",
+    "experiences": "Kɔrɔbɔliw",
     "events": "Waati-kunw",
     "culture": "Laada ni ninanko",
     "market": "Baaraw ni feereyɔrɔ",
@@ -700,6 +701,36 @@
       "promotion_personnalisee": "I yɛrɛ ye fɛɛrɛ",
       "message_prestataire": "Baarakɛla bataki",
       "rappel_voyage": "Taama hakili jigin"
+    }
+  },
+  "experiences": {
+    "title": "Kɔrɔbɔliw min bɛ sɛbɛn",
+    "subtitle": "I bɛ sigidacogow kunbɛn, baara dɔ dɔn, ka waati sɛbɛn di ni Burkina Faso ye.",
+    "searchPlaceholder": "Kɔrɔbɔli dɔ ɲini...",
+    "empty": "Kɔrɔbɔli si ma sɔrɔ",
+    "detailNotFound": "Kɔrɔbɔli ma sɔrɔ",
+    "hostedBy": "{{name}} ye min bila",
+    "priceOnRequest": "Sɔngɔ ɲininkali kɔfɛ",
+    "details": "Kunnafoni jɛlenw",
+    "duration": "Waati: lɛri {{hours}}",
+    "maxParticipants": "Mɔgɔ {{count}} dama",
+    "revenueShareTitle": "I ka wari bɛ taa min?",
+    "revenueHost": "{{percent}}% jatigi ye",
+    "revenueCommunity": "{{percent}}% sigida jamaa ye",
+    "types": {
+      "rencontre_habitant": "Sigidacogo dɔ kunbɛn",
+      "visite_village": "Dugu bɔli",
+      "decouverte_metier": "Baara dɔ dɔnni",
+      "atelier_artisanat": "Bolo-baara kalan",
+      "atelier_culinaire": "Tobili kalan",
+      "agritourisme": "Sɛnɛ-tunbɛnbaya",
+      "balade_guidee": "Taama min bɛ ɲɛminɛ",
+      "hebergement_habitant": "Sigi jatigila fɛ",
+      "rencontre_artiste": "Dɔnkilidala dɔ kunbɛn",
+      "autre": "Kɔrɔbɔli wɛrɛ"
+    },
+    "filters": {
+      "all": "Bɛɛ"
     }
   },
   "dataQuality": {

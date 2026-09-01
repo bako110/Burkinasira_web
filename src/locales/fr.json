@@ -39,6 +39,7 @@
     "restaurants": "Restauration",
     "mobility": "Transport",
     "guides": "Guides",
+    "experiences": "Expériences",
     "events": "Événements",
     "culture": "Culture et patrimoine",
     "market": "Artisanat et marché",
@@ -700,6 +701,36 @@
       "promotion_personnalisee": "Promotion personnalisée",
       "message_prestataire": "Message d'un prestataire",
       "rappel_voyage": "Rappel de voyage"
+    }
+  },
+  "experiences": {
+    "title": "Expériences authentiques",
+    "subtitle": "Rencontrez des habitants, découvrez un métier, partagez un moment vrai avec le Burkina Faso.",
+    "searchPlaceholder": "Rechercher une expérience...",
+    "empty": "Aucune expérience trouvée",
+    "detailNotFound": "Expérience introuvable",
+    "hostedBy": "Proposé par {{name}}",
+    "priceOnRequest": "Prix sur demande",
+    "details": "Détails pratiques",
+    "duration": "Durée : {{hours}}h",
+    "maxParticipants": "{{count}} participants maximum",
+    "revenueShareTitle": "Où va votre argent ?",
+    "revenueHost": "{{percent}}% pour l'hôte",
+    "revenueCommunity": "{{percent}}% pour la communauté locale",
+    "types": {
+      "rencontre_habitant": "Rencontre avec un habitant",
+      "visite_village": "Visite de village",
+      "decouverte_metier": "Découverte d'un métier",
+      "atelier_artisanat": "Atelier d'artisanat",
+      "atelier_culinaire": "Atelier culinaire",
+      "agritourisme": "Agritourisme",
+      "balade_guidee": "Balade guidée",
+      "hebergement_habitant": "Hébergement chez l'habitant",
+      "rencontre_artiste": "Rencontre avec un artiste",
+      "autre": "Autre expérience"
+    },
+    "filters": {
+      "all": "Toutes"
     }
   },
   "dataQuality": {

@@ -16,6 +16,7 @@ import {
   ShoppingBasket,
   CloudSun,
   Users,
+  Handshake,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -26,6 +27,7 @@ const DISCOVER_LINKS = [
   { to: '/restaurants', key: 'restaurants', Icon: UtensilsCrossed },
   { to: '/mobility', key: 'mobility', Icon: Bus },
   { to: '/guides', key: 'guides', Icon: Compass },
+  { to: '/experiences', key: 'experiences', Icon: Handshake },
   { to: '/events', key: 'events', Icon: PartyPopper },
   { to: '/culture', key: 'culture', Icon: ScrollText },
   { to: '/market', key: 'market', Icon: ShoppingBasket },

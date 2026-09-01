@@ -16,6 +16,8 @@ import { MobilityPage } from '../../features/mobility/pages/MobilityPage';
 import { TransportDetailPage } from '../../features/mobility/pages/TransportDetailPage';
 import { GuidesPage } from '../../features/guides/pages/GuidesPage';
 import { GuideDetailPage } from '../../features/guides/pages/GuideDetailPage';
+import { ExperiencesPage } from '../../features/experiences/pages/ExperiencesPage';
+import { ExperienceDetailPage } from '../../features/experiences/pages/ExperienceDetailPage';
 import { EventsPage } from '../../features/events/pages/EventsPage';
 import { EventDetailPage } from '../../features/events/pages/EventDetailPage';
 import { HealthPage } from '../../features/health/pages/HealthPage';
@@ -89,6 +91,8 @@ export const router = createBrowserRouter([
           { path: '/mobility/:id', element: <TransportDetailPage /> },
           { path: '/guides', element: <GuidesPage /> },
           { path: '/guides/:id', element: <GuideDetailPage /> },
+          { path: '/experiences', element: <ExperiencesPage /> },
+          { path: '/experiences/:id', element: <ExperienceDetailPage /> },
           { path: '/events', element: <EventsPage /> },
           { path: '/events/:id', element: <EventDetailPage /> },
           { path: '/health', element: <HealthPage /> },

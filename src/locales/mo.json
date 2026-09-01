@@ -39,6 +39,7 @@
     "restaurants": "Rɩɩb",
     "mobility": "Sore",
     "guides": "Sor-tʋmdb",
+    "experiences": "Zãmsg-tigsa",
     "events": "Kibs",
     "culture": "Rog-n-mikde",
     "market": "Tʋʋmd la rat-zĩig",
@@ -700,6 +701,36 @@
       "promotion_personnalisee": "Koodo sẽn maan-a foom yĩnga",
       "message_prestataire": "Tʋm-tʋmd koees",
       "rappel_voyage": "Sore-yalg tẽesgo"
+    }
+  },
+  "experiences": {
+    "title": "Yɛl-sõma sẽn yaa sɩda",
+    "subtitle": "Segl-y nebãmba, bãng-y tʋʋmd a yembr, paas-y wakat sɩda ne Burkina Faso.",
+    "searchPlaceholder": "Bao-y yɛlg a yembr...",
+    "empty": "Yɛlg baa a yembr ka mik ye",
+    "detailNotFound": "Yɛlg ka mik ye",
+    "hostedBy": "A {{name}} n kõt-a",
+    "priceOnRequest": "Ligd sã n sok-a",
+    "details": "Tigsg-vẽkr",
+    "duration": "Wakat: {{hours}}h",
+    "maxParticipants": "Neb {{count}} bal n tõe n bee",
+    "revenueShareTitle": "Y ligd sã n kẽnd yɛ?",
+    "revenueHost": "{{percent}}% yaa kãabg soab yĩnga",
+    "revenueCommunity": "{{percent}}% yaa tẽngã neba yĩnga",
+    "types": {
+      "rencontre_habitant": "Segl ne nebãmb a yembr",
+      "visite_village": "Tẽng-vẽogr",
+      "decouverte_metier": "Tʋʋmd bãngr",
+      "atelier_artisanat": "Nug-tʋʋmd zãmsg",
+      "atelier_culinaire": "Rɩɩb-maanego zãmsg",
+      "agritourisme": "Pʋʋg-tʋʋmd sɛgesgo",
+      "balade_guidee": "Kẽndg sẽn tar sor-tʋmd",
+      "hebergement_habitant": "Zĩ-gũusg nebãmb nengẽ",
+      "rencontre_artiste": "Segl ne nug-tʋm-mit a yembr",
+      "autre": "Yɛlg a to"
+    },
+    "filters": {
+      "all": "Fãa"
     }
   },
   "dataQuality": {

@@ -39,6 +39,7 @@
     "restaurants": "Food",
     "mobility": "Transport",
     "guides": "Guides",
+    "experiences": "Experiences",
     "events": "Events",
     "culture": "Culture & heritage",
     "market": "Crafts & market",
@@ -700,6 +701,36 @@
       "promotion_personnalisee": "Personalized promotion",
       "message_prestataire": "Message from a provider",
       "rappel_voyage": "Trip reminder"
+    }
+  },
+  "experiences": {
+    "title": "Authentic experiences",
+    "subtitle": "Meet locals, discover a craft, share a real moment with Burkina Faso.",
+    "searchPlaceholder": "Search an experience...",
+    "empty": "No experiences found",
+    "detailNotFound": "Experience not found",
+    "hostedBy": "Hosted by {{name}}",
+    "priceOnRequest": "Price on request",
+    "details": "Practical details",
+    "duration": "Duration: {{hours}}h",
+    "maxParticipants": "{{count}} participants max",
+    "revenueShareTitle": "Where does your money go?",
+    "revenueHost": "{{percent}}% for the host",
+    "revenueCommunity": "{{percent}}% for the local community",
+    "types": {
+      "rencontre_habitant": "Meet a local",
+      "visite_village": "Village visit",
+      "decouverte_metier": "Discover a craft",
+      "atelier_artisanat": "Craft workshop",
+      "atelier_culinaire": "Cooking workshop",
+      "agritourisme": "Agritourism",
+      "balade_guidee": "Guided walk",
+      "hebergement_habitant": "Homestay",
+      "rencontre_artiste": "Meet an artist",
+      "autre": "Other experience"
+    },
+    "filters": {
+      "all": "All"
     }
   },
   "dataQuality": {
