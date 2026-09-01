@@ -702,6 +702,12 @@
       "rappel_voyage": "Sore-yalg tẽesgo"
     }
   },
+  "assistant": {
+    "title": "FasoViva Sõngda",
+    "welcome": "Ne y sõma! Sok-y mam sogsg y sore zugu Burkina Faso: zaka, sore, rog-n-mikde, laafi...",
+    "placeholder": "Sok-y y sogsg...",
+    "error": "Sõngda wã ka be sɛka ye"
+  },
   "messaging": {
     "title": "Kʋʋg-goam",
     "placeholder": "Gʋls koees...",

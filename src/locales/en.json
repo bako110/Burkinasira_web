@@ -702,6 +702,12 @@
       "rappel_voyage": "Trip reminder"
     }
   },
+  "assistant": {
+    "title": "FasoViva Assistant",
+    "welcome": "Hi! Ask me anything about your trip to Burkina Faso: places to stay, transport, culture, safety...",
+    "placeholder": "Ask a question...",
+    "error": "The assistant is currently unavailable"
+  },
   "messaging": {
     "title": "Messages",
     "placeholder": "Write a message...",

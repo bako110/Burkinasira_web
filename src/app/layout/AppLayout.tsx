@@ -13,6 +13,7 @@ import { DiscoverMenu } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
 import { CartButton } from '../../features/market/components/CartButton';
+import { AssistantWidget } from '../../features/assistant/components/AssistantWidget';
 import styles from './AppLayout.module.css';
 
 export function AppLayout() {
@@ -226,6 +227,8 @@ export function AppLayout() {
       </main>
 
       <MobileTabBar />
+
+      {isAuthenticated && <AssistantWidget />}
 
       <ConfirmDialog
         open={confirmOpen}

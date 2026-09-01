@@ -702,6 +702,12 @@
       "rappel_voyage": "Rappel de voyage"
     }
   },
+  "assistant": {
+    "title": "Assistant FasoViva",
+    "welcome": "Bonjour ! Posez-moi une question sur votre séjour au Burkina Faso : hébergements, transport, culture, sécurité...",
+    "placeholder": "Posez votre question...",
+    "error": "L'assistant n'est pas disponible pour le moment"
+  },
   "messaging": {
     "title": "Messages",
     "placeholder": "Écrire un message...",
