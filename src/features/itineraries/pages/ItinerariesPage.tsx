@@ -4,6 +4,7 @@ import { Clock, MapPin, Users, Gauge, ArrowRight } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui';
 import { ITINERARIES } from '../itineraries.data';
+import { ItineraryCover } from '../components/ItineraryCover';
 import { formatXof } from '../../planner/budget';
 import styles from './ItinerariesPage.module.css';
 
@@ -25,11 +26,8 @@ export function ItinerariesPage() {
         {ITINERARIES.map((it, i) => (
           <Reveal key={it.slug} delay={Math.min(i, 6) * 70}>
             <Link to={`/itineraries/${it.slug}`} className={styles.card}>
-              <div
-                className={styles.cardCover}
-                style={{ backgroundImage: `url(${it.cover})` }}
-                aria-hidden="true"
-              >
+              <div className={styles.cardCover}>
+                <ItineraryCover theme={it.coverTheme} />
                 <span className={styles.cardDuration}>
                   <Clock size={13} strokeWidth={2} />
                   {t('itineraries.days', { count: it.durationDays })}

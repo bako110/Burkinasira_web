@@ -95,9 +95,16 @@
 .cardCover {
   position: relative;
   aspect-ratio: 16 / 10;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   background-color: var(--color-bg-inset);
+}
+
+.cardCover svg {
+  transition: transform var(--transition-base);
+}
+
+.card:hover .cardCover svg {
+  transform: scale(1.04);
 }
 
 .cardCover::after {

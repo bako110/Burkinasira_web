@@ -20,6 +20,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 
 import { getItineraryBySlug } from '../itineraries.data';
+import { ItineraryCover } from '../components/ItineraryCover';
 import { useCloneItinerary } from '../useCloneItinerary';
 import { formatXof, type ComfortLevel } from '../../planner/budget';
 import { TravelAdvice } from '../../planner/components/TravelAdvice';
@@ -67,10 +68,9 @@ export function ItineraryDetailPage() {
 
   return (
     <div className={styles.page}>
-      <section
-        className={styles.hero}
-        style={{ backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.15)), url(${itinerary.cover})` }}
-      >
+      <section className={styles.hero}>
+        <ItineraryCover theme={itinerary.coverTheme} className={styles.heroCover} />
+        <div className={styles.heroScrim} aria-hidden="true" />
         <DetailBackButton fallbackTo="/itineraries" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.kicker}>

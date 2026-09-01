@@ -9,6 +9,13 @@ import type { TripItemType } from '../trips/types';
 
 export type ItineraryPace = 'tranquille' | 'equilibre' | 'intense';
 
+/**
+ * Thème visuel de la couverture (illustration vectorielle maison, pas de photo
+ * distante) : chaque itinéraire a une silhouette et un dégradé qui lui sont
+ * propres, cohérents avec l'identité BurkinaSira plutôt que des photos stock.
+ */
+export type ItineraryCoverTheme = 'ouaga' | 'bobo' | 'sud-ouest' | 'nazinga';
+
 export interface ItineraryStop {
   /** Moment indicatif de la journée. */
   time?: string;
@@ -48,8 +55,8 @@ export interface Itinerary {
   bestSeason: string;
   /** Points forts mis en avant sur la carte et en tête de fiche. */
   highlights: string[];
-  /** Image de couverture (URL distante autorisée par la CSP de l'app native). */
-  cover: string;
+  /** Thème de la couverture illustrée (voir ItineraryCoverTheme). */
+  coverTheme: ItineraryCoverTheme;
   /** Fourchette de budget par personne selon le niveau de confort, en XOF. */
   budgetFrom: { eco: number; standard: number; confort: number };
   days: ItineraryDay[];

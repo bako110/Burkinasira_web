@@ -28,8 +28,7 @@ export const ITINERARIES: Itinerary[] = [
       'Grand marché Rood Woko et quartiers d’artisans',
       'Soirée musique vivante et cuisine burkinabè',
     ],
-    cover:
-      'https://images.unsplash.com/photo-1580746738099-77c22e2e2f8f?auto=format&fit=crop&w=1200&q=70',
+    coverTheme: 'ouaga',
     budgetFrom: { eco: 95000, standard: 190000, confort: 360000 },
     notIncluded: [
       'Vol international et visa',
@@ -188,8 +187,7 @@ export const ITINERARIES: Itinerary[] = [
       'Guimbi et la mémoire de la ville',
       'Excursion cascades de Karfiguéla et Dômes de Fabédougou',
     ],
-    cover:
-      'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=70',
+    coverTheme: 'bobo',
     budgetFrom: { eco: 130000, standard: 250000, confort: 470000 },
     notIncluded: [
       'Vol international et visa',
@@ -366,8 +364,7 @@ export const ITINERARIES: Itinerary[] = [
       'Pics de Sindou au lever ou au coucher du soleil',
       'Pays lobi : soukhala fortifiées et musée de Gaoua',
     ],
-    cover:
-      'https://images.unsplash.com/photo-1489493887464-892be6d1daae?auto=format&fit=crop&w=1200&q=70',
+    coverTheme: 'sud-ouest',
     budgetFrom: { eco: 180000, standard: 330000, confort: 590000 },
     notIncluded: [
       'Vol international et visa',
@@ -562,8 +559,7 @@ export const ITINERARIES: Itinerary[] = [
       'Safari au lever et au coucher du soleil',
       'Nuit en campement au cœur du ranch',
     ],
-    cover:
-      'https://images.unsplash.com/photo-1547970810-dc1eac37d174?auto=format&fit=crop&w=1200&q=70',
+    coverTheme: 'nazinga',
     budgetFrom: { eco: 70000, standard: 130000, confort: 240000 },
     notIncluded: [
       'Vol international et visa',
