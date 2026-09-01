@@ -33,6 +33,7 @@
   "nav": {
     "home": "Accueil",
     "explore": "Explorer",
+    "itineraries": "Itineraires",
     "discover": "Découvrir",
     "hotels": "Hébergements",
     "restaurants": "Restauration",
@@ -64,6 +65,10 @@
     "password": "Mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
     "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "passwordHint": "Au moins 8 caractères, une majuscule et un chiffre",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordNeedsUppercase": "Le mot de passe doit contenir au moins une majuscule",
+    "passwordNeedsNumber": "Le mot de passe doit contenir au moins un chiffre",
     "fullName": "Nom complet",
     "phone": "Téléphone",
     "loginCta": "Se connecter",
@@ -1245,5 +1250,108 @@
     "generatedOn": "Généré le {{date}}",
     "tripDates": "Dates",
     "zone": "Zone"
+  },
+  "advice": {
+    "title": "Bien preparer et vivre son sejour",
+    "subtitle": "De la preparation au retour : les reperes pour voyager serein au Burkina Faso.",
+    "disclaimer": "Informations generales fournies a titre indicatif. Verifiez toujours les sources officielles (ambassade du Burkina Faso, ministere des Affaires etrangeres de votre pays, OMS) avant le depart.",
+    "phases": {
+      "before": "Avant le depart",
+      "during": "Sur place",
+      "after": "Au retour"
+    },
+    "items": {
+      "visa": {
+        "title": "Visa & passeport",
+        "text": "Passeport valide au moins 6 mois apres la date de retour. Visa d'entree requis pour la plupart des nationalites : e-visa en ligne ou visa a l'ambassade. Gardez une copie numerique de vos documents."
+      },
+      "vaccines": {
+        "title": "Vaccins & sante preventive",
+        "text": "Vaccin contre la fievre jaune obligatoire (carnet international exige a l'arrivee). Antipaludeen fortement recommande : consultez un centre de vaccinations internationales 4 a 6 semaines avant le depart. Mettez a jour DTP, hepatites A et B, typhoide."
+      },
+      "season": {
+        "title": "Quand partir",
+        "text": "Saison seche de novembre a fevrier : temps le plus agreable, ideal pour la decouverte. Mars-mai : tres chaud (souvent plus de 40 C). Juin-octobre : saison des pluies, vegetation verte mais pistes parfois difficiles."
+      },
+      "money": {
+        "title": "Argent & paiements",
+        "text": "Monnaie : le franc CFA (XOF). Payez en especes presque partout ; la carte bancaire n'est acceptee que dans quelques hotels et a Ouagadougou. Retirez du liquide aux distributeurs des grandes villes et prevoyez de la petite monnaie."
+      },
+      "security": {
+        "title": "Securite & itineraire",
+        "text": "Consultez les conseils aux voyageurs de votre ministere avant de fixer votre itineraire ; certaines regions sont deconseillees. Privilegiez les deplacements de jour, un guide local et un hebergement identifie. Enregistrez-vous aupres de votre ambassade si possible."
+      },
+      "packing": {
+        "title": "Dans la valise",
+        "text": "Vetements legers et couvrants, chapeau, lunettes, creme solaire haute protection, repulsif anti-moustiques, trousse a pharmacie (antipaludeen, anti-diarrheique, rehydratation), lampe de poche, adaptateur (prises type C/E, 220 V), gourde filtrante."
+      },
+      "health": {
+        "title": "Rester en bonne sante",
+        "text": "Buvez uniquement de l'eau en bouteille capsulee ou filtree. Evitez glacons, crudites lavees a l'eau du robinet et aliments tiedes. Lavez-vous les mains souvent. Poursuivez le traitement antipaludeen selon la prescription, meme apres le retour."
+      },
+      "heat": {
+        "title": "Chaleur & soleil",
+        "text": "Hydratez-vous en continu, salez un peu vos repas, faites une pause aux heures les plus chaudes (12 h - 15 h). Chapeau et creme solaire systematiques. Surveillez les signes de coup de chaleur (maux de tete, nausees, confusion)."
+      },
+      "customs": {
+        "title": "Us & coutumes",
+        "text": "L'accueil burkinabe (la teranga) est chaleureux : prenez le temps de saluer, c'est essentiel. Tenue correcte, surtout pres des lieux de culte. Utilisez la main droite pour donner ou recevoir. Demandez toujours avant de photographier une personne."
+      },
+      "bargaining": {
+        "title": "Marchander sans stress",
+        "text": "Le marchandage est d'usage sur les marches et pour les taxis, jamais dans les boutiques a prix fixe. Restez souriant, annoncez un prix, trouvez un terrain d'entente. Convenez du tarif du taxi avant de monter."
+      },
+      "connectivity": {
+        "title": "Telephone & internet",
+        "text": "Achetez une carte SIM locale (Orange, Moov) avec votre passeport, des l'aeroport ou en boutique : data bon marche et bonne couverture en ville. Le wifi des hotels reste lent. Telechargez vos cartes hors ligne."
+      },
+      "language": {
+        "title": "Langue",
+        "text": "Le francais est la langue officielle et largement compris en ville. Quelques mots de moore (ne y windga : bonjour) ou de dioula sont toujours apprecies et ouvrent les portes."
+      },
+      "photos": {
+        "title": "Photos & respect",
+        "text": "Ne photographiez pas les batiments officiels, militaires ou l'aeroport. Demandez l'autorisation pour les personnes ; un petit geste de remerciement est bienvenu. Certains sites sacres interdisent la photo."
+      },
+      "emergency": {
+        "title": "Numeros utiles",
+        "text": "Police : 17 - Pompiers / secours : 18 - SAMU : 112. Notez le numero de votre ambassade et de votre assurance rapatriement. Gardez-les hors ligne et sur papier."
+      },
+      "healthWatch": {
+        "title": "Surveillance au retour",
+        "text": "En cas de fievre dans les 3 mois qui suivent le retour, consultez rapidement et signalez votre voyage au Burkina Faso : le paludisme peut se declarer tardivement."
+      },
+      "feedback": {
+        "title": "Partagez votre experience",
+        "text": "Laissez un avis sur les hebergements, guides et restaurants : vous aidez les prochains voyageurs et les prestataires locaux a progresser."
+      }
+    }
+  },
+  "itineraries": {
+    "kicker": "Itineraires signature",
+    "title": "Voyages cle en main",
+    "subtitle": "Des parcours composes par la redaction FasoViva : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
+    "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de depart : ajustez tout dans le planificateur apres avoir clone l'itineraire.",
+    "days_one": "{{count}} jour",
+    "days_other": "{{count}} jours",
+    "fromPerPerson": "A partir de {{amount}} / personne",
+    "discover": "Decouvrir",
+    "forWho": "Pour qui",
+    "bestSeason": "Meilleure periode",
+    "highlightsTitle": "Ce que vous allez vivre",
+    "programmeTitle": "Le programme jour par jour",
+    "notIncludedTitle": "Ce qui n'est pas compris",
+    "budgetTitle": "Budget indicatif",
+    "budgetHint": "Hebergement, repas, transport local, guides et entrees. Hors vol international et visa.",
+    "cloneCta": "Cloner ce voyage",
+    "cloneNote": "Cree un voyage dans « Mes voyages » avec toutes les etapes. Vous pourrez tout modifier ensuite.",
+    "cloneRequiresAuth": "Connectez-vous pour cloner cet itineraire.",
+    "cloned": "Itineraire clone dans vos voyages",
+    "notFound": "Itineraire introuvable",
+    "pace": {
+      "tranquille": "Rythme tranquille",
+      "equilibre": "Rythme equilibre",
+      "intense": "Rythme soutenu"
+    }
   }
 }

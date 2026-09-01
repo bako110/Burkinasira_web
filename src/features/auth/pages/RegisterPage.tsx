@@ -12,9 +12,16 @@ import { StepIndicator } from '../components/StepIndicator';
 import { SocialAuthButtons } from '../components/SocialAuthButtons';
 import type { SignupRole } from '../types';
 import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
+import { getPasswordIssues, type PasswordIssue } from '../utils/passwordStrength';
 import styles from './AuthPage.module.css';
 
 const TOTAL_STEPS = 4;
+
+const PASSWORD_ISSUE_KEYS: Record<PasswordIssue, string> = {
+  tooShort: 'auth.passwordTooShort',
+  needsUppercase: 'auth.passwordNeedsUppercase',
+  needsNumber: 'auth.passwordNeedsNumber',
+};
 
 const ROLE_OPTIONS: { value: SignupRole; labelKey: string; descKey: string }[] = [
   { value: 'tourist', labelKey: 'auth.roleTourist', descKey: 'auth.roleTouristDesc' },
@@ -44,8 +51,14 @@ export function RegisterPage() {
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
 
+  const passwordIssues = getPasswordIssues(password);
+
   function handlePasswordStepSubmit(e: FormEvent) {
     e.preventDefault();
+    if (passwordIssues.length > 0) {
+      setPasswordError(true);
+      return;
+    }
     if (password !== confirmPassword) {
       setPasswordError(true);
       return;
@@ -141,6 +154,7 @@ export function RegisterPage() {
                 setPasswordError(false);
               }}
             />
+            <p className={styles.hint}>{t('auth.passwordHint')}</p>
             <Input
               label={t('auth.confirmPassword')}
               type="password"
@@ -154,7 +168,11 @@ export function RegisterPage() {
                 setPasswordError(false);
               }}
             />
-            {passwordError && <p className={styles.error}>{t('auth.passwordMismatch')}</p>}
+            {passwordError && (
+              <p className={styles.error}>
+                {passwordIssues.length > 0 ? t(PASSWORD_ISSUE_KEYS[passwordIssues[0]]) : t('auth.passwordMismatch')}
+              </p>
+            )}
             <div className={styles.stepActions}>
               <button type="button" className={styles.backLink} onClick={goBack}>
                 <ArrowLeft size={15} strokeWidth={2} />

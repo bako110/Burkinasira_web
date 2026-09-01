@@ -5,7 +5,14 @@ import { Card, Input, Button, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
 import { useChangePassword } from '../hooks/useChangePassword';
+import { getPasswordIssues, type PasswordIssue } from '../../auth/utils/passwordStrength';
 import styles from './ProfileSubPage.module.css';
+
+const PASSWORD_ISSUE_KEYS: Record<PasswordIssue, string> = {
+  tooShort: 'auth.passwordTooShort',
+  needsUppercase: 'auth.passwordNeedsUppercase',
+  needsNumber: 'auth.passwordNeedsNumber',
+};
 
 export function ChangePasswordPage() {
   const { t } = useTranslation();
@@ -14,9 +21,17 @@ export function ChangePasswordPage() {
 
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [showStrengthError, setShowStrengthError] = useState(false);
+
+  const passwordIssues = getPasswordIssues(newPassword);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (passwordIssues.length > 0) {
+      setShowStrengthError(true);
+      return;
+    }
+    setShowStrengthError(false);
     changePassword(
       { current_password: currentPassword, new_password: newPassword },
       {
@@ -66,10 +81,15 @@ export function ChangePasswordPage() {
             value={newPassword}
             onChange={(e) => {
               setNewPassword(e.target.value);
+              setShowStrengthError(false);
               reset();
             }}
             required
           />
+          <p className={styles.hint}>{t('auth.passwordHint')}</p>
+          {showStrengthError && passwordIssues.length > 0 && (
+            <p className={styles.error}>{t(PASSWORD_ISSUE_KEYS[passwordIssues[0]])}</p>
+          )}
           {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
           {isSuccess && <p className={styles.success}>{t('profile.passwordSaved')}</p>}
           <Button type="submit" disabled={isPending}>

@@ -33,6 +33,7 @@
   "nav": {
     "home": "Home",
     "explore": "Explore",
+    "itineraries": "Itineraries",
     "discover": "Discover",
     "hotels": "Stays",
     "restaurants": "Food",
@@ -64,6 +65,10 @@
     "password": "Password",
     "confirmPassword": "Confirm password",
     "passwordMismatch": "Passwords do not match",
+    "passwordHint": "At least 8 characters, one uppercase letter and one number",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "passwordNeedsUppercase": "Password must contain at least one uppercase letter",
+    "passwordNeedsNumber": "Password must contain at least one number",
     "fullName": "Full name",
     "phone": "Phone",
     "loginCta": "Sign in",
@@ -1245,5 +1250,108 @@
     "generatedOn": "Generated on {{date}}",
     "tripDates": "Dates",
     "zone": "Area"
+  },
+  "advice": {
+    "title": "Prepare well, travel with peace of mind",
+    "subtitle": "From planning to your return: the key markers for a smooth trip to Burkina Faso.",
+    "disclaimer": "General information for guidance only. Always check official sources (Burkina Faso embassy, your country foreign ministry, WHO) before departure.",
+    "phases": {
+      "before": "Before you go",
+      "during": "On site",
+      "after": "After you return"
+    },
+    "items": {
+      "visa": {
+        "title": "Visa & passport",
+        "text": "Passport valid at least 6 months beyond your return date. Entry visa required for most nationalities: online e-visa or embassy visa. Keep a digital copy of your documents."
+      },
+      "vaccines": {
+        "title": "Vaccines & preventive health",
+        "text": "Yellow fever vaccination is mandatory (international certificate checked on arrival). Antimalarial strongly recommended: see a travel clinic 4-6 weeks before departure. Update DTP, hepatitis A/B, typhoid."
+      },
+      "season": {
+        "title": "When to go",
+        "text": "Dry season November-February: the most pleasant weather, ideal for sightseeing. March-May: very hot (often over 40 C). June-October: rainy season, green landscapes but tracks can be tough."
+      },
+      "money": {
+        "title": "Money & payments",
+        "text": "Currency: CFA franc (XOF). Cash is king almost everywhere; cards work only in a few hotels and in Ouagadougou. Withdraw cash from ATMs in major cities and carry small notes."
+      },
+      "security": {
+        "title": "Safety & itinerary",
+        "text": "Check your foreign ministry travel advice before finalising your route; some regions are not advised. Prefer daytime travel, a local guide and identified accommodation. Register with your embassy if possible."
+      },
+      "packing": {
+        "title": "What to pack",
+        "text": "Light, covering clothes, hat, sunglasses, high-factor sunscreen, insect repellent, first-aid kit (antimalarial, anti-diarrhoeal, rehydration salts), torch, adapter (type C/E plugs, 220V), filter water bottle."
+      },
+      "health": {
+        "title": "Staying healthy",
+        "text": "Drink only sealed bottled or filtered water. Avoid ice cubes, raw vegetables washed in tap water and lukewarm food. Wash hands often. Continue the antimalarial as prescribed, including after your return."
+      },
+      "heat": {
+        "title": "Heat & sun",
+        "text": "Hydrate constantly, add a little salt to meals, rest during the hottest hours (12-3pm). Hat and sunscreen always. Watch for heatstroke signs (headache, nausea, confusion)."
+      },
+      "customs": {
+        "title": "Customs & etiquette",
+        "text": "Burkinabe hospitality (teranga) is warm: take time to greet people, it matters. Dress modestly, especially near places of worship. Use your right hand to give or receive. Always ask before photographing someone."
+      },
+      "bargaining": {
+        "title": "Bargaining without stress",
+        "text": "Haggling is normal in markets and for taxis, never in fixed-price shops. Stay friendly, name a price, meet in the middle. Agree the taxi fare before getting in."
+      },
+      "connectivity": {
+        "title": "Phone & internet",
+        "text": "Buy a local SIM (Orange, Moov) with your passport, at the airport or in a shop: cheap data and good city coverage. Hotel wifi is slow. Download offline maps."
+      },
+      "language": {
+        "title": "Language",
+        "text": "French is the official language and widely understood in towns. A few words of Moore (ne y windga: hello) or Dioula are always appreciated and open doors."
+      },
+      "photos": {
+        "title": "Photos & respect",
+        "text": "Do not photograph official or military buildings or the airport. Ask permission for people; a small thank-you gesture is welcome. Some sacred sites forbid photography."
+      },
+      "emergency": {
+        "title": "Useful numbers",
+        "text": "Police: 17 - Fire/rescue: 18 - Ambulance: 112. Note your embassy and repatriation insurance numbers. Keep them offline and on paper."
+      },
+      "healthWatch": {
+        "title": "Watch your health after returning",
+        "text": "If you develop a fever within 3 months of returning, seek care quickly and mention your trip to Burkina Faso: malaria can appear late."
+      },
+      "feedback": {
+        "title": "Share your experience",
+        "text": "Leave reviews for accommodation, guides and restaurants: you help future travellers and local providers improve."
+      }
+    }
+  },
+  "itineraries": {
+    "kicker": "Signature itineraries",
+    "title": "Ready-made trips",
+    "subtitle": "Routes curated by the FasoViva editors: qualified stops, indicative budget, practical tips. Clone the one that inspires you and make it yours.",
+    "note": "Per-person estimates in XOF, excluding international flights and visa. They are a starting point: adjust everything in the planner after cloning the itinerary.",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "fromPerPerson": "From {{amount}} / person",
+    "discover": "Discover",
+    "forWho": "Who it's for",
+    "bestSeason": "Best time to go",
+    "highlightsTitle": "What you'll experience",
+    "programmeTitle": "Day-by-day programme",
+    "notIncludedTitle": "What's not included",
+    "budgetTitle": "Indicative budget",
+    "budgetHint": "Lodging, meals, local transport, guides and entries. Excludes international flight and visa.",
+    "cloneCta": "Clone this trip",
+    "cloneNote": "Creates a trip in “My trips” with every stop. You can edit everything afterwards.",
+    "cloneRequiresAuth": "Sign in to clone this itinerary.",
+    "cloned": "Itinerary cloned to your trips",
+    "notFound": "Itinerary not found",
+    "pace": {
+      "tranquille": "Relaxed pace",
+      "equilibre": "Balanced pace",
+      "intense": "Fast pace"
+    }
   }
 }
