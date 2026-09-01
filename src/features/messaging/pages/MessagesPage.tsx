@@ -73,7 +73,7 @@ export function MessagesPage() {
               <button type="button" className={styles.backBtn} onClick={() => setActiveId(undefined)}>
                 {t('common.back')}
               </button>
-              <span>{t(`messaging.kinds.${activeConversation.kind}`)}</span>
+              <span>{activeConversation.display_name || t(`messaging.kinds.${activeConversation.kind}`)}</span>
             </div>
             <ChatWindow conversationId={activeConversation.id} />
           </>

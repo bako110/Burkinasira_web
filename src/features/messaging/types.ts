@@ -16,6 +16,8 @@ export interface Conversation {
   last_message_preview?: string;
   last_message_at?: string;
   created_at: string;
+  display_name?: string;
+  display_avatar_url?: string;
 }
 
 export type MessageAttachmentType = 'image' | 'document' | 'location';

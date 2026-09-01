@@ -13,14 +13,19 @@ interface ConversationListItemProps {
 
 export function ConversationListItem({ conversation, active, onClick }: ConversationListItemProps) {
   const { t, i18n } = useTranslation();
+  const title = conversation.display_name || t(`messaging.kinds.${conversation.kind}`);
 
   return (
     <button type="button" className={clsx(styles.item, active && styles.itemActive)} onClick={onClick}>
       <span className={styles.icon}>
-        <MessageCircle size={18} strokeWidth={2} />
+        {conversation.display_avatar_url ? (
+          <img src={conversation.display_avatar_url} alt="" className={styles.avatarImg} />
+        ) : (
+          <MessageCircle size={18} strokeWidth={2} />
+        )}
       </span>
       <div className={styles.text}>
-        <span className={styles.kind}>{t(`messaging.kinds.${conversation.kind}`)}</span>
+        <span className={styles.kind}>{title}</span>
         <span className={styles.preview}>
           {conversation.last_message_preview ?? t('messaging.noMessages')}
         </span>
