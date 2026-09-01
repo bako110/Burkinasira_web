@@ -1,5 +1,5 @@
 import { apiClient } from '../../../shared/api/client';
-import type { Booking, BookingStatus, CreateBookingPayload, Invoice } from '../types';
+import type { Booking, BookingStatus, CreateBookingPayload, Invoice, PublicTicket } from '../types';
 
 export async function createBooking(payload: CreateBookingPayload): Promise<Booking> {
   const { data } = await apiClient.post<Booking>('/bookings', payload);
@@ -18,8 +18,8 @@ export async function fetchBookingById(bookingId: string): Promise<Booking> {
   return data;
 }
 
-export async function fetchBookingByReference(reference: string): Promise<Booking> {
-  const { data } = await apiClient.get<Booking>(`/bookings/reference/${reference}`);
+export async function fetchBookingByReference(reference: string): Promise<PublicTicket> {
+  const { data } = await apiClient.get<PublicTicket>(`/bookings/reference/${reference}`);
   return data;
 }
 

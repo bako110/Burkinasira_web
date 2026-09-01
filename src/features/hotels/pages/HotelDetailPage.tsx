@@ -249,6 +249,7 @@ export function HotelDetailPage() {
           itemTitle={`${hotel.name} — ${selectedRoom.name}`}
           unitPrice={selectedRoom.price_per_night}
           currency={selectedRoom.currency}
+          roomTypeName={selectedRoom.name}
           requiresDate
         />
       )}

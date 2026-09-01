@@ -25,6 +25,9 @@ interface BookingModalProps {
   slots?: AvailabilitySlot[];
   /** Tarif horaire, utilisé pour le calcul du prix quand un créneau est choisi. */
   hourlyRate?: number;
+  /** Type de chambre choisi (item_type === "hotel") : le serveur recalcule le
+   * prix et vérifie la disponibilité à partir de ce nom, pas du prix affiché ici. */
+  roomTypeName?: string;
 }
 
 export function BookingModal({
@@ -38,6 +41,7 @@ export function BookingModal({
   requiresDate = false,
   slots,
   hourlyRate,
+  roomTypeName,
 }: BookingModalProps) {
   const { t } = useTranslation();
   const { mutate, isPending, isSuccess, error, reset } = useCreateBooking();
@@ -67,6 +71,7 @@ export function BookingModal({
       currency,
       scheduled_date: !hasSlots && scheduledDate ? new Date(scheduledDate).toISOString() : undefined,
       slot_id: hasSlots ? selectedSlot?.id : undefined,
+      room_type_name: roomTypeName,
     });
   }
 
