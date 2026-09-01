@@ -16,3 +16,17 @@ export async function fetchMe(): Promise<UserPublic> {
   const { data } = await apiClient.get<UserPublic>('/auth/me');
   return data;
 }
+
+export interface UserVerification {
+  id: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  avatar_url?: string | null;
+  member_since: string;
+}
+
+export async function fetchVerification(userId: string): Promise<UserVerification> {
+  const { data } = await apiClient.get<UserVerification>(`/auth/verify/${userId}`);
+  return data;
+}

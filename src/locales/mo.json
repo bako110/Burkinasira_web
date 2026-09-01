@@ -732,6 +732,13 @@
     "deleteConfirm": "Yiisi ne pãng",
     "deleteSuccess": "Kʋdgẽ yiisame"
   },
+  "verify": {
+    "notFoundTitle": "Karti wã ka be ye",
+    "notFoundText": "FasoViva karti kãngã ka be ye bɩ b yiisa-a lame.",
+    "verifiedMember": "Konte sẽn sakame",
+    "cardIsValid": "FasoViva karti hakɩka",
+    "disclaimer": "Seb-kãngã wilgda kɛlgda karti soab yʋʋr bala. A ka kõt sor n ges bũmb a to sẽn tar y toog ye."
+  },
   "passport": {
     "title": "FasoViva Pasepɔr",
     "points": "poɛ̃",

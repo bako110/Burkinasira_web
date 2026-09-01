@@ -46,6 +46,7 @@ import { PassportPage } from '../../features/passport/pages/PassportPage';
 import { PrivacyPolicyPage } from '../../features/legal/pages/PrivacyPolicyPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
+import { VerifyCardPage } from '../../features/auth/pages/VerifyCardPage';
 import { ProLayout } from '../layout/ProLayout';
 import { PendingVerificationPage } from '../../features/pro/pages/PendingVerificationPage';
 import { ProOverviewPage } from '../../features/pro/pages/ProOverviewPage';
@@ -121,6 +122,7 @@ export const router = createBrowserRouter([
     ],
   },
   { path: '/login', element: <LoginPage />, errorElement: <ErrorPage /> },
+  { path: '/verify/:userId', element: <VerifyCardPage />, errorElement: <ErrorPage /> },
   { path: '/register', element: <RegisterPage />, errorElement: <ErrorPage /> },
   {
     element: <ProRouteGate />,

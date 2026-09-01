@@ -732,6 +732,13 @@
     "deleteConfirm": "A jɔsi badaa-badaa",
     "deleteSuccess": "Jamanan jɔsira"
   },
+  "verify": {
+    "notFoundTitle": "Karti ma sɔrɔ",
+    "notFoundText": "FasoViva karti nin tɛ yen walima a bɔra yen.",
+    "verifiedMember": "Kɔntu dafalen",
+    "cardIsValid": "FasoViva karti sɛbɛnen",
+    "disclaimer": "Nin ɲɛ in bɛ karti tigi tɔgɔ dafalen dɔrɔn de lakodɔn. A tɛ se ka don mɔgɔ ka kunnafoni wɛrɛ la."
+  },
   "passport": {
     "title": "FasoViva Paspɔri",
     "points": "wolomaw",

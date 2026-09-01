@@ -732,6 +732,13 @@
     "deleteConfirm": "Delete permanently",
     "deleteSuccess": "Account deleted"
   },
+  "verify": {
+    "notFoundTitle": "Card not found",
+    "notFoundText": "This FasoViva card does not exist or has been removed.",
+    "verifiedMember": "Verified account",
+    "cardIsValid": "Genuine FasoViva card",
+    "disclaimer": "This page only confirms the identity of the FasoViva card holder. It does not give access to any personal data."
+  },
   "passport": {
     "title": "FasoViva Passport",
     "points": "points",

@@ -112,7 +112,7 @@ export function FasoVivaIdCard({ user, points }: FasoVivaIdCardProps) {
 
           <div className={styles.qrWrap}>
             <QRCodeCanvas
-              value={`FASOVIVA:${user.id}`}
+              value={`${window.location.origin}/verify/${user.id}`}
               size={84}
               bgColor="#ffffff"
               fgColor="#1a1a1a"
