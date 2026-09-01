@@ -169,6 +169,7 @@
     "tab_availability": "Waati bɛnnenw",
     "tab_bookings": "Minɛninw",
     "tab_reviews": "Hakilinaw",
+    "tab_card": "N ka karti",
     "tabAnalytics": "Jateminɛ",
     "tabProfile": "Jatebɔ",
     "tabAvailability": "Waati bɛnnenw",
@@ -222,7 +223,6 @@
     "reviewCount": "Hakilina {{count}}",
     "anonymousAuthor": "FasoViva kiliyanɛ",
     "yourReply": "I ka jaabi",
-
     "tab_overview": "Fɔlɔ ɲɛfɔli",
     "tab_hotel": "Lotɛli",
     "tab_restaurant": "Dumunikɛyɔrɔ",
@@ -556,7 +556,15 @@
     "modalTitle": "Sigi-yɔrɔ tarawu",
     "date": "Don",
     "chooseSlot": "Waati kelen sugandi",
-    "weekdaysShort": ["Ntɛ", "Tar", "Ara", "Ala", "Jum", "Sib", "Kar"],
+    "weekdaysShort": [
+      "Ntɛ",
+      "Tar",
+      "Ara",
+      "Ala",
+      "Jum",
+      "Sib",
+      "Kar"
+    ],
     "slotsOn": "Waatiw don {{date}} na",
     "summaryTitle": "Lasɔrɔ kunbɛn",
     "summaryDate": "Don",
@@ -709,6 +717,7 @@
   },
   "profile": {
     "editTitle": "N ka kunnafoni yɛrɛ",
+    "uploadPhoto": "Foto Caman",
     "saved": "Kunnafoni kuralen",
     "passwordTitle": "Gundo daanu",
     "currentPassword": "Gundo daanu sisan",
@@ -729,7 +738,13 @@
     "badgesTitle": "Badiziw",
     "stampsTitle": "Tikitiw dilennenw",
     "noBadges": "Badizi si tɛ fɔlɔ",
-    "noStamps": "Tikiti si ma sɔrɔ fɔlɔ"
+    "noStamps": "Tikiti si ma sɔrɔ fɔlɔ",
+    "cardTitle": "N ka FasoViva karti",
+    "cardLabel": "Tɔnbaarakarti",
+    "cardTagline": "Bɔ · Ɲɛnamaya · Kafɛnkɛ",
+    "memberSince": "Tɔnbaara kabini {{date}}",
+    "downloadCard": "N ka karti sigi",
+    "cardDownloadError": "Karti sigili ma se ka kɛ"
   },
   "health": {
     "title": "Kɛnɛya Burkina Faso",
@@ -1087,7 +1102,13 @@
     "titleLine2": "i bɛ i yɛrɛ don yɔrɔ la",
     "subtitle": "Yɔrɔ sɛbɛw, ɲɛminɛbagaw, sigi-yɔrɔw, baaraw ni taama-fɛnw bɛɛ bɛ platform kelen kan.",
     "searchPlaceholder": "Dugu, yɔrɔ walima ko dɔ ɲini...",
-    "quickTags": ["Ouagadougou", "Banfora", "Jiyɔrɔw", "Baara-fɛn-feereyɔrɔ", "Ɲɛminɛbagaw"],
+    "quickTags": [
+      "Ouagadougou",
+      "Banfora",
+      "Jiyɔrɔw",
+      "Baara-fɛn-feereyɔrɔ",
+      "Ɲɛminɛbagaw"
+    ],
     "floatProvinces": "Mara caman",
     "floatRating": "4.8/5 taamakɛlaw fɛ",
     "seeAllResults": "Jaabi bɛɛ lajɛ « {{query}} » kama",
@@ -1095,12 +1116,30 @@
     "categoriesTitle": "FasoViva bɛɛ, yɔrɔ kelen na",
     "categoriesSubtitle": "Taama fan bɛɛ, dilanna Burkina Faso kama.",
     "categories": {
-      "stay": { "title": "Sigi-yɔrɔw", "text": "Hotɛliw ni sigi-yɔrɔ sɛbɛw" },
-      "food": { "title": "Dumuni", "text": "Dumuni suguya ni FasoViva Food" },
-      "mobility": { "title": "Taama", "text": "Sira ni yɔrɔ-yɔrɔ taama" },
-      "market": { "title": "Baaraw", "text": "FasoViva Market feereyɔrɔ" },
-      "guides": { "title": "Ɲɛminɛbagaw", "text": "Ɲɛminɛbaga sɛbɛnnenw" },
-      "events": { "title": "Waati-kunw", "text": "Laadaw ni jamana kalanda" }
+      "stay": {
+        "title": "Sigi-yɔrɔw",
+        "text": "Hotɛliw ni sigi-yɔrɔ sɛbɛw"
+      },
+      "food": {
+        "title": "Dumuni",
+        "text": "Dumuni suguya ni FasoViva Food"
+      },
+      "mobility": {
+        "title": "Taama",
+        "text": "Sira ni yɔrɔ-yɔrɔ taama"
+      },
+      "market": {
+        "title": "Baaraw",
+        "text": "FasoViva Market feereyɔrɔ"
+      },
+      "guides": {
+        "title": "Ɲɛminɛbagaw",
+        "text": "Ɲɛminɛbaga sɛbɛnnenw"
+      },
+      "events": {
+        "title": "Waati-kunw",
+        "text": "Laadaw ni jamana kalanda"
+      }
     },
     "trust": {
       "verified": "Yɔrɔ sɛbɛw",
@@ -1112,18 +1151,30 @@
     "featuredSubtitle": "Yɔrɔ sugandilenw jamana kɔnɔ.",
     "featuredUnavailable": "Yɔrɔw bɛna na sɔɔni.",
     "stats": {
-      "destinations": "Yɔrɔ sɛbɛnnenw",
-      "guides": "Ɲɛminɛbaga sɛbɛnnenw",
-      "provinces": "Mara caman",
-      "travelers": "Taamakɛlaw dɛmɛnenw"
+      "sites": "Yɔrɔ ni fɛn cɛɲumanw jatelen",
+      "regions": "Mara",
+      "provinces": "Marabolow",
+      "majorSites": "Yɔrɔ ni fɛn cɛɲuman babaw"
     },
     "whyTitle": "Mun na FasoViva ka ɲi",
     "whySubtitle": "Platform dilannen taama sɛbɛ ni sigida kama.",
     "why": {
-      "verified": { "title": "Yɔrɔ sɛbɛw", "text": "Yɔrɔ bɛɛ lajɛlen don walasa kunnafoni ka ɲi." },
-      "local": { "title": "Sigidalen jamana kɔnɔ", "text": "Ɲɛminɛbagaw ni baarakɛlaw bɛɛ bɔra Burkina Faso la." },
-      "allInOne": { "title": "Bɛɛ kelen na", "text": "Sigi-yɔrɔ, taama, dumuni ni ko wɛrɛw bɛɛ bɛ porogaramu kelen kɔnɔ." },
-      "secure": { "title": "Wari sara sɛbɛ", "text": "Sigi-yɔrɔ tarawu ni wari sara bɛɛ lakananen." }
+      "verified": {
+        "title": "Yɔrɔ sɛbɛw",
+        "text": "Yɔrɔ bɛɛ lajɛlen don walasa kunnafoni ka ɲi."
+      },
+      "local": {
+        "title": "Sigidalen jamana kɔnɔ",
+        "text": "Ɲɛminɛbagaw ni baarakɛlaw bɛɛ bɔra Burkina Faso la."
+      },
+      "allInOne": {
+        "title": "Bɛɛ kelen na",
+        "text": "Sigi-yɔrɔ, taama, dumuni ni ko wɛrɛw bɛɛ bɛ porogaramu kelen kɔnɔ."
+      },
+      "secure": {
+        "title": "Wari sara sɛbɛ",
+        "text": "Sigi-yɔrɔ tarawu ni wari sara bɛɛ lakananen."
+      }
     },
     "ctaTitle": "I labɛnnen don ka Burkina Faso lajɛ wa?",
     "ctaText": "I don FasoViva la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",

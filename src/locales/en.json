@@ -169,6 +169,7 @@
     "tab_availability": "Availability",
     "tab_bookings": "Bookings",
     "tab_reviews": "Reviews",
+    "tab_card": "My card",
     "tabAnalytics": "Analytics",
     "tabProfile": "Profile",
     "tabAvailability": "Availability",
@@ -222,7 +223,6 @@
     "reviewCount": "{{count}} reviews",
     "anonymousAuthor": "FasoViva customer",
     "yourReply": "Your reply",
-
     "tab_overview": "Overview",
     "tab_hotel": "Hotel",
     "tab_restaurant": "Restaurant",
@@ -556,7 +556,15 @@
     "modalTitle": "Booking",
     "date": "Date",
     "chooseSlot": "Choose a slot",
-    "weekdaysShort": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "weekdaysShort": [
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa",
+      "Su"
+    ],
     "slotsOn": "Slots on {{date}}",
     "summaryTitle": "Summary",
     "summaryDate": "Date",
@@ -709,6 +717,7 @@
   },
   "profile": {
     "editTitle": "Personal information",
+    "uploadPhoto": "Change photo",
     "saved": "Profile updated",
     "passwordTitle": "Password",
     "currentPassword": "Current password",
@@ -729,7 +738,13 @@
     "badgesTitle": "Badges",
     "stampsTitle": "Collected stamps",
     "noBadges": "No badges yet",
-    "noStamps": "No stamps collected yet"
+    "noStamps": "No stamps collected yet",
+    "cardTitle": "My FasoViva card",
+    "cardLabel": "Member card",
+    "cardTagline": "Discover · Live · Share",
+    "memberSince": "Member since {{date}}",
+    "downloadCard": "Download my card",
+    "cardDownloadError": "Could not download the card"
   },
   "health": {
     "title": "Health in Burkina Faso",
@@ -1087,7 +1102,13 @@
     "titleLine2": "like a local",
     "subtitle": "Authentic places, passionate guides, stays, crafts and mobility — the whole of Burkinabè tourism in one platform.",
     "searchPlaceholder": "A city, a site, an experience...",
-    "quickTags": ["Ouagadougou", "Banfora", "Waterfalls", "Craft market", "Local guides"],
+    "quickTags": [
+      "Ouagadougou",
+      "Banfora",
+      "Waterfalls",
+      "Craft market",
+      "Local guides"
+    ],
     "floatProvinces": "Provinces covered",
     "floatRating": "4.8/5 from travelers",
     "seeAllResults": "See all results for \"{{query}}\"",
@@ -1095,12 +1116,30 @@
     "categoriesTitle": "All of FasoViva, at a glance",
     "categoriesSubtitle": "Every corner of travel, built for Burkina Faso.",
     "categories": {
-      "stay": { "title": "Stays", "text": "Hotels, guesthouses and verified accommodation" },
-      "food": { "title": "Food", "text": "Local gastronomy and FasoViva Food picks" },
-      "mobility": { "title": "Transport", "text": "Mobility, roads and getting around" },
-      "market": { "title": "Crafts", "text": "FasoViva Market marketplace" },
-      "guides": { "title": "Guides", "text": "Certified tourist guides" },
-      "events": { "title": "Events", "text": "Cultural and national calendar" }
+      "stay": {
+        "title": "Stays",
+        "text": "Hotels, guesthouses and verified accommodation"
+      },
+      "food": {
+        "title": "Food",
+        "text": "Local gastronomy and FasoViva Food picks"
+      },
+      "mobility": {
+        "title": "Transport",
+        "text": "Mobility, roads and getting around"
+      },
+      "market": {
+        "title": "Crafts",
+        "text": "FasoViva Market marketplace"
+      },
+      "guides": {
+        "title": "Guides",
+        "text": "Certified tourist guides"
+      },
+      "events": {
+        "title": "Events",
+        "text": "Cultural and national calendar"
+      }
     },
     "trust": {
       "verified": "Verified places",
@@ -1112,18 +1151,30 @@
     "featuredSubtitle": "A curated selection of must-see places across the country.",
     "featuredUnavailable": "Destinations are coming soon.",
     "stats": {
-      "destinations": "Listed places",
-      "guides": "Certified guides",
-      "provinces": "Provinces covered",
-      "travelers": "Travelers served"
+      "sites": "Inventoried sites & attractions",
+      "regions": "Regions",
+      "provinces": "Provinces",
+      "majorSites": "Major sites & attractions"
     },
     "whyTitle": "Why choose FasoViva",
     "whySubtitle": "A platform built for reliable, local and responsible tourism.",
     "why": {
-      "verified": { "title": "Verified places", "text": "Every destination is checked to ensure reliable, up-to-date information." },
-      "local": { "title": "Locally rooted", "text": "Burkinabè guides, artisans and operators at the heart of the experience." },
-      "allInOne": { "title": "All-in-one", "text": "Stays, transport, food and activities brought together in a single app." },
-      "secure": { "title": "Secure payments", "text": "Bookings and transactions protected at every step." }
+      "verified": {
+        "title": "Verified places",
+        "text": "Every destination is checked to ensure reliable, up-to-date information."
+      },
+      "local": {
+        "title": "Locally rooted",
+        "text": "Burkinabè guides, artisans and operators at the heart of the experience."
+      },
+      "allInOne": {
+        "title": "All-in-one",
+        "text": "Stays, transport, food and activities brought together in a single app."
+      },
+      "secure": {
+        "title": "Secure payments",
+        "text": "Bookings and transactions protected at every step."
+      }
     },
     "ctaTitle": "Ready to explore Burkina Faso?",
     "ctaText": "Join FasoViva and start discovering authentic places, experiences and encounters.",

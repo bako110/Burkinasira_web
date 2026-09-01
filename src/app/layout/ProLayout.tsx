@@ -19,6 +19,7 @@ import {
   Car,
   ShoppingBag,
   Users,
+  IdCard,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -40,6 +41,7 @@ const GUIDE_NAV_ITEMS = [
   { to: '/pro/guide/availability', end: false, key: 'availability', Icon: CalendarClock },
   { to: '/pro/guide/bookings', end: false, key: 'bookings', Icon: Ticket },
   { to: '/pro/guide/reviews', end: false, key: 'reviews', Icon: Star },
+  { to: '/passport', end: false, key: 'card', Icon: IdCard },
 ] as const;
 
 const PROVIDER_CATEGORY_ITEMS = [
@@ -88,6 +90,7 @@ export function ProLayout() {
       Icon,
     })),
     { to: '/pro/provider/team', end: false, key: 'team', Icon: Users },
+    { to: '/passport', end: false, key: 'card', Icon: IdCard },
   ];
 
   const NAV_ITEMS = isGuide ? GUIDE_NAV_ITEMS : PROVIDER_NAV_ITEMS;

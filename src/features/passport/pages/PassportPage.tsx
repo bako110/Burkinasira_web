@@ -2,21 +2,26 @@ import { useTranslation } from 'react-i18next';
 import { Trophy, MapPin } from 'lucide-react';
 
 import { Card, Spinner, Reveal, DetailBackButton } from '../../../shared/ui';
+import { useAuthStore } from '../../../store/auth.store';
 import { useMyPassport } from '../hooks/useMyPassport';
 import { useBadges } from '../hooks/useBadges';
 import { BadgeTile } from '../components/BadgeTile';
+import { FasoVivaIdCard } from '../components/FasoVivaIdCard';
 import styles from './PassportPage.module.css';
 
 export function PassportPage() {
   const { t, i18n } = useTranslation();
+  const user = useAuthStore((s) => s.user);
   const { data: passport, isLoading: isLoadingPassport } = useMyPassport();
   const { data: badges, isLoading: isLoadingBadges } = useBadges();
 
   const isLoading = isLoadingPassport || isLoadingBadges;
+  const fallbackPath =
+    user?.role === 'guide' ? '/pro/guide' : user?.role === 'provider' ? '/pro/provider' : '/profile';
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo="/profile" variant="link">
+      <DetailBackButton fallbackTo={fallbackPath} variant="link">
         {t('common.back')}
       </DetailBackButton>
       <h1 className={styles.title}>{t('passport.title')}</h1>
@@ -27,8 +32,13 @@ export function PassportPage() {
         </div>
       )}
 
-      {!isLoading && passport && (
+      {!isLoading && passport && user && (
         <>
+          <section>
+            <h2 className={styles.sectionTitle}>{t('passport.cardTitle')}</h2>
+            <FasoVivaIdCard user={user} points={passport.points} />
+          </section>
+
           <Card className={styles.pointsCard}>
             <Trophy size={32} strokeWidth={1.5} className={styles.pointsIcon} />
             <div>
