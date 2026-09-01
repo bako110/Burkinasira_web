@@ -21,7 +21,7 @@ export function ConnectivityCard({ point }: { point: ConnectivityPointSummary })
   const location = [point.city, point.region].filter(Boolean).join(', ');
 
   return (
-    <Link to={`/connectivity/${point.id}`} className={styles.link}>
+    <Link to={`/connectivity/${point.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <span className={styles.icon}>
           <Icon size={20} strokeWidth={1.75} />

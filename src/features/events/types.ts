@@ -13,6 +13,7 @@ export type EventCategory =
 export interface EventSummary {
   id: string;
   title: string;
+  slug: string;
   category: EventCategory;
   region: string;
   province?: string;
@@ -44,6 +45,7 @@ export interface ProgramItem {
 export interface EventDetail {
   id: string;
   title: string;
+  slug: string;
   description?: string;
   category: EventCategory;
   region: string;

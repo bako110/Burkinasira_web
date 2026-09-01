@@ -10,6 +10,7 @@ export type TransportType =
 export interface TransportProviderSummary {
   id: string;
   name: string;
+  slug: string;
   type: TransportType;
   region: string;
   province?: string;
@@ -35,6 +36,7 @@ export type TransportProviderStatus = 'pending' | 'active' | 'suspended';
 export interface TransportProviderDetail {
   id: string;
   name: string;
+  slug: string;
   type: TransportType;
   description?: string;
   region: string;

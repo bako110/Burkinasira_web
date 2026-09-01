@@ -1,6 +1,7 @@
 export interface GuideSummary {
   id: string;
   display_name: string;
+  slug: string;
   photo_url?: string;
   languages: string[];
   specialties: string[];
@@ -32,6 +33,7 @@ export interface Certification {
 export interface GuideDetail {
   id: string;
   display_name: string;
+  slug: string;
   bio?: string;
   photo_url?: string;
   languages: string[];

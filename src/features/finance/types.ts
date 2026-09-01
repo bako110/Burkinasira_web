@@ -3,6 +3,7 @@ export type MoneyServiceType = 'banque' | 'distributeur' | 'mobile_money' | 'bur
 export interface MoneyServiceSummary {
   id: string;
   name: string;
+  slug: string;
   type: MoneyServiceType;
   operator?: string;
   region: string;
@@ -29,6 +30,7 @@ export interface OpeningHours {
 export interface MoneyServiceDetail {
   id: string;
   name: string;
+  slug: string;
   type: MoneyServiceType;
   operator?: string;
   region: string;

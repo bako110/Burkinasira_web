@@ -10,6 +10,7 @@ export type AccommodationType =
 export interface HotelSummary {
   id: string;
   name: string;
+  slug: string;
   type: AccommodationType;
   region: string;
   province?: string;
@@ -56,6 +57,7 @@ export type HotelStatus = 'draft' | 'published' | 'archived';
 export interface HotelDetail {
   id: string;
   name: string;
+  slug: string;
   type: AccommodationType;
   description?: string;
   region: string;

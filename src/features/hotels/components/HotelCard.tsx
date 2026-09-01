@@ -22,7 +22,7 @@ export function HotelCard({ hotel }: { hotel: HotelSummary }) {
 
   return (
     <Card className={styles.card}>
-      <Link to={`/hotels/${hotel.id}`} className={styles.link}>
+      <Link to={`/hotels/${hotel.slug}`} className={styles.link}>
         <div className={styles.imageWrap}>
           {hotel.photo ? (
             <img src={hotel.photo} alt={hotel.name} className={styles.image} loading="lazy" />

@@ -10,6 +10,7 @@ export type HealthFacilityType =
 export interface HealthFacilitySummary {
   id: string;
   name: string;
+  slug: string;
   type: HealthFacilityType;
   region: string;
   province?: string;
@@ -37,6 +38,7 @@ export interface OpeningHours {
 export interface HealthFacilityDetail {
   id: string;
   name: string;
+  slug: string;
   type: HealthFacilityType;
   description?: string;
   region: string;

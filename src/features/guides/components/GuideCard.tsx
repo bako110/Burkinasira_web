@@ -12,12 +12,12 @@ export function GuideCard({ guide }: { guide: GuideSummary }) {
   const canBook = typeof guide.daily_rate === 'number';
 
   function handleContact() {
-    navigate(`/guides/${guide.id}`);
+    navigate(`/guides/${guide.slug}`);
   }
 
   return (
     <Card className={styles.card}>
-      <Link to={`/guides/${guide.id}`} className={styles.link}>
+      <Link to={`/guides/${guide.slug}`} className={styles.link}>
         <div className={styles.header}>
           <div className={styles.avatarWrap}>
             {guide.photo_url ? (

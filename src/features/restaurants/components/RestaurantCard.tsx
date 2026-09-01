@@ -11,7 +11,7 @@ export function RestaurantCard({ restaurant }: { restaurant: RestaurantSummary }
   const location = [restaurant.city, restaurant.region].filter(Boolean).join(', ');
 
   return (
-    <Link to={`/restaurants/${restaurant.id}`} className={styles.link}>
+    <Link to={`/restaurants/${restaurant.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.imageWrap}>
           {restaurant.photo ? (

@@ -25,7 +25,7 @@ export function EventCard({ event }: { event: EventSummary }) {
 
   return (
     <Card className={styles.card}>
-      <Link to={`/events/${event.id}`} className={styles.link}>
+      <Link to={`/events/${event.slug}`} className={styles.link}>
         <div className={styles.imageWrap}>
           {event.photo ? (
             <img src={event.photo} alt={event.title} className={styles.image} loading="lazy" />

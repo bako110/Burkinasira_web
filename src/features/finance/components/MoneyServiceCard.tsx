@@ -19,7 +19,7 @@ export function MoneyServiceCard({ service }: { service: MoneyServiceSummary }) 
   const location = [service.city, service.region].filter(Boolean).join(', ');
 
   return (
-    <Link to={`/finance/${service.id}`} className={styles.link}>
+    <Link to={`/finance/${service.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <span className={styles.icon}>
           <Icon size={20} strokeWidth={1.75} />

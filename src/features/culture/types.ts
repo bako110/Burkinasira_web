@@ -14,6 +14,7 @@ export type CultureContentType =
 export interface CultureContentSummary {
   id: string;
   title: string;
+  slug: string;
   type: CultureContentType;
   media_type: 'texte' | 'audio' | 'video';
   summary?: string;
@@ -35,6 +36,7 @@ export interface CultureFilters {
 export interface CultureContentDetail {
   id: string;
   title: string;
+  slug: string;
   type: CultureContentType;
   media_type: 'texte' | 'audio' | 'video';
   summary?: string;

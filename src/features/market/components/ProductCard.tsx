@@ -34,7 +34,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
   }
 
   return (
-    <Link to={`/market/${product.id}`} className={styles.link}>
+    <Link to={`/market/${product.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.imageWrap}>
           {cover ? (

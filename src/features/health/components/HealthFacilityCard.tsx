@@ -22,7 +22,7 @@ export function HealthFacilityCard({ facility }: { facility: HealthFacilitySumma
   const Icon = ICONS[facility.type] ?? MoreHorizontal;
 
   return (
-    <Link to={`/health/${facility.id}`} className={styles.link}>
+    <Link to={`/health/${facility.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.banner}>
           <Icon size={28} strokeWidth={1.5} />

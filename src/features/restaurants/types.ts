@@ -4,6 +4,7 @@ export type DietaryTag = 'famille' | 'vegetarien' | 'budget';
 export interface RestaurantSummary {
   id: string;
   name: string;
+  slug: string;
   type: EstablishmentType;
   cuisine_style?: string;
   region: string;
@@ -46,6 +47,7 @@ export type RestaurantStatus = 'draft' | 'published' | 'archived';
 export interface RestaurantDetail {
   id: string;
   name: string;
+  slug: string;
   type: EstablishmentType;
   description?: string;
   cuisine_style?: string;

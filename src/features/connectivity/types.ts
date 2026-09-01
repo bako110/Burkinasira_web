@@ -9,6 +9,7 @@ export type ConnectivityPointType =
 export interface ConnectivityPointSummary {
   id: string;
   name: string;
+  slug: string;
   type: ConnectivityPointType;
   operator?: string;
   region: string;
@@ -30,6 +31,7 @@ export interface ConnectivityFilters {
 export interface ConnectivityPointDetail {
   id: string;
   name: string;
+  slug: string;
   type: ConnectivityPointType;
   operator?: string;
   region: string;

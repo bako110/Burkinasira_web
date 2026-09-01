@@ -13,7 +13,7 @@ export function CultureCard({ content }: { content: CultureContentSummary }) {
   const MediaIcon = MEDIA_ICON[content.media_type];
 
   return (
-    <Link to={`/culture/${content.id}`} className={styles.link}>
+    <Link to={`/culture/${content.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.imageWrap}>
           {content.cover_photo ? (

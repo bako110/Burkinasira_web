@@ -137,7 +137,7 @@ export function EventDetailPage() {
                 {linkedHotels.map((hotel) => (
                   <LinkedItemCard
                     key={hotel.id}
-                    to={`/hotels/${hotel.id}`}
+                    to={`/hotels/${hotel.slug}`}
                     name={hotel.name}
                     location={[hotel.city, hotel.region].filter(Boolean).join(', ')}
                     rating={hotel.average_rating}
@@ -155,7 +155,7 @@ export function EventDetailPage() {
                 {linkedTransportProviders.map((provider) => (
                   <LinkedItemCard
                     key={provider.id}
-                    to={`/mobility/${provider.id}`}
+                    to={`/mobility/${provider.slug}`}
                     name={provider.name}
                     location={[provider.city, provider.region].filter(Boolean).join(', ')}
                     price={provider.price_estimate}

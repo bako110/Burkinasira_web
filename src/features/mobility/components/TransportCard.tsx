@@ -22,7 +22,7 @@ export function TransportCard({ provider }: { provider: TransportProviderSummary
   const Icon = TYPE_ICON[provider.type] ?? Car;
 
   return (
-    <Link to={`/mobility/${provider.id}`} className={styles.link}>
+    <Link to={`/mobility/${provider.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.iconBanner}>
           <Icon size={30} strokeWidth={1.5} />

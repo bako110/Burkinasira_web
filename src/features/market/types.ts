@@ -14,6 +14,7 @@ export interface ProductSummary {
   id: string;
   artisan_id: string;
   name: string;
+  slug: string;
   price: number;
   currency: string;
   photo?: string;
@@ -63,6 +64,7 @@ export interface ProductDetail {
   id: string;
   artisan_id: string;
   name: string;
+  slug: string;
   description?: string;
   category: ProductCategory;
   price: number;
