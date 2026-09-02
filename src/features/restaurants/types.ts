@@ -23,6 +23,9 @@ export interface RestaurantFilters {
   city?: string;
   dietary_tag?: DietaryTag;
   q?: string;
+  near_lat?: number;
+  near_lng?: number;
+  radius_km?: number;
   page?: number;
   page_size?: number;
 }

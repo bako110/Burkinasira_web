@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
+import {
+  Button,
+  Reveal,
+  EmptyResults,
+  CardSkeleton,
+  RelatedModules,
+  RegionProvinceFilter,
+  NearMeToggle,
+} from '../../../shared/ui';
+import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useConnectivityPoints } from '../hooks/useConnectivityPoints';
 import { ConnectivityCard } from '../components/ConnectivityCard';
 import { ConnectivityFilters } from '../components/ConnectivityFilters';
@@ -19,18 +28,24 @@ export function ConnectivityPage() {
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
+  const nearMe = useNearMe({
+    filtersKey: `${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+  });
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<ConnectivityPointSummary[]>([]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, urlRegion, urlProvince]);
+  }, [urlType, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useConnectivityPoints({
     type: urlType,
     region: urlRegion,
     province: urlProvince,
+    near_lat: nearMe.coords?.latitude,
+    near_lng: nearMe.coords?.longitude,
+    radius_km: nearMe.radiusKm ?? undefined,
     page,
     page_size: PAGE_SIZE,
   });
@@ -39,6 +54,14 @@ export function ConnectivityPage() {
     if (!data) return;
     setAccumulated((prev) => (page === 1 ? data.items : [...prev, ...data.items]));
   }, [data, page]);
+
+  useEffect(() => {
+    nearMe.reportResult({
+      resultCount: data?.total,
+      isFetching,
+      forRadiusKm: nearMe.radiusKm,
+    });
+  }, [nearMe, data?.total, isFetching]);
 
   function applyType(value: ConnectivityPointType | undefined) {
     setSearchParams((prev) => {
@@ -82,6 +105,7 @@ export function ConnectivityPage() {
           showProvince
         />
         <ConnectivityFilters active={urlType} onChange={applyType} />
+        <NearMeToggle nearMe={nearMe} resultCount={total} />
 
         {!showInitialLoading && !isError && (
           <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>

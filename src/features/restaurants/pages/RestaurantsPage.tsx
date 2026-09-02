@@ -2,8 +2,18 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
+import {
+  Button,
+  Reveal,
+  EmptyResults,
+  CardSkeleton,
+  ListingHero,
+  RelatedModules,
+  RegionProvinceFilter,
+  NearMeToggle,
+} from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
+import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useRestaurants } from '../hooks/useRestaurants';
 import { RestaurantCard } from '../components/RestaurantCard';
 import { RestaurantFilters } from '../components/RestaurantFilters';
@@ -21,6 +31,9 @@ export function RestaurantsPage() {
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
+  const nearMe = useNearMe({
+    filtersKey: `${urlQuery}|${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+  });
   const [queryInput, setQueryInput] = useState(urlQuery);
   const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
@@ -42,16 +55,27 @@ export function RestaurantsPage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlQuery, urlType, urlRegion, urlProvince]);
+  }, [urlQuery, urlType, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useRestaurants({
     q: urlQuery || undefined,
     type: urlType,
     region: urlRegion,
     province: urlProvince,
+    near_lat: nearMe.coords?.latitude,
+    near_lng: nearMe.coords?.longitude,
+    radius_km: nearMe.radiusKm ?? undefined,
     page,
     page_size: PAGE_SIZE,
   });
+
+  useEffect(() => {
+    nearMe.reportResult({
+      resultCount: data?.total,
+      isFetching,
+      forRadiusKm: nearMe.radiusKm,
+    });
+  }, [nearMe, data?.total, isFetching]);
 
   useEffect(() => {
     if (!data) return;
@@ -117,6 +141,7 @@ export function RestaurantsPage() {
           showProvince
         />
         <RestaurantFilters active={urlType} onChange={applyType} />
+        <NearMeToggle nearMe={nearMe} resultCount={total} />
 
         {!showInitialLoading && !isError && (
           <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>

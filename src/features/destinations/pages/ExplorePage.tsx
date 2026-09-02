@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules, NearMeToggle } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
+import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useDestinations } from '../hooks/useDestinations';
 import { DestinationCard } from '../components/DestinationCard';
 import { CategoryFilters } from '../components/CategoryFilters';
@@ -20,6 +21,7 @@ export function ExplorePage() {
   const urlQuery = searchParams.get('q') ?? '';
   const urlCategory = searchParams.get('category') ?? undefined;
 
+  const nearMe = useNearMe({ filtersKey: `${urlQuery}|${urlCategory ?? ''}` });
   const [queryInput, setQueryInput] = useState(urlQuery);
   const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
@@ -43,11 +45,14 @@ export function ExplorePage() {
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlQuery, urlCategory]);
+  }, [urlQuery, urlCategory, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useDestinations({
     q: urlQuery || undefined,
     category: urlCategory,
+    near_lat: nearMe.coords?.latitude,
+    near_lng: nearMe.coords?.longitude,
+    radius_km: nearMe.radiusKm ?? undefined,
     page,
     page_size: PAGE_SIZE,
   });
@@ -56,6 +61,14 @@ export function ExplorePage() {
     if (!data) return;
     setAccumulated((prev) => (page === 1 ? data.items : [...prev, ...data.items]));
   }, [data, page]);
+
+  useEffect(() => {
+    nearMe.reportResult({
+      resultCount: data?.total,
+      isFetching,
+      forRadiusKm: nearMe.radiusKm,
+    });
+  }, [nearMe, data?.total, isFetching]);
 
   function applySearch() {
     setSearchParams((prev) => {
@@ -90,6 +103,7 @@ export function ExplorePage() {
 
       <div className={styles.body}>
         <CategoryFilters active={urlCategory} onChange={applyCategory} />
+        <NearMeToggle nearMe={nearMe} resultCount={total} />
 
         {!showInitialLoading && !isError && (
           <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>

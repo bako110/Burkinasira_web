@@ -16,6 +16,9 @@ export interface MoneyServiceFilters {
   type?: MoneyServiceType;
   region?: string;
   province?: string;
+  near_lat?: number;
+  near_lng?: number;
+  radius_km?: number;
   page?: number;
   page_size?: number;
 }

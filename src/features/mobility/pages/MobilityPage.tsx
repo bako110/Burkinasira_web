@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
+import {
+  Button,
+  Reveal,
+  EmptyResults,
+  CardSkeleton,
+  RelatedModules,
+  RegionProvinceFilter,
+  NearMeToggle,
+} from '../../../shared/ui';
+import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useTransportProviders } from '../hooks/useTransportProviders';
 import { TransportCard } from '../components/TransportCard';
 import { TransportFilters } from '../components/TransportFilters';
@@ -19,21 +28,35 @@ export function MobilityPage() {
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
+  const nearMe = useNearMe({
+    filtersKey: `${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+  });
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<TransportProviderSummary[]>([]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, urlRegion, urlProvince]);
+  }, [urlType, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useTransportProviders({
     type: urlType,
     region: urlRegion,
     province: urlProvince,
+    near_lat: nearMe.coords?.latitude,
+    near_lng: nearMe.coords?.longitude,
+    radius_km: nearMe.radiusKm ?? undefined,
     page,
     page_size: PAGE_SIZE,
   });
+
+  useEffect(() => {
+    nearMe.reportResult({
+      resultCount: data?.total,
+      isFetching,
+      forRadiusKm: nearMe.radiusKm,
+    });
+  }, [nearMe, data?.total, isFetching]);
 
   useEffect(() => {
     if (!data) return;
@@ -82,6 +105,7 @@ export function MobilityPage() {
           showProvince
         />
         <TransportFilters active={urlType} onChange={applyType} />
+        <NearMeToggle nearMe={nearMe} resultCount={total} />
 
         {!showInitialLoading && !isError && (
           <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>

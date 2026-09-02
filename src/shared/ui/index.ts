@@ -20,4 +20,5 @@ export { FloatingFlags } from './FloatingFlags';
 export { Tabs } from './Tabs';
 export type { TabItem } from './Tabs';
 export { RegionProvinceFilter } from './RegionProvinceFilter';
+export { NearMeToggle } from './NearMeToggle';
 export { ImmersiveGallery } from './ImmersiveGallery';

@@ -24,6 +24,9 @@ export interface HealthFacilityFilters {
   region?: string;
   province?: string;
   on_duty_only?: boolean;
+  near_lat?: number;
+  near_lng?: number;
+  radius_km?: number;
   page?: number;
   page_size?: number;
 }

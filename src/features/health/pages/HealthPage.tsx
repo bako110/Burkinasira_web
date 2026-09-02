@@ -4,7 +4,16 @@ import { useSearchParams } from 'react-router-dom';
 import { Clock } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, RelatedModules, RegionProvinceFilter } from '../../../shared/ui';
+import {
+  Button,
+  Reveal,
+  EmptyResults,
+  CardSkeleton,
+  RelatedModules,
+  RegionProvinceFilter,
+  NearMeToggle,
+} from '../../../shared/ui';
+import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useHealthFacilities } from '../hooks/useHealthFacilities';
 import { HealthFacilityCard } from '../components/HealthFacilityCard';
 import { HealthFilters } from '../components/HealthFilters';
@@ -22,19 +31,26 @@ export function HealthPage() {
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
+  const nearMe = useNearMe({
+    filtersKey: `${urlType ?? ''}|${onDutyOnly}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+  });
+
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<HealthFacilitySummary[]>([]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, onDutyOnly, urlRegion, urlProvince]);
+  }, [urlType, onDutyOnly, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useHealthFacilities({
     type: urlType,
     on_duty_only: onDutyOnly || undefined,
     region: urlRegion,
     province: urlProvince,
+    near_lat: nearMe.coords?.latitude,
+    near_lng: nearMe.coords?.longitude,
+    radius_km: nearMe.radiusKm ?? undefined,
     page,
     page_size: PAGE_SIZE,
   });
@@ -43,6 +59,14 @@ export function HealthPage() {
     if (!data) return;
     setAccumulated((prev) => (page === 1 ? data.items : [...prev, ...data.items]));
   }, [data, page]);
+
+  useEffect(() => {
+    nearMe.reportResult({
+      resultCount: data?.total,
+      isFetching,
+      forRadiusKm: nearMe.radiusKm,
+    });
+  }, [nearMe, data?.total, isFetching]);
 
   function applyType(value: HealthFacilityType | undefined) {
     setSearchParams((prev) => {
@@ -94,6 +118,7 @@ export function HealthPage() {
           onChange={applyRegionProvince}
           showProvince
         />
+        <NearMeToggle nearMe={nearMe} resultCount={total} />
         <div className={styles.filterRow}>
           <HealthFilters active={urlType} onChange={applyType} />
           <button
