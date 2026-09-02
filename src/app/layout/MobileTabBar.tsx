@@ -23,6 +23,7 @@ export function MobileTabBar() {
           key={key}
           to={to}
           end={end}
+          replace
           className={({ isActive }) => clsx(styles.tab, isActive && styles.tabActive)}
         >
           <Icon size={22} strokeWidth={2} className={styles.tabIcon} />
