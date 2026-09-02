@@ -257,7 +257,20 @@
   padding: var(--space-3) var(--space-2);
 }
 
+.drawerGroup {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--space-2);
+}
+
+.drawerGroup .drawerSectionLabel {
+  padding: 0 var(--space-4);
+}
+
 .drawerLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   padding: var(--space-3) var(--space-3);
   border-radius: var(--radius-md);
   text-decoration: none;
@@ -268,6 +281,39 @@
 
 .drawerLink:hover {
   background-color: var(--color-bg-inset);
+}
+
+.drawerLinkIcon {
+  flex-shrink: 0;
+  color: var(--color-text-subtle);
+}
+
+.drawerMoreBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  border: none;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-brand);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.drawerMoreBtn:hover {
+  background-color: var(--color-bg-inset);
+}
+
+.drawerMoreIcon {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.drawerMoreIconOpen {
+  transform: rotate(180deg);
 }
 
 .drawerDivider {

@@ -28,7 +28,7 @@ import clsx from 'clsx';
 
 import styles from './DiscoverMenu.module.css';
 
-const DISCOVER_LINKS = [
+export const DISCOVER_LINKS = [
   { to: '/hotels', key: 'hotels', Icon: BedDouble },
   { to: '/restaurants', key: 'restaurants', Icon: UtensilsCrossed },
   { to: '/mobility', key: 'mobility', Icon: Bus },
@@ -41,7 +41,7 @@ const DISCOVER_LINKS = [
   { to: '/community', key: 'community', Icon: Users },
 ] as const;
 
-const PRACTICAL_LINKS = [
+export const PRACTICAL_LINKS = [
   { to: '/edu', key: 'edu', Icon: GraduationCap },
   { to: '/family', key: 'family', Icon: Users2 },
   { to: '/roads', key: 'roads', Icon: Wrench },

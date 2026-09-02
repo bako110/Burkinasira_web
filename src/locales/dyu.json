@@ -8,6 +8,8 @@
     "cancel": "Dabila",
     "search": "Ɲini",
     "seeAll": "Bɛɛ lajɛ",
+    "seeMore": "Wɛrɛ lajɛ",
+    "seeLess": "A dɔgɔya",
     "exploreAlso": "I mana ɲini fana",
     "back": "Kɔsegin",
     "close": "A datugu",
@@ -65,7 +67,8 @@
     "notifications": "Kunnafoniw",
     "messages": "Bataki",
     "profile": "N ka kunnafoni",
-    "passport": "BurkinaSira Paspɔri"
+    "passport": "BurkinaSira Paspɔri",
+    "myAccount": "N ka kɔntu"
   },
   "auth": {
     "login": "Don",
@@ -1615,5 +1618,14 @@
       "equilibre": "Rythme equilibre",
       "intense": "Rythme soutenu"
     }
+  },
+  "nearMe": {
+    "enable": "Pres de moi",
+    "active": "Pres de moi ({{radius}} km)",
+    "disable": "Desactiver",
+    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
+    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
+    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
+    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
   }
 }

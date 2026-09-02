@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, LogOut } from 'lucide-react';
+import { Menu, X, LogOut, Home, Compass, Map, Ticket, Bell, MessageCircle, IdCard, User } from 'lucide-react';
 import clsx from 'clsx';
 
 import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
@@ -9,12 +9,24 @@ import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { MobileTabBar } from './MobileTabBar';
 import { ExploreMenu } from './ExploreMenu';
-import { DiscoverMenu } from './DiscoverMenu';
+import { DiscoverMenu, DISCOVER_LINKS, PRACTICAL_LINKS } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
+import { DrawerNavSection } from './DrawerNavSection';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
 import { CartButton } from '../../features/market/components/CartButton';
 import { AssistantWidget } from '../../features/assistant/components/AssistantWidget';
 import styles from './AppLayout.module.css';
+
+const ACCOUNT_LINKS = [
+  { to: '/bookings', key: 'bookings', Icon: Ticket },
+  { to: '/trips', key: 'trips', Icon: Map },
+  { to: '/notifications', key: 'notifications', Icon: Bell },
+  { to: '/messages', key: 'messages', Icon: MessageCircle },
+  { to: '/passport', key: 'passport', Icon: IdCard },
+  { to: '/profile', key: 'profile', Icon: User },
+] as const;
+
+const DRAWER_COLLAPSED_COUNT = 5;
 
 export function AppLayout() {
   const { t } = useTranslation();
@@ -113,104 +125,46 @@ export function AppLayout() {
 
         <nav className={styles.drawerNav}>
           <NavLink to="/" end className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            <Home size={18} strokeWidth={2} className={styles.drawerLinkIcon} />
             {t('nav.home')}
           </NavLink>
           <NavLink to="/explore" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            <Compass size={18} strokeWidth={2} className={styles.drawerLinkIcon} />
             {t('nav.explore')}
           </NavLink>
           <NavLink to="/itineraries" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
+            <Map size={18} strokeWidth={2} className={styles.drawerLinkIcon} />
             {t('nav.itineraries')}
-          </NavLink>
-          <NavLink to="/hotels" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.hotels')}
-          </NavLink>
-          <NavLink to="/restaurants" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.restaurants')}
-          </NavLink>
-          <NavLink to="/mobility" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.mobility')}
-          </NavLink>
-          <NavLink to="/guides" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.guides')}
-          </NavLink>
-          <NavLink to="/experiences" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.experiences')}
-          </NavLink>
-          <NavLink to="/diaspora" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.diaspora')}
-          </NavLink>
-          <NavLink to="/events" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.events')}
-          </NavLink>
-          <NavLink to="/culture" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.culture')}
-          </NavLink>
-          <NavLink to="/market" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.market')}
-          </NavLink>
-          <NavLink to="/community" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.community')}
           </NavLink>
         </nav>
 
         <div className={styles.drawerDivider} />
 
-        <nav className={styles.drawerNav}>
-          <NavLink to="/edu" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.edu')}
-          </NavLink>
-          <NavLink to="/family" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.family')}
-          </NavLink>
-          <NavLink to="/roads" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.roads')}
-          </NavLink>
-          <NavLink to="/business" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.business')}
-          </NavLink>
-          <NavLink to="/international" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.international')}
-          </NavLink>
-          <NavLink to="/health" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.health')}
-          </NavLink>
-          <NavLink to="/emergency" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.emergency')}
-          </NavLink>
-          <NavLink to="/finance" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.finance')}
-          </NavLink>
-          <NavLink to="/connectivity" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.connectivity')}
-          </NavLink>
-          <NavLink to="/weather" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-            {t('nav.weather')}
-          </NavLink>
-        </nav>
+        <DrawerNavSection
+          label={t('nav.discover')}
+          links={DISCOVER_LINKS}
+          collapsedCount={DRAWER_COLLAPSED_COUNT}
+          onNavigate={() => setDrawerOpen(false)}
+        />
+
+        <div className={styles.drawerDivider} />
+
+        <DrawerNavSection
+          label={t('nav.practical')}
+          links={PRACTICAL_LINKS}
+          collapsedCount={DRAWER_COLLAPSED_COUNT}
+          onNavigate={() => setDrawerOpen(false)}
+        />
 
         {isAuthenticated && (
           <>
             <div className={styles.drawerDivider} />
-            <nav className={styles.drawerNav}>
-              <NavLink to="/bookings" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.bookings')}
-              </NavLink>
-              <NavLink to="/trips" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.trips')}
-              </NavLink>
-              <NavLink to="/notifications" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.notifications')}
-              </NavLink>
-              <NavLink to="/messages" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.messages')}
-              </NavLink>
-              <NavLink to="/passport" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.passport')}
-              </NavLink>
-              <NavLink to="/profile" className={styles.drawerLink} onClick={() => setDrawerOpen(false)}>
-                {t('nav.profile')}
-              </NavLink>
-            </nav>
+            <DrawerNavSection
+              label={t('nav.myAccount')}
+              links={ACCOUNT_LINKS}
+              collapsedCount={DRAWER_COLLAPSED_COUNT}
+              onNavigate={() => setDrawerOpen(false)}
+            />
           </>
         )}
 

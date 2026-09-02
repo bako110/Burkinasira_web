@@ -8,6 +8,8 @@
     "cancel": "Cancel",
     "search": "Search",
     "seeAll": "See all",
+    "seeMore": "See more",
+    "seeLess": "See less",
     "exploreAlso": "Explore also",
     "back": "Back",
     "close": "Close",
@@ -65,7 +67,8 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "profile": "Profile",
-    "passport": "BurkinaSira Passport"
+    "passport": "BurkinaSira Passport",
+    "myAccount": "My account"
   },
   "auth": {
     "login": "Login",
@@ -1615,5 +1618,14 @@
       "equilibre": "Balanced pace",
       "intense": "Fast pace"
     }
+  },
+  "nearMe": {
+    "enable": "Near me",
+    "active": "Near me ({{radius}} km)",
+    "disable": "Turn off",
+    "widen": "Only {{count}} result(s) - widen the area",
+    "denied": "Location denied. Allow it in your device settings to see what's near you.",
+    "unavailable": "Could not get your position right now. Try again.",
+    "insecure": "Location is only available over a secure connection (https)."
   }
 }

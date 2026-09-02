@@ -8,6 +8,8 @@
     "cancel": "Bas",
     "search": "Bao",
     "seeAll": "Ges fãa",
+    "seeMore": "Ges n paase",
+    "seeLess": "Ges bilf-bilfu",
     "exploreAlso": "Bao n ges woto me",
     "back": "Lebg poore",
     "close": "Ki",
@@ -65,7 +67,8 @@
     "notifications": "Kibare",
     "messages": "Kʋʋg-goam",
     "profile": "Mam yell",
-    "passport": "BurkinaSira Pasepɔr"
+    "passport": "BurkinaSira Pasepɔr",
+    "myAccount": "Mam sɛbenre"
   },
   "auth": {
     "login": "Kẽ",
@@ -1615,5 +1618,14 @@
       "equilibre": "Rythme equilibre",
       "intense": "Rythme soutenu"
     }
+  },
+  "nearMe": {
+    "enable": "Pres de moi",
+    "active": "Pres de moi ({{radius}} km)",
+    "disable": "Desactiver",
+    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
+    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
+    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
+    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
   }
 }

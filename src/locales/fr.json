@@ -8,6 +8,8 @@
     "cancel": "Annuler",
     "search": "Rechercher",
     "seeAll": "Voir tout",
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
     "exploreAlso": "Explorez aussi",
     "back": "Retour",
     "close": "Fermer",
@@ -65,7 +67,8 @@
     "notifications": "Notifications",
     "messages": "Messages",
     "profile": "Profil",
-    "passport": "Passeport BurkinaSira"
+    "passport": "Passeport BurkinaSira",
+    "myAccount": "Mon compte"
   },
   "auth": {
     "login": "Connexion",
@@ -1615,5 +1618,14 @@
       "equilibre": "Rythme equilibre",
       "intense": "Rythme soutenu"
     }
+  },
+  "nearMe": {
+    "enable": "Pres de moi",
+    "active": "Pres de moi ({{radius}} km)",
+    "disable": "Desactiver",
+    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
+    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
+    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
+    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
   }
 }
