@@ -15,7 +15,7 @@ interface BurkinaSiraIdCardProps {
   points: number;
 }
 
-const PUBLIC_SITE_URL = 'https://fasoviva.com';
+const PUBLIC_SITE_URL = 'https://burkinasira.com';
 
 async function toDataUrl(url: string): Promise<string | null> {
   try {
