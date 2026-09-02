@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2 } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2, View } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
@@ -14,6 +14,7 @@ export function RestaurantDetailPage() {
   const navigate = useNavigate();
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const [panoramaOpen, setPanoramaOpen] = useState(false);
 
   const { data: restaurant, isLoading, isError, refetch } = useRestaurantDetail(id);
 
@@ -92,10 +93,18 @@ export function RestaurantDetailPage() {
             )}
           </div>
           {allMedia.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
-              <Maximize2 size={15} strokeWidth={2} />
-              {t('gallery.ctaRestaurant')}
-            </Button>
+            <div className={styles.heroActions}>
+              <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
+                <Maximize2 size={15} strokeWidth={2} />
+                {t('gallery.ctaRestaurant')}
+              </Button>
+              {(restaurant.photos?.length ?? 0) > 0 && (
+                <Button size="sm" onClick={() => setPanoramaOpen(true)}>
+                  <View size={15} strokeWidth={2} />
+                  {t('panorama.cta')}
+                </Button>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -228,6 +237,13 @@ export function RestaurantDetailPage() {
         onClose={() => setGalleryOpen(false)}
         urls={allMedia}
         startIndex={galleryStartIndex}
+        title={restaurant.name}
+      />
+
+      <PanoramaViewer
+        open={panoramaOpen}
+        onClose={() => setPanoramaOpen(false)}
+        urls={restaurant.photos ?? []}
         title={restaurant.name}
       />
     </div>

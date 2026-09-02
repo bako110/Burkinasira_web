@@ -31,7 +31,8 @@
     "ctaHotel": "Lotɛli lajɛ",
     "ctaRestaurant": "Dumunikɛyɔrɔ lajɛ",
     "ctaTransport": "Mobili lajɛ",
-    "ctaArtisan": "Baarayɔrɔ lajɛ"
+    "ctaArtisan": "Baarayɔrɔ lajɛ",
+    "ctaDestination": "Voir les photos"
   },
   "nav": {
     "home": "So",
@@ -1628,5 +1629,11 @@
     "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
     "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
     "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
+  },
+  "panorama": {
+    "cta": "Visite 360°",
+    "badge": "Visite 360°",
+    "hint": "Faites glisser pour explorer · bougez votre téléphone",
+    "error": "La visite 360° n'a pas pu être chargée sur cet appareil."
   }
 }

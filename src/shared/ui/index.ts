@@ -21,4 +21,5 @@ export { Tabs } from './Tabs';
 export type { TabItem } from './Tabs';
 export { RegionProvinceFilter } from './RegionProvinceFilter';
 export { NearMeToggle } from './NearMeToggle';
+export { PanoramaViewer } from './PanoramaViewerLazy';
 export { ImmersiveGallery } from './ImmersiveGallery';

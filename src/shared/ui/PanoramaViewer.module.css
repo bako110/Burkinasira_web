@@ -1,0 +1,116 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Pannellum injecte son propre canvas ; on neutralise ses fonds. */
+.stage :global(.pnlm-container) {
+  background: #000 !important;
+}
+
+.topBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--space-3) + env(safe-area-inset-top)) var(--space-4) var(--space-3);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.iconBtn:hover {
+  background-color: rgba(255, 255, 255, 0.24);
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.nav:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+.navLeft {
+  left: var(--space-3);
+}
+
+.navRight {
+  right: var(--space-3);
+}
+
+.hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.error {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9375rem;
+  text-align: center;
+}

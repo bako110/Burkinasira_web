@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, Maximize2 } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, Maximize2, View } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
@@ -20,6 +20,7 @@ export function HotelDetailPage() {
   const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const [panoramaOpen, setPanoramaOpen] = useState(false);
 
   const { data: hotel, isLoading, isError, refetch } = useHotelDetail(id);
 
@@ -102,10 +103,18 @@ export function HotelDetailPage() {
             )}
           </div>
           {allMedia.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
-              <Maximize2 size={15} strokeWidth={2} />
-              {t('gallery.ctaHotel')}
-            </Button>
+            <div className={styles.heroActions}>
+              <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
+                <Maximize2 size={15} strokeWidth={2} />
+                {t('gallery.ctaHotel')}
+              </Button>
+              {(hotel.photos?.length ?? 0) > 0 && (
+                <Button size="sm" onClick={() => setPanoramaOpen(true)}>
+                  <View size={15} strokeWidth={2} />
+                  {t('panorama.cta')}
+                </Button>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -261,6 +270,13 @@ export function HotelDetailPage() {
         onClose={() => setGalleryOpen(false)}
         urls={allMedia}
         startIndex={galleryStartIndex}
+        title={hotel.name}
+      />
+
+      <PanoramaViewer
+        open={panoramaOpen}
+        onClose={() => setPanoramaOpen(false)}
+        urls={hotel.photos ?? []}
         title={hotel.name}
       />
     </div>

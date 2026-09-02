@@ -31,7 +31,8 @@
     "ctaHotel": "Visit the hotel",
     "ctaRestaurant": "Visit the restaurant",
     "ctaTransport": "Visit the vehicle",
-    "ctaArtisan": "Visit the workshop"
+    "ctaArtisan": "Visit the workshop",
+    "ctaDestination": "View photos"
   },
   "nav": {
     "home": "Home",
@@ -1628,5 +1629,11 @@
     "denied": "Location denied. Allow it in your device settings to see what's near you.",
     "unavailable": "Could not get your position right now. Try again.",
     "insecure": "Location is only available over a secure connection (https)."
+  },
+  "panorama": {
+    "cta": "360° tour",
+    "badge": "360° tour",
+    "hint": "Drag to look around · move your phone",
+    "error": "The 360° tour could not be loaded on this device."
   }
 }

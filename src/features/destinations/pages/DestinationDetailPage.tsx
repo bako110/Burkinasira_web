@@ -13,9 +13,20 @@ import {
   ExternalLink,
   Accessibility,
   Route,
+  Maximize2,
 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import {
+  Button,
+  Spinner,
+  EmptyResults,
+  DetailBackButton,
+  RelatedModules,
+  ImmersiveGallery,
+  PanoramaViewer,
+  Reveal,
+} from '../../../shared/ui';
+import { View } from 'lucide-react';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
@@ -31,6 +42,9 @@ export function DestinationDetailPage() {
   const requireAuth = useRequireAuth();
   const push = useToastStore((s) => s.push);
   const [modalOpen, setModalOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryStart, setGalleryStart] = useState(0);
+  const [panoramaOpen, setPanoramaOpen] = useState(false);
 
   const { data: destination, isLoading, isError, refetch } = useDestinationDetail(slug);
   const { mutate: createTrip, isPending: isCreatingTrip } = useCreateTrip();
@@ -83,12 +97,21 @@ export function DestinationDetailPage() {
     );
   }
 
-  const cover = destination.photos?.[0];
-  const gallery = destination.photos?.slice(1, 5) ?? [];
+  const photos = destination.photos ?? [];
+  const cover = photos[0];
+  const gallery = photos.slice(1, 5);
+  // La visite 360° s'appuie directement sur les photos de la fiche : elles
+  // doivent être des panoramas équirectangulaires (ratio 2:1).
+  const hasPanorama = photos.length > 0;
   const location = [destination.city, destination.region].filter(Boolean).join(', ');
   const mapsUrl = destination.location
     ? `https://www.google.com/maps?q=${destination.location.latitude},${destination.location.longitude}`
     : undefined;
+
+  function openGallery(index: number) {
+    setGalleryStart(index);
+    setGalleryOpen(true);
+  }
 
   return (
     <div className={styles.page}>
@@ -127,13 +150,40 @@ export function DestinationDetailPage() {
               </span>
             )}
           </div>
+
+          <div className={styles.heroActions}>
+            {photos.length > 0 && (
+              <button type="button" className={styles.heroActionBtn} onClick={() => openGallery(0)}>
+                <Maximize2 size={15} strokeWidth={2} />
+                {t('gallery.ctaDestination')}
+              </button>
+            )}
+            {hasPanorama && (
+              <button
+                type="button"
+                className={`${styles.heroActionBtn} ${styles.heroActionPrimary}`}
+                onClick={() => setPanoramaOpen(true)}
+              >
+                <View size={15} strokeWidth={2} />
+                {t('panorama.cta')}
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
       {gallery.length > 0 && (
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
-            <img key={i} src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            <Reveal key={i} delay={i * 70}>
+              <button
+                type="button"
+                className={styles.galleryImgButton}
+                onClick={() => openGallery(i + 1)}
+              >
+                <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+              </button>
+            </Reveal>
           ))}
         </div>
       )}
@@ -259,6 +309,21 @@ export function DestinationDetailPage() {
         itemTitle={destination.name}
         unitPrice={0}
         requiresDate
+      />
+
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={photos}
+        title={destination.name}
+        startIndex={galleryStart}
+      />
+
+      <PanoramaViewer
+        open={panoramaOpen}
+        onClose={() => setPanoramaOpen(false)}
+        urls={photos}
+        title={destination.name}
       />
     </div>
   );
