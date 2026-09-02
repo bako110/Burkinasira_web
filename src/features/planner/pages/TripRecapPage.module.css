@@ -21,7 +21,23 @@
 }
 
 .backBtn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.15);
   color: #fff;
+  cursor: pointer;
+  margin-bottom: var(--space-3);
+}
+
+.backBtn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .heroContent {
