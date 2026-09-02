@@ -15,6 +15,7 @@ import { DrawerNavSection } from './DrawerNavSection';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
 import { CartButton } from '../../features/market/components/CartButton';
 import { AssistantWidget } from '../../features/assistant/components/AssistantWidget';
+import { useAndroidBackButton } from '../useAndroidBackButton';
 import styles from './AppLayout.module.css';
 
 const ACCOUNT_LINKS = [
@@ -33,6 +34,13 @@ export function AppLayout() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  useAndroidBackButton(() => {
+    if (drawerOpen) {
+      setDrawerOpen(false);
+      return true;
+    }
+    return false;
+  });
 
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? 'hidden' : '';
