@@ -1,4 +1,4 @@
-# robots.txt - FasoViva
+# robots.txt - BurkinaSira
 User-agent: *
 Allow: /
 
@@ -14,4 +14,4 @@ Disallow: /trips
 Disallow: /market/orders
 Disallow: /pro/
 
-Sitemap: https://fasoviva.com/sitemap.xml
+Sitemap: https://burkinasira.com/sitemap.xml
