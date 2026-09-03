@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { QRCodeSVG } from 'qrcode.react';
-import { toPng } from 'html-to-image';
+import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
 import { Download, User, BadgeCheck } from 'lucide-react';
 
 import { Button } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { useCardToken } from '../../auth/hooks/useCardToken';
 import type { UserPublic } from '../../../shared/api/types';
+import { drawIdCard, loadImage } from './drawIdCard';
 import styles from './BurkinaSiraIdCard.module.css';
 
 interface BurkinaSiraIdCardProps {
@@ -35,9 +35,9 @@ async function toDataUrl(url: string): Promise<string | null> {
 
 export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
   const { t, i18n } = useTranslation();
-  const cardRef = useRef<HTMLDivElement>(null);
   const push = useToastStore((s) => s.push);
   const { data: cardTokenData } = useCardToken();
+  const qrCanvasRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [avatarDataUrl, setAvatarDataUrl] = useState<string | null>(null);
 
@@ -62,26 +62,34 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
       })
     : '';
 
+  const roleLabel = t(`auth.role${capitalize(user.role)}`, user.role);
+
   async function handleDownload() {
-    const node = cardRef.current;
-    if (!node) return;
     setIsDownloading(true);
     try {
-      // On capture avec les dimensions RÉELLES du noeud (et non l'aspect-ratio
-      // calculé), sinon html-to-image étire la carte sur mobile quand le contenu
-      // ne remplit pas exactement la hauteur théorique.
-      const rect = node.getBoundingClientRect();
-      const dataUrl = await toPng(node, {
-        cacheBust: true,
-        pixelRatio: 3,
-        width: Math.round(rect.width),
-        height: Math.round(rect.height),
-        backgroundColor: '#fdeee0',
-        style: {
-          margin: '0',
-          transform: 'none',
-        },
+      // Le QR est rendu dans un <canvas> caché par qrcode.react : on lit ses pixels.
+      const qrCanvas = qrCanvasRef.current?.querySelector('canvas') ?? null;
+
+      const [watermark, avatar] = await Promise.all([
+        loadImage('/logo.png'),
+        avatarDataUrl ? loadImage(avatarDataUrl) : Promise.resolve(null),
+      ]);
+
+      const out = document.createElement('canvas');
+      drawIdCard(out, {
+        fullName: user.full_name,
+        roleLabel,
+        memberSinceLabel: t('passport.memberSince', { date: memberSince }),
+        pointsLabel: `${t('passport.points')} : ${points.toLocaleString('fr-FR')}`,
+        cardLabel: t('passport.cardLabel'),
+        tagline: t('passport.cardTagline'),
+        isVerified: Boolean(user.is_verified),
+        avatar,
+        watermark,
+        qr: qrCanvas,
       });
+
+      const dataUrl = out.toDataURL('image/png');
       const link = document.createElement('a');
       link.download = `burkinasira-carte-${user.full_name.replace(/\s+/g, '-').toLowerCase()}.png`;
       link.href = dataUrl;
@@ -95,9 +103,9 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
 
   return (
     <div className={styles.wrap}>
-      <div ref={cardRef} className={styles.card}>
+      {/* Aperçu à l'écran */}
+      <div className={styles.card}>
         <img src="/logo.png" alt="" className={styles.watermark} />
-        <div className={styles.overlay} />
 
         <div className={styles.header}>
           <span className={styles.brand}>BurkinaSira</span>
@@ -122,11 +130,11 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
                 <BadgeCheck size={16} strokeWidth={2} className={styles.verifiedIcon} />
               )}
             </span>
-            <span className={styles.role}>{t(`auth.role${capitalize(user.role)}`, user.role)}</span>
+            <span className={styles.role}>{roleLabel}</span>
+            <span className={styles.meta}>{t('passport.memberSince', { date: memberSince })}</span>
             <span className={styles.meta}>
-              {t('passport.memberSince', { date: memberSince })}
+              {t('passport.points')} : {points.toLocaleString('fr-FR')}
             </span>
-            <span className={styles.meta}>{t('passport.points')}: {points.toLocaleString('fr-FR')}</span>
           </div>
 
           <div className={styles.qrWrap}>
@@ -148,7 +156,20 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
         </div>
       </div>
 
-      <Button onClick={handleDownload} disabled={isDownloading} className={styles.downloadBtn}>
+      {/* QR en <canvas> hors écran, uniquement pour l'export PNG */}
+      <div ref={qrCanvasRef} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: 0 }}>
+        {cardTokenData && (
+          <QRCodeCanvas
+            value={`${PUBLIC_SITE_URL}/verify/${cardTokenData.card_token}`}
+            size={420}
+            bgColor="#ffffff"
+            fgColor="#1a1a1a"
+            level="M"
+          />
+        )}
+      </div>
+
+      <Button onClick={handleDownload} disabled={isDownloading || !cardTokenData} className={styles.downloadBtn}>
         <Download size={16} strokeWidth={2} />
         {isDownloading ? t('common.loading') : t('passport.downloadCard')}
       </Button>
