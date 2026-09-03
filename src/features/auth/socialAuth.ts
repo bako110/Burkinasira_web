@@ -13,6 +13,22 @@ import { env } from '../../shared/config/env';
 
 export const isGoogleAuthConfigured = (): boolean => Boolean(env.googleWebClientId);
 
+/**
+ * URL de redirection OAuth stable pour le flux web.
+ *
+ * Sur le web le plugin ouvre une popup vers Google puis Google renvoie vers ce
+ * `redirect_uri` avec le `id_token` dans le hash. Le module `oauth-popup-redirect`
+ * du plugin (exécuté à l'import) termine alors le flux et ferme la popup. On fixe
+ * une URL fixe (`<origin>/`) plutôt que de laisser le plugin utiliser l'URL
+ * courante — ainsi une seule URL est à déclarer dans Google Cloud Console, quelle
+ * que soit la page depuis laquelle l'utilisateur clique.
+ *
+ * Cette URL DOIT figurer à l'identique dans "Authorized redirect URIs" du client
+ * OAuth "Web" (Google Cloud Console). En dev : http://localhost:5173/
+ */
+export const googleRedirectUrl = (): string =>
+  typeof window !== 'undefined' ? `${window.location.origin}/` : '';
+
 let initPromise: Promise<void> | null = null;
 
 async function ensureInitialized(): Promise<void> {
@@ -24,6 +40,7 @@ async function ensureInitialized(): Promise<void> {
       google: {
         webClientId: env.googleWebClientId,
         mode: 'online',
+        redirectUrl: googleRedirectUrl(),
       },
     });
   }
