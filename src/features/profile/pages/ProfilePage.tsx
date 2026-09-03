@@ -19,7 +19,7 @@ import {
   Wrench,
 } from 'lucide-react';
 
-import { Card, Input, PasswordInput, Button, ConfirmDialog } from '../../../shared/ui';
+import { Card, Input, PasswordInput, Button, ConfirmDialog, Avatar } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
@@ -110,13 +110,7 @@ export function ProfilePage() {
     <div className={styles.page}>
       <aside className={styles.sidebar}>
         <div className={styles.identityCard}>
-          <div className={styles.avatar}>
-            {user.avatar_url ? (
-              <img src={user.avatar_url} alt={user.full_name} className={styles.avatarImg} />
-            ) : (
-              <User size={28} strokeWidth={1.5} />
-            )}
-          </div>
+          <Avatar src={user.avatar_url} name={user.full_name} size={56} className={styles.avatar} />
           <div className={styles.identityText}>
             <h1 className={styles.name}>{user.full_name}</h1>
             <p className={styles.email}>{user.email}</p>

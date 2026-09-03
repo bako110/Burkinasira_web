@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Users, Lock, User, ArrowLeft, Plus, MapPin, Tag } from 'lucide-react';
+import { Users, Lock, ArrowLeft, Plus, MapPin, Tag } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Avatar } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useAuthStore } from '../../../store/auth.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -208,13 +208,12 @@ export function GroupDetailPage() {
             <div className={styles.memberList}>
               {group.members.map((member) => (
                 <div key={member.id} className={styles.memberRow}>
-                  <span className={styles.memberAvatar}>
-                    {member.avatar_url ? (
-                      <img src={member.avatar_url} alt={member.full_name} />
-                    ) : (
-                      <User size={16} strokeWidth={1.75} />
-                    )}
-                  </span>
+                  <Avatar
+                    src={member.avatar_url}
+                    name={member.full_name}
+                    size={36}
+                    className={styles.memberAvatar}
+                  />
                   <span className={styles.memberName}>{member.full_name}</span>
                   {member.id === group.creator_id && (
                     <span className={styles.creatorTag}>{t('community.creatorTag')}</span>

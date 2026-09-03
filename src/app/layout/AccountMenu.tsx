@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { User, Ticket, Map, MessageCircle, Trophy, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { Ticket, Map, MessageCircle, Trophy, Settings, LogOut, ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 
 import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
-import { ConfirmDialog } from '../../shared/ui';
+import { Avatar, ConfirmDialog } from '../../shared/ui';
 import styles from './AccountMenu.module.css';
 
 const LINKS = [
@@ -42,9 +42,7 @@ export function AccountMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
-        <span className={styles.avatar}>
-          {user.avatar_url ? <img src={user.avatar_url} alt="" className={styles.avatarImg} /> : <User size={16} strokeWidth={2} />}
-        </span>
+        <Avatar src={user.avatar_url} name={user.full_name} size={28} className={styles.avatar} />
         <span className={styles.name}>{user.full_name.split(' ')[0]}</span>
         <ChevronDown size={14} strokeWidth={2} className={clsx(styles.chevron, open && styles.chevronOpen)} />
       </button>

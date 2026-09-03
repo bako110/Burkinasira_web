@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, MessageCircle, User, ImageOff, ChevronLeft, ChevronRight, Send } from 'lucide-react';
+import { Heart, MessageCircle, ImageOff, ChevronLeft, ChevronRight, Send } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Spinner, ImmersiveGallery, Modal } from '../../../shared/ui';
+import { Spinner, ImmersiveGallery, Modal, Avatar } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useLikePost } from '../hooks/useLikePost';
 import { useComments, useAddComment } from '../hooks/useComments';
@@ -37,13 +37,12 @@ export function PostCard({ post }: { post: Post }) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.avatar}>
-          {post.author_avatar_url ? (
-            <img src={post.author_avatar_url} alt="" />
-          ) : (
-            <User size={16} strokeWidth={1.75} />
-          )}
-        </span>
+        <Avatar
+          src={post.author_avatar_url}
+          name={post.author_name}
+          size={36}
+          className={styles.avatar}
+        />
         <div className={styles.headerText}>
           <span className={styles.authorName}>{post.author_name ?? t('community.someMember')}</span>
           <span className={styles.date}>

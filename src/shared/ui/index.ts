@@ -24,3 +24,4 @@ export { RegionProvinceFilter } from './RegionProvinceFilter';
 export { NearMeToggle } from './NearMeToggle';
 export { PanoramaViewer } from './PanoramaViewerLazy';
 export { ImmersiveGallery } from './ImmersiveGallery';
+export { Avatar } from './Avatar';
