@@ -1,17 +1,20 @@
 import { jsPDF } from 'jspdf';
 
 import type { TripDetail } from '../trips/types';
-import { buildBudget, formatXof, BUDGET_CATEGORIES, type ComfortLevel } from './budget';
+import { buildBudget, formatXof, BUDGET_CATEGORIES, type ComfortLevel, type OriginRegion } from './budget';
 
 interface RecapParams {
   trip: TripDetail;
   comfort: ComfortLevel;
   travelers: number;
+  originRegion?: OriginRegion;
   /** Libellés traduits pour les catégories et types (injectés depuis le composant). */
   labels: {
     categories: Record<string, string>;
     itemTypes: Record<string, string>;
     comfortLevel: string;
+    originRegionLabel?: string;
+    originRegionValue?: string;
     title: string;
     generatedOn: string;
     tripDates: string;
@@ -29,7 +32,7 @@ interface RecapParams {
 }
 
 /** Génère le PDF du récapitulatif de voyage et déclenche le téléchargement. */
-export function generateRecapPdf({ trip, comfort, travelers, labels }: RecapParams): void {
+export function generateRecapPdf({ trip, comfort, travelers, originRegion, labels }: RecapParams): void {
   const doc = new jsPDF({ unit: 'pt', format: 'a4' });
   const pageW = doc.internal.pageSize.getWidth();
   const margin = 48;
@@ -78,6 +81,9 @@ export function generateRecapPdf({ trip, comfort, travelers, labels }: RecapPara
   if (trip.region) infoRows.push([labels.zone, trip.region]);
   infoRows.push([labels.travelersLabel, String(travelers)]);
   infoRows.push([labels.comfortLabel, labels.comfortLevel]);
+  if (labels.originRegionLabel && labels.originRegionValue) {
+    infoRows.push([labels.originRegionLabel, labels.originRegionValue]);
+  }
   for (const [k, v] of infoRows) {
     doc.setFont('helvetica', 'bold');
     doc.text(`${k}:`, margin, y);
@@ -95,6 +101,7 @@ export function generateRecapPdf({ trip, comfort, travelers, labels }: RecapPara
     endDate: trip.end_date,
     comfort,
     travelers,
+    originRegion,
   });
 
   doc.setFont('helvetica', 'bold');

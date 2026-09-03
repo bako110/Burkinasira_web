@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Download, Wallet, CalendarDays, MapPin, Users } from 'lucide-react';
+import { Download, Wallet, CalendarDays, MapPin, Users, Plane } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
@@ -12,7 +12,9 @@ import {
   formatXof,
   BUDGET_CATEGORIES,
   COMFORT_SCALES,
+  ORIGIN_REGIONS,
   type ComfortLevel,
+  type OriginRegion,
 } from '../budget';
 import { TravelAdvice } from '../components/TravelAdvice';
 import styles from './TripRecapPage.module.css';
@@ -28,6 +30,7 @@ export function TripRecapPage() {
   const { data: trip, isLoading, isError, refetch } = useTripDetail(tripId);
   const [comfort, setComfort] = useState<ComfortLevel>('standard');
   const [travelers, setTravelers] = useState(2);
+  const [originRegion, setOriginRegion] = useState<OriginRegion>('cedeao');
 
   const budget = useMemo(() => {
     if (!trip) return null;
@@ -37,8 +40,9 @@ export function TripRecapPage() {
       endDate: trip.end_date,
       comfort,
       travelers,
+      originRegion,
     });
-  }, [trip, comfort, travelers]);
+  }, [trip, comfort, travelers, originRegion]);
 
   const [exporting, setExporting] = useState(false);
 
@@ -51,6 +55,7 @@ export function TripRecapPage() {
         trip,
         comfort,
         travelers,
+        originRegion,
         labels: {
           categories: Object.fromEntries(
             BUDGET_CATEGORIES.map((c) => [c, t(`planner.categories.${c}`)]),
@@ -61,6 +66,8 @@ export function TripRecapPage() {
             ),
           ),
           comfortLevel: t(`planner.comfortLevels.${comfort}`),
+          originRegionLabel: t('planner.originRegion'),
+          originRegionValue: t(`planner.originRegions.${originRegion}`),
           title: t('recap.pdfTitle'),
           generatedOn: t('recap.generatedOn', { date: new Date().toLocaleDateString(i18n.language) }),
           tripDates: t('recap.tripDates'),
@@ -175,6 +182,23 @@ export function TripRecapPage() {
                 </button>
               ))}
             </div>
+          </div>
+          <div className={styles.setting}>
+            <span className={styles.settingLabel}>
+              <Plane size={14} strokeWidth={2} />
+              {t('planner.originRegion')}
+            </span>
+            <select
+              className={styles.originSelect}
+              value={originRegion}
+              onChange={(e) => setOriginRegion(e.target.value as OriginRegion)}
+            >
+              {ORIGIN_REGIONS.map((r) => (
+                <option key={r} value={r}>
+                  {t(`planner.originRegions.${r}`)}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

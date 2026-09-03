@@ -1486,6 +1486,17 @@
       "confort": "Confort"
     },
     "comfortHint": "Base : nuitée ~ {{nuitee}} · repas ~ {{repas}} (ajusté si un prix réel existe).",
+    "originRegion": "Vous venez de",
+    "originRegions": {
+      "burkina_faso": "Burkina Faso",
+      "cedeao": "Afrique de l'Ouest (CEDEAO)",
+      "afrique_autre": "Autre pays d'Afrique",
+      "europe": "Europe",
+      "amerique_nord": "Amérique du Nord",
+      "moyen_orient": "Moyen-Orient",
+      "asie": "Asie",
+      "oceanie": "Océanie"
+    },
     "budgetTitle": "Budget estimé",
     "budgetMeta": "{{days}} jour(s) · {{nights}} nuit(s) · {{travelers}} voyageur(s)",
     "distanceMeta": "≈ {{km}} km de trajet estimés entre vos étapes",
@@ -1499,6 +1510,7 @@
       "transport": "Transport"
     },
     "categories": {
+      "international": "Vol & visa",
       "hebergement": "Hébergement",
       "nourriture": "Nourriture",
       "transport": "Transport",

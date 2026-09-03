@@ -17,6 +17,7 @@ import type { GeoPoint, TripDay, TripItemType } from '../trips/types';
 export type ComfortLevel = 'eco' | 'standard' | 'confort';
 
 export type BudgetCategory =
+  | 'international'
   | 'hebergement'
   | 'nourriture'
   | 'transport'
@@ -25,6 +26,7 @@ export type BudgetCategory =
   | 'autres';
 
 export const BUDGET_CATEGORIES: BudgetCategory[] = [
+  'international',
   'hebergement',
   'nourriture',
   'transport',
@@ -32,6 +34,60 @@ export const BUDGET_CATEGORIES: BudgetCategory[] = [
   'activites',
   'autres',
 ];
+
+/**
+ * Région de provenance du touriste, pour estimer le trajet international
+ * (vol aller-retour + visa) jusqu'à Ouagadougou. Regroupement par zone
+ * géographique plutôt que par pays : suffisant pour un ordre de grandeur,
+ * un pays précis par région ne changerait pas la décision budgétaire.
+ */
+export type OriginRegion =
+  | 'burkina_faso'
+  | 'cedeao'
+  | 'afrique_autre'
+  | 'europe'
+  | 'amerique_nord'
+  | 'moyen_orient'
+  | 'asie'
+  | 'oceanie';
+
+export const ORIGIN_REGIONS: OriginRegion[] = [
+  'burkina_faso',
+  'cedeao',
+  'afrique_autre',
+  'europe',
+  'amerique_nord',
+  'moyen_orient',
+  'asie',
+  'oceanie',
+];
+
+interface InternationalCost {
+  /** Vol aller-retour jusqu'à Ouagadougou, par personne, en FCFA. */
+  flightRoundTrip: number;
+  /** Visa touristique, par personne, en FCFA (0 si exempté, ex. CEDEAO). */
+  visa: number;
+}
+
+/**
+ * Coûts d'accès au Burkina Faso par zone de départ, en XOF (FCFA).
+ * Sources (2026) : recherches de tarifs de vols AR vers Ouagadougou par zone
+ * (Air France, Brussels Airlines, Ethiopian, Royal Air Maroc, comparateurs),
+ * et grille e-Visa Burkina Faso (~84-143€ pour un visa touristique simple
+ * entrée, exemption totale pour les ressortissants CEDEAO <90 jours).
+ * Fourchettes larges par nature : un vol dépend fortement de la saison et
+ * de la date de réservation, retenu ici à un niveau médian réaliste.
+ */
+export const INTERNATIONAL_COSTS: Record<OriginRegion, InternationalCost> = {
+  burkina_faso: { flightRoundTrip: 0, visa: 0 },
+  cedeao: { flightRoundTrip: 200000, visa: 0 },
+  afrique_autre: { flightRoundTrip: 320000, visa: 50000 },
+  europe: { flightRoundTrip: 450000, visa: 55000 },
+  amerique_nord: { flightRoundTrip: 500000, visa: 55000 },
+  moyen_orient: { flightRoundTrip: 400000, visa: 55000 },
+  asie: { flightRoundTrip: 550000, visa: 55000 },
+  oceanie: { flightRoundTrip: 700000, visa: 55000 },
+};
 
 /**
  * Barème indicatif en XOF (FCFA), par personne.
@@ -160,6 +216,8 @@ interface BuildParams {
   endDate?: string;
   comfort: ComfortLevel;
   travelers: number;
+  /** Région de provenance du touriste ; ajoute une ligne vol + visa si renseignée et différente du Burkina Faso. */
+  originRegion?: OriginRegion;
   /** Retire les lignes "auto" d'une catégorie si l'utilisateur préfère la piloter à la main. */
   disabledAutoCategories?: BudgetCategory[];
   /** Ajustements manuels du coût unitaire d'une ligne auto, par catégorie. */
@@ -180,6 +238,7 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
     endDate,
     comfort,
     travelers,
+    originRegion,
     disabledAutoCategories = [],
     autoUnitOverrides = {},
   } = params;
@@ -195,6 +254,31 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
   const isAutoOn = (c: BudgetCategory) => !disabledAutoCategories.includes(c);
   const autoUnit = (c: BudgetCategory, fallback: number) =>
     typeof autoUnitOverrides[c] === 'number' ? (autoUnitOverrides[c] as number) : fallback;
+
+  // 0. Trajet international : vol aller-retour + visa, par personne, selon la région de départ.
+  if (originRegion && originRegion !== 'burkina_faso' && isAutoOn('international')) {
+    const { flightRoundTrip, visa } = INTERNATIONAL_COSTS[originRegion];
+    if (flightRoundTrip > 0) {
+      lines.push({
+        category: 'international',
+        label: `Vol aller-retour (${people} pers.)`,
+        unitCost: autoUnit('international', flightRoundTrip),
+        quantity: people,
+        fromRealPrice: false,
+        source: 'auto',
+      });
+    }
+    if (visa > 0) {
+      lines.push({
+        category: 'international',
+        label: `Visa touristique (${people} pers.)`,
+        unitCost: visa,
+        quantity: people,
+        fromRealPrice: false,
+        source: 'auto',
+      });
+    }
+  }
 
   // 1. Lignes issues du plan (items avec un coût saisi).
   const plannedByCategory: Record<string, number> = {};

@@ -1486,6 +1486,17 @@
       "confort": "Comfort"
     },
     "comfortHint": "Base: night ~ {{nuitee}} · meal ~ {{repas}} (overridden by real prices when available).",
+    "originRegion": "You're coming from",
+    "originRegions": {
+      "burkina_faso": "Burkina Faso",
+      "cedeao": "West Africa (ECOWAS)",
+      "afrique_autre": "Another African country",
+      "europe": "Europe",
+      "amerique_nord": "North America",
+      "moyen_orient": "Middle East",
+      "asie": "Asia",
+      "oceanie": "Oceania"
+    },
     "budgetTitle": "Estimated budget",
     "budgetMeta": "{{days}} day(s) · {{nights}} night(s) · {{travelers}} traveler(s)",
     "distanceMeta": "≈ {{km}} km of travel estimated between your stops",
@@ -1499,6 +1510,7 @@
       "transport": "Transport"
     },
     "categories": {
+      "international": "Flight & visa",
       "hebergement": "Lodging",
       "nourriture": "Food",
       "transport": "Transport",

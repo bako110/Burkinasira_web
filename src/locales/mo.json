@@ -1486,6 +1486,17 @@
       "confort": "Laafɩ"
     },
     "comfortHint": "Sɩngre: yʋngo ~ {{nuitee}} · rɩɩb ~ {{repas}} (b tekda ligd sɩd sã n be).",
+    "originRegion": "Fo yita",
+    "originRegions": {
+      "burkina_faso": "Burkina Faso",
+      "cedeao": "Sɩɩga-Afirik (CEDEAO)",
+      "afrique_autre": "Afirik tẽng a to",
+      "europe": "Zurop",
+      "amerique_nord": "Amerik-Nug",
+      "moyen_orient": "Nug-Sag",
+      "asie": "Azi",
+      "oceanie": "Oseani"
+    },
     "budgetTitle": "Ligd sẽn gesle",
     "budgetMeta": "{{days}} daar · {{nights}} yʋngo · {{travelers}} sor-neda",
     "distanceMeta": "≈ km {{km}} sore n gesg sẽn be y sorẽ wã sʋka",
@@ -1499,6 +1510,7 @@
       "transport": "Vẽeg-vẽeg"
     },
     "categories": {
+      "international": "Sã-pusgu & visa",
       "hebergement": "Gã·d-zĩiga",
       "nourriture": "Rɩɩb",
       "transport": "Vẽeg-vẽeg",

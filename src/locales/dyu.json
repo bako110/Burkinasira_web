@@ -1486,6 +1486,17 @@
       "confort": "Nɛgɛnya"
     },
     "comfortHint": "Fanga: su ~ {{nuitee}} · dumuni ~ {{repas}} (a bɛ Changé ni sɔngɔ yɛrɛ bɛ yen).",
+    "originRegion": "I bɔra yɔrɔ min na",
+    "originRegions": {
+      "burkina_faso": "Burkina Faso",
+      "cedeao": "Farafina Kɔrɔn (CEDEAO)",
+      "afrique_autre": "Farafina jamana wɛrɛ",
+      "europe": "Erɔpu",
+      "amerique_nord": "Ameriki Kɔgɔji Fɛ",
+      "moyen_orient": "Cɛmancɛ Kɔrɔn",
+      "asie": "Azi",
+      "oceanie": "Oseyani"
+    },
     "budgetTitle": "Wari jatelen",
     "budgetMeta": "{{days}} tile · {{nights}} su · {{travelers}} taamakɛla",
     "distanceMeta": "≈ km {{km}} sira jateminɛ i ka lakana cɛ",
@@ -1499,6 +1510,7 @@
       "transport": "Bolimafɛn"
     },
     "categories": {
+      "international": "Awiyɔn & viza",
       "hebergement": "Sigi-yɔrɔ",
       "nourriture": "Dumuni",
       "transport": "Bolimafɛn",

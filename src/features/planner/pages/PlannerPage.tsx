@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Plus, Check, Wallet, MapPin, FileText, Users } from 'lucide-react';
+import { Plus, Check, Wallet, MapPin, FileText, Users, Plane } from 'lucide-react';
 import clsx from 'clsx';
 
 import {
@@ -30,7 +30,9 @@ import {
   formatXof,
   BUDGET_CATEGORIES,
   COMFORT_SCALES,
+  ORIGIN_REGIONS,
   type ComfortLevel,
+  type OriginRegion,
 } from '../budget';
 import { TravelAdvice } from '../components/TravelAdvice';
 import styles from './PlannerPage.module.css';
@@ -53,6 +55,7 @@ export function PlannerPage() {
   const [province, setProvince] = useState<string | undefined>(undefined);
   const [comfort, setComfort] = useState<ComfortLevel>('standard');
   const [travelers, setTravelers] = useState(2);
+  const [originRegion, setOriginRegion] = useState<OriginRegion>('cedeao');
   const [justAdded, setJustAdded] = useState<Set<string>>(new Set());
 
   // La zone par défaut = région du voyage.
@@ -66,8 +69,9 @@ export function PlannerPage() {
       endDate: trip.end_date,
       comfort,
       travelers,
+      originRegion,
     });
-  }, [trip, comfort, travelers]);
+  }, [trip, comfort, travelers, originRegion]);
 
   function handleAdd(item: TripDayItem, key: string) {
     if (!tripId) return;
@@ -163,6 +167,25 @@ export function PlannerPage() {
                 repas: formatXof(COMFORT_SCALES[comfort].repas),
               })}
             </p>
+
+            <div className={styles.paramRow}>
+              <label className={styles.paramLabel} htmlFor="origin-region">
+                <Plane size={15} strokeWidth={2} />
+                {t('planner.originRegion')}
+              </label>
+              <select
+                id="origin-region"
+                className={styles.originSelect}
+                value={originRegion}
+                onChange={(e) => setOriginRegion(e.target.value as OriginRegion)}
+              >
+                {ORIGIN_REGIONS.map((r) => (
+                  <option key={r} value={r}>
+                    {t(`planner.originRegions.${r}`)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* --- Budget (mobile : ici ; desktop : colonne latérale) --- */}
