@@ -124,7 +124,8 @@
     "logoutCancelCta": "Cancel",
     "logoutSuccess": "You've been logged out. See you soon!",
     "welcomeBackTitle": "Welcome back",
-    "welcomeBackMessage": "Great to see you again, {{name}}!"
+    "welcomeBackMessage": "Great to see you again, {{name}}!",
+    "socialError": "Google sign-in failed. Please try again."
   },
   "pro": {
     "pendingTitle": "Verification in progress",

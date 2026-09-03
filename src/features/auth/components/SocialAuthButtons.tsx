@@ -1,6 +1,12 @@
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+import { Spinner } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
+import { extractApiErrorMessage } from '../../../shared/api/client';
+import { useGoogleLogin } from '../hooks/useGoogleLogin';
+import { isGoogleAuthConfigured } from '../socialAuth';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import styles from './SocialAuthButtons.module.css';
 
 function GoogleIcon() {
@@ -34,9 +40,49 @@ function AppleIcon() {
   );
 }
 
+/** Erreurs "normales" de fermeture du sélecteur par l'utilisateur : on ne montre pas de toast. */
+function isUserCancellation(err: unknown): boolean {
+  const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
+  return (
+    msg.includes('cancel') ||
+    msg.includes('canceled') ||
+    msg.includes('cancelled') ||
+    msg.includes('dismiss') ||
+    msg.includes('closed') ||
+    msg.includes('the user') ||
+    msg.includes('popup_closed')
+  );
+}
+
 export function SocialAuthButtons() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const push = useToastStore((s) => s.push);
+  const googleLogin = useGoogleLogin();
+
+  const googleAvailable = isGoogleAuthConfigured();
+  const from = (location.state as { from?: string } | null)?.from ?? '/';
+
+  function handleGoogle() {
+    if (!googleAvailable) {
+      handleComingSoon('Google');
+      return;
+    }
+    googleLogin.mutate(undefined, {
+      onSuccess: (data) => {
+        push({
+          variant: 'success',
+          message: t('auth.welcomeBackMessage', { name: data.user.full_name.split(' ')[0] }),
+        });
+        navigate(getPostLoginPath(data.user, from), { replace: true });
+      },
+      onError: (err) => {
+        if (isUserCancellation(err)) return;
+        push({ variant: 'error', message: extractApiErrorMessage(err, t('auth.socialError')) });
+      },
+    });
+  }
 
   function handleComingSoon(provider: string) {
     push({ variant: 'info', message: t('auth.socialComingSoon', { provider }) });
@@ -44,8 +90,13 @@ export function SocialAuthButtons() {
 
   return (
     <div className={styles.group}>
-      <button type="button" className={styles.button} onClick={() => handleComingSoon('Google')}>
-        <GoogleIcon />
+      <button
+        type="button"
+        className={styles.button}
+        onClick={handleGoogle}
+        disabled={googleLogin.isPending}
+      >
+        {googleLogin.isPending ? <Spinner size={16} /> : <GoogleIcon />}
         {t('auth.continueWithGoogle')}
       </button>
       <button type="button" className={styles.button} onClick={() => handleComingSoon('Apple')}>

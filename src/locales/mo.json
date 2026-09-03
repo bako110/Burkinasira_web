@@ -124,7 +124,8 @@
     "logoutCancelCta": "Bas-y-yã",
     "logoutSuccess": "Fo yiisa f meng. Wa n zĩnda!",
     "welcomeBackTitle": "Wa-n-neere",
-    "welcomeBackMessage": "Sũ-noog tɩ d le yã-y, {{name}}!"
+    "welcomeBackMessage": "Sũ-noog tɩ d le yã-y, {{name}}!",
+    "socialError": "Google sɛba-kãabg kongame. Maak-y-la yɛs."
   },
   "pro": {
     "pendingTitle": "B gũusg y sɛb-kɩtga",

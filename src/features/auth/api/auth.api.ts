@@ -7,6 +7,11 @@ export async function login(payload: LoginPayload): Promise<TokenResponse> {
   return data;
 }
 
+export async function loginWithGoogle(idToken: string): Promise<TokenResponse> {
+  const { data } = await apiClient.post<TokenResponse>('/auth/google', { id_token: idToken });
+  return data;
+}
+
 export async function register(payload: RegisterPayload): Promise<TokenResponse> {
   const { data } = await apiClient.post<TokenResponse>('/auth/register', payload);
   return data;

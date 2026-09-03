@@ -124,7 +124,8 @@
     "logoutCancelCta": "Annuler",
     "logoutSuccess": "Vous êtes déconnecté(e). À bientôt !",
     "welcomeBackTitle": "Bon retour",
-    "welcomeBackMessage": "Ravi de vous revoir, {{name}} !"
+    "welcomeBackMessage": "Ravi de vous revoir, {{name}} !",
+    "socialError": "La connexion avec Google a échoué. Réessayez."
   },
   "pro": {
     "pendingTitle": "Vérification en cours",

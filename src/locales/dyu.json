@@ -124,7 +124,8 @@
     "logoutCancelCta": "Baliya",
     "logoutSuccess": "I bɔra. K'an ye sɔɔni!",
     "welcomeBackTitle": "I ni segin",
-    "welcomeBackMessage": "A ka di an ye ka i ye tugun, {{name}}!"
+    "welcomeBackMessage": "A ka di an ye ka i ye tugun, {{name}}!",
+    "socialError": "Google la donni ma se. I ka a lajɛ tugun."
   },
   "pro": {
     "pendingTitle": "Sɛriyɛ lakodɔn tɛmɛnen",
