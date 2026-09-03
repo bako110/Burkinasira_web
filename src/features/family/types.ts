@@ -40,6 +40,7 @@ export interface FamilyServiceDetail {
 export interface FamilyServiceFilters {
   type?: FamilyServiceType;
   region?: string;
+  q?: string;
   page?: number;
   page_size?: number;
 }

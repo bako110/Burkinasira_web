@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
 import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero } from '../../../shared/ui';
+import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useEduOutings } from '../hooks/useEduOutings';
 import { EduOutingCard } from '../components/EduOutingCard';
 import { EduOutingFilters } from '../components/EduOutingFilters';
@@ -16,18 +17,34 @@ export function EduOutingsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlType = (searchParams.get('type') as EduOutingType | null) ?? undefined;
+  const urlQuery = searchParams.get('q') ?? '';
 
-  const [queryInput, setQueryInput] = useState('');
+  const [queryInput, setQueryInput] = useState(urlQuery);
+  const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<EduOuting[]>([]);
+
+  useEffect(() => setQueryInput(urlQuery), [urlQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery === urlQuery) return;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (debouncedQuery) next.set('q', debouncedQuery);
+      else next.delete('q');
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType]);
+  }, [urlType, urlQuery]);
 
   const { data, isLoading, isFetching, isError, refetch } = useEduOutings({
     type: urlType,
+    q: urlQuery || undefined,
     page,
     page_size: PAGE_SIZE,
   });
@@ -46,9 +63,14 @@ export function EduOutingsPage() {
     });
   }
 
-  const filtered = queryInput.trim()
-    ? accumulated.filter((o) => o.title.toLowerCase().includes(queryInput.trim().toLowerCase()))
-    : accumulated;
+  function applySearch() {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (queryInput) next.set('q', queryInput);
+      else next.delete('q');
+      return next;
+    });
+  }
 
   const total = data?.total ?? 0;
   const hasMore = accumulated.length > 0 && accumulated.length < total;
@@ -64,7 +86,7 @@ export function EduOutingsPage() {
         searchButtonLabel={t('common.search')}
         query={queryInput}
         onQueryChange={setQueryInput}
-        onSubmit={() => {}}
+        onSubmit={applySearch}
       />
 
       <div className={styles.body}>
@@ -84,7 +106,7 @@ export function EduOutingsPage() {
 
         {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
 
-        {!showInitialLoading && !isError && filtered.length === 0 && (
+        {!showInitialLoading && !isError && accumulated.length === 0 && (
           <EmptyResults
             variant="empty"
             title={t('edu.empty')}
@@ -96,10 +118,10 @@ export function EduOutingsPage() {
           />
         )}
 
-        {!showInitialLoading && !isError && filtered.length > 0 && (
+        {!showInitialLoading && !isError && accumulated.length > 0 && (
           <>
             <div className={styles.grid}>
-              {filtered.map((outing, i) => (
+              {accumulated.map((outing, i) => (
                 <Reveal key={outing.id} delay={Math.min(i, 8) * 50}>
                   <EduOutingCard outing={outing} />
                 </Reveal>

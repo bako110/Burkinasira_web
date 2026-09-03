@@ -52,6 +52,7 @@ export interface RoadServiceDetail {
 export interface RoadServiceFilters {
   type?: RoadServiceType;
   region?: string;
+  q?: string;
   near_lat?: number;
   near_lng?: number;
   radius_km?: number;

@@ -32,6 +32,7 @@ export interface EduOuting {
 export interface EduOutingFilters {
   type?: EduOutingType;
   region?: string;
+  q?: string;
   page?: number;
   page_size?: number;
 }

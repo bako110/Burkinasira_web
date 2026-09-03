@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { PlusCircle } from 'lucide-react';
 
 import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, Tabs } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useDiasporaContent } from '../hooks/useDiasporaContent';
 import { useMeetups } from '../hooks/useMeetups';
 import { DiasporaContentCard } from '../components/DiasporaContentCard';
@@ -16,11 +18,38 @@ import styles from './DiasporaHubPage.module.css';
 export function DiasporaHubPage() {
   const { t } = useTranslation();
   const requireAuth = useRequireAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<'content' | 'meetups'>('content');
   const [type, setType] = useState<DiasporaContentType | undefined>(undefined);
   const [createOpen, setCreateOpen] = useState(false);
 
-  const contentQuery = useDiasporaContent({ type });
+  const urlQuery = searchParams.get('q') ?? '';
+  const [queryInput, setQueryInput] = useState(urlQuery);
+  const debouncedQuery = useDebouncedValue(queryInput);
+
+  useEffect(() => setQueryInput(urlQuery), [urlQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery === urlQuery) return;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (debouncedQuery) next.set('q', debouncedQuery);
+      else next.delete('q');
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
+
+  function applySearch() {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (queryInput) next.set('q', queryInput);
+      else next.delete('q');
+      return next;
+    });
+  }
+
+  const contentQuery = useDiasporaContent({ type, q: urlQuery || undefined });
   const meetupsQuery = useMeetups();
 
   return (
@@ -31,9 +60,9 @@ export function DiasporaHubPage() {
         searchPlaceholder={t('diaspora.searchPlaceholder')}
         searchLabel={t('common.search')}
         searchButtonLabel={t('common.search')}
-        query=""
-        onQueryChange={() => {}}
-        onSubmit={() => {}}
+        query={queryInput}
+        onQueryChange={setQueryInput}
+        onSubmit={applySearch}
       />
 
       <div className={styles.body}>

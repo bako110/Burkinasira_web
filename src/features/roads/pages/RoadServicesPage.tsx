@@ -5,6 +5,7 @@ import { LocateFixed, ShieldAlert } from 'lucide-react';
 
 import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useRoadServices } from '../hooks/useRoadServices';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { RoadServiceCard } from '../components/RoadServiceCard';
@@ -22,21 +23,37 @@ export function RoadServicesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlType = (searchParams.get('type') as RoadServiceType | null) ?? undefined;
+  const urlQuery = searchParams.get('q') ?? '';
 
-  const [queryInput, setQueryInput] = useState('');
+  const [queryInput, setQueryInput] = useState(urlQuery);
+  const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<RoadServiceSummary[]>([]);
   const [nearMeActive, setNearMeActive] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const { coords, isLocating, locate } = useGeolocation();
 
+  useEffect(() => setQueryInput(urlQuery), [urlQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery === urlQuery) return;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (debouncedQuery) next.set('q', debouncedQuery);
+      else next.delete('q');
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
+
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, nearMeActive, coords]);
+  }, [urlType, urlQuery, nearMeActive, coords]);
 
   const { data, isLoading, isFetching, isError, refetch } = useRoadServices({
     type: urlType,
+    q: urlQuery || undefined,
     page,
     page_size: PAGE_SIZE,
     ...(nearMeActive && coords
@@ -58,6 +75,15 @@ export function RoadServicesPage() {
     });
   }
 
+  function applySearch() {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (queryInput) next.set('q', queryInput);
+      else next.delete('q');
+      return next;
+    });
+  }
+
   function toggleNearMe() {
     if (!nearMeActive) {
       locate();
@@ -66,10 +92,6 @@ export function RoadServicesPage() {
       setNearMeActive(false);
     }
   }
-
-  const filtered = queryInput.trim()
-    ? accumulated.filter((s) => s.name.toLowerCase().includes(queryInput.trim().toLowerCase()))
-    : accumulated;
 
   const total = data?.total ?? 0;
   const hasMore = accumulated.length > 0 && accumulated.length < total;
@@ -85,7 +107,7 @@ export function RoadServicesPage() {
         searchButtonLabel={t('common.search')}
         query={queryInput}
         onQueryChange={setQueryInput}
-        onSubmit={() => {}}
+        onSubmit={applySearch}
       />
 
       <div className={styles.body}>
@@ -123,7 +145,7 @@ export function RoadServicesPage() {
 
         {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
 
-        {!showInitialLoading && !isError && filtered.length === 0 && (
+        {!showInitialLoading && !isError && accumulated.length === 0 && (
           <EmptyResults
             variant="empty"
             title={t('roads.empty')}
@@ -136,10 +158,10 @@ export function RoadServicesPage() {
           />
         )}
 
-        {!showInitialLoading && !isError && filtered.length > 0 && (
+        {!showInitialLoading && !isError && accumulated.length > 0 && (
           <>
             <div className={styles.grid}>
-              {filtered.map((service, i) => (
+              {accumulated.map((service, i) => (
                 <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
                   <RoadServiceCard service={service} />
                 </Reveal>
