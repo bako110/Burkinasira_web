@@ -368,7 +368,10 @@
     "temporaryPasswordPlaceholder": "Bɩ yɩ sɩb 6 bɩ n yɩɩda",
     "temporaryPasswordHint": "Gũusg-goam kãngã naan neda konte yĩnga f sã n ka tar-a. Kõ-a woto neda tɩ b tõe n kẽ.",
     "teamMemberAccountCreated": "Konte naana la booli tʋma neere",
-    "tab_reports": "Wilgr-dãmba"
+    "tab_reports": "Wilgr-dãmba",
+    "myLocation": "M zĩiga",
+    "locating": "Zĩig-baoong…",
+    "geoError": "Y zĩiga paamd ka tõe ye. Yergd-y localisationã n maak yɛs."
   },
   "theme": {
     "light": "Vẽenem",

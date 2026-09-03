@@ -368,7 +368,10 @@
     "temporaryPasswordPlaceholder": "Au moins 6 caractères",
     "temporaryPasswordHint": "Ce mot de passe est créé pour le compte du membre s'il n'en a pas déjà un. Communiquez-le lui directement — il pourra le changer une fois connecté.",
     "teamMemberAccountCreated": "Compte créé et invitation envoyée avec succès",
-    "tab_reports": "Signalements"
+    "tab_reports": "Signalements",
+    "myLocation": "Ma position",
+    "locating": "Localisation…",
+    "geoError": "Impossible d'obtenir votre position. Activez la localisation puis réessayez."
   },
   "theme": {
     "light": "Clair",

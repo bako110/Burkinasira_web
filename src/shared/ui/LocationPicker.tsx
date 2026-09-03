@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { MapPin, Link2 } from 'lucide-react';
+import { MapPin, Link2, LocateFixed } from 'lucide-react';
 import clsx from 'clsx';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+import { useGeoStore } from '../../store/geo.store';
 import styles from './LocationPicker.module.css';
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -59,6 +60,9 @@ interface LocationPickerProps {
   linkErrorLabel?: string;
   latitudeLabel?: string;
   longitudeLabel?: string;
+  myLocationLabel?: string;
+  locatingLabel?: string;
+  geoErrorLabel?: string;
 }
 
 export function LocationPicker({
@@ -72,14 +76,35 @@ export function LocationPicker({
   linkErrorLabel = "Lien non reconnu. Colle un lien Google Maps ou des coordonnées 'lat, lng'.",
   latitudeLabel = 'Latitude',
   longitudeLabel = 'Longitude',
+  myLocationLabel = 'Ma position',
+  locatingLabel = 'Localisation…',
+  geoErrorLabel = "Impossible d'obtenir votre position. Activez la localisation puis réessayez.",
 }: LocationPickerProps) {
   const [mode, setMode] = useState<'map' | 'link'>('map');
   const [linkInput, setLinkInput] = useState('');
   const [linkError, setLinkError] = useState('');
+  const [geoError, setGeoError] = useState('');
+
+  const requestLocation = useGeoStore((s) => s.requestLocation);
+  const geoStatus = useGeoStore((s) => s.status);
+  const isLocating = geoStatus === 'prompting';
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
+
+  async function handleUseMyLocation() {
+    setGeoError('');
+    const coords = await requestLocation({ force: true });
+    if (!coords) {
+      setGeoError(geoErrorLabel);
+      return;
+    }
+    onChange(coords.latitude.toFixed(6), coords.longitude.toFixed(6));
+    if (mapRef.current) {
+      mapRef.current.setView([coords.latitude, coords.longitude], 15);
+    }
+  }
 
   useEffect(() => {
     if (mode !== 'map' || !mapContainerRef.current || mapRef.current) return;
@@ -160,6 +185,17 @@ export function LocationPicker({
           {linkLabel}
         </button>
       </div>
+
+      <button
+        type="button"
+        className={styles.myLocationButton}
+        onClick={handleUseMyLocation}
+        disabled={isLocating}
+      >
+        <LocateFixed size={15} strokeWidth={2} />
+        {isLocating ? locatingLabel : myLocationLabel}
+      </button>
+      {geoError && <p className={styles.errorText}>{geoError}</p>}
 
       {mode === 'map' && <div ref={mapContainerRef} className={styles.map} />}
 

@@ -368,7 +368,10 @@
     "temporaryPasswordPlaceholder": "At least 6 characters",
     "temporaryPasswordHint": "This password is created for the member's account if they don't already have one. Share it with them directly — they can change it once logged in.",
     "teamMemberAccountCreated": "Account created and invitation sent successfully",
-    "tab_reports": "Reports"
+    "tab_reports": "Reports",
+    "myLocation": "My location",
+    "locating": "Locating…",
+    "geoError": "Couldn't get your location. Turn on location services and try again."
   },
   "theme": {
     "light": "Light",

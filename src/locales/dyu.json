@@ -368,7 +368,10 @@
     "temporaryPasswordPlaceholder": "A ka kan ka se sɛbɛn 6 ma walima ka tɛmɛ o kan",
     "temporaryPasswordHint": "Nin gundo daanu in dilanna mɔgɔ in ka jate ye ni a tɛ jate ye fɔlɔ. I ka a fɔ a ye kɛlɛn kɛlɛn — a bɛ se k'a yɛlɛma ni a donna.",
     "teamMemberAccountCreated": "Jate dilanna ani welekan cira ka ɲɛ",
-    "tab_reports": "Filiw lasɔmini"
+    "tab_reports": "Filiw lasɔmini",
+    "myLocation": "N sigiyɔrɔ",
+    "locating": "Sigiyɔrɔ ɲini…",
+    "geoError": "I sigiyɔrɔ ma sɔrɔ. Sigiyɔrɔ dɔnniya da, i ka a lajɛ tugun."
   },
   "theme": {
     "light": "Kɛnɛ",

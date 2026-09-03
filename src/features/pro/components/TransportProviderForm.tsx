@@ -202,7 +202,14 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
 
       <div className={formStyles.field}>
         <label className={formStyles.label}>{t('pro.location')}</label>
-        <LocationPicker latitude={latitude} longitude={longitude} onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }} />
+        <LocationPicker
+          latitude={latitude}
+          longitude={longitude}
+          onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }}
+          myLocationLabel={t('pro.myLocation')}
+          locatingLabel={t('pro.locating')}
+          geoErrorLabel={t('pro.geoError')}
+        />
       </div>
 
       <div className={formStyles.row}>
