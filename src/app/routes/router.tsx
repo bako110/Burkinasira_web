@@ -68,6 +68,7 @@ import { ItinerariesPage } from '../../features/itineraries/pages/ItinerariesPag
 import { ItineraryDetailPage } from '../../features/itineraries/pages/ItineraryDetailPage';
 import { LoginPage } from '../../features/auth/pages/LoginPage';
 import { RegisterPage } from '../../features/auth/pages/RegisterPage';
+import { GoogleRolePage } from '../../features/auth/pages/GoogleRolePage';
 import { VerifyCardPage } from '../../features/auth/pages/VerifyCardPage';
 import { ProLayout } from '../layout/ProLayout';
 import { PendingVerificationPage } from '../../features/pro/pages/PendingVerificationPage';
@@ -170,6 +171,7 @@ export const router = createBrowserRouter([
   { path: '/login', element: <LoginPage />, errorElement: <ErrorPage /> },
   { path: '/verify/:cardToken', element: <VerifyCardPage />, errorElement: <ErrorPage /> },
   { path: '/register', element: <RegisterPage />, errorElement: <ErrorPage /> },
+  { path: '/onboarding/role', element: <GoogleRolePage />, errorElement: <ErrorPage /> },
   {
     element: <ProRouteGate />,
     errorElement: <ErrorPage />,

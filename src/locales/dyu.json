@@ -125,7 +125,10 @@
     "logoutSuccess": "I bɔra. K'an ye sɔɔni!",
     "welcomeBackTitle": "I ni segin",
     "welcomeBackMessage": "A ka di an ye ka i ye tugun, {{name}}!",
-    "socialError": "Google la donni ma se. I ka a lajɛ tugun."
+    "socialError": "Google la donni ma se. I ka a lajɛ tugun.",
+    "googleRoleTitle": "I ni ce BurkinaSira kan",
+    "googleRoleSubtitle": "A fɔ an ye i bɛna BurkinaSira baara cogo min na.",
+    "googleRoleContinue": "Ka taa ɲɛ"
   },
   "pro": {
     "pendingTitle": "Sɛriyɛ lakodɔn tɛmɛnen",

@@ -125,7 +125,10 @@
     "logoutSuccess": "Vous êtes déconnecté(e). À bientôt !",
     "welcomeBackTitle": "Bon retour",
     "welcomeBackMessage": "Ravi de vous revoir, {{name}} !",
-    "socialError": "La connexion avec Google a échoué. Réessayez."
+    "socialError": "La connexion avec Google a échoué. Réessayez.",
+    "googleRoleTitle": "Bienvenue sur BurkinaSira",
+    "googleRoleSubtitle": "Dites-nous comment vous comptez utiliser BurkinaSira.",
+    "googleRoleContinue": "Continuer"
   },
   "pro": {
     "pendingTitle": "Vérification en cours",

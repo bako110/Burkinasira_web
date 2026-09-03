@@ -70,12 +70,18 @@ export function SocialAuthButtons() {
       return;
     }
     googleLogin.mutate(undefined, {
-      onSuccess: (data) => {
+      onSuccess: ({ response, idToken }) => {
+        // Compte tout juste créé : on demande le profil (touriste / guide /
+        // prestataire) avant de continuer, comme à l'inscription classique.
+        if (response.is_new) {
+          navigate('/onboarding/role', { state: { idToken, from }, replace: true });
+          return;
+        }
         push({
           variant: 'success',
-          message: t('auth.welcomeBackMessage', { name: data.user.full_name.split(' ')[0] }),
+          message: t('auth.welcomeBackMessage', { name: response.user.full_name.split(' ')[0] }),
         });
-        navigate(getPostLoginPath(data.user, from), { replace: true });
+        navigate(getPostLoginPath(response.user, from), { replace: true });
       },
       onError: (err) => {
         if (isUserCancellation(err)) return;

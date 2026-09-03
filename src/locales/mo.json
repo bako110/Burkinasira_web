@@ -125,7 +125,10 @@
     "logoutSuccess": "Fo yiisa f meng. Wa n zĩnda!",
     "welcomeBackTitle": "Wa-n-neere",
     "welcomeBackMessage": "Sũ-noog tɩ d le yã-y, {{name}}!",
-    "socialError": "Google sɛba-kãabg kongame. Maak-y-la yɛs."
+    "socialError": "Google sɛba-kãabg kongame. Maak-y-la yɛs.",
+    "googleRoleTitle": "Y waame BurkinaSira zĩigẽ",
+    "googleRoleSubtitle": "Wilg-y-la y sẽn na tũ BurkinaSira to-to.",
+    "googleRoleContinue": "Kẽng taoore"
   },
   "pro": {
     "pendingTitle": "B gũusg y sɛb-kɩtga",

@@ -23,4 +23,6 @@ export interface TokenResponse {
   token_type: string;
   expires_at: string;
   user: UserPublic;
+  /** true uniquement quand /auth/google vient de créer le compte. */
+  is_new?: boolean;
 }

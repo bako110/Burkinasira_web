@@ -125,7 +125,10 @@
     "logoutSuccess": "You've been logged out. See you soon!",
     "welcomeBackTitle": "Welcome back",
     "welcomeBackMessage": "Great to see you again, {{name}}!",
-    "socialError": "Google sign-in failed. Please try again."
+    "socialError": "Google sign-in failed. Please try again.",
+    "googleRoleTitle": "Welcome to BurkinaSira",
+    "googleRoleSubtitle": "Tell us how you plan to use BurkinaSira.",
+    "googleRoleContinue": "Continue"
   },
   "pro": {
     "pendingTitle": "Verification in progress",
