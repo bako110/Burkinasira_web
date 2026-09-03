@@ -381,8 +381,14 @@
   min-width: 0;
 }
 
-/* Sur mobile la barre d'onglets (avec son propre safe-area) est masquee
-   pour certaines vues : on garde une marge basse minimale via le shell. */
+/* La barre d'onglets mobile est en position fixed (hors flux) : on reserve
+   sa hauteur ici pour que le contenu ne passe pas dessous. */
+@media (max-width: 767px) {
+  .main {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
+
 @media (min-width: 768px) {
   .shell {
     padding-bottom: env(safe-area-inset-bottom);
