@@ -15,6 +15,7 @@ export interface TransportProviderSummary {
   region: string;
   province?: string;
   city?: string;
+  base_location?: { latitude: number; longitude: number };
   photo?: string;
   price_estimate?: number;
   price_currency: string;

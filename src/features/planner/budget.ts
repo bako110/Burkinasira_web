@@ -1,4 +1,4 @@
-import type { TripDay, TripItemType } from '../trips/types';
+import type { GeoPoint, TripDay, TripItemType } from '../trips/types';
 
 /**
  * Planifier un voyage = estimer une dépense globale réaliste, pas réserver.
@@ -6,6 +6,12 @@ import type { TripDay, TripItemType } from '../trips/types';
  * Chaque ligne de dépense appartient à une catégorie. Quand une fiche
  * (hôtel, guide, transport…) porte un prix réel, il prime. Sinon on applique
  * un barème par défaut selon le niveau de confort choisi par le voyageur.
+ *
+ * Le transport est estimé sur la distance réelle (haversine) entre les
+ * étapes géolocalisées d'une même journée quand c'est possible, avec un
+ * tarif au km distinct pour les trajets longue distance (bus interurbain)
+ * et les déplacements urbains (taxi/moto-taxi). À défaut de coordonnées,
+ * on retombe sur un forfait journalier par barème de confort.
  */
 
 export type ComfortLevel = 'eco' | 'standard' | 'confort';
@@ -27,14 +33,24 @@ export const BUDGET_CATEGORIES: BudgetCategory[] = [
   'autres',
 ];
 
-/** Barème indicatif en XOF (FCFA), par personne. Sources : ordres de grandeur terrain Burkina Faso. */
+/**
+ * Barème indicatif en XOF (FCFA), par personne.
+ * Sources (2026) : prix carburant (essence 850 F/L, gasoil 750 F/L),
+ * tickets bus interurbains Rakieta/TSR/STAF (~18-20 F/km, ex. Bobo-Ouaga
+ * 360km ≈ 6500-8000 F), repas restaurant (2000-5000 F en moyenne),
+ * taxi urbain (~800-1000 F/km, courses moto-taxi courtes ~300-500 F).
+ */
 interface Scale {
   /** Nuitée par personne. */
   nuitee: number;
   /** Un repas par personne. */
   repas: number;
-  /** Transport local par jour et par personne. */
+  /** Transport local (intra-ville) par jour et par personne, à défaut de distance connue. */
   transportJour: number;
+  /** Tarif transport urbain, FCFA par km. */
+  transportUrbainParKm: number;
+  /** Tarif transport interurbain (bus/car), FCFA par km. */
+  transportInterurbainParKm: number;
   /** Guide par jour (coût du guide, à partager dans le groupe). */
   guideJour: number;
   /** Enveloppe "activités / entrées de sites" par jour et par personne. */
@@ -42,12 +58,39 @@ interface Scale {
 }
 
 export const COMFORT_SCALES: Record<ComfortLevel, Scale> = {
-  eco: { nuitee: 8000, repas: 1500, transportJour: 3000, guideJour: 15000, activitesJour: 2000 },
-  standard: { nuitee: 20000, repas: 4000, transportJour: 8000, guideJour: 25000, activitesJour: 5000 },
-  confort: { nuitee: 45000, repas: 9000, transportJour: 20000, guideJour: 40000, activitesJour: 12000 },
+  eco: {
+    nuitee: 10000,
+    repas: 2000,
+    transportJour: 2000,
+    transportUrbainParKm: 300,
+    transportInterurbainParKm: 18,
+    guideJour: 15000,
+    activitesJour: 2000,
+  },
+  standard: {
+    nuitee: 22000,
+    repas: 3500,
+    transportJour: 4000,
+    transportUrbainParKm: 800,
+    transportInterurbainParKm: 20,
+    guideJour: 25000,
+    activitesJour: 5000,
+  },
+  confort: {
+    nuitee: 50000,
+    repas: 7000,
+    transportJour: 10000,
+    transportUrbainParKm: 1200,
+    transportInterurbainParKm: 25,
+    guideJour: 40000,
+    activitesJour: 12000,
+  },
 };
 
 export const DEFAULT_MEALS_PER_DAY = 3;
+
+/** Au-delà de cette distance entre deux étapes, on applique le tarif interurbain (bus/car) plutôt qu'urbain. */
+const INTERURBAIN_THRESHOLD_KM = 30;
 
 export interface BudgetLine {
   category: BudgetCategory;
@@ -57,8 +100,8 @@ export interface BudgetLine {
   quantity: number;
   /** true si unitCost vient d'une fiche, false s'il vient du barème. */
   fromRealPrice: boolean;
-  /** Origine : "plan" (item ajouté aux jours) ou "auto" (ligne calculée). */
-  source: 'plan' | 'auto';
+  /** Origine : "plan" (item ajouté aux jours), "distance" (calculé sur trajet réel) ou "auto" (forfait). */
+  source: 'plan' | 'distance' | 'auto';
 }
 
 export interface BudgetBreakdown {
@@ -70,6 +113,8 @@ export interface BudgetBreakdown {
   /** Nombre de jours sur place (au moins 1). */
   days: number;
   travelers: number;
+  /** Distance totale (km) calculée entre étapes géolocalisées, toutes journées confondues. */
+  totalDistanceKm: number;
 }
 
 const ITEM_TYPE_TO_CATEGORY: Partial<Record<TripItemType, BudgetCategory>> = {
@@ -92,6 +137,23 @@ export function computeNights(startDate?: string, endDate?: string): number {
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
 
+/** Distance à vol d'oiseau entre deux points GPS (km), formule de haversine. */
+export function haversineKm(a: GeoPoint, b: GeoPoint): number {
+  const R = 6371;
+  const dLat = ((b.latitude - a.latitude) * Math.PI) / 180;
+  const dLon = ((b.longitude - a.longitude) * Math.PI) / 180;
+  const lat1 = (a.latitude * Math.PI) / 180;
+  const lat2 = (b.latitude * Math.PI) / 180;
+  const h =
+    Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+/** Distance routière approximative : majore la distance à vol d'oiseau (routes rarement rectilignes). */
+function roadDistanceKm(a: GeoPoint, b: GeoPoint): number {
+  return haversineKm(a, b) * 1.3;
+}
+
 interface BuildParams {
   days: TripDay[];
   startDate?: string;
@@ -107,8 +169,9 @@ interface BuildParams {
 /**
  * Construit la ventilation budgétaire :
  *  - une ligne par item du plan qui porte un `estimated_cost` (source "plan") ;
- *  - des lignes "auto" pour combler les postes non couverts par le plan
- *    (nuitées, repas, transport/jour, activités/jour) selon le barème.
+ *  - une ligne "distance" par trajet réel entre étapes géolocalisées d'un même jour ;
+ *  - des lignes "auto" pour combler les postes non couverts (nuitées, repas,
+ *    transport résiduel sans coordonnées, activités) selon le barème.
  */
 export function buildBudget(params: BuildParams): BudgetBreakdown {
   const {
@@ -127,6 +190,11 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
   const people = Math.max(travelers, 1);
 
   const lines: BudgetLine[] = [];
+  let totalDistanceKm = 0;
+
+  const isAutoOn = (c: BudgetCategory) => !disabledAutoCategories.includes(c);
+  const autoUnit = (c: BudgetCategory, fallback: number) =>
+    typeof autoUnitOverrides[c] === 'number' ? (autoUnitOverrides[c] as number) : fallback;
 
   // 1. Lignes issues du plan (items avec un coût saisi).
   const plannedByCategory: Record<string, number> = {};
@@ -146,11 +214,33 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
     }
   }
 
-  const isAutoOn = (c: BudgetCategory) => !disabledAutoCategories.includes(c);
-  const autoUnit = (c: BudgetCategory, fallback: number) =>
-    typeof autoUnitOverrides[c] === 'number' ? (autoUnitOverrides[c] as number) : fallback;
+  // 2. Transport réel : distance entre étapes géolocalisées successives d'un même jour.
+  const isTransportAutoOn = isAutoOn('transport');
+  let distanceCovered = false;
+  if (isTransportAutoOn) {
+    for (const day of days) {
+      const located = day.items.filter((item): item is typeof item & { location: GeoPoint } => !!item.location);
+      for (let i = 0; i < located.length - 1; i += 1) {
+        const from = located[i];
+        const to = located[i + 1];
+        const km = roadDistanceKm(from.location, to.location);
+        if (km < 0.5) continue; // même lieu, pas de trajet à compter
+        distanceCovered = true;
+        totalDistanceKm += km;
+        const perKm = km > INTERURBAIN_THRESHOLD_KM ? scale.transportInterurbainParKm : scale.transportUrbainParKm;
+        lines.push({
+          category: 'transport',
+          label: `${from.title} → ${to.title} (${Math.round(km)} km)`,
+          unitCost: autoUnit('transport', perKm) * km,
+          quantity: people,
+          fromRealPrice: false,
+          source: 'distance',
+        });
+      }
+    }
+  }
 
-  // 2. Hébergement : compléter jusqu'à couvrir toutes les nuits, pour tout le groupe.
+  // 3. Hébergement : compléter jusqu'à couvrir toutes les nuits, pour tout le groupe.
   if (nights > 0 && isAutoOn('hebergement') && !plannedByCategory['hebergement']) {
     lines.push({
       category: 'hebergement',
@@ -162,7 +252,7 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
     });
   }
 
-  // 3. Nourriture : repas/jour × jours × personnes, si non déjà couvert par le plan.
+  // 4. Nourriture : repas/jour × jours × personnes, si non déjà couvert par le plan.
   if (isAutoOn('nourriture') && !plannedByCategory['nourriture']) {
     lines.push({
       category: 'nourriture',
@@ -174,8 +264,8 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
     });
   }
 
-  // 4. Transport local : par jour et par personne.
-  if (isAutoOn('transport') && !plannedByCategory['transport']) {
+  // 5. Transport résiduel : forfait journalier uniquement si aucune distance réelle n'a pu être calculée.
+  if (isTransportAutoOn && !plannedByCategory['transport'] && !distanceCovered) {
     lines.push({
       category: 'transport',
       label: `Transport local (${daysOnSite} j × ${people} pers.)`,
@@ -186,7 +276,7 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
     });
   }
 
-  // 5. Activités / entrées : par jour et par personne.
+  // 6. Activités / entrées : par jour et par personne.
   if (isAutoOn('activites') && !plannedByCategory['activites']) {
     lines.push({
       category: 'activites',
@@ -207,7 +297,7 @@ export function buildBudget(params: BuildParams): BudgetBreakdown {
   }
   const total = Object.values(byCategory).reduce((s, v) => s + v, 0);
 
-  return { lines, byCategory, total, nights, days: daysOnSite, travelers: people };
+  return { lines, byCategory, total, nights, days: daysOnSite, travelers: people, totalDistanceKm };
 }
 
 export function formatXof(amount: number): string {

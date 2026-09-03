@@ -192,6 +192,7 @@ export function PlannerPage() {
               <HotelList
                 region={effectiveRegion}
                 province={province}
+                comfort={comfort}
                 disabled={isAdding}
                 added={justAdded}
                 onAdd={handleAdd}
@@ -201,6 +202,7 @@ export function PlannerPage() {
               <RestaurantList
                 region={effectiveRegion}
                 province={province}
+                comfort={comfort}
                 disabled={isAdding}
                 added={justAdded}
                 onAdd={handleAdd}
@@ -210,6 +212,7 @@ export function PlannerPage() {
               <GuideList
                 region={effectiveRegion}
                 province={province}
+                comfort={comfort}
                 disabled={isAdding}
                 added={justAdded}
                 onAdd={handleAdd}
@@ -219,6 +222,7 @@ export function PlannerPage() {
               <TransportList
                 region={effectiveRegion}
                 province={province}
+                comfort={comfort}
                 disabled={isAdding}
                 added={justAdded}
                 onAdd={handleAdd}
@@ -270,6 +274,12 @@ function BudgetCard({ budget, onRecap, className }: BudgetCardProps) {
         })}
       </p>
 
+      {budget.totalDistanceKm > 0 && (
+        <p className={styles.budgetMeta}>
+          {t('planner.distanceMeta', { km: Math.round(budget.totalDistanceKm) })}
+        </p>
+      )}
+
       <div className={styles.budgetBars}>
         {BUDGET_CATEGORIES.map((cat) => {
           const value = budget.byCategory[cat];
@@ -308,6 +318,7 @@ function BudgetCard({ budget, onRecap, className }: BudgetCardProps) {
 interface ListProps {
   region?: string;
   province?: string;
+  comfort: ComfortLevel;
   disabled: boolean;
   added: Set<string>;
   onAdd: (item: TripDayItem, key: string) => void;
@@ -364,7 +375,7 @@ function ListShell({
   return <>{children}</>;
 }
 
-function HotelList({ region, province, disabled, added, onAdd }: ListProps) {
+function HotelList({ region, province, comfort, disabled, added, onAdd }: ListProps) {
   const { i18n } = useTranslation();
   const { data, isLoading, isError } = useHotels({ region, province, page_size: 20 });
   const items = data?.items ?? [];
@@ -373,7 +384,7 @@ function HotelList({ region, province, disabled, added, onAdd }: ListProps) {
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
       {items.map((h) => {
         const key = `hotel:${h.id}`;
-        const cost = h.min_price ?? COMFORT_SCALES.standard.nuitee;
+        const cost = h.min_price ?? COMFORT_SCALES[comfort].nuitee;
         return (
           <ResourceRow
             key={key}
@@ -399,6 +410,7 @@ function HotelList({ region, province, disabled, added, onAdd }: ListProps) {
                       reference_id: h.id,
                       estimated_cost: cost,
                       notes: [h.city, h.region].filter(Boolean).join(', '),
+                      location: h.location,
                     },
                     key,
                   )
@@ -412,7 +424,7 @@ function HotelList({ region, province, disabled, added, onAdd }: ListProps) {
   );
 }
 
-function RestaurantList({ region, province, disabled, added, onAdd }: ListProps) {
+function RestaurantList({ region, province, comfort, disabled, added, onAdd }: ListProps) {
   const { data, isLoading, isError } = useRestaurants({ region, province, page_size: 20 });
   const items = data?.items ?? [];
 
@@ -437,8 +449,9 @@ function RestaurantList({ region, province, disabled, added, onAdd }: ListProps)
                       type: 'restaurant' as TripItemType,
                       title: r.name,
                       reference_id: r.id,
-                      estimated_cost: COMFORT_SCALES.standard.repas,
+                      estimated_cost: COMFORT_SCALES[comfort].repas,
                       notes: [r.cuisine_style, r.city].filter(Boolean).join(', '),
+                      location: r.location,
                     },
                     key,
                   )
@@ -452,7 +465,7 @@ function RestaurantList({ region, province, disabled, added, onAdd }: ListProps)
   );
 }
 
-function GuideList({ region, province, disabled, added, onAdd }: ListProps) {
+function GuideList({ region, province, comfort, disabled, added, onAdd }: ListProps) {
   const { i18n } = useTranslation();
   const { data, isLoading, isError } = useGuides({ region, province, page_size: 20 });
   const items = data?.items ?? [];
@@ -461,7 +474,7 @@ function GuideList({ region, province, disabled, added, onAdd }: ListProps) {
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
       {items.map((g) => {
         const key = `guide:${g.id}`;
-        const cost = g.daily_rate ?? COMFORT_SCALES.standard.guideJour;
+        const cost = g.daily_rate ?? COMFORT_SCALES[comfort].guideJour;
         return (
           <ResourceRow
             key={key}
@@ -500,7 +513,7 @@ function GuideList({ region, province, disabled, added, onAdd }: ListProps) {
   );
 }
 
-function TransportList({ region, province, disabled, added, onAdd }: ListProps) {
+function TransportList({ region, province, comfort, disabled, added, onAdd }: ListProps) {
   const { i18n } = useTranslation();
   // Le backend mobilité ne filtre pas par province : on ne passe que la région.
   const { data, isLoading, isError } = useTransportProviders({ region, province, page_size: 20 });
@@ -510,7 +523,7 @@ function TransportList({ region, province, disabled, added, onAdd }: ListProps) 
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
       {items.map((p) => {
         const key = `transport:${p.id}`;
-        const cost = p.price_estimate ?? COMFORT_SCALES.standard.transportJour;
+        const cost = p.price_estimate ?? COMFORT_SCALES[comfort].transportJour;
         return (
           <ResourceRow
             key={key}
@@ -536,6 +549,7 @@ function TransportList({ region, province, disabled, added, onAdd }: ListProps) 
                       reference_id: p.id,
                       estimated_cost: cost,
                       notes: [p.city, p.region].filter(Boolean).join(', '),
+                      location: p.base_location,
                     },
                     key,
                   )

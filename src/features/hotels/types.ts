@@ -15,6 +15,7 @@ export interface HotelSummary {
   region: string;
   province?: string;
   city?: string;
+  location?: { latitude: number; longitude: number };
   photo?: string;
   min_price?: number;
   currency: string;

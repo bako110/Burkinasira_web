@@ -1488,6 +1488,7 @@
     "comfortHint": "Base: night ~ {{nuitee}} · meal ~ {{repas}} (overridden by real prices when available).",
     "budgetTitle": "Estimated budget",
     "budgetMeta": "{{days}} day(s) · {{nights}} night(s) · {{travelers}} traveler(s)",
+    "distanceMeta": "≈ {{km}} km of travel estimated between your stops",
     "perPerson": "That is {{amount}} per person",
     "viewRecap": "View summary",
     "exploreZone": "Explore the area",

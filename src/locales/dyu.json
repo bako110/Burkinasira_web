@@ -1488,6 +1488,7 @@
     "comfortHint": "Fanga: su ~ {{nuitee}} · dumuni ~ {{repas}} (a bɛ Changé ni sɔngɔ yɛrɛ bɛ yen).",
     "budgetTitle": "Wari jatelen",
     "budgetMeta": "{{days}} tile · {{nights}} su · {{travelers}} taamakɛla",
+    "distanceMeta": "≈ km {{km}} sira jateminɛ i ka lakana cɛ",
     "perPerson": "O ye {{amount}} ye mɔgɔ kelen na",
     "viewRecap": "Kunbɛn lajɛ",
     "exploreZone": "Yɔrɔ ɲini",

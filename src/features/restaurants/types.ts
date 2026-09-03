@@ -10,6 +10,7 @@ export interface RestaurantSummary {
   region: string;
   province?: string;
   city?: string;
+  location?: { latitude: number; longitude: number };
   photo?: string;
   dietary_tags: DietaryTag[];
   average_rating: number;

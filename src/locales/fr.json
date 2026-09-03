@@ -1488,6 +1488,7 @@
     "comfortHint": "Base : nuitée ~ {{nuitee}} · repas ~ {{repas}} (ajusté si un prix réel existe).",
     "budgetTitle": "Budget estimé",
     "budgetMeta": "{{days}} jour(s) · {{nights}} nuit(s) · {{travelers}} voyageur(s)",
+    "distanceMeta": "≈ {{km}} km de trajet estimés entre vos étapes",
     "perPerson": "Soit {{amount}} par personne",
     "viewRecap": "Voir le récapitulatif",
     "exploreZone": "Explorer la zone",

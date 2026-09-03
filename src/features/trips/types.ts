@@ -20,6 +20,11 @@ export type TripItemType =
   | 'transport'
   | 'autre';
 
+export interface GeoPoint {
+  latitude: number;
+  longitude: number;
+}
+
 export interface TripDayItem {
   time?: string;
   type: TripItemType;
@@ -27,6 +32,7 @@ export interface TripDayItem {
   title: string;
   notes?: string;
   estimated_cost?: number;
+  location?: GeoPoint;
 }
 
 export interface TripDay {
