@@ -1,7 +1,7 @@
 import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Card, Input, Button, DetailBackButton } from '../../../shared/ui';
+import { Card, PasswordInput, Button, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
 import { useChangePassword } from '../hooks/useChangePassword';
@@ -60,10 +60,9 @@ export function ChangePasswordPage() {
             readOnly
             hidden
           />
-          <Input
+          <PasswordInput
             label={t('profile.currentPassword')}
             name="profile-current-password"
-            type="password"
             autoComplete="current-password"
             value={currentPassword}
             onChange={(e) => {
@@ -71,11 +70,12 @@ export function ChangePasswordPage() {
               reset();
             }}
             required
+            showLabel={t('auth.showPassword')}
+            hideLabel={t('auth.hidePassword')}
           />
-          <Input
+          <PasswordInput
             label={t('profile.newPassword')}
             name="profile-new-password"
-            type="password"
             autoComplete="new-password"
             minLength={8}
             value={newPassword}
@@ -85,6 +85,8 @@ export function ChangePasswordPage() {
               reset();
             }}
             required
+            showLabel={t('auth.showPassword')}
+            hideLabel={t('auth.hidePassword')}
           />
           <p className={styles.hint}>{t('auth.passwordHint')}</p>
           {showStrengthError && passwordIssues.length > 0 && (

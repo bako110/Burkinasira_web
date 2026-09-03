@@ -81,6 +81,8 @@
     "confirmPassword": "Confirm password",
     "passwordMismatch": "Passwords do not match",
     "passwordHint": "At least 8 characters, one uppercase letter and one number",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
     "passwordTooShort": "Password must be at least 8 characters long",
     "passwordNeedsUppercase": "Password must contain at least one uppercase letter",
     "passwordNeedsNumber": "Password must contain at least one number",
@@ -1461,7 +1463,7 @@
   },
   "planner": {
     "kicker": "Trip planner",
-    "subtitle": "Build your stay: lodging, meals, transport, guides — and estimate the overall spend.",
+    "subtitle": "Build your stay: lodging, meals, transport, guides — and estimate the total cost.",
     "planATrip": "Plan a trip",
     "planAndBudget": "Plan & budget",
     "planRequiresAuth": "Sign in to plan a trip.",
@@ -1520,8 +1522,8 @@
   },
   "advice": {
     "title": "Prepare well, travel with peace of mind",
-    "subtitle": "From planning to your return: the key markers for a smooth trip to Burkina Faso.",
-    "disclaimer": "General information for guidance only. Always check official sources (Burkina Faso embassy, your country foreign ministry, WHO) before departure.",
+    "subtitle": "From planning to your return: the markers for a smooth trip to Burkina Faso.",
+    "disclaimer": "General information, indicative only. Always check official sources (Burkina Faso embassy, your country's foreign ministry, WHO) before departure.",
     "phases": {
       "before": "Before you go",
       "during": "On site",
@@ -1530,74 +1532,74 @@
     "items": {
       "visa": {
         "title": "Visa & passport",
-        "text": "Passport valid at least 6 months beyond your return date. Entry visa required for most nationalities: online e-visa or embassy visa. Keep a digital copy of your documents."
+        "text": "Passport valid at least 6 months after your return date. Entry visa required for most nationalities: online e-visa or embassy visa. Keep a digital copy of your documents."
       },
       "vaccines": {
         "title": "Vaccines & preventive health",
-        "text": "Yellow fever vaccination is mandatory (international certificate checked on arrival). Antimalarial strongly recommended: see a travel clinic 4-6 weeks before departure. Update DTP, hepatitis A/B, typhoid."
+        "text": "Yellow fever vaccine is mandatory (international card checked on arrival). Antimalarial strongly recommended: see an international vaccination centre 4 to 6 weeks before departure. Update DTP, hepatitis A and B, typhoid."
       },
       "season": {
         "title": "When to go",
-        "text": "Dry season November-February: the most pleasant weather, ideal for sightseeing. March-May: very hot (often over 40 C). June-October: rainy season, green landscapes but tracks can be tough."
+        "text": "Dry season from November to February: the most pleasant weather, ideal for sightseeing. March-May: very hot (often over 40 C). June-October: rainy season, green landscapes but tracks sometimes hard."
       },
       "money": {
         "title": "Money & payments",
-        "text": "Currency: CFA franc (XOF). Cash is king almost everywhere; cards work only in a few hotels and in Ouagadougou. Withdraw cash from ATMs in major cities and carry small notes."
+        "text": "Currency: the CFA franc (XOF). Pay in cash almost everywhere; bank cards work only in a few hotels and in Ouagadougou. Withdraw cash from ATMs in big cities and keep small change."
       },
       "security": {
-        "title": "Safety & itinerary",
-        "text": "Check your foreign ministry travel advice before finalising your route; some regions are not advised. Prefer daytime travel, a local guide and identified accommodation. Register with your embassy if possible."
+        "title": "Safety & route",
+        "text": "Check your ministry's travel advice before setting your route; some regions are not advised. Prefer daytime travel, a local guide and identified accommodation. Register with your embassy if possible."
       },
       "packing": {
         "title": "What to pack",
-        "text": "Light, covering clothes, hat, sunglasses, high-factor sunscreen, insect repellent, first-aid kit (antimalarial, anti-diarrhoeal, rehydration salts), torch, adapter (type C/E plugs, 220V), filter water bottle."
+        "text": "Light covering clothes, hat, sunglasses, high-protection sunscreen, mosquito repellent, first-aid kit (antimalarial, anti-diarrhoea, rehydration), torch, adapter (type C/E plugs, 220 V), filter water bottle."
       },
       "health": {
         "title": "Staying healthy",
-        "text": "Drink only sealed bottled or filtered water. Avoid ice cubes, raw vegetables washed in tap water and lukewarm food. Wash hands often. Continue the antimalarial as prescribed, including after your return."
+        "text": "Only drink bottled water that is sealed, or filtered. Avoid ice cubes, raw vegetables washed with tap water, and lukewarm food. Wash your hands often. Keep taking the antimalarial as prescribed, even after your return."
       },
       "heat": {
         "title": "Heat & sun",
-        "text": "Hydrate constantly, add a little salt to meals, rest during the hottest hours (12-3pm). Hat and sunscreen always. Watch for heatstroke signs (headache, nausea, confusion)."
+        "text": "Keep drinking, add a little salt to your meals, rest at the hottest hours (12 to 15). Always wear a hat and sunscreen. Watch for heatstroke signs (headache, nausea, confusion)."
       },
       "customs": {
-        "title": "Customs & etiquette",
-        "text": "Burkinabe hospitality (teranga) is warm: take time to greet people, it matters. Dress modestly, especially near places of worship. Use your right hand to give or receive. Always ask before photographing someone."
+        "title": "Etiquette & customs",
+        "text": "Burkinabe hospitality (the teranga) is warm: take time to greet people, it matters. Dress properly, especially near places of worship. Use your right hand to give or receive. Always ask before photographing someone."
       },
       "bargaining": {
         "title": "Bargaining without stress",
-        "text": "Haggling is normal in markets and for taxis, never in fixed-price shops. Stay friendly, name a price, meet in the middle. Agree the taxi fare before getting in."
+        "text": "Bargaining is normal at markets and for taxis, never in fixed-price shops. Stay smiling, name a price, find common ground. Agree the taxi fare before getting in."
       },
       "connectivity": {
         "title": "Phone & internet",
-        "text": "Buy a local SIM (Orange, Moov) with your passport, at the airport or in a shop: cheap data and good city coverage. Hotel wifi is slow. Download offline maps."
+        "text": "Buy a local SIM (Orange, Moov) with your passport, at the airport or in a shop: cheap data and good city coverage. Hotel wifi stays slow. Download your maps offline."
       },
       "language": {
         "title": "Language",
-        "text": "French is the official language and widely understood in towns. A few words of Moore (ne y windga: hello) or Dioula are always appreciated and open doors."
+        "text": "French is the official language and widely understood in town. A few words of Moore (ne y windga: hello) or Dioula are always appreciated and open doors."
       },
       "photos": {
         "title": "Photos & respect",
-        "text": "Do not photograph official or military buildings or the airport. Ask permission for people; a small thank-you gesture is welcome. Some sacred sites forbid photography."
+        "text": "Do not photograph official or military buildings, or the airport. Ask permission for people; a small thank-you gesture is welcome. Some sacred sites forbid photos."
       },
       "emergency": {
         "title": "Useful numbers",
-        "text": "Police: 17 - Fire/rescue: 18 - Ambulance: 112. Note your embassy and repatriation insurance numbers. Keep them offline and on paper."
+        "text": "Police: 17 - Fire brigade / rescue: 18 - SAMU: 112. Write down your embassy number and your repatriation insurance number. Keep them offline and on paper."
       },
       "healthWatch": {
-        "title": "Watch your health after returning",
-        "text": "If you develop a fever within 3 months of returning, seek care quickly and mention your trip to Burkina Faso: malaria can appear late."
+        "title": "Health watch on return",
+        "text": "If you get a fever within 3 months after returning, see a doctor quickly and mention your trip to Burkina Faso: malaria can appear late."
       },
       "feedback": {
         "title": "Share your experience",
-        "text": "Leave reviews for accommodation, guides and restaurants: you help future travellers and local providers improve."
+        "text": "Leave a review for the accommodation, guides and restaurants: you help future travellers and local providers improve."
       }
     }
   },
   "itineraries": {
     "kicker": "Signature itineraries",
     "title": "Ready-made trips",
-    "subtitle": "Routes curated by the BurkinaSira editors: qualified stops, indicative budget, practical tips. Clone the one that inspires you and make it yours.",
+    "subtitle": "Routes crafted by the BurkinaSira editors: qualified stops, indicative budget, tips. Clone the one that inspires you and make it your own.",
     "note": "Per-person estimates in XOF, excluding international flights and visa. They are a starting point: adjust everything in the planner after cloning the itinerary.",
     "days_one": "{{count}} day",
     "days_other": "{{count}} days",

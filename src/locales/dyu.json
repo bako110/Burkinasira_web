@@ -32,19 +32,19 @@
     "ctaRestaurant": "Dumunikɛyɔrɔ lajɛ",
     "ctaTransport": "Mobili lajɛ",
     "ctaArtisan": "Baarayɔrɔ lajɛ",
-    "ctaDestination": "Voir les photos"
+    "ctaDestination": "Fotow lajɛ"
   },
   "nav": {
     "home": "So",
     "explore": "Ɲini",
-    "itineraries": "Itineraires",
+    "itineraries": "Siraw",
     "discover": "Sɔrɔli",
     "hotels": "Sigi-yɔrɔw",
     "restaurants": "Dumuni",
     "mobility": "Taama",
     "guides": "Ɲɛminɛbagaw",
     "experiences": "Kɔrɔbɔliw",
-    "diaspora": "Diaspora",
+    "diaspora": "Jamanakɔkɔrɔmɔgɔw",
     "events": "Waati-kunw",
     "culture": "Laada ni ninanko",
     "market": "Baaraw ni feereyɔrɔ",
@@ -81,6 +81,8 @@
     "confirmPassword": "Gundo daanu lasɔrɔ",
     "passwordMismatch": "Gundo daanuw tɛ kelen ye",
     "passwordHint": "Lɛtɛri 8 walima ka ca, gran lɛtɛri kelen ani nimɔrɔ kelen",
+    "showPassword": "Gundo daanu jira",
+    "hidePassword": "Gundo daanu dogo",
     "passwordTooShort": "Gundo daanu ka kan ka lɛtɛri 8 walima ka ca sɔrɔ",
     "passwordNeedsUppercase": "Gundo daanu ka kan ka gran lɛtɛri kelen sɔrɔ",
     "passwordNeedsNumber": "Gundo daanu ka kan ka nimɔrɔ kelen sɔrɔ",
@@ -541,7 +543,7 @@
     "subtitle": "Fɛstivaliw, konsɛriw, foaraw ni laada waati-kunw jamana kɔnɔ bɛɛ.",
     "searchPlaceholder": "Waati-kun, dugu...",
     "empty": "Waati-kun si ma sɔrɔ",
-    "ticketPrice": "{{price}} {{currency}}",
+    "ticketPrice": "Bije sɔngɔ",
     "ticketRequired": "Tikiti wajibiyalen don",
     "getTicket": "Tikiti ta",
     "ticketRequiresAuth": "I ka don walasa ka i ka tikiti ta",
@@ -1178,7 +1180,7 @@
     }
   },
   "market": {
-    "title": "BurkinaSira Market",
+    "title": "Bololabaara ni sugu Burkina Faso",
     "subtitle": "Baara-fɛn sɛbɛw Burkina Faso ka bonya.",
     "searchPlaceholder": "Fɛn dɔ, baarakɛla dɔ...",
     "empty": "Fɛn si ma sɔrɔ",
@@ -1349,7 +1351,7 @@
       "culture": "Laadaw",
       "aventure": "Farati taama",
       "famille": "Denbaya",
-      "diaspora": "Diaspora",
+      "diaspora": "Jamanakɔkɔrɔmɔgɔw",
       "affaires": "Baara",
       "photographie": "Fotokɛli"
     },
@@ -1460,180 +1462,180 @@
     "ctaButton": "Ɲini daminɛ"
   },
   "planner": {
-    "kicker": "Planificateur de voyage",
-    "subtitle": "Composez votre séjour : hébergement, repas, transport, guides — et estimez la dépense globale.",
-    "planATrip": "Planifier un voyage",
-    "planAndBudget": "Planifier & budget",
-    "planRequiresAuth": "Connectez-vous pour planifier un voyage.",
-    "tripTitleFor": "Voyage — {{name}}",
-    "tripTitleForShort": "Mon voyage",
-    "travelers": "Voyageurs",
-    "comfort": "Niveau de confort",
+    "kicker": "Taama labɛn",
+    "subtitle": "I ka sigi labɛn: sigi-yɔrɔ, dumuni, bolimafɛn, ɲɛminɛbagaw — ka wari bɛɛ jate.",
+    "planATrip": "Taama labɛn",
+    "planAndBudget": "Labɛn & wari",
+    "planRequiresAuth": "I ka don walisa ka taama labɛn.",
+    "tripTitleFor": "Taama — {{name}}",
+    "tripTitleForShort": "N ka taama",
+    "travelers": "Taamakɛlaw",
+    "comfort": "Nɛgɛnya hakɛ",
     "comfortLevels": {
-      "eco": "Éco",
-      "standard": "Standard",
-      "confort": "Confort"
+      "eco": "Nɔgɔya",
+      "standard": "Cɛncɛn",
+      "confort": "Nɛgɛnya"
     },
-    "comfortHint": "Base : nuitée ~ {{nuitee}} · repas ~ {{repas}} (ajusté si un prix réel existe).",
-    "budgetTitle": "Budget estimé",
-    "budgetMeta": "{{days}} jour(s) · {{nights}} nuit(s) · {{travelers}} voyageur(s)",
-    "perPerson": "Soit {{amount}} par personne",
-    "viewRecap": "Voir le récapitulatif",
-    "exploreZone": "Explorer la zone",
+    "comfortHint": "Fanga: su ~ {{nuitee}} · dumuni ~ {{repas}} (a bɛ Changé ni sɔngɔ yɛrɛ bɛ yen).",
+    "budgetTitle": "Wari jatelen",
+    "budgetMeta": "{{days}} tile · {{nights}} su · {{travelers}} taamakɛla",
+    "perPerson": "O ye {{amount}} ye mɔgɔ kelen na",
+    "viewRecap": "Kunbɛn lajɛ",
+    "exploreZone": "Yɔrɔ ɲini",
     "tabs": {
-      "hotels": "Hôtels",
-      "restaurants": "Restaurants",
-      "guides": "Guides",
-      "transport": "Transport"
+      "hotels": "Sigi-yɔrɔw",
+      "restaurants": "Dumuni-yɔrɔw",
+      "guides": "Ɲɛminɛbagaw",
+      "transport": "Bolimafɛn"
     },
     "categories": {
-      "hebergement": "Hébergement",
-      "nourriture": "Nourriture",
-      "transport": "Transport",
-      "guides": "Guides",
-      "activites": "Activités",
-      "autres": "Autres"
+      "hebergement": "Sigi-yɔrɔ",
+      "nourriture": "Dumuni",
+      "transport": "Bolimafɛn",
+      "guides": "Ɲɛminɛbagaw",
+      "activites": "Baaraw",
+      "autres": "Tɔw"
     },
-    "add": "Ajouter",
-    "inTrip": "Ajouté",
-    "added": "Ajouté au voyage",
-    "noResults": "Aucun résultat dans cette zone",
-    "noResultsText": "Élargissez la zone ou changez d'onglet."
+    "add": "A fara",
+    "inTrip": "Farala",
+    "added": "A farala taama kan",
+    "noResults": "Foyi tɛ nin yɔrɔ in na",
+    "noResultsText": "Yɔrɔ bonya walima ka nɔɔni Changé."
   },
   "recap": {
-    "kicker": "Récapitulatif",
-    "recapCta": "Récapitulatif",
-    "travelersCount": "{{count}} voyageur",
-    "travelersCount_other": "{{count}} voyageurs",
-    "itineraryTitle": "Itinéraire jour par jour",
-    "noPlan": "Aucune étape planifiée pour l'instant.",
-    "total": "Total estimé",
-    "perPersonShort": "Par personne",
-    "perDay": "Par jour",
-    "exportPdf": "Exporter en PDF",
-    "exported": "PDF généré",
-    "disclaimer": "Estimations indicatives en FCFA, hors billets d'avion internationaux et visa. Les prix réels des prestataires priment lorsqu'ils sont renseignés. Planifier n'est pas réserver.",
-    "pdfTitle": "Récapitulatif de voyage",
-    "generatedOn": "Généré le {{date}}",
-    "tripDates": "Dates",
-    "zone": "Zone"
+    "kicker": "Kunbɛn",
+    "recapCta": "Kunbɛn",
+    "travelersCount": "taamakɛla {{count}}",
+    "travelersCount_other": "taamakɛlaw {{count}}",
+    "itineraryTitle": "Sira tile-o-tile",
+    "noPlan": "Foyi ma labɛn fɔlɔ.",
+    "total": "Bɛɛ lajɛlen",
+    "perPersonShort": "Mɔgɔ kelen",
+    "perDay": "Tile kelen",
+    "exportPdf": "A bɔ PDF na",
+    "exported": "PDF dilan na",
+    "disclaimer": "Wari jatelenw FCFA na, avion foronbila ni viza tɛ a kɔnɔ. Sɔngɔ yɛrɛw de bɛ kɛ ni u bɛ yen. Labɛn tɛ minɛ ye.",
+    "pdfTitle": "Taama kunbɛn",
+    "generatedOn": "Dilan na {{date}}",
+    "tripDates": "Donw",
+    "zone": "Yɔrɔ"
   },
   "advice": {
-    "title": "Bien preparer et vivre son sejour",
-    "subtitle": "De la preparation au retour : les reperes pour voyager serein au Burkina Faso.",
-    "disclaimer": "Informations generales fournies a titre indicatif. Verifiez toujours les sources officielles (ambassade du Burkina Faso, ministere des Affaires etrangeres de votre pays, OMS) avant le depart.",
+    "title": "I ka labɛn ɲuman, ka taama ni hakili sigi",
+    "subtitle": "Ka bɔ labɛn na fo ka segin: fɛn minw bɛ i ka taama nɔgɔya Burkina Faso la.",
+    "disclaimer": "Kunnafoni gansan, jate dɔrɔn. A lajɛ tuma bɛɛ dannaya yɔrɔw la (Burkina Faso ambasadi, i ka jamana kɔkanko ministɛri, OMS) sani i ka taama.",
     "phases": {
-      "before": "Avant le depart",
-      "during": "Sur place",
-      "after": "Au retour"
+      "before": "Sani ka taama",
+      "during": "Yɔrɔ la",
+      "after": "Segin kɔ"
     },
     "items": {
       "visa": {
-        "title": "Visa & passeport",
-        "text": "Passeport valide au moins 6 mois apres la date de retour. Visa d'entree requis pour la plupart des nationalites : e-visa en ligne ou visa a l'ambassade. Gardez une copie numerique de vos documents."
+        "title": "Visa & pasipɔɔri",
+        "text": "Pasipɔɔri min bɛ baara la kalo 6 segin don kɔ. Donni visa mago siya bɛɛ ye: e-visa ɛntɛrinɛti kan walima visa ambasadi la. I ka sɛbɛnw foto mara i ka minɛn kɔnɔ."
       },
       "vaccines": {
-        "title": "Vaccins & sante preventive",
-        "text": "Vaccin contre la fievre jaune obligatoire (carnet international exige a l'arrivee). Antipaludeen fortement recommande : consultez un centre de vaccinations internationales 4 a 6 semaines avant le depart. Mettez a jour DTP, hepatites A et B, typhoide."
+        "title": "Boloci & kɛnɛya tanga",
+        "text": "Fievre jaune boloci wajibiyalen (karti international bɛ lajɛ ni i sera). Sumaya fura ka fisa kosɛbɛ: taa vaccinations internationales yɔrɔ dɔgɔkun 4 na 6 sani i ka taama. DTP, hepatites A ni B, typhoide Changé."
       },
       "season": {
-        "title": "Quand partir",
-        "text": "Saison seche de novembre a fevrier : temps le plus agreable, ideal pour la decouverte. Mars-mai : tres chaud (souvent plus de 40 C). Juin-octobre : saison des pluies, vegetation verte mais pistes parfois difficiles."
+        "title": "Waati min na taa",
+        "text": "Tilema kalo 11 na 2: waati ɲuman kosɛbɛ, ka mɔgɔ ye. Kalo 3-5: funteni kosɛbɛ (tuma caman 40 C sanfɛ). Kalo 6-10: samiya, kɔngɔw bɛ binɛ nka siraw ka gɛlɛn tuma dɔw."
       },
       "money": {
-        "title": "Argent & paiements",
-        "text": "Monnaie : le franc CFA (XOF). Payez en especes presque partout ; la carte bancaire n'est acceptee que dans quelques hotels et a Ouagadougou. Retirez du liquide aux distributeurs des grandes villes et prevoyez de la petite monnaie."
+        "title": "Wari & sara",
+        "text": "Wari: CFA franc (XOF). Sara ni wari yɔrɔ bɛɛ; banki karti bɛ baara sigi-yɔrɔ dama ni Wagadugu dɔrɔn. Wari bɔ distiribitɛriw la duguba kɔnɔ ka wari fitini mara."
       },
       "security": {
-        "title": "Securite & itineraire",
-        "text": "Consultez les conseils aux voyageurs de votre ministere avant de fixer votre itineraire ; certaines regions sont deconseillees. Privilegiez les deplacements de jour, un guide local et un hebergement identifie. Enregistrez-vous aupres de votre ambassade si possible."
+        "title": "Lakana & sira",
+        "text": "I ka ministɛri laadilikan lajɛ sani i ka sira sugandi; mara dɔw tɛ diya. Taama tile fɛ, ni yɔrɔ ɲɛminɛbaga ni sigi-yɔrɔ dɔnnen. I tɔgɔ sɛbɛn ambasadi la ni a bɛ se."
       },
       "packing": {
-        "title": "Dans la valise",
-        "text": "Vetements legers et couvrants, chapeau, lunettes, creme solaire haute protection, repulsif anti-moustiques, trousse a pharmacie (antipaludeen, anti-diarrheique, rehydratation), lampe de poche, adaptateur (prises type C/E, 220 V), gourde filtrante."
+        "title": "Min ka don valisi kɔnɔ",
+        "text": "Fani nɔgɔmanw min bɛ farikolo datugu, fugulan, ɲɛgɛnnaw, tile fura fanganman, sosow gɛnna, fura minɛn (sumaya fura, kɔnɔboli fura, ji sɔsɔli), lanpan, adaptɛri (priz type C/E, 220 V), ji butɛli filiterin."
       },
       "health": {
-        "title": "Rester en bonne sante",
-        "text": "Buvez uniquement de l'eau en bouteille capsulee ou filtree. Evitez glacons, crudites lavees a l'eau du robinet et aliments tiedes. Lavez-vous les mains souvent. Poursuivez le traitement antipaludeen selon la prescription, meme apres le retour."
+        "title": "Kɛnɛya mara",
+        "text": "I ka ji min datigɛlen dɔrɔn walima min filiterin min. Glasi, nakɔfɛn kɛnɛ minw koni ni robinɛ ji, ni dumuni gwaman kana. I bolow ko tuma caman. I ka sumaya fura ta i n'a fɔra i ye, hali segin kɔ."
       },
       "heat": {
-        "title": "Chaleur & soleil",
-        "text": "Hydratez-vous en continu, salez un peu vos repas, faites une pause aux heures les plus chaudes (12 h - 15 h). Chapeau et creme solaire systematiques. Surveillez les signes de coup de chaleur (maux de tete, nausees, confusion)."
+        "title": "Funteni & tile",
+        "text": "I ka ji min ka taa, kɔgɔ dɔɔni k'a fara i dumuni kan, i ka lafiya funteni waati la (12 na 15). Fugulan ni tile fura tuma bɛɛ. Funteni bana taamaseerew (kunkolodimi, ɲɛji, hakili ɲagami)."
       },
       "customs": {
-        "title": "Us & coutumes",
-        "text": "L'accueil burkinabe (la teranga) est chaleureux : prenez le temps de saluer, c'est essentiel. Tenue correcte, surtout pres des lieux de culte. Utilisez la main droite pour donner ou recevoir. Demandez toujours avant de photographier une personne."
+        "title": "Laada ni cogo",
+        "text": "Burkina jatigiya (teranga) ka di: waati ta ka mɔgɔw fo, o nafa ka bon. I ka i masiri ɲuman, sɔrɔla batofɛnw yɔrɔ la. I kininbolo ta ka di walima ka minɛ. A ɲininka tuma bɛɛ sani i ka mɔgɔ foto ta."
       },
       "bargaining": {
-        "title": "Marchander sans stress",
-        "text": "Le marchandage est d'usage sur les marches et pour les taxis, jamais dans les boutiques a prix fixe. Restez souriant, annoncez un prix, trouvez un terrain d'entente. Convenez du tarif du taxi avant de monter."
+        "title": "Sanni ni tanya tɛ",
+        "text": "Sanni ye laada ye sugu la ni takisi la, sɔngɔ dafalen butiki la fewu. I ka yɛlɛmakan mara, ka sɔngɔ fɔ, ka bɛn sɔrɔ. Takisi sara bɛn sani i ka don a kɔnɔ."
       },
       "connectivity": {
-        "title": "Telephone & internet",
-        "text": "Achetez une carte SIM locale (Orange, Moov) avec votre passeport, des l'aeroport ou en boutique : data bon marche et bonne couverture en ville. Le wifi des hotels reste lent. Telechargez vos cartes hors ligne."
+        "title": "Telefɔni & ɛntɛrinɛti",
+        "text": "SIM karti jamanakɔnɔ (Orange, Moov) san ni i pasipɔɔri, awiyɔmbɔyɔrɔ la walima butiki la: data sɔngɔ ka nɔgɔ ani a bɛ diya duguba kɔnɔ. Sigi-yɔrɔ wifi bɛ sumaya. I ka kaartiw telesarize ɛntɛrinɛti tɛ."
       },
       "language": {
-        "title": "Langue",
-        "text": "Le francais est la langue officielle et largement compris en ville. Quelques mots de moore (ne y windga : bonjour) ou de dioula sont toujours apprecies et ouvrent les portes."
+        "title": "Kan",
+        "text": "Faransikan ye kan ba ye ani a famuyara duguba kɔnɔ. Moorekan kuma dɔw (ne y windga: aw ni sɔgɔma) walima Jula kumaw diya tuma bɛɛ ka daw yɛlɛ."
       },
       "photos": {
-        "title": "Photos & respect",
-        "text": "Ne photographiez pas les batiments officiels, militaires ou l'aeroport. Demandez l'autorisation pour les personnes ; un petit geste de remerciement est bienvenu. Certains sites sacres interdisent la photo."
+        "title": "Foto ni bonya",
+        "text": "Kana forobɔ walima sɔrɔdasi sow foto ta, walima awiyɔmbɔyɔrɔ. Yamaruya ɲininka mɔgɔw la; foli fitini ka di. Batoyɔrɔ senmayalen dɔw bɛ foto bali."
       },
       "emergency": {
-        "title": "Numeros utiles",
-        "text": "Police : 17 - Pompiers / secours : 18 - SAMU : 112. Notez le numero de votre ambassade et de votre assurance rapatriement. Gardez-les hors ligne et sur papier."
+        "title": "Nimɔrɔ nafamaw",
+        "text": "Polisi: 17 - Tasumafagalaw / dɛmɛ: 18 - SAMU: 112. I ka ambasadi nimɔrɔ ni i ka asiransi rapatirimasɔn nimɔrɔ sɛbɛn. U mara ɛntɛrinɛti tɛ ani sɛbɛn kan."
       },
       "healthWatch": {
-        "title": "Surveillance au retour",
-        "text": "En cas de fievre dans les 3 mois qui suivent le retour, consultez rapidement et signalez votre voyage au Burkina Faso : le paludisme peut se declarer tardivement."
+        "title": "Kɛnɛya kɔlɔsili segin kɔ",
+        "text": "Ni funteni y'i sɔrɔ kalo 3 kɔnɔ segin kɔ, taa dɔgɔtɔrɔ fɛ joona ka i ka taama Burkina Faso fɔ: sumaya bɛ se ka bɔ kɔfɛ."
       },
       "feedback": {
-        "title": "Partagez votre experience",
-        "text": "Laissez un avis sur les hebergements, guides et restaurants : vous aidez les prochains voyageurs et les prestataires locaux a progresser."
+        "title": "I ka kɔrɔ fɔ",
+        "text": "Jaabi to sigi-yɔrɔ, ɲɛminɛbagaw ni dumuni-yɔrɔw kan: i bɛ taamakɛla nataw ni yɔrɔ baarakɛlaw dɛmɛ ka ɲɛ."
       }
     }
   },
   "itineraries": {
-    "kicker": "Itineraires signature",
-    "title": "Voyages cle en main",
-    "subtitle": "Des parcours composes par la redaction BurkinaSira : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
-    "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de depart : ajustez tout dans le planificateur apres avoir clone l'itineraire.",
-    "days_one": "{{count}} jour",
-    "days_other": "{{count}} jours",
-    "fromPerPerson": "A partir de {{amount}} / personne",
-    "discover": "Decouvrir",
-    "forWho": "Pour qui",
-    "bestSeason": "Meilleure periode",
-    "highlightsTitle": "Ce que vous allez vivre",
-    "programmeTitle": "Le programme jour par jour",
-    "notIncludedTitle": "Ce qui n'est pas compris",
-    "budgetTitle": "Budget indicatif",
-    "budgetHint": "Hebergement, repas, transport local, guides et entrees. Hors vol international et visa.",
-    "cloneCta": "Cloner ce voyage",
-    "cloneNote": "Cree un voyage dans « Mes voyages » avec toutes les etapes. Vous pourrez tout modifier ensuite.",
-    "cloneRequiresAuth": "Connectez-vous pour cloner cet itineraire.",
-    "cloned": "Itineraire clone dans vos voyages",
-    "notFound": "Itineraire introuvable",
+    "kicker": "Sira ɲɛnajɛw",
+    "title": "Taama labɛnnenw",
+    "subtitle": "Siraw BurkinaSira sɛbɛnnikɛlaw ye min dilan: yɔrɔ sɛbɛnnenw, wari jate, laadilikanw. I mago min na, o ta ka o kɛ i ta ye.",
+    "note": "Wari jate mɔgɔ kelen na FCFA la, avion foronbila ni viza tɛ a kɔnɔ. O ye daminɛ ye: i ka fɛn bɛɛ Changé labɛn-minɛn na ni i ye sira ta.",
+    "days_one": "tile {{count}}",
+    "days_other": "tile {{count}}",
+    "fromPerPerson": "Ka bɔ {{amount}} / mɔgɔ",
+    "discover": "A lajɛ",
+    "forWho": "Jɔn ye",
+    "bestSeason": "Waati ɲuman ka taa",
+    "highlightsTitle": "I bɛna min sɔrɔ",
+    "programmeTitle": "Baarakɛcogo tile-o-tile",
+    "notIncludedTitle": "Min tɛ a kɔnɔ",
+    "budgetTitle": "Wari jate",
+    "budgetHint": "Sigi-yɔrɔ, dumuni, dugukolo bolimafɛn, ɲɛminɛbagaw ni donni. Avion foronbila ni viza tɛ a kɔnɔ.",
+    "cloneCta": "Nin taama in ta",
+    "cloneNote": "A bɛ taama dilan « N ka taamaw » kɔnɔ ni yɔrɔ bɛɛ. I bɛ se ka fɛn bɛɛ Changé o kɔ.",
+    "cloneRequiresAuth": "I ka don walisa ka nin sira in ta.",
+    "cloned": "Sira tara i ka taamaw kɔnɔ",
+    "notFound": "Sira ma sɔrɔ",
     "pace": {
-      "tranquille": "Rythme tranquille",
-      "equilibre": "Rythme equilibre",
-      "intense": "Rythme soutenu"
+      "tranquille": "Taama nɔgɔman",
+      "equilibre": "Taama cɛncɛn",
+      "intense": "Taama teliya"
     }
   },
   "nearMe": {
-    "enable": "Pres de moi",
-    "active": "Pres de moi ({{radius}} km)",
-    "disable": "Desactiver",
-    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
-    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
-    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
-    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
+    "enable": "N gɛrɛfɛ",
+    "active": "N gɛrɛfɛ ({{radius}} km)",
+    "disable": "A bɔ",
+    "widen": "Kɔrɔ {{count}} dɔrɔn - yɔrɔ bonya",
+    "denied": "Yɔrɔ dɔnniya banniyalen. A to i ka minɛn ka labenw kɔnɔ walisa ka i gɛrɛfɛn fɛnw ye.",
+    "unavailable": "Ma se ka i yɔrɔ sɔrɔ sisan. A kɛ tugun.",
+    "insecure": "Yɔrɔ dɔnniya bɛ se ka kɛ https sɔrɔda dɔrɔn na."
   },
   "panorama": {
-    "cta": "Visite 360°",
-    "badge": "Visite 360°",
-    "hint": "Faites glisser pour explorer · bougez votre téléphone",
-    "error": "La visite 360° n'a pas pu être chargée sur cet appareil."
+    "cta": "360° lajɛ",
+    "badge": "360° lajɛ",
+    "hint": "A sama ka lajɛ · i ka telefɔni yɛlɛma",
+    "error": "360° lajɛ ma se ka don nin minɛn in kan."
   }
 }

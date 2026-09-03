@@ -19,7 +19,7 @@ import {
   Wrench,
 } from 'lucide-react';
 
-import { Card, Input, Button, ConfirmDialog } from '../../../shared/ui';
+import { Card, Input, PasswordInput, Button, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
@@ -194,10 +194,9 @@ export function ProfilePage() {
         <Card className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('profile.passwordTitle')}</h2>
           <form onSubmit={handlePasswordSubmit} className={styles.form}>
-            <Input
+            <PasswordInput
               label={t('profile.currentPassword')}
               name="profile-current-password"
-              type="password"
               autoComplete="current-password"
               value={currentPassword}
               onChange={(e) => {
@@ -205,11 +204,12 @@ export function ProfilePage() {
                 resetPassword();
               }}
               required
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
             />
-            <Input
+            <PasswordInput
               label={t('profile.newPassword')}
               name="profile-new-password"
-              type="password"
               autoComplete="new-password"
               minLength={8}
               value={newPassword}
@@ -218,6 +218,8 @@ export function ProfilePage() {
                 resetPassword();
               }}
               required
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
             />
             {passwordError && (
               <p className={styles.error}>{extractApiErrorMessage(passwordError, t('common.error'))}</p>

@@ -81,6 +81,8 @@
     "confirmPassword": "Confirmer le mot de passe",
     "passwordMismatch": "Les mots de passe ne correspondent pas",
     "passwordHint": "Au moins 8 caractères, une majuscule et un chiffre",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
     "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
     "passwordNeedsUppercase": "Le mot de passe doit contenir au moins une majuscule",
     "passwordNeedsNumber": "Le mot de passe doit contenir au moins un chiffre",

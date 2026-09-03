@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Card, Input, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, Input, PasswordInput, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useRegister } from '../hooks/useRegister';
 import { AuthHeader } from '../components/AuthHeader';
@@ -141,9 +141,8 @@ export function RegisterPage() {
 
         {step === 3 && (
           <form onSubmit={handlePasswordStepSubmit} className={styles.form}>
-            <Input
+            <PasswordInput
               label={t('auth.password')}
-              type="password"
               name="password"
               autoComplete="new-password"
               required
@@ -154,11 +153,12 @@ export function RegisterPage() {
                 setPassword(e.target.value);
                 setPasswordError(false);
               }}
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
             />
             <p className={styles.hint}>{t('auth.passwordHint')}</p>
-            <Input
+            <PasswordInput
               label={t('auth.confirmPassword')}
-              type="password"
               name="confirmPassword"
               autoComplete="new-password"
               required
@@ -168,6 +168,8 @@ export function RegisterPage() {
                 setConfirmPassword(e.target.value);
                 setPasswordError(false);
               }}
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
             />
             {passwordError && (
               <p className={styles.error}>

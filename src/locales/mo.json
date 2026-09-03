@@ -32,12 +32,12 @@
     "ctaRestaurant": "Ges rɩ-zĩiga",
     "ctaTransport": "Ges pʋɩʋgã",
     "ctaArtisan": "Ges tʋʋm-zĩiga",
-    "ctaDestination": "Voir les photos"
+    "ctaDestination": "Ges fotow"
   },
   "nav": {
     "home": "Zaka",
     "explore": "Bao n ges",
-    "itineraries": "Itineraires",
+    "itineraries": "Sor-yalse",
     "discover": "Bao n mikã",
     "hotels": "Zaka-kɩʋʋg",
     "restaurants": "Rɩɩb",
@@ -81,6 +81,8 @@
     "confirmPassword": "Lebg gom-kãseng wã",
     "passwordMismatch": "Gũusg-goam wã ka zemse ye",
     "passwordHint": "Lɛtr 8 bɩ n yɩɩda, gom-kãseng a yembre la sõore a yembre",
+    "showPassword": "Wilg-y gũusg-goamã",
+    "hidePassword": "Solg-y gũusg-goamã",
     "passwordTooShort": "Gũusg-goam wã segd n tara lɛtr 8 bɩ n yɩɩda",
     "passwordNeedsUppercase": "Gũusg-goam wã segd n tara gom-kãseng a yembre",
     "passwordNeedsNumber": "Gũusg-goam wã segd n tara sõore a yembre",
@@ -541,7 +543,7 @@
     "subtitle": "Festival, konser, foaar la tigims tẽngã pʋgẽ.",
     "searchPlaceholder": "Kibsa bɩ tẽng...",
     "empty": "Ka kibs baa a yembre",
-    "ticketPrice": "{{price}} {{currency}}",
+    "ticketPrice": "Bii-ligd",
     "ticketRequired": "Bilye n bee tɩ boonda",
     "getTicket": "Reere bilye",
     "ticketRequiresAuth": "Kẽ n tõog n reere y bilye",
@@ -552,7 +554,7 @@
     "linkedTransport": "Wãy-y n taas be",
     "filters": {
       "all": "Fãa",
-      "festival": "Festival",
+      "festival": "Festivaale",
       "concert": "Konser",
       "foire": "Foaar",
       "exposition": "Wilgr",
@@ -564,7 +566,7 @@
       "salon": "Salɔ"
     },
     "categories": {
-      "festival": "Festival",
+      "festival": "Festivaale",
       "concert": "Konser",
       "foire": "Foaar",
       "exposition": "Wilgr",
@@ -856,7 +858,7 @@
       "remorquage": "Remorkaze",
       "lavage_auto": "Loaad pekre",
       "pieces_auto": "Loaad kʋʋns",
-      "parking": "Parking",
+      "parking": "Mobil-yʋʋgr zĩiga",
       "borne_recharge": "Kãsem pʋʋsg zĩig"
     },
     "filters": {
@@ -1178,7 +1180,7 @@
     }
   },
   "market": {
-    "title": "BurkinaSira Market",
+    "title": "Tʋʋmd la rat-zĩig Burkina Faso",
     "subtitle": "Tʋʋmd hakɩkã sẽn yit Burkina Faso.",
     "searchPlaceholder": "Bũmb bɩ tʋm-tʋmda...",
     "empty": "Ka bũmb baa a yembre",
@@ -1460,180 +1462,180 @@
     "ctaButton": "Sɔsg baorã"
   },
   "planner": {
-    "kicker": "Planificateur de voyage",
-    "subtitle": "Composez votre séjour : hébergement, repas, transport, guides — et estimez la dépense globale.",
-    "planATrip": "Planifier un voyage",
-    "planAndBudget": "Planifier & budget",
-    "planRequiresAuth": "Connectez-vous pour planifier un voyage.",
-    "tripTitleFor": "Voyage — {{name}}",
-    "tripTitleForShort": "Mon voyage",
-    "travelers": "Voyageurs",
-    "comfort": "Niveau de confort",
+    "kicker": "Sor-yalg maandg",
+    "subtitle": "Maan fo yaab-yaab: gã·d-zĩiga, rɩɩb, vẽeg-vẽeg, sor-tʋmdb — la ges ligd fãa taab.",
+    "planATrip": "Yal sor-yalg",
+    "planAndBudget": "Yalg & ligd",
+    "planRequiresAuth": "Kẽ tɩ f yal sor-yalg.",
+    "tripTitleFor": "Sor-yalg — {{name}}",
+    "tripTitleForShort": "Mam sor-yalga",
+    "travelers": "Sor-neb",
+    "comfort": "Laafɩ zĩiga",
     "comfortLevels": {
-      "eco": "Éco",
-      "standard": "Standard",
-      "confort": "Confort"
+      "eco": "Faasg",
+      "standard": "Sʋʋg",
+      "confort": "Laafɩ"
     },
-    "comfortHint": "Base : nuitée ~ {{nuitee}} · repas ~ {{repas}} (ajusté si un prix réel existe).",
-    "budgetTitle": "Budget estimé",
-    "budgetMeta": "{{days}} jour(s) · {{nights}} nuit(s) · {{travelers}} voyageur(s)",
-    "perPerson": "Soit {{amount}} par personne",
-    "viewRecap": "Voir le récapitulatif",
-    "exploreZone": "Explorer la zone",
+    "comfortHint": "Sɩngre: yʋngo ~ {{nuitee}} · rɩɩb ~ {{repas}} (b tekda ligd sɩd sã n be).",
+    "budgetTitle": "Ligd sẽn gesle",
+    "budgetMeta": "{{days}} daar · {{nights}} yʋngo · {{travelers}} sor-neda",
+    "perPerson": "Rẽndame {{amount}} ned fãa yĩnga",
+    "viewRecap": "Ges kɩsg-koɛɛg",
+    "exploreZone": "Bao zĩiga n ges",
     "tabs": {
-      "hotels": "Hôtels",
-      "restaurants": "Restaurants",
-      "guides": "Guides",
-      "transport": "Transport"
+      "hotels": "Zaka-kɩʋʋg",
+      "restaurants": "Rɩɩb-zĩ·se",
+      "guides": "Sor-tʋmdb",
+      "transport": "Vẽeg-vẽeg"
     },
     "categories": {
-      "hebergement": "Hébergement",
-      "nourriture": "Nourriture",
-      "transport": "Transport",
-      "guides": "Guides",
-      "activites": "Activités",
-      "autres": "Autres"
+      "hebergement": "Gã·d-zĩiga",
+      "nourriture": "Rɩɩb",
+      "transport": "Vẽeg-vẽeg",
+      "guides": "Sor-tʋmdb",
+      "activites": "Tʋʋma",
+      "autres": "A taaba"
     },
-    "add": "Ajouter",
-    "inTrip": "Ajouté",
-    "added": "Ajouté au voyage",
-    "noResults": "Aucun résultat dans cette zone",
-    "noResultsText": "Élargissez la zone ou changez d'onglet."
+    "add": "Paas",
+    "inTrip": "Paasame",
+    "added": "B paasa sor-yalgẽ wã",
+    "noResults": "Bũmb pa be zĩ-kãngã ye",
+    "noResultsText": "Pʋʋg zĩiga bɩ f tek onglet-a."
   },
   "recap": {
-    "kicker": "Récapitulatif",
-    "recapCta": "Récapitulatif",
-    "travelersCount": "{{count}} voyageur",
-    "travelersCount_other": "{{count}} voyageurs",
-    "itineraryTitle": "Itinéraire jour par jour",
-    "noPlan": "Aucune étape planifiée pour l'instant.",
-    "total": "Total estimé",
-    "perPersonShort": "Par personne",
-    "perDay": "Par jour",
-    "exportPdf": "Exporter en PDF",
-    "exported": "PDF généré",
-    "disclaimer": "Estimations indicatives en FCFA, hors billets d'avion internationaux et visa. Les prix réels des prestataires priment lorsqu'ils sont renseignés. Planifier n'est pas réserver.",
-    "pdfTitle": "Récapitulatif de voyage",
-    "generatedOn": "Généré le {{date}}",
-    "tripDates": "Dates",
-    "zone": "Zone"
+    "kicker": "Kɩsg-koɛɛg",
+    "recapCta": "Kɩsg-koɛɛg",
+    "travelersCount": "sor-neda {{count}}",
+    "travelersCount_other": "sor-neb {{count}}",
+    "itineraryTitle": "Sore daar-fãa-daar",
+    "noPlan": "Bũmb nan pa yalg ye.",
+    "total": "Fãa taab sẽn gesle",
+    "perPersonShort": "Ned fãa",
+    "perDay": "Daar fãa",
+    "exportPdf": "Yiis PDF",
+    "exported": "PDF-a maaname",
+    "disclaimer": "Ligd sẽn gesle FCFA pʋgẽ, sẽn pa tar sil-yɛlgd tɩ loogd tẽns la viza ye. Ligd sɩd sã n be, yaa a n na yɩ sˑ. Yalg pa yaa deeg ye.",
+    "pdfTitle": "Sor-yalg kɩsg-koɛɛg",
+    "generatedOn": "B maan-a-la {{date}}",
+    "tripDates": "Rasma",
+    "zone": "Zĩiga"
   },
   "advice": {
-    "title": "Bien preparer et vivre son sejour",
-    "subtitle": "De la preparation au retour : les reperes pour voyager serein au Burkina Faso.",
-    "disclaimer": "Informations generales fournies a titre indicatif. Verifiez toujours les sources officielles (ambassade du Burkina Faso, ministere des Affaires etrangeres de votre pays, OMS) avant le depart.",
+    "title": "Segl-a sõma la vɩɩmd fo yaab-yaab ne sũ-noogo",
+    "subtitle": "Sɩ ne yalg n tɩ ta lebg-n-waoong: bũmb nins sẽn na kɩt tɩ f sor-yalg Burkina Faso yɩ noogo.",
+    "disclaimer": "Kibay sẽn yaa gilli, gesg bala. Ges-a wakat fãa zĩ-sɩd-dãmba (Burkina Faso ambaasaad, fo tẽng yɩɩr-yɛlã minister, OMS) sẽn deng f kẽngre.",
     "phases": {
-      "before": "Avant le depart",
-      "during": "Sur place",
-      "after": "Au retour"
+      "before": "Sẽn deng kẽngre",
+      "during": "Zĩ-kãngã",
+      "after": "Lebg-n-waoong poore"
     },
     "items": {
       "visa": {
-        "title": "Visa & passeport",
-        "text": "Passeport valide au moins 6 mois apres la date de retour. Visa d'entree requis pour la plupart des nationalites : e-visa en ligne ou visa a l'ambassade. Gardez une copie numerique de vos documents."
+        "title": "Visa & pasapoor",
+        "text": "Pasapoor sẽn tar pãng kiis a yoob sẽn deng lebg-n-waoong rasem poore. Visa yaa tɩlae neb wʋsg yĩnga: e-visa online wall visa ambaasaadẽ. Bĩng fo sɛb foto fo telefõ pʋgẽ."
       },
       "vaccines": {
-        "title": "Vaccins & sante preventive",
-        "text": "Vaccin contre la fievre jaune obligatoire (carnet international exige a l'arrivee). Antipaludeen fortement recommande : consultez un centre de vaccinations internationales 4 a 6 semaines avant le depart. Mettez a jour DTP, hepatites A et B, typhoide."
+        "title": "Tɩɩm-lolo & laafɩ gũudum",
+        "text": "Fievre jaune tɩɩm-lolo yaa tɩlae (b geta carnet international f sã n ta). Sʋʋ-tɩɩm yaa sõma wʋsgo: kẽng vaccinations internationales zĩig semen a naas n tɩ ta a yoob sẽn deng f kẽngre. Toeem DTP, hepatites A la B, typhoide."
       },
       "season": {
-        "title": "Quand partir",
-        "text": "Saison seche de novembre a fevrier : temps le plus agreable, ideal pour la decouverte. Mars-mai : tres chaud (souvent plus de 40 C). Juin-octobre : saison des pluies, vegetation verte mais pistes parfois difficiles."
+        "title": "Wakat ning n kẽng",
+        "text": "Wĩnd-wakat sɩ ne November n tɩ ta February: yʋʋm-wakat sẽn são n yɩ noogo. March-May: tʋʋlg wʋsgo (naoor wʋsg 40 C zug). June-October: sa-wakat, mogr yaa vɩʋʋg la sor-bila yaa toog naoor kẽere."
       },
       "money": {
-        "title": "Argent & paiements",
-        "text": "Monnaie : le franc CFA (XOF). Payez en especes presque partout ; la carte bancaire n'est acceptee que dans quelques hotels et a Ouagadougou. Retirez du liquide aux distributeurs des grandes villes et prevoyez de la petite monnaie."
+        "title": "Ligd & yaood",
+        "text": "Ligd: CFA franc (XOF). Yao ne ligd-peela zĩis fãa; carte bancaire tʋmda hotel bilf la Wagdgo bal pʋgẽ. Yiis ligd distributeur-dãmb tẽn-bɛd pʋsẽ la bĩng ligd-bila."
       },
       "security": {
-        "title": "Securite & itineraire",
-        "text": "Consultez les conseils aux voyageurs de votre ministere avant de fixer votre itineraire ; certaines regions sont deconseillees. Privilegiez les deplacements de jour, un guide local et un hebergement identifie. Enregistrez-vous aupres de votre ambassade si possible."
+        "title": "Lɛɛgengo & sore",
+        "text": "Ges fo minister sagls sẽn deng f sor-tekr; zĩis kẽer pa são ye. Kẽn wĩntoog, ne sor-tʋmd sẽn yaa zĩ-kãngã ned la gã·d-zĩig sẽn bãng. Gʋls fo yʋʋr ambaasaadẽ f sã n tõe."
       },
       "packing": {
-        "title": "Dans la valise",
-        "text": "Vetements legers et couvrants, chapeau, lunettes, creme solaire haute protection, repulsif anti-moustiques, trousse a pharmacie (antipaludeen, anti-diarrheique, rehydratation), lampe de poche, adaptateur (prises type C/E, 220 V), gourde filtrante."
+        "title": "Bũmb nins n pʋg valiiz pʋgẽ",
+        "text": "Fut-fãaad sẽn yaa faoge, zʋʋre, nin-lamse, wĩnd-tɩɩm sẽn tar pãnga, zũns-yood, tɩɩm bĩngr (sʋʋ-tɩɩm, sãoos-tɩɩm, koom-koom), lamp-lugre, adaptateur (prise type C/E, 220 V), koom-butelle sẽn filtre."
       },
       "health": {
-        "title": "Rester en bonne sante",
-        "text": "Buvez uniquement de l'eau en bouteille capsulee ou filtree. Evitez glacons, crudites lavees a l'eau du robinet et aliments tiedes. Lavez-vous les mains souvent. Poursuivez le traitement antipaludeen selon la prescription, meme apres le retour."
+        "title": "Pa ne laafɩ",
+        "text": "Yũ koom butelle sẽn pag bal wall sẽn filtre. Zãgs glaas, zãad-mogd sẽn pekd ne robine koom, la rɩɩb sẽn yaa pʋg-pʋgo. Peg fo nus naoor wʋsgo. Kell n dɩ sʋʋ-tɩɩm wa ne ordonnance, baa lebg-n-waoong poore."
       },
       "heat": {
-        "title": "Chaleur & soleil",
-        "text": "Hydratez-vous en continu, salez un peu vos repas, faites une pause aux heures les plus chaudes (12 h - 15 h). Chapeau et creme solaire systematiques. Surveillez les signes de coup de chaleur (maux de tete, nausees, confusion)."
+        "title": "Tʋʋlg & wĩndga",
+        "text": "Kell n yũ koom, ning yamsem bilf fo rɩɩbẽ, vʋʋs wakat sẽn tʋʋlg n yɩɩd (12 h - 15 h). Zʋʋre la wĩnd-tɩɩm wakat fãa. Gũus tʋʋlg yÃbdo (zug-zabre, sãoong-ratem, yam-menem)."
       },
       "customs": {
-        "title": "Us & coutumes",
-        "text": "L'accueil burkinabe (la teranga) est chaleureux : prenez le temps de saluer, c'est essentiel. Tenue correcte, surtout pres des lieux de culte. Utilisez la main droite pour donner ou recevoir. Demandez toujours avant de photographier une personne."
+        "title": "Manesem & mi·ese",
+        "text": "Burkina reegre (teranga) yaa noogo: dɩk wakat n pʋʋse, yaa tɩlae. Yel fut sõma, sẽn yɩɩd pʋʋsg-zĩis sɛɛgẽ. Tʋm fo nug-rɩtga n kõ wall n reege. Sok wakat fãa f sã n dat n foto ned."
       },
       "bargaining": {
-        "title": "Marchander sans stress",
-        "text": "Le marchandage est d'usage sur les marches et pour les taxis, jamais dans les boutiques a prix fixe. Restez souriant, annoncez un prix, trouvez un terrain d'entente. Convenez du tarif du taxi avant de monter."
+        "title": "Koos-koos sã n ka yikri",
+        "text": "Koos-koos yaa mi·es raase la taksi yĩnga, pa bʋtɩk sẽn tar ligd-yaood ye. Kell n laade, togs ligd, bãng zems taab. Wʋm taab ne taksi ligd sẽn deng f rɩ."
       },
       "connectivity": {
-        "title": "Telephone & internet",
-        "text": "Achetez une carte SIM locale (Orange, Moov) avec votre passeport, des l'aeroport ou en boutique : data bon marche et bonne couverture en ville. Le wifi des hotels reste lent. Telechargez vos cartes hors ligne."
+        "title": "Telefõ & internet",
+        "text": "Ra carte SIM zĩ-kãngã (Orange, Moov) ne fo pasapoor, aeroport wall bʋtɩgẽ: data yaa faoge la couverture yaa sõma tẽngã pʋgẽ. Hotel wifi ket n yaa bʋgse. Telesarze fo kart-dãmb offline."
       },
       "language": {
-        "title": "Langue",
-        "text": "Le francais est la langue officielle et largement compris en ville. Quelques mots de moore (ne y windga : bonjour) ou de dioula sont toujours apprecies et ouvrent les portes."
+        "title": "Buud-goam",
+        "text": "Fransɩ yaa goam-kãseng la b wʋmda a sõma tẽngã pʋgẽ. Moore goam bilf (ne y windga) wall Zyʋʋla goam yaa noogo wakat fãa la pakda kʋ·le."
       },
       "photos": {
-        "title": "Photos & respect",
-        "text": "Ne photographiez pas les batiments officiels, militaires ou l'aeroport. Demandez l'autorisation pour les personnes ; un petit geste de remerciement est bienvenu. Certains sites sacres interdisent la photo."
+        "title": "Foto & waoogre",
+        "text": "Ra foto zĩ-sɩd wall sodaas zak-rãmba, wall aeroport ye. Sok neb yĩnga; barka-koaadg bilf yaa noogo. Zĩ-sõms kẽer pa sak foto ye."
       },
       "emergency": {
-        "title": "Numeros utiles",
-        "text": "Police : 17 - Pompiers / secours : 18 - SAMU : 112. Notez le numero de votre ambassade et de votre assurance rapatriement. Gardez-les hors ligne et sur papier."
+        "title": "Sõor sẽn tar yõodo",
+        "text": "Polɩɩs: 17 - Bugum-kɩʋʋdb / lɛɛgengo: 18 - SAMU: 112. Gʋls fo ambaasaad sõor la fo assurance rapatriement sõor. Bĩng-b offline la sɛb zug."
       },
       "healthWatch": {
-        "title": "Surveillance au retour",
-        "text": "En cas de fievre dans les 3 mois qui suivent le retour, consultez rapidement et signalez votre voyage au Burkina Faso : le paludisme peut se declarer tardivement."
+        "title": "Laafɩ gũudum lebg-n-waoong poore",
+        "text": "Fo sã n paam tʋʋlg kiis a tãab pʋgẽ lebg-n-waoong poore, kẽng logtoɛɛg tao la togs fo sor-yalg Burkina Faso: sʋʋ tõe n wa yaool n puk."
       },
       "feedback": {
-        "title": "Partagez votre experience",
-        "text": "Laissez un avis sur les hebergements, guides et restaurants : vous aidez les prochains voyageurs et les prestataires locaux a progresser."
+        "title": "Wilg fo sẽn yã",
+        "text": "Bas tagsg gã·d-zĩis, sor-tʋmdb la rɩɩb-zĩis yĩnga: f sõngda sor-neb nins sẽn wat la zĩ-kãngã tʋm-tʋmdba tɩ b maneg-b meng."
       }
     }
   },
   "itineraries": {
-    "kicker": "Itineraires signature",
-    "title": "Voyages cle en main",
-    "subtitle": "Des parcours composes par la redaction BurkinaSira : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
-    "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de depart : ajustez tout dans le planificateur apres avoir clone l'itineraire.",
-    "days_one": "{{count}} jour",
-    "days_other": "{{count}} jours",
-    "fromPerPerson": "A partir de {{amount}} / personne",
-    "discover": "Decouvrir",
-    "forWho": "Pour qui",
-    "bestSeason": "Meilleure periode",
-    "highlightsTitle": "Ce que vous allez vivre",
-    "programmeTitle": "Le programme jour par jour",
-    "notIncludedTitle": "Ce qui n'est pas compris",
-    "budgetTitle": "Budget indicatif",
-    "budgetHint": "Hebergement, repas, transport local, guides et entrees. Hors vol international et visa.",
-    "cloneCta": "Cloner ce voyage",
-    "cloneNote": "Cree un voyage dans « Mes voyages » avec toutes les etapes. Vous pourrez tout modifier ensuite.",
-    "cloneRequiresAuth": "Connectez-vous pour cloner cet itineraire.",
-    "cloned": "Itineraire clone dans vos voyages",
-    "notFound": "Itineraire introuvable",
+    "kicker": "Sor-yalg signature",
+    "title": "Sor-yalse sẽn sege",
+    "subtitle": "Sore BurkinaSira gʋlsdb sẽn maan: zĩis sẽn zemse, ligd gesg, sagls. Reeg nin-a f sẽn dat wã n toeem-a f meng yĩnga.",
+    "note": "Ligd gesg ned fãa yĩnga FCFA pʋgẽ, sẽn pa tar sil-yɛlgd tɩ loogd tẽns la viza ye. Yaa sɩngr zĩiga: toeem fãa yalg-teegẽ wã f sã n dɩk sore-a.",
+    "days_one": "daar {{count}}",
+    "days_other": "rasma {{count}}",
+    "fromPerPerson": "Sɩngdẽ {{amount}} / ned",
+    "discover": "Bao n mikã",
+    "forWho": "Ãnd yĩnga",
+    "bestSeason": "Wakat sẽn são n kẽnge",
+    "highlightsTitle": "Bũmb nins f sẽn na n vɩɩmde",
+    "programmeTitle": "Tʋʋm-teksem daar-fãa-daar",
+    "notIncludedTitle": "Bũmb nins sẽn pa naag",
+    "budgetTitle": "Ligd gesg",
+    "budgetHint": "Gã·d-zĩiga, rɩɩb, vẽeg-vẽeg zĩ-kãngã, sor-tʋmdb la kẽebo. Sẽn pa tar sil-yɛlgd la viza.",
+    "cloneCta": "Reeg sor-yalg-kãngã",
+    "cloneNote": "Naanda sor-yalg « Mam sore-yalse » pʋgẽ ne zĩis fãa. F tõe n toeema fãa poore.",
+    "cloneRequiresAuth": "Kẽ tɩ f reeg sore-a.",
+    "cloned": "B reega sore-a f sore-yalsẽ",
+    "notFound": "Sore-a pa mikẽ",
     "pace": {
-      "tranquille": "Rythme tranquille",
-      "equilibre": "Rythme equilibre",
-      "intense": "Rythme soutenu"
+      "tranquille": "Kẽn-bʋgsg",
+      "equilibre": "Kẽn-zems",
+      "intense": "Kẽn-tao"
     }
   },
   "nearMe": {
-    "enable": "Pres de moi",
-    "active": "Pres de moi ({{radius}} km)",
-    "disable": "Desactiver",
-    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
-    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
-    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
-    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
+    "enable": "Mam sɛɛg",
+    "active": "Mam sɛɛg ({{radius}} km)",
+    "disable": "Yiis",
+    "widen": "{{count}} bala n paame - pʋʋg zĩiga",
+    "denied": "B pa sak zĩig-bãngr ye. Sak-a fo teel-bũmb pʋgẽ tɩ f na ges bũmb nins sẽn be fo sɛɛgẽ wã.",
+    "unavailable": "D pa tõe n paam fo zĩiga masã ye. Makr-a-yã.",
+    "insecure": "Zĩig-bãngr yaa ne https bala."
   },
   "panorama": {
-    "cta": "Visite 360°",
-    "badge": "Visite 360°",
-    "hint": "Faites glisser pour explorer · bougez votre téléphone",
-    "error": "La visite 360° n'a pas pu être chargée sur cet appareil."
+    "cta": "360° gesg",
+    "badge": "360° gesg",
+    "hint": "Vɩɩg-a n gese · vẽeg-a fo telefõ-wã",
+    "error": "360° gesg-kãngã pa tõe n zĩnd teel-kãngã zug ye."
   }
 }

@@ -2,7 +2,7 @@ import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { Button, Card, Input, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, Input, PasswordInput, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { useLogin } from '../hooks/useLogin';
@@ -56,14 +56,15 @@ export function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Input
+          <PasswordInput
             label={t('auth.password')}
-            type="password"
             name="password"
             autoComplete="current-password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            showLabel={t('auth.showPassword')}
+            hideLabel={t('auth.hidePassword')}
           />
           {error && (
             <p className={styles.error}>
