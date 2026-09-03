@@ -7,9 +7,11 @@
 
 .card {
   position: relative;
-  width: 100%;
-  max-width: 380px;
-  aspect-ratio: 1.6 / 1;
+  /* Dimensions fixes (ratio ~1.585, format carte bancaire) : la capture PNG
+     reproduit exactement ce qui est rendu, sans étirement sur mobile. */
+  width: 340px;
+  height: 214px;
+  max-width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: linear-gradient(135deg, #fff8f0 0%, #fdeee0 55%, #fbe4d0 100%);
@@ -17,9 +19,18 @@
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
-  padding: var(--space-4);
+  padding: 16px;
   color: #2a1a0f;
   isolation: isolate;
+  box-sizing: border-box;
+}
+
+@media (min-width: 400px) {
+  .card {
+    width: 380px;
+    height: 240px;
+    padding: 18px;
+  }
 }
 
 .watermark {
@@ -76,12 +87,13 @@
   gap: var(--space-3);
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
 .photoWrap {
   flex-shrink: 0;
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgba(220, 92, 10, 0.35);
@@ -89,6 +101,13 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(220, 92, 10, 0.1);
+}
+
+@media (min-width: 400px) {
+  .photoWrap {
+    width: 68px;
+    height: 68px;
+  }
 }
 
 .photo {
@@ -120,12 +139,14 @@
 }
 
 .name {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 800;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.2;
   color: #2a1a0f;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .verifiedIcon {
@@ -148,7 +169,7 @@
 
 .qrWrap {
   flex-shrink: 0;
-  padding: 6px;
+  padding: 5px;
   background-color: #fff;
   border: 1px solid rgba(220, 92, 10, 0.18);
   border-radius: var(--radius-sm, 8px);
@@ -157,6 +178,8 @@
 
 .qr {
   display: block;
+  width: 76px;
+  height: 76px;
 }
 
 .footer {
@@ -186,18 +209,24 @@
   max-width: 380px;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 360px) {
   .card {
-    aspect-ratio: 1.5 / 1;
-    padding: var(--space-3);
+    width: 300px;
+    height: 189px;
+    padding: 13px;
   }
 
   .photoWrap {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
   }
 
   .name {
     font-size: 0.9375rem;
+  }
+
+  .qr {
+    width: 64px;
+    height: 64px;
   }
 }

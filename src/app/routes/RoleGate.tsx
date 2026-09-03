@@ -4,12 +4,11 @@ import { useRefreshedUser } from '../../features/pro/hooks/useRefreshedUser';
 import { getPostLoginPath } from '../../features/pro/utils/postLoginRedirect';
 
 // Utility screens shared between the tourist and pro trees. Messages/notifications
-// have dedicated /pro/{role}/messages and /pro/{role}/notifications routes wrapped
-// in ProLayout, so those stay out of here. The BurkinaSira card (/passport) is the
-// same for every role — a guide/provider must be able to open it too, so the
-// RoleGate lets it through instead of bouncing them back to their pro dashboard.
+// AND the BurkinaSira card now all have dedicated /pro/{role}/* routes wrapped in
+// ProLayout, so a guide/provider hitting the bare tourist route is bounced to
+// their pro dashboard (which then routes them to the pro version of the screen).
 // Never add tourist-discovery pages (home, explore, etc.) here.
-const SHARED_UTILITY_PATHS: string[] = ['/passport'];
+const SHARED_UTILITY_PATHS: string[] = [];
 
 /**
  * Wraps the tourist-facing route tree. Re-checks the account's role/verification

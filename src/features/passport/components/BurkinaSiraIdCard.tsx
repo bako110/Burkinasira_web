@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import { toPng } from 'html-to-image';
 import { Download, User, BadgeCheck } from 'lucide-react';
 
@@ -63,10 +63,25 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
     : '';
 
   async function handleDownload() {
-    if (!cardRef.current) return;
+    const node = cardRef.current;
+    if (!node) return;
     setIsDownloading(true);
     try {
-      const dataUrl = await toPng(cardRef.current, { pixelRatio: 3, cacheBust: true });
+      // On capture avec les dimensions RÉELLES du noeud (et non l'aspect-ratio
+      // calculé), sinon html-to-image étire la carte sur mobile quand le contenu
+      // ne remplit pas exactement la hauteur théorique.
+      const rect = node.getBoundingClientRect();
+      const dataUrl = await toPng(node, {
+        cacheBust: true,
+        pixelRatio: 3,
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+        backgroundColor: '#fdeee0',
+        style: {
+          margin: '0',
+          transform: 'none',
+        },
+      });
       const link = document.createElement('a');
       link.download = `burkinasira-carte-${user.full_name.replace(/\s+/g, '-').toLowerCase()}.png`;
       link.href = dataUrl;
@@ -116,9 +131,9 @@ export function BurkinaSiraIdCard({ user, points }: BurkinaSiraIdCardProps) {
 
           <div className={styles.qrWrap}>
             {cardTokenData && (
-              <QRCodeCanvas
+              <QRCodeSVG
                 value={`${PUBLIC_SITE_URL}/verify/${cardTokenData.card_token}`}
-                size={84}
+                size={76}
                 bgColor="#ffffff"
                 fgColor="#1a1a1a"
                 level="M"
