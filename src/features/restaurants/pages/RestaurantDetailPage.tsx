@@ -5,6 +5,7 @@ import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLi
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { ReviewsSection } from '../../reviews';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
 
@@ -229,6 +230,8 @@ export function RestaurantDetailPage() {
           <ReportErrorButton itemType="restaurant" itemId={restaurant.id} className={styles.reportBtn} />
         </aside>
       </div>
+
+      <ReviewsSection targetType="restaurant" targetId={restaurant.id} />
 
       <RelatedModules currentPath="/restaurants" />
 

@@ -31,6 +31,7 @@ import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { BookingModal } from '../../bookings/components/BookingModal';
+import { ReviewsSection } from '../../reviews';
 import { useCreateTrip } from '../../trips/hooks/useCreateTrip';
 import { useDestinationDetail } from '../hooks/useDestinationDetail';
 import styles from './DestinationDetailPage.module.css';
@@ -298,6 +299,8 @@ export function DestinationDetailPage() {
           </div>
         </aside>
       </div>
+
+      <ReviewsSection targetType="destination" targetId={destination.id} />
 
       <RelatedModules currentPath="/explore" />
 

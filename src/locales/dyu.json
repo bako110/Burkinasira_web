@@ -1686,5 +1686,26 @@
       "event": "Kokɛ",
       "experience": "Kɔrɔbɔli"
     }
+  },
+  "reviews": {
+    "modalTitle": "I ka hakilina",
+    "yourRating": "I ka jateminɛ",
+    "yourComment": "I ka kuma",
+    "commentPlaceholder": "I ka koɲuman fɔ (a man wajibi)…",
+    "photosOptional": "Fotow (a man wajibi)",
+    "submit": "Hakilina bila",
+    "submitted": "I ni ce! I ka hakilina bilalen don.",
+    "ratingRequired": "Jateminɛ sugandi (1 ka se 5 ma).",
+    "rate": "Jateminɛ",
+    "rated": "Hakilina bilalen",
+    "rateThisStay": "I ka taama kɛra cogo di?",
+    "sectionTitle": "Hakilinaw",
+    "none": "Hakilina si tɛ yen fɔlɔ.",
+    "count_one": "hakilina {{count}}",
+    "count_other": "hakilina {{count}}",
+    "anonymous": "Taamala",
+    "proReply": "Baarakɛla ka jaabi",
+    "helpful": "A ye nafa lase",
+    "sortBest": "Jateminɛ ɲuman"
   }
 }

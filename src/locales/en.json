@@ -1686,5 +1686,26 @@
       "event": "Event",
       "experience": "Experience"
     }
+  },
+  "reviews": {
+    "modalTitle": "Your review",
+    "yourRating": "Your rating",
+    "yourComment": "Your comment",
+    "commentPlaceholder": "Share your experience (optional)…",
+    "photosOptional": "Photos (optional)",
+    "submit": "Publish review",
+    "submitted": "Thanks! Your review is live.",
+    "ratingRequired": "Pick a rating (1 to 5 stars).",
+    "rate": "Rate",
+    "rated": "Reviewed",
+    "rateThisStay": "How was your experience?",
+    "sectionTitle": "Reviews",
+    "none": "No reviews yet.",
+    "count_one": "{{count}} review",
+    "count_other": "{{count}} reviews",
+    "anonymous": "Traveller",
+    "proReply": "Owner reply",
+    "helpful": "Helpful",
+    "sortBest": "Top rated"
   }
 }

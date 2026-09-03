@@ -5,6 +5,7 @@ import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximiz
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { ReviewsSection } from '../../reviews';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
 
@@ -155,6 +156,8 @@ export function TransportDetailPage() {
           <ReportErrorButton itemType="transport" itemId={provider.id} className={styles.reportBtn} />
         </aside>
       </div>
+
+      <ReviewsSection targetType="transport" targetId={provider.id} />
 
       <RelatedModules currentPath="/mobility" />
 

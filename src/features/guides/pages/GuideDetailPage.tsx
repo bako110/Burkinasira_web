@@ -4,6 +4,7 @@ import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCirc
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { ReviewsSection } from '../../reviews';
 import { useGuideDetail } from '../hooks/useGuideDetail';
 import { GuideBookingSection } from '../components/GuideBookingSection';
 import styles from './GuideDetailPage.module.css';
@@ -148,6 +149,8 @@ export function GuideDetailPage() {
           <ReportErrorButton itemType="guide" itemId={guide.id} className={styles.reportBtn} />
         </aside>
       </div>
+
+      <ReviewsSection targetType="guide" targetId={guide.id} />
 
       <RelatedModules currentPath="/guides" />
     </div>

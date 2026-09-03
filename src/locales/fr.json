@@ -1686,5 +1686,26 @@
       "event": "Événement",
       "experience": "Expérience"
     }
+  },
+  "reviews": {
+    "modalTitle": "Votre avis",
+    "yourRating": "Votre note",
+    "yourComment": "Votre commentaire",
+    "commentPlaceholder": "Partagez votre expérience (facultatif)…",
+    "photosOptional": "Photos (facultatif)",
+    "submit": "Publier l'avis",
+    "submitted": "Merci ! Votre avis est publié.",
+    "ratingRequired": "Choisissez une note (1 à 5 étoiles).",
+    "rate": "Noter",
+    "rated": "Avis publié",
+    "rateThisStay": "Comment s’est passé votre séjour ?",
+    "sectionTitle": "Avis",
+    "none": "Aucun avis pour le moment.",
+    "count_one": "{{count}} avis",
+    "count_other": "{{count}} avis",
+    "anonymous": "Voyageur",
+    "proReply": "Réponse du professionnel",
+    "helpful": "Utile",
+    "sortBest": "Mieux notés"
   }
 }

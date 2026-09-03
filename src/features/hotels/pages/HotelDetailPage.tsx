@@ -5,6 +5,7 @@ import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLi
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { ReviewsSection } from '../../reviews';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { useHotelDetail } from '../hooks/useHotelDetail';
@@ -248,6 +249,8 @@ export function HotelDetailPage() {
           <ReportErrorButton itemType="hotel" itemId={hotel.id} className={styles.reportBtn} />
         </aside>
       </div>
+
+      <ReviewsSection targetType="hotel" targetId={hotel.id} />
 
       <RelatedModules currentPath="/hotels" />
 

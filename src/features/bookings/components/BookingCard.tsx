@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { QrCode, Calendar } from 'lucide-react';
+import { QrCode, Calendar, Star, Check } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Card, Button } from '../../../shared/ui';
-import type { Booking } from '../types';
+import type { Booking, BookingItemType } from '../types';
 import styles from './BookingCard.module.css';
+
+// Types de réservation qui peuvent recevoir un avis (cf. backend BOOKING_ITEM_TO_TARGET).
+const REVIEWABLE_ITEM_TYPES: BookingItemType[] = ['guide', 'hotel', 'restaurant', 'transport', 'event', 'visit'];
 
 const STATUS_TONE: Record<Booking['status'], string> = {
   pending: 'tonePending',
@@ -18,11 +21,15 @@ interface BookingCardProps {
   booking: Booking;
   onCancel?: (booking: Booking) => void;
   isCancelling?: boolean;
+  onReview?: (booking: Booking) => void;
+  hasReview?: boolean;
 }
 
-export function BookingCard({ booking, onCancel, isCancelling }: BookingCardProps) {
+export function BookingCard({ booking, onCancel, isCancelling, onReview, hasReview }: BookingCardProps) {
   const { t, i18n } = useTranslation();
   const canCancel = booking.status === 'pending' || booking.status === 'confirmed';
+  const canReview =
+    booking.status === 'completed' && REVIEWABLE_ITEM_TYPES.includes(booking.item_type) && Boolean(onReview);
 
   return (
     <Card className={styles.card}>
@@ -57,6 +64,18 @@ export function BookingCard({ booking, onCancel, isCancelling }: BookingCardProp
             {t('bookings.cancel')}
           </Button>
         )}
+        {canReview &&
+          (hasReview ? (
+            <span className={styles.reviewed}>
+              <Check size={14} strokeWidth={2.5} />
+              {t('reviews.rated')}
+            </span>
+          ) : (
+            <Button variant="secondary" size="sm" onClick={() => onReview?.(booking)}>
+              <Star size={14} strokeWidth={2} />
+              {t('reviews.rate')}
+            </Button>
+          ))}
       </div>
     </Card>
   );

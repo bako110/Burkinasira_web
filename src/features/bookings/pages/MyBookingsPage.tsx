@@ -8,6 +8,7 @@ import { useMyBookings } from '../hooks/useMyBookings';
 import { useCancelBooking } from '../hooks/useCancelBooking';
 import { BookingCard } from '../components/BookingCard';
 import { CancelBookingDialog } from '../components/CancelBookingDialog';
+import { ReviewModal, useReviewedBookingIds } from '../../reviews';
 import type { Booking } from '../types';
 import styles from './MyBookingsPage.module.css';
 
@@ -17,6 +18,8 @@ export function MyBookingsPage() {
   const { mutate: cancel, isPending: isCancelling } = useCancelBooking();
   const push = useToastStore((s) => s.push);
   const [bookingToCancel, setBookingToCancel] = useState<Booking | null>(null);
+  const [bookingToReview, setBookingToReview] = useState<Booking | null>(null);
+  const reviewedBookingIds = useReviewedBookingIds();
 
   function handleConfirmCancel() {
     if (!bookingToCancel) return;
@@ -59,7 +62,13 @@ export function MyBookingsPage() {
         <div className={styles.grid}>
           {data.map((booking, i) => (
             <Reveal key={booking.id} delay={Math.min(i, 8) * 50}>
-              <BookingCard booking={booking} onCancel={setBookingToCancel} isCancelling={isCancelling} />
+              <BookingCard
+                booking={booking}
+                onCancel={setBookingToCancel}
+                isCancelling={isCancelling}
+                onReview={setBookingToReview}
+                hasReview={reviewedBookingIds.has(booking.id)}
+              />
             </Reveal>
           ))}
         </div>
@@ -71,6 +80,15 @@ export function MyBookingsPage() {
         onConfirm={handleConfirmCancel}
         onClose={() => setBookingToCancel(null)}
       />
+
+      {bookingToReview && (
+        <ReviewModal
+          open
+          onClose={() => setBookingToReview(null)}
+          bookingId={bookingToReview.id}
+          itemTitle={bookingToReview.item_title}
+        />
+      )}
     </div>
   );
 }

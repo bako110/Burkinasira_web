@@ -1686,5 +1686,26 @@
       "event": "Yɛl-kãseng",
       "experience": "Makre"
     }
+  },
+  "reviews": {
+    "modalTitle": "Fo tagsg",
+    "yourRating": "Fo geelg",
+    "yourComment": "Fo gomde",
+    "commentPlaceholder": "Togs f sẽn yã bũmb ninga (sã n ka tɩlae)…",
+    "photosOptional": "Fotwã (sã n ka tɩlae)",
+    "submit": "Yiis tagsgã",
+    "submitted": "Barka! Fo tagsgã yiisame.",
+    "ratingRequired": "Yãk geelg (1 n tɩ ta 5).",
+    "rate": "Geelg",
+    "rated": "Tagsg yiisame",
+    "rateThisStay": "Fo kẽndã yɩɩ wãn?",
+    "sectionTitle": "Tagsg-dãmba",
+    "none": "Tagsg baa a ye ka be ye.",
+    "count_one": "tagsg {{count}}",
+    "count_other": "tagsg {{count}}",
+    "anonymous": "Sõsda",
+    "proReply": "Tʋm-tʋmda leokre",
+    "helpful": "A bee sõngre",
+    "sortBest": "Sẽn tar geelg n yɩɩda"
   }
 }
