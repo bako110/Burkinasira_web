@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { Clock, MapPin, Users, Gauge, ArrowRight } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui';
-import { ITINERARIES } from '../itineraries.data';
+import { useLocalizedItineraries } from '../itineraries.i18n';
 import { ItineraryCover } from '../components/ItineraryCover';
 import { formatXof } from '../../planner/budget';
 import styles from './ItinerariesPage.module.css';
 
 export function ItinerariesPage() {
   const { t } = useTranslation();
+  const itineraries = useLocalizedItineraries();
 
   return (
     <div className={styles.page}>
@@ -23,7 +24,7 @@ export function ItinerariesPage() {
       </section>
 
       <div className={styles.grid}>
-        {ITINERARIES.map((it, i) => (
+        {itineraries.map((it, i) => (
           <Reveal key={it.slug} delay={Math.min(i, 6) * 70}>
             <Link to={`/itineraries/${it.slug}`} className={styles.card}>
               <div className={styles.cardCover}>

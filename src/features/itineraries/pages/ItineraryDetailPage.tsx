@@ -19,7 +19,7 @@ import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 
-import { getItineraryBySlug } from '../itineraries.data';
+import { useLocalizedItinerary } from '../itineraries.i18n';
 import { ItineraryCover } from '../components/ItineraryCover';
 import { useCloneItinerary } from '../useCloneItinerary';
 import { formatXof, type ComfortLevel } from '../../planner/budget';
@@ -36,7 +36,7 @@ export function ItineraryDetailPage() {
   const push = useToastStore((s) => s.push);
   const { clone, isCloning } = useCloneItinerary();
 
-  const itinerary = getItineraryBySlug(slug);
+  const itinerary = useLocalizedItinerary(slug);
   const [comfort, setComfort] = useState<ComfortLevel>('standard');
 
   if (!itinerary) {
