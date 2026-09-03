@@ -514,7 +514,8 @@
       "transport_touristique_prive": "Taama-baara mobili"
     },
     "detailNotFound": "Baarakɛla ma sɔrɔ",
-    "vehicleInfo": "Mobili kunnafoni"
+    "vehicleInfo": "Mobili kunnafoni",
+    "searchPlaceholder": "Bololabaarakɛla, dugu..."
   },
   "guides": {
     "title": "Ɲɛminɛbagaw",
@@ -1052,7 +1053,8 @@
       "centre_premiers_secours": "Dɛmɛni fɔlɔ",
       "dentiste": "Ɲin dɔgɔtɔrɔ",
       "autre": "Wɛrɛ"
-    }
+    },
+    "searchPlaceholder": "Farimasi, dɔgɔtɔrɔso, dugu..."
   },
   "emergency": {
     "title": "Kɔrɔfɛtaw ni lakana",
@@ -1103,7 +1105,8 @@
       "distributeur": "Distiribitɛri",
       "mobile_money": "Mobile money",
       "bureau_change": "Wari falenyɔrɔ"
-    }
+    },
+    "searchPlaceholder": "Bangi, gishɛ, dugu..."
   },
   "connectivity": {
     "title": "Ɛntɛrinɛti sennkɛ",
@@ -1128,7 +1131,8 @@
       "wifi_prive": "Wi-Fi yɛrɛ ta",
       "coworking": "Baara-yɔrɔ",
       "boutique_telephonie": "Telefɔni feereyɔrɔ"
-    }
+    },
+    "searchPlaceholder": "Baarakɛla, dugu..."
   },
   "weather": {
     "title": "Waati sanni ni sigida",

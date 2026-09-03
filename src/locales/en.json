@@ -514,7 +514,8 @@
       "transport_touristique_prive": "Private tour transport"
     },
     "detailNotFound": "Provider not found",
-    "vehicleInfo": "Vehicle information"
+    "vehicleInfo": "Vehicle information",
+    "searchPlaceholder": "A carrier, a city..."
   },
   "guides": {
     "title": "Tourist guides",
@@ -1052,7 +1053,8 @@
       "centre_premiers_secours": "First aid",
       "dentiste": "Dentist",
       "autre": "Other"
-    }
+    },
+    "searchPlaceholder": "A pharmacy, a hospital, a city..."
   },
   "emergency": {
     "title": "Emergency & safety",
@@ -1103,7 +1105,8 @@
       "distributeur": "ATM",
       "mobile_money": "Mobile money",
       "bureau_change": "Exchange office"
-    }
+    },
+    "searchPlaceholder": "A bank, an ATM, a city..."
   },
   "connectivity": {
     "title": "Connectivity",
@@ -1128,7 +1131,8 @@
       "wifi_prive": "Private Wi-Fi",
       "coworking": "Coworking",
       "boutique_telephonie": "Phone shop"
-    }
+    },
+    "searchPlaceholder": "An operator, a city..."
   },
   "weather": {
     "title": "Weather & environment",

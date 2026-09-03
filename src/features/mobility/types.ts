@@ -28,6 +28,7 @@ export interface MobilityFilters {
   region?: string;
   province?: string;
   city?: string;
+  q?: string;
   near_lat?: number;
   near_lng?: number;
   radius_km?: number;

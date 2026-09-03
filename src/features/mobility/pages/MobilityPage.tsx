@@ -7,10 +7,12 @@ import {
   Reveal,
   EmptyResults,
   CardSkeleton,
+  ListingHero,
   RelatedModules,
   RegionProvinceFilter,
   NearMeToggle,
 } from '../../../shared/ui';
+import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useTransportProviders } from '../hooks/useTransportProviders';
 import { TransportCard } from '../components/TransportCard';
@@ -24,22 +26,39 @@ export function MobilityPage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const urlQuery = searchParams.get('q') ?? '';
   const urlType = (searchParams.get('type') as TransportType | null) ?? undefined;
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
   const nearMe = useNearMe({
-    filtersKey: `${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+    filtersKey: `${urlQuery}|${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
   });
+  const [queryInput, setQueryInput] = useState(urlQuery);
+  const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<TransportProviderSummary[]>([]);
+
+  useEffect(() => setQueryInput(urlQuery), [urlQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery === urlQuery) return;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (debouncedQuery) next.set('q', debouncedQuery);
+      else next.delete('q');
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, urlRegion, urlProvince, nearMe.radiusKm]);
+  }, [urlQuery, urlType, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useTransportProviders({
+    q: urlQuery || undefined,
     type: urlType,
     region: urlRegion,
     province: urlProvince,
@@ -62,6 +81,15 @@ export function MobilityPage() {
     if (!data) return;
     setAccumulated((prev) => (page === 1 ? data.items : [...prev, ...data.items]));
   }, [data, page]);
+
+  function applySearch() {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (queryInput) next.set('q', queryInput);
+      else next.delete('q');
+      return next;
+    });
+  }
 
   function applyType(value: TransportType | undefined) {
     setSearchParams((prev) => {
@@ -89,13 +117,16 @@ export function MobilityPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.heroSimple}>
-        <div className={styles.heroMesh} aria-hidden="true" />
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>{t('mobility.title')}</h1>
-          <p className={styles.heroSubtitle}>{t('mobility.subtitle')}</p>
-        </div>
-      </section>
+      <ListingHero
+        title={t('mobility.title')}
+        subtitle={t('mobility.subtitle')}
+        searchPlaceholder={t('mobility.searchPlaceholder')}
+        searchLabel={t('common.search')}
+        searchButtonLabel={t('common.search')}
+        query={queryInput}
+        onQueryChange={setQueryInput}
+        onSubmit={applySearch}
+      />
 
       <div className={styles.body}>
         <RegionProvinceFilter
@@ -126,7 +157,10 @@ export function MobilityPage() {
             variant="empty"
             title={t('mobility.empty')}
             text={t('explore.emptyText')}
-            onReset={() => applyType(undefined)}
+            onReset={() => {
+              setQueryInput('');
+              setSearchParams({});
+            }}
           />
         )}
 

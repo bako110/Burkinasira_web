@@ -514,7 +514,8 @@
       "transport_touristique_prive": "Bao-tʋmd sore"
     },
     "detailNotFound": "Tʋm-tʋmd ka be ye",
-    "vehicleInfo": "Moto-yell"
+    "vehicleInfo": "Moto-yell",
+    "searchPlaceholder": "Sor-tʋmda, tẽng..."
   },
   "guides": {
     "title": "Sor-tʋmdb",
@@ -1052,7 +1053,8 @@
       "centre_premiers_secours": "Sõng-tãoor",
       "dentiste": "Dãntist",
       "autre": "A to"
-    }
+    },
+    "searchPlaceholder": "Farmasi, lopital, tẽng..."
   },
   "emergency": {
     "title": "Yell-kãse la lɛɛgengo",
@@ -1103,7 +1105,8 @@
       "distributeur": "Distributɛr",
       "mobile_money": "Mobile money",
       "bureau_change": "Ligd-toeem-zĩig"
-    }
+    },
+    "searchPlaceholder": "Bãnk, gishɛ, tẽng..."
   },
   "connectivity": {
     "title": "Internet zoodo",
@@ -1128,7 +1131,8 @@
       "wifi_prive": "Wi-Fi toore",
       "coworking": "Tʋʋm-zĩig",
       "boutique_telephonie": "Telefon-koeese"
-    }
+    },
+    "searchPlaceholder": "Tʋm-tʋmda, tẽng..."
   },
   "weather": {
     "title": "Sa wakat la zĩig-yaool",

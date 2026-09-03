@@ -23,6 +23,7 @@ export interface HealthFacilityFilters {
   type?: HealthFacilityType;
   region?: string;
   province?: string;
+  q?: string;
   on_duty_only?: boolean;
   near_lat?: number;
   near_lng?: number;

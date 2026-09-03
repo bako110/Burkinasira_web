@@ -514,7 +514,8 @@
       "transport_touristique_prive": "Transport touristique"
     },
     "detailNotFound": "Prestataire introuvable",
-    "vehicleInfo": "Informations véhicule"
+    "vehicleInfo": "Informations véhicule",
+    "searchPlaceholder": "Un transporteur, une ville..."
   },
   "guides": {
     "title": "Guides touristiques",
@@ -1052,7 +1053,8 @@
       "centre_premiers_secours": "Premiers secours",
       "dentiste": "Dentiste",
       "autre": "Autre"
-    }
+    },
+    "searchPlaceholder": "Une pharmacie, un hôpital, une ville..."
   },
   "emergency": {
     "title": "Urgences et sécurité",
@@ -1103,7 +1105,8 @@
       "distributeur": "Distributeur",
       "mobile_money": "Mobile money",
       "bureau_change": "Bureau de change"
-    }
+    },
+    "searchPlaceholder": "Une banque, un guichet, une ville..."
   },
   "connectivity": {
     "title": "Connectivité",
@@ -1128,7 +1131,8 @@
       "wifi_prive": "Wi-Fi privé",
       "coworking": "Coworking",
       "boutique_telephonie": "Boutique téléphonie"
-    }
+    },
+    "searchPlaceholder": "Un opérateur, une ville..."
   },
   "weather": {
     "title": "Météo et environnement",

@@ -7,10 +7,12 @@ import {
   Reveal,
   EmptyResults,
   CardSkeleton,
+  ListingHero,
   RelatedModules,
   RegionProvinceFilter,
   NearMeToggle,
 } from '../../../shared/ui';
+import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useMoneyServices } from '../hooks/useMoneyServices';
 import { MoneyServiceCard } from '../components/MoneyServiceCard';
@@ -24,22 +26,39 @@ export function FinancePage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const urlQuery = searchParams.get('q') ?? '';
   const urlType = (searchParams.get('type') as MoneyServiceType | null) ?? undefined;
   const urlRegion = searchParams.get('region') ?? undefined;
   const urlProvince = searchParams.get('province') ?? undefined;
 
   const nearMe = useNearMe({
-    filtersKey: `${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
+    filtersKey: `${urlQuery}|${urlType ?? ''}|${urlRegion ?? ''}|${urlProvince ?? ''}`,
   });
+  const [queryInput, setQueryInput] = useState(urlQuery);
+  const debouncedQuery = useDebouncedValue(queryInput);
   const [page, setPage] = useState(1);
   const [accumulated, setAccumulated] = useState<MoneyServiceSummary[]>([]);
+
+  useEffect(() => setQueryInput(urlQuery), [urlQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery === urlQuery) return;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (debouncedQuery) next.set('q', debouncedQuery);
+      else next.delete('q');
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
 
   useEffect(() => {
     setPage(1);
     setAccumulated([]);
-  }, [urlType, urlRegion, urlProvince, nearMe.radiusKm]);
+  }, [urlQuery, urlType, urlRegion, urlProvince, nearMe.radiusKm]);
 
   const { data, isLoading, isFetching, isError, refetch } = useMoneyServices({
+    q: urlQuery || undefined,
     type: urlType,
     region: urlRegion,
     province: urlProvince,
@@ -62,6 +81,15 @@ export function FinancePage() {
       forRadiusKm: nearMe.radiusKm,
     });
   }, [nearMe, data?.total, isFetching]);
+
+  function applySearch() {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (queryInput) next.set('q', queryInput);
+      else next.delete('q');
+      return next;
+    });
+  }
 
   function applyType(value: MoneyServiceType | undefined) {
     setSearchParams((prev) => {
@@ -89,13 +117,16 @@ export function FinancePage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroMesh} aria-hidden="true" />
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>{t('finance.title')}</h1>
-          <p className={styles.heroSubtitle}>{t('finance.subtitle')}</p>
-        </div>
-      </section>
+      <ListingHero
+        title={t('finance.title')}
+        subtitle={t('finance.subtitle')}
+        searchPlaceholder={t('finance.searchPlaceholder')}
+        searchLabel={t('common.search')}
+        searchButtonLabel={t('common.search')}
+        query={queryInput}
+        onQueryChange={setQueryInput}
+        onSubmit={applySearch}
+      />
 
       <div className={styles.body}>
         <RegionProvinceFilter
@@ -122,7 +153,15 @@ export function FinancePage() {
         {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
 
         {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults variant="empty" title={t('finance.empty')} text={t('explore.emptyText')} />
+          <EmptyResults
+            variant="empty"
+            title={t('finance.empty')}
+            text={t('explore.emptyText')}
+            onReset={() => {
+              setQueryInput('');
+              setSearchParams({});
+            }}
+          />
         )}
 
         {!showInitialLoading && !isError && accumulated.length > 0 && (

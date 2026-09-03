@@ -24,6 +24,7 @@ export interface ConnectivityFilters {
   type?: ConnectivityPointType;
   region?: string;
   province?: string;
+  q?: string;
   near_lat?: number;
   near_lng?: number;
   radius_km?: number;
