@@ -363,7 +363,8 @@
     "temporaryPassword": "Gundo daanu waati kɛrɛnkɛrɛnnen",
     "temporaryPasswordPlaceholder": "A ka kan ka se sɛbɛn 6 ma walima ka tɛmɛ o kan",
     "temporaryPasswordHint": "Nin gundo daanu in dilanna mɔgɔ in ka jate ye ni a tɛ jate ye fɔlɔ. I ka a fɔ a ye kɛlɛn kɛlɛn — a bɛ se k'a yɛlɛma ni a donna.",
-    "teamMemberAccountCreated": "Jate dilanna ani welekan cira ka ɲɛ"
+    "teamMemberAccountCreated": "Jate dilanna ani welekan cira ka ɲɛ",
+    "tab_reports": "Filiw lasɔmini"
   },
   "theme": {
     "light": "Kɛnɛ",
@@ -1641,5 +1642,32 @@
     "badge": "360° lajɛ",
     "hint": "A sama ka lajɛ · i ka telefɔni yɛlɛma",
     "error": "360° lajɛ ma se ka don nin minɛn in kan."
+  },
+  "proReports": {
+    "subtitle": "Filiw minnu bɔ taamalanw fɛ i ka sɛbɛnw kan. U labɛn walasa i ka kunnafoniw ka to a cogo la.",
+    "emptyTitle": "Filili si tɛ yen",
+    "emptyText": "Mɔgɔ si ma fili si lasɔmi i ka sɛbɛnw kan fɔlɔ.",
+    "noOpenTitle": "Foyi tɛ yen ka labɛn",
+    "noOpenText": "Filiw bɛɛ labɛnna.",
+    "filterOpen": "Ka labɛn",
+    "filterAll": "Bɛɛ",
+    "markReviewing": "A jate",
+    "markCorrected": "A latilenna",
+    "markDismissed": "A bali",
+    "updated": "Filili lasɔminen kɔɔ",
+    "status": {
+      "reported": "Kura",
+      "reviewing": "A bɛ ka kɛ",
+      "corrected": "Latilennen",
+      "dismissed": "Balila"
+    },
+    "itemTypes": {
+      "hotel": "Sigiyɔrɔ",
+      "restaurant": "Dumuniyɔrɔ",
+      "transport": "Bolifɛn",
+      "guide": "Ɲɛminɛna sɛbɛn",
+      "event": "Kokɛ",
+      "experience": "Kɔrɔbɔli"
+    }
   }
 }

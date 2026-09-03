@@ -4,12 +4,18 @@ export interface ReportDataErrorPayload {
   description: string;
 }
 
+export type DataErrorReportStatus = 'reported' | 'reviewing' | 'corrected' | 'dismissed';
+
 export interface DataErrorReport {
   id: string;
   reporter_id: string;
   item_type: string;
   item_id: string;
   description: string;
-  status: 'reported' | 'reviewing' | 'corrected' | 'dismissed';
+  status: DataErrorReportStatus;
   created_at: string;
+}
+
+export interface ModerateReportPayload {
+  status: DataErrorReportStatus;
 }

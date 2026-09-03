@@ -363,7 +363,8 @@
     "temporaryPassword": "Gũusg-goam sẽn ka pidsi",
     "temporaryPasswordPlaceholder": "Bɩ yɩ sɩb 6 bɩ n yɩɩda",
     "temporaryPasswordHint": "Gũusg-goam kãngã naan neda konte yĩnga f sã n ka tar-a. Kõ-a woto neda tɩ b tõe n kẽ.",
-    "teamMemberAccountCreated": "Konte naana la booli tʋma neere"
+    "teamMemberAccountCreated": "Konte naana la booli tʋma neere",
+    "tab_reports": "Wilgr-dãmba"
   },
   "theme": {
     "light": "Vẽenem",
@@ -1641,5 +1642,32 @@
     "badge": "360° gesg",
     "hint": "Vɩɩg-a n gese · vẽeg-a fo telefõ-wã",
     "error": "360° gesg-kãngã pa tõe n zĩnd teel-kãngã zug ye."
+  },
+  "proReports": {
+    "subtitle": "Kaoosdb sẽn wilg belgre f fichã zutu. Maan-b tɩ vẽenem paam n kell n yɩ sõma.",
+    "emptyTitle": "Wilgr ka be",
+    "emptyText": "Ned baa a ye ka wilg belgr f fichã zutu ye.",
+    "noOpenTitle": "Bũmb ka be n na maan",
+    "noOpenText": "Wilgr-dãmb fãa maana.",
+    "filterOpen": "Sẽn na maan",
+    "filterAll": "Fãa",
+    "markReviewing": "Deeg-a",
+    "markCorrected": "Manega",
+    "markDismissed": "Basg-a",
+    "updated": "Wilgrã manega",
+    "status": {
+      "reported": "Paalga",
+      "reviewing": "Nan maandẽ",
+      "corrected": "Manega",
+      "dismissed": "Basga"
+    },
+    "itemTypes": {
+      "hotel": "Zaka-kɩʋʋg",
+      "restaurant": "Rɩ-zĩiga",
+      "transport": "Sore",
+      "guide": "Guide fichã",
+      "event": "Yɛl-kãseng",
+      "experience": "Makre"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flag, CheckCircle2 } from 'lucide-react';
+import clsx from 'clsx';
 
 import { Modal, Button } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -47,7 +48,7 @@ export function ReportErrorButton({ itemType, itemId, className }: ReportErrorBu
 
   return (
     <>
-      <button type="button" className={className ?? styles.trigger} onClick={handleOpen}>
+      <button type="button" className={clsx(styles.trigger, className)} onClick={handleOpen}>
         <Flag size={14} strokeWidth={2} />
         {t('dataQuality.reportError')}
       </button>

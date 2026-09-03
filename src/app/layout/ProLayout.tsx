@@ -20,6 +20,7 @@ import {
   ShoppingBag,
   Users,
   IdCard,
+  Flag,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -27,6 +28,7 @@ import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { useMyNotifications } from '../../features/notifications/hooks/useMyNotifications';
+import { useReceivedReportsCount } from '../../features/dataQuality/hooks/useReceivedReports';
 import {
   useMyHotels,
   useMyRestaurants,
@@ -41,6 +43,7 @@ const GUIDE_NAV_ITEMS = [
   { to: '/pro/guide/availability', end: false, key: 'availability', Icon: CalendarClock },
   { to: '/pro/guide/bookings', end: false, key: 'bookings', Icon: Ticket },
   { to: '/pro/guide/reviews', end: false, key: 'reviews', Icon: Star },
+  { to: '/pro/guide/reports', end: false, key: 'reports', Icon: Flag },
   { to: '/passport', end: false, key: 'card', Icon: IdCard },
 ] as const;
 
@@ -89,6 +92,7 @@ export function ProLayout() {
       key,
       Icon,
     })),
+    { to: '/pro/provider/reports', end: false, key: 'reports', Icon: Flag },
     { to: '/pro/provider/team', end: false, key: 'team', Icon: Users },
     { to: '/passport', end: false, key: 'card', Icon: IdCard },
   ];
@@ -105,6 +109,7 @@ export function ProLayout() {
   }, [drawerOpen]);
 
   const unreadCount = unreadNotifications?.length ?? 0;
+  const { data: openReportsCount = 0 } = useReceivedReportsCount();
 
   return (
     <div className={styles.shell}>
@@ -136,6 +141,9 @@ export function ProLayout() {
             >
               <Icon size={18} strokeWidth={2} className={styles.navIcon} />
               <span className={clsx(styles.navLabel, collapsed && styles.labelHidden)}>{t(`pro.tab_${key}`)}</span>
+              {key === 'reports' && openReportsCount > 0 && (
+                <span className={styles.navCount}>{openReportsCount}</span>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -215,6 +223,9 @@ export function ProLayout() {
             >
               <Icon size={18} strokeWidth={2} className={styles.navIcon} />
               <span className={styles.navLabel}>{t(`pro.tab_${key}`)}</span>
+              {key === 'reports' && openReportsCount > 0 && (
+                <span className={styles.navCount}>{openReportsCount}</span>
+              )}
             </NavLink>
           ))}
         </nav>

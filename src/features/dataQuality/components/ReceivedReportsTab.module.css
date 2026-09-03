@@ -1,0 +1,184 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterGroup {
+  display: inline-flex;
+  gap: var(--space-2);
+}
+
+.filterChip,
+.filterChipActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface, var(--color-bg));
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.filterChipActive {
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+  background: color-mix(in srgb, var(--color-brand) 10%, transparent);
+}
+
+.countPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--color-danger);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.itemType {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-subtle);
+}
+
+.badge_reported,
+.badge_reviewing,
+.badge_corrected,
+.badge_dismissed {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge_reported {
+  background: color-mix(in srgb, var(--color-danger) 14%, transparent);
+  color: var(--color-danger);
+}
+
+.badge_reviewing {
+  background: color-mix(in srgb, var(--color-warning, #b7791f) 16%, transparent);
+  color: var(--color-warning, #b7791f);
+}
+
+.badge_corrected {
+  background: color-mix(in srgb, var(--color-success) 16%, transparent);
+  color: var(--color-success);
+}
+
+.badge_dismissed {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-subtle);
+}
+
+.description {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
+.actions {
+  display: inline-flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.actionPrimary,
+.actionGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full, 999px);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.actionPrimary {
+  border: 1px solid transparent;
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.actionPrimary:hover {
+  opacity: 0.9;
+}
+
+.actionGhost {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.actionGhost:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+.actionPrimary:disabled,
+.actionGhost:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

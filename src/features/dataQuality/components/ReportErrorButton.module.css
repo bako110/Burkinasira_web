@@ -1,19 +1,32 @@
 .trigger {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: none;
-  background: transparent;
-  color: var(--color-text-subtle);
-  font-size: 0.75rem;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full, 999px);
+  background: var(--color-surface, var(--color-bg));
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
   font-weight: 600;
+  line-height: 1;
   cursor: pointer;
-  padding: var(--space-1) 0;
+  padding: 8px 14px;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.trigger svg {
+  flex-shrink: 0;
 }
 
 .trigger:hover {
-  color: var(--color-text-muted);
-  text-decoration: underline;
+  color: var(--color-danger);
+  border-color: color-mix(in srgb, var(--color-danger) 40%, transparent);
+  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
 }
 
 .form {

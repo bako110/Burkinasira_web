@@ -363,7 +363,8 @@
     "temporaryPassword": "Temporary password",
     "temporaryPasswordPlaceholder": "At least 6 characters",
     "temporaryPasswordHint": "This password is created for the member's account if they don't already have one. Share it with them directly — they can change it once logged in.",
-    "teamMemberAccountCreated": "Account created and invitation sent successfully"
+    "teamMemberAccountCreated": "Account created and invitation sent successfully",
+    "tab_reports": "Reports"
   },
   "theme": {
     "light": "Light",
@@ -1641,5 +1642,32 @@
     "badge": "360° tour",
     "hint": "Drag to look around · move your phone",
     "error": "The 360° tour could not be loaded on this device."
+  },
+  "proReports": {
+    "subtitle": "Errors flagged by visitors on your listings. Handle them to keep your information accurate.",
+    "emptyTitle": "No reports",
+    "emptyText": "Nobody has reported an error on your listings yet.",
+    "noOpenTitle": "Nothing to handle",
+    "noOpenText": "All reports have been handled.",
+    "filterOpen": "To handle",
+    "filterAll": "All",
+    "markReviewing": "Acknowledge",
+    "markCorrected": "Fixed",
+    "markDismissed": "Dismiss",
+    "updated": "Report updated",
+    "status": {
+      "reported": "New",
+      "reviewing": "In progress",
+      "corrected": "Fixed",
+      "dismissed": "Dismissed"
+    },
+    "itemTypes": {
+      "hotel": "Accommodation",
+      "restaurant": "Restaurant",
+      "transport": "Transport",
+      "guide": "Guide profile",
+      "event": "Event",
+      "experience": "Experience"
+    }
   }
 }

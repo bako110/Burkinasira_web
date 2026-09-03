@@ -363,7 +363,8 @@
     "temporaryPassword": "Mot de passe temporaire",
     "temporaryPasswordPlaceholder": "Au moins 6 caractères",
     "temporaryPasswordHint": "Ce mot de passe est créé pour le compte du membre s'il n'en a pas déjà un. Communiquez-le lui directement — il pourra le changer une fois connecté.",
-    "teamMemberAccountCreated": "Compte créé et invitation envoyée avec succès"
+    "teamMemberAccountCreated": "Compte créé et invitation envoyée avec succès",
+    "tab_reports": "Signalements"
   },
   "theme": {
     "light": "Clair",
@@ -1641,5 +1642,32 @@
     "badge": "Visite 360°",
     "hint": "Faites glisser pour explorer · bougez votre téléphone",
     "error": "La visite 360° n'a pas pu être chargée sur cet appareil."
+  },
+  "proReports": {
+    "subtitle": "Les erreurs signalées par les visiteurs sur vos fiches. Traitez-les pour garder des informations à jour.",
+    "emptyTitle": "Aucun signalement",
+    "emptyText": "Personne n'a signalé d'erreur sur vos fiches pour le moment.",
+    "noOpenTitle": "Rien à traiter",
+    "noOpenText": "Tous les signalements ont été traités.",
+    "filterOpen": "À traiter",
+    "filterAll": "Tous",
+    "markReviewing": "Prendre en compte",
+    "markCorrected": "Corrigé",
+    "markDismissed": "Rejeter",
+    "updated": "Signalement mis à jour",
+    "status": {
+      "reported": "Nouveau",
+      "reviewing": "En cours",
+      "corrected": "Corrigé",
+      "dismissed": "Rejeté"
+    },
+    "itemTypes": {
+      "hotel": "Hébergement",
+      "restaurant": "Restaurant",
+      "transport": "Transport",
+      "guide": "Profil guide",
+      "event": "Événement",
+      "experience": "Expérience"
+    }
   }
 }
