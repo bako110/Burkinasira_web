@@ -24,10 +24,11 @@ export const isGoogleAuthConfigured = (): boolean => Boolean(env.googleWebClient
  * que soit la page depuis laquelle l'utilisateur clique.
  *
  * Cette URL DOIT figurer à l'identique dans "Authorized redirect URIs" du client
- * OAuth "Web" (Google Cloud Console). En dev : http://localhost:5173/
+ * OAuth "Web" (Google Cloud Console) — sans slash final, Google Cloud refusant
+ * `http://localhost:5173/`. En dev : http://localhost:5173
  */
 export const googleRedirectUrl = (): string =>
-  typeof window !== 'undefined' ? `${window.location.origin}/` : '';
+  typeof window !== 'undefined' ? window.location.origin : '';
 
 let initPromise: Promise<void> | null = null;
 
