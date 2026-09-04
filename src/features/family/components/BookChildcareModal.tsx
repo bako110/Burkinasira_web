@@ -4,6 +4,8 @@ import { CheckCircle2 } from 'lucide-react';
 
 import { Modal, Button, Input } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { RESERVATIONS_ENABLED } from '../../../shared/config/features';
+import { BookingUnavailable } from '../../bookings/components/BookingUnavailable';
 import { useBookChildcare } from '../hooks/useBookChildcare';
 import styles from './BookChildcareModal.module.css';
 
@@ -37,7 +39,9 @@ export function BookChildcareModal({ serviceId, open, onClose }: BookChildcareMo
 
   return (
     <Modal open={open} onClose={handleClose} title={t('family.bookChildcareTitle')}>
-      {isSuccess ? (
+      {!RESERVATIONS_ENABLED ? (
+        <BookingUnavailable onClose={handleClose} />
+      ) : isSuccess ? (
         <div className={styles.success}>
           <CheckCircle2 size={32} strokeWidth={1.5} className={styles.successIcon} />
           <p>{t('family.bookChildcareSuccessText')}</p>

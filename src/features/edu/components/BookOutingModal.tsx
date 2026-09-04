@@ -4,6 +4,8 @@ import { CheckCircle2 } from 'lucide-react';
 
 import { Modal, Button, Input } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { RESERVATIONS_ENABLED } from '../../../shared/config/features';
+import { BookingUnavailable } from '../../bookings/components/BookingUnavailable';
 import { useBookEduOuting } from '../hooks/useBookEduOuting';
 import styles from './BookOutingModal.module.css';
 
@@ -37,7 +39,9 @@ export function BookOutingModal({ outingId, open, onClose }: BookOutingModalProp
 
   return (
     <Modal open={open} onClose={handleClose} title={t('edu.bookTitle')}>
-      {isSuccess ? (
+      {!RESERVATIONS_ENABLED ? (
+        <BookingUnavailable onClose={handleClose} />
+      ) : isSuccess ? (
         <div className={styles.success}>
           <CheckCircle2 size={32} strokeWidth={1.5} className={styles.successIcon} />
           <p>{t('edu.bookSuccessText')}</p>

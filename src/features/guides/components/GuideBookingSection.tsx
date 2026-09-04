@@ -6,6 +6,7 @@ import { CalendarDays, CheckCircle2, MessageCircle } from 'lucide-react';
 import { Button, Spinner } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { RESERVATIONS_ENABLED } from '../../../shared/config/features';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useCreateBooking } from '../../bookings/hooks/useCreateBooking';
 import type { GuideDetail, AvailabilitySlot } from '../types';
@@ -54,6 +55,10 @@ export function GuideBookingSection({ guide }: GuideBookingSectionProps) {
 
   function handleReserve() {
     if (!selectedSlot) return;
+    if (!RESERVATIONS_ENABLED) {
+      push({ variant: 'error', message: t('bookings.temporarilyUnavailable') });
+      return;
+    }
     requireAuth(() => {
       createBooking.mutate(
         {

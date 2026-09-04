@@ -4,6 +4,8 @@ import { CheckCircle2 } from 'lucide-react';
 
 import { Modal, Button, Input } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { RESERVATIONS_ENABLED } from '../../../shared/config/features';
+import { BookingUnavailable } from './BookingUnavailable';
 import { useCreateBooking } from '../hooks/useCreateBooking';
 import type { BookingItemType } from '../types';
 import type { AvailabilitySlot } from '../../guides/types';
@@ -79,7 +81,9 @@ export function BookingModal({
 
   return (
     <Modal open={open} onClose={handleClose} title={t('bookings.modalTitle')}>
-      {isSuccess ? (
+      {!RESERVATIONS_ENABLED ? (
+        <BookingUnavailable onClose={handleClose} />
+      ) : isSuccess ? (
         <div className={styles.success}>
           <CheckCircle2 size={40} strokeWidth={1.5} className={styles.successIcon} />
           <p className={styles.successTitle}>{t('bookings.successTitle')}</p>

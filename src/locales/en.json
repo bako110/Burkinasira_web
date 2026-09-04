@@ -661,7 +661,8 @@
       "event": "Event",
       "experience": "Experience",
       "visit": "Visit"
-    }
+    },
+    "temporarilyUnavailable": "Bookings are temporarily unavailable. Please try again later."
   },
   "trips": {
     "myTripsTitle": "My trips",
