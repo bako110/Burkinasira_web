@@ -1,4 +1,5 @@
 import { SocialLogin } from '@capgo/capacitor-social-login';
+import { Capacitor } from '@capacitor/core';
 
 import { env } from '../../shared/config/env';
 
@@ -48,19 +49,62 @@ async function ensureInitialized(): Promise<void> {
   await initPromise;
 }
 
-/** Lance le flux Google et renvoie le `id_token` JWT à vérifier côté backend. */
+function extractIdToken(res: { result: unknown }): string {
+  const result = res.result as { idToken?: string | null };
+  const idToken = result?.idToken;
+  if (!idToken) throw new Error('google-no-id-token');
+  return idToken;
+}
+
+/** L'écran plein écran "Sign in with Google" (lent, mais marche sans compte pré-autorisé). */
+async function loginStandard(): Promise<string> {
+  const res = await SocialLogin.login({ provider: 'google', options: {} });
+  return extractIdToken(res);
+}
+
+/**
+ * Lance le flux Google et renvoie le `id_token` JWT à vérifier côté backend.
+ *
+ * Android : on tente d'abord la **bottom-sheet** (`style: 'bottom'`,
+ * `filterByAuthorizedAccounts: false`) — elle affiche instantanément les comptes
+ * déjà présents sur le téléphone, sans plein écran ni chargement blanc. Si elle
+ * échoue faute de compte utilisable (`GetCredentialException` "no credential"),
+ * on retombe sur l'écran standard plein écran.
+ *
+ * Ne PAS passer `scopes` : le plugin ajoute déjà `email`/`profile`/`openid` par
+ * défaut, et fournir des scopes explicites exigerait une MainActivity modifiée.
+ */
 export async function signInWithGoogle(): Promise<string> {
   await ensureInitialized();
 
-  const res = await SocialLogin.login({
-    provider: 'google',
-    options: { scopes: ['email', 'profile'] },
-  });
-
-  const result = res.result as { idToken?: string | null; responseType?: string };
-  const idToken = result?.idToken;
-  if (!idToken) {
-    throw new Error('google-no-id-token');
+  if (!Capacitor.isNativePlatform()) {
+    return loginStandard();
   }
-  return idToken;
+
+  try {
+    const res = await SocialLogin.login({
+      provider: 'google',
+      options: {
+        style: 'bottom',
+        filterByAuthorizedAccounts: false,
+        autoSelectEnabled: false,
+      },
+    });
+    return extractIdToken(res);
+  } catch (err) {
+    const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
+    const isUserCancel =
+      msg.includes('cancel') || msg.includes('dismiss') || msg.includes('closed by the user');
+    if (isUserCancel) throw err;
+    // Pas de compte sélectionnable pour la bottom-sheet -> plein écran.
+    const noCredential =
+      msg.includes('no credential') ||
+      msg.includes('no credentials') ||
+      msg.includes('activity is cancelled') ||
+      msg.includes('type_no_credential');
+    if (noCredential) {
+      return loginStandard();
+    }
+    throw err;
+  }
 }
