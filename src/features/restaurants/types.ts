@@ -50,6 +50,7 @@ export type RestaurantStatus = 'draft' | 'published' | 'archived';
 
 export interface RestaurantDetail {
   id: string;
+  owner_id: string;
   name: string;
   slug: string;
   type: EstablishmentType;

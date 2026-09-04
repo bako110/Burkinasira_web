@@ -128,7 +128,18 @@
     "socialError": "Google sɛba-kãabg kongame. Maak-y-la yɛs.",
     "googleRoleTitle": "Y waame BurkinaSira zĩigẽ",
     "googleRoleSubtitle": "Wilg-y-la y sẽn na tũ BurkinaSira to-to.",
-    "googleRoleContinue": "Kẽng taoore"
+    "googleRoleContinue": "Kẽng taoore",
+    "forgotLink": "Fo yamde f gõ-lokre?",
+    "forgotTitle": "Gõ-lokr yãmame",
+    "forgotIntro": "Gʋls-y f sɛba email. Tõnd na tʋm-y-la sɛb-noor y sẽn na yãk gõ-lokr paalga.",
+    "forgotSubmit": "Tʋm sɛb-noorã",
+    "forgotSentText": "Sã n sɛba be ne email kãnga, email tʋmame. Ges-y y spam pʋgẽ. Sɛb-noorã na tõe lɛɛr a ye.",
+    "resetTitle": "Gõ-lokr paalga",
+    "newPassword": "Gõ-lokr paalga",
+    "resetSubmit": "Kɩt tɩ gõ-lokr paalgã yɩ sɩda",
+    "resetSuccess": "Gõ-lokrã toeema. Fo tõe n kẽ.",
+    "resetError": "Sɛb-noor kãnga ka sõma wall a weoogame. Maan kos-kʋʋr paalga.",
+    "resetNoToken": "Sɛb-noorã ka zãnga ye. Maan kos-kʋʋr paalga."
   },
   "pro": {
     "pendingTitle": "B gũusg y sɛb-kɩtga",
@@ -439,6 +450,9 @@
     "bookRequiresAuth": "Kẽ n tõog n reere zaka-kɩʋʋg-kãnga",
     "priceUnavailable": "Ligd ka be ye",
     "detailNotFound": "Zaka-kɩʋʋg ka be ye",
+    "contactProvider": "Sak zaka-kɩʋʋg wã",
+    "contactRequiresAuth": "Kẽ n na sak zaka-kɩʋʋg wã",
+    "contactDefaultMessage": "Ne y sõma, mam data ne « {{name}} ».",
     "amenities": "Bĩnga",
     "roomTypes": "Zag-kãense sẽn bee",
     "capacity_one": "Nedã yembr",
@@ -496,7 +510,10 @@
     "takeaway": "Rɩɩb-tʋʋlgo",
     "cookingWorkshop": "Rɩɩb-zãmsg",
     "menu": "Rɩɩb-sebre",
-    "specialty": "Buud-sõma"
+    "specialty": "Buud-sõma",
+    "contactProvider": "Sak restora wã",
+    "contactRequiresAuth": "Kẽ n na sak restora wã",
+    "contactDefaultMessage": "Ne y sõma, mam data ne « {{name}} »."
   },
   "mobility": {
     "title": "Sore la wagd-taab",
@@ -524,7 +541,10 @@
     },
     "detailNotFound": "Tʋm-tʋmd ka be ye",
     "vehicleInfo": "Moto-yell",
-    "searchPlaceholder": "Sor-tʋmda, tẽng..."
+    "searchPlaceholder": "Sor-tʋmda, tẽng...",
+    "contactProvider": "Sak tʋm-tʋmd wã",
+    "contactRequiresAuth": "Kẽ n na sak tʋm-tʋmd wã",
+    "contactDefaultMessage": "Ne y sõma, mam data ne tõnd sor-tʋʋm « {{name}} » wã."
   },
   "guides": {
     "title": "Sor-tʋmdb",

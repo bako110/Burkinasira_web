@@ -128,7 +128,18 @@
     "socialError": "Google sign-in failed. Please try again.",
     "googleRoleTitle": "Welcome to BurkinaSira",
     "googleRoleSubtitle": "Tell us how you plan to use BurkinaSira.",
-    "googleRoleContinue": "Continue"
+    "googleRoleContinue": "Continue",
+    "forgotLink": "Forgot password?",
+    "forgotTitle": "Forgot password",
+    "forgotIntro": "Enter your account email. We'll send you a link to choose a new password.",
+    "forgotSubmit": "Send link",
+    "forgotSentText": "If an account exists for this address, an email has just been sent. Check your spam folder. The link is valid for 1 hour.",
+    "resetTitle": "New password",
+    "newPassword": "New password",
+    "resetSubmit": "Set new password",
+    "resetSuccess": "Password changed. You can now sign in.",
+    "resetError": "This link is invalid or expired. Request a new one.",
+    "resetNoToken": "Incomplete link. Request a new reset."
   },
   "pro": {
     "pendingTitle": "Verification in progress",
@@ -439,6 +450,9 @@
     "bookRequiresAuth": "Sign in to book this accommodation",
     "priceUnavailable": "Price unavailable",
     "detailNotFound": "Accommodation not found",
+    "contactProvider": "Contact this accommodation",
+    "contactRequiresAuth": "Sign in to contact this accommodation",
+    "contactDefaultMessage": "Hello, I'm interested in \"{{name}}\".",
     "amenities": "Amenities",
     "roomTypes": "Available rooms",
     "capacity_one": "{{count}} person",
@@ -496,7 +510,10 @@
     "takeaway": "Takeaway",
     "cookingWorkshop": "Cooking workshop",
     "menu": "Menu",
-    "specialty": "Specialty"
+    "specialty": "Specialty",
+    "contactProvider": "Contact this restaurant",
+    "contactRequiresAuth": "Sign in to contact this restaurant",
+    "contactDefaultMessage": "Hello, I'm interested in \"{{name}}\"."
   },
   "mobility": {
     "title": "Transport & mobility",
@@ -524,7 +541,10 @@
     },
     "detailNotFound": "Provider not found",
     "vehicleInfo": "Vehicle information",
-    "searchPlaceholder": "A carrier, a city..."
+    "searchPlaceholder": "A carrier, a city...",
+    "contactProvider": "Contact this provider",
+    "contactRequiresAuth": "Log in to contact this provider",
+    "contactDefaultMessage": "Hello, I'm interested in your transport services with \"{{name}}\"."
   },
   "guides": {
     "title": "Tourist guides",

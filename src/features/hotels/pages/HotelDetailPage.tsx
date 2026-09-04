@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, Maximize2, View } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, Maximize2, View, MessageCircle } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
+import { ContactModal } from '../../messaging/components/ContactModal';
 import { useHotelDetail } from '../hooks/useHotelDetail';
 import type { RoomType } from '../types';
 import styles from './HotelDetailPage.module.css';
@@ -22,12 +23,17 @@ export function HotelDetailPage() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
   const [panoramaOpen, setPanoramaOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const { data: hotel, isLoading, isError, refetch } = useHotelDetail(id);
 
   function handleBookRoom(room: RoomType) {
     setSelectedRoom(room);
     requireAuth(() => setModalOpen(true), t('hotels.bookRequiresAuth'));
+  }
+
+  function handleContact() {
+    requireAuth(() => setContactOpen(true), t('hotels.contactRequiresAuth'));
   }
 
   if (isLoading) {
@@ -245,6 +251,10 @@ export function HotelDetailPage() {
                 </a>
               )}
             </div>
+            <Button fullWidth variant="secondary" onClick={handleContact}>
+              <MessageCircle size={15} strokeWidth={2} />
+              {t('hotels.contactProvider')}
+            </Button>
           </div>
           <ReportErrorButton itemType="hotel" itemId={hotel.id} className={styles.reportBtn} />
         </aside>
@@ -253,6 +263,15 @@ export function HotelDetailPage() {
       <ReviewsSection targetType="hotel" targetId={hotel.id} />
 
       <RelatedModules currentPath="/hotels" />
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        kind="touriste_hotel"
+        otherUserId={hotel.owner_id}
+        recipientName={hotel.name}
+        defaultMessage={t('hotels.contactDefaultMessage', { name: hotel.name })}
+      />
 
       {selectedRoom && (
         <BookingModal

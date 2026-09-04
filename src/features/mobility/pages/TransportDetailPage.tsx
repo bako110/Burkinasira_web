@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximize2 } from 'lucide-react';
+import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximize2, MessageCircle } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { ContactModal } from '../../messaging/components/ContactModal';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
 
@@ -13,10 +15,16 @@ export function TransportDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const requireAuth = useRequireAuth();
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const { data: provider, isLoading, isError, refetch } = useTransportProviderDetail(id);
+
+  function handleContact() {
+    requireAuth(() => setContactOpen(true), t('mobility.contactRequiresAuth'));
+  }
 
   if (isLoading) {
     return (
@@ -152,6 +160,10 @@ export function TransportDetailPage() {
                 </a>
               )}
             </div>
+            <Button fullWidth variant="secondary" onClick={handleContact}>
+              <MessageCircle size={15} strokeWidth={2} />
+              {t('mobility.contactProvider')}
+            </Button>
           </div>
           <ReportErrorButton itemType="transport" itemId={provider.id} className={styles.reportBtn} />
         </aside>
@@ -160,6 +172,15 @@ export function TransportDetailPage() {
       <ReviewsSection targetType="transport" targetId={provider.id} />
 
       <RelatedModules currentPath="/mobility" />
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        kind="touriste_transport"
+        otherUserId={provider.owner_id}
+        recipientName={provider.name}
+        defaultMessage={t('mobility.contactDefaultMessage', { name: provider.name })}
+      />
 
       <ImmersiveGallery
         open={galleryOpen}

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2, View } from 'lucide-react';
+import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2, View, MessageCircle } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { ContactModal } from '../../messaging/components/ContactModal';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
 import styles from './RestaurantDetailPage.module.css';
 
@@ -13,11 +15,17 @@ export function RestaurantDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const requireAuth = useRequireAuth();
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
   const [panoramaOpen, setPanoramaOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const { data: restaurant, isLoading, isError, refetch } = useRestaurantDetail(id);
+
+  function handleContact() {
+    requireAuth(() => setContactOpen(true), t('restaurants.contactRequiresAuth'));
+  }
 
   if (isLoading) {
     return (
@@ -226,6 +234,10 @@ export function RestaurantDetailPage() {
                 </a>
               )}
             </div>
+            <Button fullWidth variant="secondary" onClick={handleContact}>
+              <MessageCircle size={15} strokeWidth={2} />
+              {t('restaurants.contactProvider')}
+            </Button>
           </div>
           <ReportErrorButton itemType="restaurant" itemId={restaurant.id} className={styles.reportBtn} />
         </aside>
@@ -234,6 +246,15 @@ export function RestaurantDetailPage() {
       <ReviewsSection targetType="restaurant" targetId={restaurant.id} />
 
       <RelatedModules currentPath="/restaurants" />
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        kind="touriste_restaurant"
+        otherUserId={restaurant.owner_id}
+        recipientName={restaurant.name}
+        defaultMessage={t('restaurants.contactDefaultMessage', { name: restaurant.name })}
+      />
 
       <ImmersiveGallery
         open={galleryOpen}

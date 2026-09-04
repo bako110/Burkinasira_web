@@ -128,7 +128,18 @@
     "socialError": "Google la donni ma se. I ka a lajɛ tugun.",
     "googleRoleTitle": "I ni ce BurkinaSira kan",
     "googleRoleSubtitle": "A fɔ an ye i bɛna BurkinaSira baara cogo min na.",
-    "googleRoleContinue": "Ka taa ɲɛ"
+    "googleRoleContinue": "Ka taa ɲɛ",
+    "forgotLink": "I ɲinɛ tɔgɔ gundo la wa?",
+    "forgotTitle": "Tɔgɔ gundo ɲinɛnen",
+    "forgotIntro": "I ka jate ka email sɛbɛn. An bɛna sɛbɛnjuru ci i ma walasa i ka tɔgɔ gundo kura sugandi.",
+    "forgotSubmit": "Sɛbɛnjuru ci",
+    "forgotSentText": "Ni jate dɔ bɛ nin adɛrɛsi na, email cira sisan. I ka i ka spam lajɛ. Sɛbɛnjuru bɛ baara kɛ lɛrɛ kelen kɔnɔ.",
+    "resetTitle": "Tɔgɔ gundo kura",
+    "newPassword": "Tɔgɔ gundo kura",
+    "resetSubmit": "Tɔgɔ gundo kura sɛmɛntiya",
+    "resetSuccess": "Tɔgɔ gundo yɛlɛmana. I bɛ se ka don sisan.",
+    "resetError": "Nin sɛbɛnjuru man ɲi walima a waatiwɔ. Segin ka a ɲini.",
+    "resetNoToken": "Sɛbɛnjuru dafabali. Segin ka a ɲini."
   },
   "pro": {
     "pendingTitle": "Sɛriyɛ lakodɔn tɛmɛnen",
@@ -439,6 +450,9 @@
     "bookRequiresAuth": "I ka don walasa ka sigi-yɔrɔ nin ta",
     "priceUnavailable": "Sɔngɔ tɛ yen",
     "detailNotFound": "Sigi-yɔrɔ ma sɔrɔ",
+    "contactProvider": "Sigi-yɔrɔ in nɔgɔya",
+    "contactRequiresAuth": "I ka don walisa ka sigi-yɔrɔ in nɔgɔya",
+    "contactDefaultMessage": "Aw ni ce, ne b'a fɛ « {{name}} » kɔnɔ.",
     "amenities": "Nafa-fɛnw",
     "roomTypes": "So-yɔrɔ minnu bɛ yen",
     "capacity_one": "Mɔgɔ kelen",
@@ -496,7 +510,10 @@
     "takeaway": "Ta ka taa",
     "cookingWorkshop": "Tobili kalan",
     "menu": "Dumuni lisi",
-    "specialty": "Fɛn danfara"
+    "specialty": "Fɛn danfara",
+    "contactProvider": "Rɛsutɔrɛn in nɔgɔya",
+    "contactRequiresAuth": "I ka don walisa ka rɛsutɔrɛn in nɔgɔya",
+    "contactDefaultMessage": "Aw ni ce, ne b'a fɛ « {{name}} » kɔnɔ."
   },
   "mobility": {
     "title": "Taama ni yɔrɔ-yɔrɔ ta",
@@ -524,7 +541,10 @@
     },
     "detailNotFound": "Baarakɛla ma sɔrɔ",
     "vehicleInfo": "Mobili kunnafoni",
-    "searchPlaceholder": "Bololabaarakɛla, dugu..."
+    "searchPlaceholder": "Bololabaarakɛla, dugu...",
+    "contactProvider": "Baarakɛla in nɔgɔya",
+    "contactRequiresAuth": "I ka don walisa ka baarakɛla in nɔgɔya",
+    "contactDefaultMessage": "Aw ni ce, ne b'a fɛ ka baara kɛ i ka bolimafɛn baarakɛla « {{name}} » fɛ."
   },
   "guides": {
     "title": "Ɲɛminɛbagaw",

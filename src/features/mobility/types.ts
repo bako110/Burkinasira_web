@@ -41,6 +41,7 @@ export type TransportProviderStatus = 'pending' | 'active' | 'suspended';
 
 export interface TransportProviderDetail {
   id: string;
+  owner_id: string;
   name: string;
   slug: string;
   type: TransportType;

@@ -128,7 +128,18 @@
     "socialError": "La connexion avec Google a échoué. Réessayez.",
     "googleRoleTitle": "Bienvenue sur BurkinaSira",
     "googleRoleSubtitle": "Dites-nous comment vous comptez utiliser BurkinaSira.",
-    "googleRoleContinue": "Continuer"
+    "googleRoleContinue": "Continuer",
+    "forgotLink": "Mot de passe oublié ?",
+    "forgotTitle": "Mot de passe oublié",
+    "forgotIntro": "Saisissez l'adresse email de votre compte. Nous vous enverrons un lien pour choisir un nouveau mot de passe.",
+    "forgotSubmit": "Envoyer le lien",
+    "forgotSentText": "Si un compte existe pour cette adresse, un email vient d'être envoyé. Pensez à vérifier vos spams. Le lien est valable 1 heure.",
+    "resetTitle": "Nouveau mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "resetSubmit": "Valider le nouveau mot de passe",
+    "resetSuccess": "Mot de passe modifié. Vous pouvez vous connecter.",
+    "resetError": "Ce lien est invalide ou expiré. Refaites une demande.",
+    "resetNoToken": "Lien incomplet. Refaites une demande de réinitialisation."
   },
   "pro": {
     "pendingTitle": "Vérification en cours",
@@ -439,6 +450,9 @@
     "bookRequiresAuth": "Connectez-vous pour réserver cet hébergement",
     "priceUnavailable": "Prix indisponible",
     "detailNotFound": "Hébergement introuvable",
+    "contactProvider": "Contacter l'hébergement",
+    "contactRequiresAuth": "Connectez-vous pour contacter cet hébergement",
+    "contactDefaultMessage": "Bonjour, je suis intéressé(e) par « {{name}} ».",
     "amenities": "Équipements",
     "roomTypes": "Chambres disponibles",
     "capacity_one": "{{count}} personne",
@@ -496,6 +510,9 @@
     "takeaway": "Vente à emporter",
     "cookingWorkshop": "Atelier cuisine",
     "menu": "Menu",
+    "contactProvider": "Contacter le restaurant",
+    "contactRequiresAuth": "Connectez-vous pour contacter ce restaurant",
+    "contactDefaultMessage": "Bonjour, je suis intéressé(e) par « {{name}} ».",
     "specialty": "Spécialité"
   },
   "mobility": {
@@ -524,7 +541,10 @@
     },
     "detailNotFound": "Prestataire introuvable",
     "vehicleInfo": "Informations véhicule",
-    "searchPlaceholder": "Un transporteur, une ville..."
+    "searchPlaceholder": "Un transporteur, une ville...",
+    "contactProvider": "Contacter ce prestataire",
+    "contactRequiresAuth": "Connectez-vous pour contacter ce prestataire",
+    "contactDefaultMessage": "Bonjour, je suis intéressé(e) par vos services de transport avec « {{name}} »."
   },
   "guides": {
     "title": "Guides touristiques",

@@ -60,6 +60,7 @@ export type HotelStatus = 'draft' | 'published' | 'archived';
 
 export interface HotelDetail {
   id: string;
+  owner_id: string;
   name: string;
   slug: string;
   type: AccommodationType;

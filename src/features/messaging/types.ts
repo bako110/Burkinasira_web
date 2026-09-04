@@ -3,6 +3,7 @@ export type ConversationKind =
   | 'touriste_hotel'
   | 'touriste_restaurant'
   | 'touriste_artisan'
+  | 'touriste_transport'
   | 'entreprise_prestataire'
   | 'support_client'
   | 'groupe_voyageurs';
