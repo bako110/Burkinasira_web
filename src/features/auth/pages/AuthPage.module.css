@@ -188,3 +188,48 @@
 .switch a:hover {
   text-decoration: underline;
 }
+
+.successBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-5) 0 var(--space-3);
+}
+
+.successBlock p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.successIcon {
+  color: var(--color-success);
+}
+
+.backToLogin {
+  margin-top: var(--space-2);
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.backToLogin:hover {
+  text-decoration: underline;
+}
+
+.forgotLink {
+  align-self: flex-end;
+  margin-top: -6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}

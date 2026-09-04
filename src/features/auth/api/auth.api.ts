@@ -23,6 +23,14 @@ export async function register(payload: RegisterPayload): Promise<TokenResponse>
   return data;
 }
 
+export async function requestPasswordReset(email: string): Promise<void> {
+  await apiClient.post('/auth/forgot-password', { email });
+}
+
+export async function resetPassword(token: string, newPassword: string): Promise<void> {
+  await apiClient.post('/auth/reset-password', { token, new_password: newPassword });
+}
+
 export async function fetchMe(): Promise<UserPublic> {
   const { data } = await apiClient.get<UserPublic>('/auth/me');
   return data;

@@ -71,6 +71,9 @@ export function LoginPage() {
               {extractApiErrorMessage(error, t('auth.invalidCredentials'))}
             </p>
           )}
+          <Link to="/forgot-password" className={styles.forgotLink}>
+            {t('auth.forgotLink')}
+          </Link>
           <Button type="submit" fullWidth disabled={isPending}>
             {isPending ? t('common.loading') : t('auth.loginCta')}
           </Button>
