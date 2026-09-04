@@ -84,8 +84,9 @@ export function ProLayout() {
     artisan: Boolean(artisanProfile),
   };
 
+  // Pas d'entrée « Vue d'ensemble » : /pro/provider redirige directement vers
+  // la page de l'établissement possédé (liste + ajout).
   const PROVIDER_NAV_ITEMS = [
-    { to: '/pro/provider', end: true, key: 'overview', Icon: LayoutDashboard },
     ...PROVIDER_CATEGORY_ITEMS.filter((item) => item.owned(ownedCategories)).map(({ to, key, Icon }) => ({
       to,
       end: false,
