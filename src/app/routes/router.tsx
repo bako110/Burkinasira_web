@@ -84,6 +84,7 @@ import { GuideAvailabilityPage } from '../../features/pro/pages/GuideAvailabilit
 import { GuideBookingsPage } from '../../features/pro/pages/GuideBookingsPage';
 import { GuideReviewsPage } from '../../features/pro/pages/GuideReviewsPage';
 import { ProReportsPage } from '../../features/pro/pages/ProReportsPage';
+import { ProAccountPage } from '../../features/pro/pages/ProAccountPage';
 import { MessagesPage as ProMessagesPage } from '../../features/messaging/pages/MessagesPage';
 import { NotificationsPage as ProNotificationsPage } from '../../features/notifications/pages/NotificationsPage';
 
@@ -189,6 +190,9 @@ export const router = createBrowserRouter([
           { path: '/pro/guide/messages', element: <ProMessagesPage /> },
           { path: '/pro/guide/notifications', element: <ProNotificationsPage /> },
           { path: '/pro/guide/passport', element: <PassportPage /> },
+          { path: '/pro/guide/account', element: <ProAccountPage /> },
+          { path: '/pro/guide/account/info', element: <PersonalInfoPage /> },
+          { path: '/pro/guide/account/password', element: <ChangePasswordPage /> },
           { path: '/pro/provider', element: <ProOverviewPage /> },
           { path: '/pro/provider/hotel', element: <ProHotelPage /> },
           { path: '/pro/provider/restaurant', element: <ProRestaurantPage /> },
@@ -199,6 +203,9 @@ export const router = createBrowserRouter([
           { path: '/pro/provider/messages', element: <ProMessagesPage /> },
           { path: '/pro/provider/notifications', element: <ProNotificationsPage /> },
           { path: '/pro/provider/passport', element: <PassportPage /> },
+          { path: '/pro/provider/account', element: <ProAccountPage /> },
+          { path: '/pro/provider/account/info', element: <PersonalInfoPage /> },
+          { path: '/pro/provider/account/password', element: <ChangePasswordPage /> },
         ],
       },
     ],

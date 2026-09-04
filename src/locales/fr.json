@@ -371,7 +371,8 @@
     "tab_reports": "Signalements",
     "myLocation": "Ma position",
     "locating": "Localisation…",
-    "geoError": "Impossible d'obtenir votre position. Activez la localisation puis réessayez."
+    "geoError": "Impossible d'obtenir votre position. Activez la localisation puis réessayez.",
+    "tab_account": "Mon compte"
   },
   "theme": {
     "light": "Clair",
@@ -1654,6 +1655,7 @@
     "disable": "Desactiver",
     "widen": "Seulement {{count}} resultat(s) - elargir la zone",
     "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
+    "servicesOff": "La localisation est desactivee sur votre telephone. Activez-la dans Parametres > Localisation, puis reessayez.",
     "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
     "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
   },

@@ -371,7 +371,8 @@
     "tab_reports": "Filiw lasɔmini",
     "myLocation": "N sigiyɔrɔ",
     "locating": "Sigiyɔrɔ ɲini…",
-    "geoError": "I sigiyɔrɔ ma sɔrɔ. Sigiyɔrɔ dɔnniya da, i ka a lajɛ tugun."
+    "geoError": "I sigiyɔrɔ ma sɔrɔ. Sigiyɔrɔ dɔnniya da, i ka a lajɛ tugun.",
+    "tab_account": "N ka jate"
   },
   "theme": {
     "light": "Kɛnɛ",
@@ -1654,6 +1655,7 @@
     "disable": "A bɔ",
     "widen": "Kɔrɔ {{count}} dɔrɔn - yɔrɔ bonya",
     "denied": "Yɔrɔ dɔnniya banniyalen. A to i ka minɛn ka labenw kɔnɔ walisa ka i gɛrɛfɛn fɛnw ye.",
+    "servicesOff": "Yɔrɔ dɔnniya bɛ faga i ka telefɔni na. A yɛlɛma (Paramètres > Localisation) k'a sɔrɔ, ka a kɛ tugun.",
     "unavailable": "Ma se ka i yɔrɔ sɔrɔ sisan. A kɛ tugun.",
     "insecure": "Yɔrɔ dɔnniya bɛ se ka kɛ https sɔrɔda dɔrɔn na."
   },

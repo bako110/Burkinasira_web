@@ -21,6 +21,7 @@ import {
   Users,
   IdCard,
   Flag,
+  UserCog,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -44,6 +45,7 @@ const GUIDE_NAV_ITEMS = [
   { to: '/pro/guide/bookings', end: false, key: 'bookings', Icon: Ticket },
   { to: '/pro/guide/reviews', end: false, key: 'reviews', Icon: Star },
   { to: '/pro/guide/reports', end: false, key: 'reports', Icon: Flag },
+  { to: '/pro/guide/account', end: false, key: 'account', Icon: UserCog },
   { to: '/pro/guide/passport', end: false, key: 'card', Icon: IdCard },
 ] as const;
 
@@ -95,6 +97,7 @@ export function ProLayout() {
     })),
     { to: '/pro/provider/reports', end: false, key: 'reports', Icon: Flag },
     { to: '/pro/provider/team', end: false, key: 'team', Icon: Users },
+    { to: '/pro/provider/account', end: false, key: 'account', Icon: UserCog },
     { to: '/pro/provider/passport', end: false, key: 'card', Icon: IdCard },
   ];
 

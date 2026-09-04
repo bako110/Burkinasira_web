@@ -371,7 +371,8 @@
     "tab_reports": "Reports",
     "myLocation": "My location",
     "locating": "Locating…",
-    "geoError": "Couldn't get your location. Turn on location services and try again."
+    "geoError": "Couldn't get your location. Turn on location services and try again.",
+    "tab_account": "My account"
   },
   "theme": {
     "light": "Light",
@@ -1654,6 +1655,7 @@
     "disable": "Turn off",
     "widen": "Only {{count}} result(s) - widen the area",
     "denied": "Location denied. Allow it in your device settings to see what's near you.",
+    "servicesOff": "Location is turned off on your phone. Enable it in Settings > Location, then try again.",
     "unavailable": "Could not get your position right now. Try again.",
     "insecure": "Location is only available over a secure connection (https)."
   },

@@ -371,7 +371,8 @@
     "tab_reports": "Wilgr-dãmba",
     "myLocation": "M zĩiga",
     "locating": "Zĩig-baoong…",
-    "geoError": "Y zĩiga paamd ka tõe ye. Yergd-y localisationã n maak yɛs."
+    "geoError": "Y zĩiga paamd ka tõe ye. Yergd-y localisationã n maak yɛs.",
+    "tab_account": "M sɛba"
   },
   "theme": {
     "light": "Vẽenem",
@@ -1654,6 +1655,7 @@
     "disable": "Yiis",
     "widen": "{{count}} bala n paame - pʋʋg zĩiga",
     "denied": "B pa sak zĩig-bãngr ye. Sak-a fo teel-bũmb pʋgẽ tɩ f na ges bũmb nins sẽn be fo sɛɛgẽ wã.",
+    "servicesOff": "Zĩig-bãngr ka tʋʋme fo teel-bũmb pʋgẽ. Kɩt tɩ a tʋme (Paramètres > Localisation), la f leb n maka.",
     "unavailable": "D pa tõe n paam fo zĩiga masã ye. Makr-a-yã.",
     "insecure": "Zĩig-bãngr yaa ne https bala."
   },
