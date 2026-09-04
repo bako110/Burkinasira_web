@@ -566,7 +566,9 @@
     "availableSlots": "Available slots",
     "noSlotsAvailable": "No slots published yet.",
     "contactAboutSlot": "Contact about this slot",
-    "viewAvailability": "View availability"
+    "viewAvailability": "View availability",
+    "contactGuide": "Contact the guide",
+    "contactDefaultMessage": "Hello {{name}}, I'd like to talk to you about a guided tour."
   },
   "events": {
     "title": "Events & calendar",
@@ -1280,7 +1282,8 @@
       "retrait": "Pickup",
       "les_deux": "Delivery or pickup"
     },
-    "fulfillmentMode": "Delivery method"
+    "fulfillmentMode": "Delivery method",
+    "contactUnavailable": "This seller cannot be contacted for this product."
   },
   "community": {
     "title": "BurkinaSira Community",

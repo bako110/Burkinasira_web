@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ImageOff, ArrowLeft, Star, Truck, Package, User, Maximize2, ShoppingCart, Check } from 'lucide-react';
+import { ImageOff, ArrowLeft, Star, Truck, Package, MessageCircle, Maximize2, ShoppingCart, Check } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -27,9 +27,15 @@ export function ProductDetailPage() {
   const [justAdded, setJustAdded] = useState(false);
 
   const { data: product, isLoading, isError, refetch } = useProductDetail(id);
-  const { data: artisan } = useArtisanDetail(product?.artisan_id);
+  const { data: artisan, isLoading: isLoadingArtisan } = useArtisanDetail(product?.artisan_id);
+
+  const canContactArtisan = Boolean(artisan?.user_id);
 
   function handleContactArtisan() {
+    if (!canContactArtisan) {
+      push({ variant: 'error', message: t('market.contactUnavailable') });
+      return;
+    }
     requireAuth(() => setContactOpen(true), t('market.contactRequiresAuth'));
   }
 
@@ -181,8 +187,15 @@ export function ProductDetailPage() {
             {outOfStock ? t('market.outOfStock') : t('market.addToCart')}
           </Button>
 
-          <Button fullWidth variant="secondary" disabled={outOfStock} onClick={handleContactArtisan}>
-            <User size={16} strokeWidth={2} />
+          {/* Contacter le vendeur ne dépend pas du stock : toujours possible
+              dès qu'on connaît l'artisan qui a publié le produit. */}
+          <Button
+            fullWidth
+            variant="secondary"
+            disabled={isLoadingArtisan || !canContactArtisan}
+            onClick={handleContactArtisan}
+          >
+            <MessageCircle size={16} strokeWidth={2} />
             {t('market.contactArtisan')}
           </Button>
 
@@ -197,7 +210,7 @@ export function ProductDetailPage() {
 
       <RelatedModules currentPath="/market" />
 
-      {artisan && (
+      {canContactArtisan && artisan && (
         <ContactModal
           open={contactOpen}
           onClose={() => setContactOpen(false)}

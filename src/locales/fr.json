@@ -566,7 +566,9 @@
     "availableSlots": "Créneaux disponibles",
     "noSlotsAvailable": "Aucun créneau publié pour le moment.",
     "contactAboutSlot": "Contacter à ce sujet",
-    "viewAvailability": "Voir les disponibilités"
+    "viewAvailability": "Voir les disponibilités",
+    "contactGuide": "Contacter le guide",
+    "contactDefaultMessage": "Bonjour {{name}}, je souhaite échanger avec vous au sujet d'une visite guidée."
   },
   "events": {
     "title": "Événements et calendrier",
@@ -1280,7 +1282,8 @@
       "retrait": "Retrait",
       "les_deux": "Livraison ou retrait"
     },
-    "fulfillmentMode": "Mode de livraison"
+    "fulfillmentMode": "Mode de livraison",
+    "contactUnavailable": "Le contact du vendeur n'est pas disponible pour ce produit."
   },
   "community": {
     "title": "Communauté BurkinaSira",

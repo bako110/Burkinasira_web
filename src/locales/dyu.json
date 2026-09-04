@@ -566,7 +566,9 @@
     "availableSlots": "Waati minnu bɛ",
     "noSlotsAvailable": "Waati foyi ma bɔ fɔlɔ.",
     "contactAboutSlot": "Kuma waati nin kan",
-    "viewAvailability": "Waati bɛnnenw lajɛ"
+    "viewAvailability": "Waati bɛnnenw lajɛ",
+    "contactGuide": "Ɲɛminɛbaga wele",
+    "contactDefaultMessage": "I ni ce {{name}}, n b'a fɛ ka kuma i fɛ taama ɲɛminɛni ko la."
   },
   "events": {
     "title": "Waati-kunw ni kalanda",
@@ -1280,7 +1282,8 @@
       "retrait": "Tali",
       "les_deux": "Bilali walima tali"
     },
-    "fulfillmentMode": "Bilali cogo"
+    "fulfillmentMode": "Bilali cogo",
+    "contactUnavailable": "Feerekɛla ma se ka wele nin fɛn na."
   },
   "community": {
     "title": "BurkinaSira Jɛkulu",

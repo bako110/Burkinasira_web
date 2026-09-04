@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2 } from 'lucide-react';
+import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2, MessageCircle } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { ContactModal } from '../../messaging/components/ContactModal';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useGuideDetail } from '../hooks/useGuideDetail';
 import { GuideBookingSection } from '../components/GuideBookingSection';
 import styles from './GuideDetailPage.module.css';
@@ -13,8 +16,14 @@ export function GuideDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const requireAuth = useRequireAuth();
+  const [contactOpen, setContactOpen] = useState(false);
 
   const { data: guide, isLoading, isError, refetch } = useGuideDetail(id);
+
+  function handleContactGuide() {
+    requireAuth(() => setContactOpen(true), t('guides.contactRequiresAuth'));
+  }
 
   if (isLoading) {
     return (
@@ -146,6 +155,10 @@ export function GuideDetailPage() {
           <div className={styles.infoCard}>
             <GuideBookingSection guide={guide} />
           </div>
+          <Button fullWidth variant="secondary" onClick={handleContactGuide}>
+            <MessageCircle size={16} strokeWidth={2} />
+            {t('guides.contactGuide')}
+          </Button>
           <ReportErrorButton itemType="guide" itemId={guide.id} className={styles.reportBtn} />
         </aside>
       </div>
@@ -153,6 +166,15 @@ export function GuideDetailPage() {
       <ReviewsSection targetType="guide" targetId={guide.id} />
 
       <RelatedModules currentPath="/guides" />
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        kind="touriste_guide"
+        otherUserId={guide.user_id}
+        recipientName={guide.display_name}
+        defaultMessage={t('guides.contactDefaultMessage', { name: guide.display_name })}
+      />
     </div>
   );
 }
