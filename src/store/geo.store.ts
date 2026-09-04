@@ -13,6 +13,7 @@ export type GeoStatus =
   | 'prompting' // demande de permission / acquisition en cours
   | 'granted' // position obtenue
   | 'denied' // permission refusée par l'utilisateur
+  | 'services-off' // GPS/localisation désactivé au niveau système (pas un refus de permission)
   | 'unavailable' // pas de capteur / erreur matérielle / timeout
   | 'insecure'; // contexte non sécurisé (http) : l'API navigateur est bloquée
 
@@ -90,8 +91,15 @@ function mapError(err: unknown): GeoStatus {
   if (err && typeof err === 'object') {
     const name = (err as { name?: string }).name;
     const code = (err as GeolocationPositionError).code;
+    const message = (err as { message?: string }).message ?? '';
     if (name === 'GeoPermissionError' || code === 1) return 'denied';
     if (name === 'GeoInsecureError') return 'insecure';
+    // Le plugin natif Capacitor distingue "permission refusée" (OS-PLUG-GLOC-0003)
+    // de "GPS/localisation éteint au niveau système" (OS-PLUG-GLOC-0007 et 0017) :
+    // ce n'est pas un refus de l'utilisateur dans l'app, mais un réglage système.
+    if (/location services are not enabled|network and location turned off/i.test(message)) {
+      return 'services-off';
+    }
     // code 2 = position unavailable, code 3 = timeout
   }
   return 'unavailable';
@@ -131,7 +139,9 @@ export const useGeoStore = create<GeoState>((set, get) => ({
             ? 'permission-denied'
             : status === 'insecure'
               ? 'insecure-context'
-              : 'unavailable',
+              : status === 'services-off'
+                ? 'services-off'
+                : 'unavailable',
       });
       return null;
     }

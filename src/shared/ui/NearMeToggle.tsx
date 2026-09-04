@@ -43,6 +43,9 @@ export function NearMeToggle({ nearMe, resultCount }: NearMeToggleProps) {
         {status === 'denied' && (
           <p className={styles.hint}>{t('nearMe.denied')}</p>
         )}
+        {status === 'services-off' && (
+          <p className={styles.hint}>{t('nearMe.servicesOff')}</p>
+        )}
         {status === 'unavailable' && (
           <p className={styles.hint}>{t('nearMe.unavailable')}</p>
         )}

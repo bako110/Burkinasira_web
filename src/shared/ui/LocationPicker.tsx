@@ -63,6 +63,7 @@ interface LocationPickerProps {
   myLocationLabel?: string;
   locatingLabel?: string;
   geoErrorLabel?: string;
+  geoServicesOffLabel?: string;
 }
 
 export function LocationPicker({
@@ -79,6 +80,7 @@ export function LocationPicker({
   myLocationLabel = 'Ma position',
   locatingLabel = 'Localisation…',
   geoErrorLabel = "Impossible d'obtenir votre position. Activez la localisation puis réessayez.",
+  geoServicesOffLabel = "La localisation est désactivée sur votre téléphone. Activez-la dans Paramètres > Localisation, puis réessayez.",
 }: LocationPickerProps) {
   const [mode, setMode] = useState<'map' | 'link'>('map');
   const [linkInput, setLinkInput] = useState('');
@@ -97,7 +99,8 @@ export function LocationPicker({
     setGeoError('');
     const coords = await requestLocation({ force: true });
     if (!coords) {
-      setGeoError(geoErrorLabel);
+      const status = useGeoStore.getState().status;
+      setGeoError(status === 'services-off' ? geoServicesOffLabel : geoErrorLabel);
       return;
     }
     onChange(coords.latitude.toFixed(6), coords.longitude.toFixed(6));
