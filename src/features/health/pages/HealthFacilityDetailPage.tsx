@@ -64,21 +64,23 @@ export function HealthFacilityDetailPage() {
           <span className={styles.heroIcon}>
             <Icon size={28} strokeWidth={1.5} />
           </span>
-          <span className={styles.typeLabel}>{t(`health.types.${facility.type}`, facility.type)}</span>
-          <h1 className={styles.title}>{facility.name}</h1>
-          <div className={styles.heroMeta}>
-            {location && (
-              <span className={styles.metaItem}>
-                <MapPin size={14} strokeWidth={2} />
-                {location}
-              </span>
-            )}
-            {facility.is_on_duty && (
-              <span className={styles.onDutyBadge}>
-                <Clock size={14} strokeWidth={2} />
-                {t('health.onDuty')}
-              </span>
-            )}
+          <div className={styles.heroText}>
+            <span className={styles.typeLabel}>{t(`health.types.${facility.type}`, facility.type)}</span>
+            <h1 className={styles.title}>{facility.name}</h1>
+            <div className={styles.heroMeta}>
+              {location && (
+                <span className={styles.metaItem}>
+                  <MapPin size={14} strokeWidth={2} />
+                  {location}
+                </span>
+              )}
+              {facility.is_on_duty && (
+                <span className={styles.onDutyBadge}>
+                  <Clock size={14} strokeWidth={2} />
+                  {t('health.onDuty')}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </section>

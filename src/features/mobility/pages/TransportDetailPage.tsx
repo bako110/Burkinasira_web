@@ -71,34 +71,36 @@ export function TransportDetailPage() {
           <span className={styles.heroIcon}>
             <Car size={28} strokeWidth={1.5} />
           </span>
-          <span className={styles.typeLabel}>{t(`mobility.types.${provider.type}`, provider.type)}</span>
-          <h1 className={styles.title}>{provider.name}</h1>
-          <div className={styles.heroMeta}>
-            {location && (
-              <span className={styles.metaItem}>
-                <MapPin size={14} strokeWidth={2} />
-                {location}
-              </span>
-            )}
-            {provider.review_count > 0 && (
-              <span className={styles.metaItem}>
-                <Star size={14} strokeWidth={2} fill="currentColor" />
-                {provider.average_rating.toFixed(1)} ({provider.review_count})
-              </span>
-            )}
-            {provider.is_verified && (
-              <span className={styles.verifiedBadge}>
-                <ShieldCheck size={14} strokeWidth={2} />
-                {t('destinations.verified')}
-              </span>
+          <div className={styles.heroText}>
+            <span className={styles.typeLabel}>{t(`mobility.types.${provider.type}`, provider.type)}</span>
+            <h1 className={styles.title}>{provider.name}</h1>
+            <div className={styles.heroMeta}>
+              {location && (
+                <span className={styles.metaItem}>
+                  <MapPin size={14} strokeWidth={2} />
+                  {location}
+                </span>
+              )}
+              {provider.review_count > 0 && (
+                <span className={styles.metaItem}>
+                  <Star size={14} strokeWidth={2} fill="currentColor" />
+                  {provider.average_rating.toFixed(1)} ({provider.review_count})
+                </span>
+              )}
+              {provider.is_verified && (
+                <span className={styles.verifiedBadge}>
+                  <ShieldCheck size={14} strokeWidth={2} />
+                  {t('destinations.verified')}
+                </span>
+              )}
+            </div>
+            {allMedia.length > 0 && (
+              <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
+                <Maximize2 size={15} strokeWidth={2} />
+                {t('gallery.ctaTransport')}
+              </Button>
             )}
           </div>
-          {allMedia.length > 0 && (
-            <Button variant="secondary" size="sm" onClick={() => openGallery(0)}>
-              <Maximize2 size={15} strokeWidth={2} />
-              {t('gallery.ctaTransport')}
-            </Button>
-          )}
         </div>
       </section>
 

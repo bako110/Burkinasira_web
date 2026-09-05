@@ -61,16 +61,18 @@ export function MoneyServiceDetailPage() {
           <span className={styles.heroIcon}>
             <Icon size={28} strokeWidth={1.5} />
           </span>
-          <span className={styles.typeLabel}>{t(`finance.types.${service.type}`, service.type)}</span>
-          <h1 className={styles.title}>{service.name}</h1>
-          {service.operator && <p className={styles.operator}>{service.operator}</p>}
-          <div className={styles.heroMeta}>
-            {location && (
-              <span className={styles.metaItem}>
-                <MapPin size={14} strokeWidth={2} />
-                {location}
-              </span>
-            )}
+          <div className={styles.heroText}>
+            <span className={styles.typeLabel}>{t(`finance.types.${service.type}`, service.type)}</span>
+            <h1 className={styles.title}>{service.name}</h1>
+            {service.operator && <p className={styles.operator}>{service.operator}</p>}
+            <div className={styles.heroMeta}>
+              {location && (
+                <span className={styles.metaItem}>
+                  <MapPin size={14} strokeWidth={2} />
+                  {location}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </section>

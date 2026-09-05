@@ -63,18 +63,20 @@ export function ConnectivityPointDetailPage() {
           <span className={styles.heroIcon}>
             <Icon size={28} strokeWidth={1.5} />
           </span>
-          <span className={styles.typeLabel}>{t(`connectivity.types.${point.type}`, point.type)}</span>
-          <h1 className={styles.title}>{point.name}</h1>
-          {point.operator && <p className={styles.operator}>{point.operator}</p>}
-          <div className={styles.heroMeta}>
-            {location && (
-              <span className={styles.metaItem}>
-                <MapPin size={14} strokeWidth={2} />
-                {location}
-              </span>
-            )}
-            {point.is_free && <span className={styles.badgeFree}>{t('connectivity.free')}</span>}
-            {point.offers_esim && <span className={styles.badgeEsim}>{t('connectivity.esim')}</span>}
+          <div className={styles.heroText}>
+            <span className={styles.typeLabel}>{t(`connectivity.types.${point.type}`, point.type)}</span>
+            <h1 className={styles.title}>{point.name}</h1>
+            {point.operator && <p className={styles.operator}>{point.operator}</p>}
+            <div className={styles.heroMeta}>
+              {location && (
+                <span className={styles.metaItem}>
+                  <MapPin size={14} strokeWidth={2} />
+                  {location}
+                </span>
+              )}
+              {point.is_free && <span className={styles.badgeFree}>{t('connectivity.free')}</span>}
+              {point.offers_esim && <span className={styles.badgeEsim}>{t('connectivity.esim')}</span>}
+            </div>
           </div>
         </div>
       </section>
