@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { createOrder, fetchMyOrders, fetchProductById, quoteDeliveryFee } from '../api/market.api';
-import type { Order } from '../types';
+import type { Order, ProductCategory } from '../types';
 
 export interface OrderWithProduct extends Order {
   product_name?: string;
   product_photo?: string;
+  product_category?: ProductCategory;
 }
 
 export function useMyOrders() {
@@ -26,6 +27,7 @@ export function useMyOrders() {
           ...order,
           product_name: product?.name,
           product_photo: product?.photos?.[0],
+          product_category: product?.category,
         };
       });
     },

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Trash2, ImageOff, CheckCircle2, ShoppingBag, Truck } from 'lucide-react';
+import { Trash2, CheckCircle2, ShoppingBag, Truck } from 'lucide-react';
 
 import { Modal, Button } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -9,6 +9,7 @@ import { BURKINA_REGION_NAMES } from '../../../shared/data/burkinaRegions';
 import { useCartStore } from '../../../store/cart.store';
 import { useCreateOrder, useDeliveryFeeQuote } from '../hooks/useOrders';
 import type { OrderFulfillmentMode } from '../types';
+import { ProductImagePlaceholder } from './ProductImagePlaceholder';
 import styles from './CartModal.module.css';
 
 interface CartModalProps {
@@ -162,7 +163,7 @@ export function CartModal({ open, onClose }: CartModalProps) {
                   {item.photo ? (
                     <img src={item.photo} alt="" />
                   ) : (
-                    <ImageOff size={18} strokeWidth={1.5} />
+                    <ProductImagePlaceholder category={item.category} iconSize={18} />
                   )}
                 </div>
                 <div className={styles.itemInfo}>

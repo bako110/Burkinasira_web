@@ -1,11 +1,14 @@
 import { create } from 'zustand';
 
+import type { ProductCategory } from '../features/market/types';
+
 export interface CartItem {
   product_id: string;
   name: string;
   price: number;
   currency: string;
   photo?: string;
+  category?: ProductCategory;
   quantity: number;
   stock_quantity?: number;
   artisan_id: string;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ImageOff, Star, ShoppingCart, Check } from 'lucide-react';
+import { Star, ShoppingCart, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -7,6 +7,7 @@ import { Card } from '../../../shared/ui';
 import { useCartStore } from '../../../store/cart.store';
 import { useToastStore } from '../../../store/toast.store';
 import type { ProductSummary } from '../types';
+import { ProductImagePlaceholder } from './ProductImagePlaceholder';
 import styles from './ProductCard.module.css';
 
 export function ProductCard({ product }: { product: ProductSummary }) {
@@ -25,6 +26,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
       price: product.price,
       currency: product.currency,
       photo: product.photo,
+      category: product.category,
       stock_quantity: product.stock_quantity,
       artisan_id: product.artisan_id,
     });
@@ -40,9 +42,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
           {cover ? (
             <img src={cover} alt={product.name} className={styles.image} loading="lazy" />
           ) : (
-            <div className={styles.imagePlaceholder}>
-              <ImageOff size={22} strokeWidth={1.5} />
-            </div>
+            <ProductImagePlaceholder category={product.category} iconSize={30} />
           )}
           <span className={styles.categoryBadge}>{t(`market.categories.${product.category}`, product.category)}</span>
           {!product.in_stock && <span className={styles.outOfStockBadge}>{t('market.outOfStock')}</span>}

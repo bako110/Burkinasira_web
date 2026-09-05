@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { ImageOff, Calendar, Truck } from 'lucide-react';
+import { Calendar, Truck } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Card } from '../../../shared/ui';
 import type { OrderWithProduct } from '../hooks/useOrders';
+import { ProductImagePlaceholder } from './ProductImagePlaceholder';
 import styles from './OrderCard.module.css';
 
 const STATUS_TONE: Record<string, string> = {
@@ -24,9 +25,7 @@ export function OrderCard({ order }: { order: OrderWithProduct }) {
         {order.product_photo ? (
           <img src={order.product_photo} alt="" className={styles.image} />
         ) : (
-          <div className={styles.imagePlaceholder}>
-            <ImageOff size={20} strokeWidth={1.5} />
-          </div>
+          <ProductImagePlaceholder category={order.product_category} iconSize={22} />
         )}
       </div>
 

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ImageOff, ArrowLeft, Star, Truck, Package, MessageCircle, Maximize2, ShoppingCart, Check } from 'lucide-react';
+import { ArrowLeft, Star, Truck, Package, MessageCircle, Maximize2, ShoppingCart, Check } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useCartStore } from '../../../store/cart.store';
 import { useToastStore } from '../../../store/toast.store';
 import { ContactModal } from '../../messaging/components/ContactModal';
+import { ProductImagePlaceholder } from '../components/ProductImagePlaceholder';
 import { useProductDetail } from '../hooks/useProductDetail';
 import { useArtisanDetail } from '../hooks/useArtisanDetail';
 import { ArtisanCard } from '../components/ArtisanCard';
@@ -48,6 +49,7 @@ export function ProductDetailPage() {
         price: product.price,
         currency: product.currency,
         photo: product.photos[0],
+        category: product.category,
         stock_quantity: product.stock_quantity,
         artisan_id: product.artisan_id,
         artisan_name: artisan?.display_name,
@@ -105,9 +107,7 @@ export function ProductDetailPage() {
                 </span>
               </button>
             ) : (
-              <div className={styles.imagePlaceholder}>
-                <ImageOff size={40} strokeWidth={1.5} />
-              </div>
+              <ProductImagePlaceholder category={product.category} iconSize={56} className={styles.imagePlaceholder} />
             )}
             {outOfStock && <span className={styles.outOfStockBadge}>{t('market.outOfStock')}</span>}
           </div>
