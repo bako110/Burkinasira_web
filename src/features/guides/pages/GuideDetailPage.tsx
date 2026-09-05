@@ -70,24 +70,26 @@ export function GuideDetailPage() {
               </span>
             )}
           </div>
-          <h1 className={styles.title}>{guide.display_name}</h1>
-          <div className={styles.heroMeta}>
-            {guide.regions_covered.length > 0 && (
-              <span className={styles.metaItem}>
-                <MapPin size={14} strokeWidth={2} />
-                {guide.regions_covered.join(', ')}
-              </span>
-            )}
-            {guide.review_count > 0 && (
-              <span className={styles.metaItem}>
-                <Star size={14} strokeWidth={2} fill="currentColor" />
-                {guide.average_rating.toFixed(1)} ({guide.review_count})
-              </span>
+          <div className={styles.heroText}>
+            <h1 className={styles.title}>{guide.display_name}</h1>
+            <div className={styles.heroMeta}>
+              {guide.regions_covered.length > 0 && (
+                <span className={styles.metaItem}>
+                  <MapPin size={14} strokeWidth={2} />
+                  {guide.regions_covered.join(', ')}
+                </span>
+              )}
+              {guide.review_count > 0 && (
+                <span className={styles.metaItem}>
+                  <Star size={14} strokeWidth={2} fill="currentColor" />
+                  {guide.average_rating.toFixed(1)} ({guide.review_count})
+                </span>
+              )}
+            </div>
+            {guide.visits_completed > 0 && (
+              <p className={styles.visitsCount}>{t('guides.visitsCompleted', { count: guide.visits_completed })}</p>
             )}
           </div>
-          {guide.visits_completed > 0 && (
-            <p className={styles.visitsCount}>{t('guides.visitsCompleted', { count: guide.visits_completed })}</p>
-          )}
         </div>
       </section>
 
