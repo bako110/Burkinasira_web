@@ -42,43 +42,6 @@
   gap: var(--space-2);
 }
 
-/* Desktop : hero compact, icone a cote du texte, cadre a gauche */
-@media (min-width: 768px) {
-  .hero {
-    padding: var(--space-5) var(--space-6);
-  }
-
-  .backBtn {
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto var(--space-3);
-    justify-content: flex-start;
-    background: transparent;
-  }
-
-  .heroContent {
-    max-width: 1100px;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: var(--space-4);
-  }
-
-  .heroText {
-    align-items: flex-start;
-  }
-
-  .heroText .heroMeta {
-    justify-content: flex-start;
-  }
-
-  .heroIcon {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-}
 
 .backBtn {
   position: relative;
@@ -304,4 +267,42 @@ a.contactRow:hover {
 
 a.contactRow:hover svg {
   color: var(--color-brand);
+}
+
+/* Desktop : hero compact, icone a cote du texte, cadre a gauche */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .backBtn {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto var(--space-3);
+    justify-content: flex-start;
+    background: transparent;
+  }
+
+  .heroContent {
+    max-width: 1100px;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: var(--space-4);
+  }
+
+  .heroText {
+    align-items: flex-start;
+  }
+
+  .heroText .heroMeta {
+    justify-content: flex-start;
+  }
+
+  .heroIcon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
 }
