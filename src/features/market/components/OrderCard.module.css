@@ -95,6 +95,14 @@
   color: var(--color-text-muted);
 }
 
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
 .footer {
   margin-top: auto;
   padding-top: var(--space-1);

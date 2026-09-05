@@ -37,7 +37,7 @@
   "nav": {
     "home": "Accueil",
     "explore": "Explorer",
-    "itineraries": "Itineraires",
+    "itineraries": "Itinéraires",
     "discover": "Découvrir",
     "hotels": "Hébergements",
     "restaurants": "Restauration",
@@ -1284,7 +1284,19 @@
       "les_deux": "Livraison ou retrait"
     },
     "fulfillmentMode": "Mode de livraison",
-    "contactUnavailable": "Le contact du vendeur n'est pas disponible pour ce produit."
+    "contactUnavailable": "Le contact du vendeur n'est pas disponible pour ce produit.",
+    "cartSubtotal": "Sous-total",
+    "deliveryRegion": "Région de livraison",
+    "deliveryRegionPlaceholder": "Choisir une région",
+    "deliveryAddress": "Adresse (facultatif)",
+    "deliveryAddressPlaceholder": "Quartier, rue, point de repère…",
+    "deliveryFee": "Frais de livraison",
+    "deliveryFeePending": "Choisir une région",
+    "deliveryFree": "Offerts",
+    "deliveryFeeUnavailable": "Les frais de livraison n'ont pas pu être calculés pour cette région.",
+    "deliveryEtaDays_one": "Livraison estimée sous {{count}} jour",
+    "deliveryEtaDays_other": "Livraison estimée sous {{count}} jours",
+    "deliveryEtaRange": "Livraison estimée sous {{min}} à {{max}} jours"
   },
   "community": {
     "title": "Communauté BurkinaSira",
@@ -1571,117 +1583,117 @@
     "zone": "Zone"
   },
   "advice": {
-    "title": "Bien preparer et vivre son sejour",
-    "subtitle": "De la preparation au retour : les reperes pour voyager serein au Burkina Faso.",
-    "disclaimer": "Informations generales fournies a titre indicatif. Verifiez toujours les sources officielles (ambassade du Burkina Faso, ministere des Affaires etrangeres de votre pays, OMS) avant le depart.",
+    "title": "Bien préparer et vivre son séjour",
+    "subtitle": "De la préparation au retour : les repères pour voyager serein au Burkina Faso.",
+    "disclaimer": "Informations générales fournies à titre indicatif. Vérifiez toujours les sources officielles (ambassade du Burkina Faso, ministère des Affaires étrangères de votre pays, OMS) avant le départ.",
     "phases": {
-      "before": "Avant le depart",
+      "before": "Avant le départ",
       "during": "Sur place",
       "after": "Au retour"
     },
     "items": {
       "visa": {
         "title": "Visa & passeport",
-        "text": "Passeport valide au moins 6 mois apres la date de retour. Visa d'entree requis pour la plupart des nationalites : e-visa en ligne ou visa a l'ambassade. Gardez une copie numerique de vos documents."
+        "text": "Passeport valide au moins 6 mois après la date de retour. Visa d'entrée requis pour la plupart des nationalités : e-visa en ligne ou visa à l'ambassade. Gardez une copie numérique de vos documents."
       },
       "vaccines": {
-        "title": "Vaccins & sante preventive",
-        "text": "Vaccin contre la fievre jaune obligatoire (carnet international exige a l'arrivee). Antipaludeen fortement recommande : consultez un centre de vaccinations internationales 4 a 6 semaines avant le depart. Mettez a jour DTP, hepatites A et B, typhoide."
+        "title": "Vaccins & santé préventive",
+        "text": "Vaccin contre la fièvre jaune obligatoire (carnet international exigé à l'arrivée). Antipaludéen fortement recommandé : consultez un centre de vaccinations internationales 4 à 6 semaines avant le départ. Mettez à jour DTP, hépatites A et B, typhoïde."
       },
       "season": {
         "title": "Quand partir",
-        "text": "Saison seche de novembre a fevrier : temps le plus agreable, ideal pour la decouverte. Mars-mai : tres chaud (souvent plus de 40 C). Juin-octobre : saison des pluies, vegetation verte mais pistes parfois difficiles."
+        "text": "Saison sèche de novembre à février : temps le plus agréable, idéal pour la découverte. Mars-mai : très chaud (souvent plus de 40 °C). Juin-octobre : saison des pluies, végétation verte mais pistes parfois difficiles."
       },
       "money": {
         "title": "Argent & paiements",
-        "text": "Monnaie : le franc CFA (XOF). Payez en especes presque partout ; la carte bancaire n'est acceptee que dans quelques hotels et a Ouagadougou. Retirez du liquide aux distributeurs des grandes villes et prevoyez de la petite monnaie."
+        "text": "Monnaie : le franc CFA (XOF). Payez en espèces presque partout ; la carte bancaire n'est acceptée que dans quelques hôtels et à Ouagadougou. Retirez du liquide aux distributeurs des grandes villes et prévoyez de la petite monnaie."
       },
       "security": {
-        "title": "Securite & itineraire",
-        "text": "Consultez les conseils aux voyageurs de votre ministere avant de fixer votre itineraire ; certaines regions sont deconseillees. Privilegiez les deplacements de jour, un guide local et un hebergement identifie. Enregistrez-vous aupres de votre ambassade si possible."
+        "title": "Sécurité & itinéraire",
+        "text": "Consultez les conseils aux voyageurs de votre ministère avant de fixer votre itinéraire ; certaines régions sont déconseillées. Privilégiez les déplacements de jour, un guide local et un hébergement identifié. Enregistrez-vous auprès de votre ambassade si possible."
       },
       "packing": {
         "title": "Dans la valise",
-        "text": "Vetements legers et couvrants, chapeau, lunettes, creme solaire haute protection, repulsif anti-moustiques, trousse a pharmacie (antipaludeen, anti-diarrheique, rehydratation), lampe de poche, adaptateur (prises type C/E, 220 V), gourde filtrante."
+        "text": "Vêtements légers et couvrants, chapeau, lunettes, crème solaire haute protection, répulsif anti-moustiques, trousse à pharmacie (antipaludéen, anti-diarrhéique, réhydratation), lampe de poche, adaptateur (prises type C/E, 220 V), gourde filtrante."
       },
       "health": {
-        "title": "Rester en bonne sante",
-        "text": "Buvez uniquement de l'eau en bouteille capsulee ou filtree. Evitez glacons, crudites lavees a l'eau du robinet et aliments tiedes. Lavez-vous les mains souvent. Poursuivez le traitement antipaludeen selon la prescription, meme apres le retour."
+        "title": "Rester en bonne santé",
+        "text": "Buvez uniquement de l'eau en bouteille capsulée ou filtrée. Évitez glaçons, crudités lavées à l'eau du robinet et aliments tièdes. Lavez-vous les mains souvent. Poursuivez le traitement antipaludéen selon la prescription, même après le retour."
       },
       "heat": {
         "title": "Chaleur & soleil",
-        "text": "Hydratez-vous en continu, salez un peu vos repas, faites une pause aux heures les plus chaudes (12 h - 15 h). Chapeau et creme solaire systematiques. Surveillez les signes de coup de chaleur (maux de tete, nausees, confusion)."
+        "text": "Hydratez-vous en continu, salez un peu vos repas, faites une pause aux heures les plus chaudes (12 h - 15 h). Chapeau et crème solaire systématiques. Surveillez les signes de coup de chaleur (maux de tête, nausées, confusion)."
       },
       "customs": {
         "title": "Us & coutumes",
-        "text": "L'accueil burkinabe (la teranga) est chaleureux : prenez le temps de saluer, c'est essentiel. Tenue correcte, surtout pres des lieux de culte. Utilisez la main droite pour donner ou recevoir. Demandez toujours avant de photographier une personne."
+        "text": "L'accueil burkinabè (la teranga) est chaleureux : prenez le temps de saluer, c'est essentiel. Tenue correcte, surtout près des lieux de culte. Utilisez la main droite pour donner ou recevoir. Demandez toujours avant de photographier une personne."
       },
       "bargaining": {
         "title": "Marchander sans stress",
-        "text": "Le marchandage est d'usage sur les marches et pour les taxis, jamais dans les boutiques a prix fixe. Restez souriant, annoncez un prix, trouvez un terrain d'entente. Convenez du tarif du taxi avant de monter."
+        "text": "Le marchandage est d'usage sur les marchés et pour les taxis, jamais dans les boutiques à prix fixe. Restez souriant, annoncez un prix, trouvez un terrain d'entente. Convenez du tarif du taxi avant de monter."
       },
       "connectivity": {
-        "title": "Telephone & internet",
-        "text": "Achetez une carte SIM locale (Orange, Moov) avec votre passeport, des l'aeroport ou en boutique : data bon marche et bonne couverture en ville. Le wifi des hotels reste lent. Telechargez vos cartes hors ligne."
+        "title": "Téléphone & internet",
+        "text": "Achetez une carte SIM locale (Orange, Moov) avec votre passeport, dès l'aéroport ou en boutique : data bon marché et bonne couverture en ville. Le wifi des hôtels reste lent. Téléchargez vos cartes hors ligne."
       },
       "language": {
         "title": "Langue",
-        "text": "Le francais est la langue officielle et largement compris en ville. Quelques mots de moore (ne y windga : bonjour) ou de dioula sont toujours apprecies et ouvrent les portes."
+        "text": "Le français est la langue officielle et largement compris en ville. Quelques mots de mooré (ne y windga : bonjour) ou de dioula sont toujours appréciés et ouvrent les portes."
       },
       "photos": {
         "title": "Photos & respect",
-        "text": "Ne photographiez pas les batiments officiels, militaires ou l'aeroport. Demandez l'autorisation pour les personnes ; un petit geste de remerciement est bienvenu. Certains sites sacres interdisent la photo."
+        "text": "Ne photographiez pas les bâtiments officiels, militaires ou l'aéroport. Demandez l'autorisation pour les personnes ; un petit geste de remerciement est bienvenu. Certains sites sacrés interdisent la photo."
       },
       "emergency": {
-        "title": "Numeros utiles",
-        "text": "Police : 17 - Pompiers / secours : 18 - SAMU : 112. Notez le numero de votre ambassade et de votre assurance rapatriement. Gardez-les hors ligne et sur papier."
+        "title": "Numéros utiles",
+        "text": "Police : 17 - Pompiers / secours : 18 - SAMU : 112. Notez le numéro de votre ambassade et de votre assurance rapatriement. Gardez-les hors ligne et sur papier."
       },
       "healthWatch": {
         "title": "Surveillance au retour",
-        "text": "En cas de fievre dans les 3 mois qui suivent le retour, consultez rapidement et signalez votre voyage au Burkina Faso : le paludisme peut se declarer tardivement."
+        "text": "En cas de fièvre dans les 3 mois qui suivent le retour, consultez rapidement et signalez votre voyage au Burkina Faso : le paludisme peut se déclarer tardivement."
       },
       "feedback": {
-        "title": "Partagez votre experience",
-        "text": "Laissez un avis sur les hebergements, guides et restaurants : vous aidez les prochains voyageurs et les prestataires locaux a progresser."
+        "title": "Partagez votre expérience",
+        "text": "Laissez un avis sur les hébergements, guides et restaurants : vous aidez les prochains voyageurs et les prestataires locaux à progresser."
       }
     }
   },
   "itineraries": {
-    "kicker": "Itineraires signature",
-    "title": "Voyages cle en main",
-    "subtitle": "Des parcours composes par la redaction BurkinaSira : etapes qualifiees, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
-    "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de depart : ajustez tout dans le planificateur apres avoir clone l'itineraire.",
+    "kicker": "Itinéraires signature",
+    "title": "Voyages clé en main",
+    "subtitle": "Des parcours composés par la rédaction BurkinaSira : étapes qualifiées, budget indicatif, conseils. Clonez celui qui vous inspire et personnalisez-le.",
+    "note": "Estimations par personne en FCFA, hors vols internationaux et visa. Elles servent de point de départ : ajustez tout dans le planificateur après avoir cloné l'itinéraire.",
     "days_one": "{{count}} jour",
     "days_other": "{{count}} jours",
-    "fromPerPerson": "A partir de {{amount}} / personne",
-    "discover": "Decouvrir",
+    "fromPerPerson": "À partir de {{amount}} / personne",
+    "discover": "Découvrir",
     "forWho": "Pour qui",
-    "bestSeason": "Meilleure periode",
+    "bestSeason": "Meilleure période",
     "highlightsTitle": "Ce que vous allez vivre",
     "programmeTitle": "Le programme jour par jour",
     "notIncludedTitle": "Ce qui n'est pas compris",
     "budgetTitle": "Budget indicatif",
-    "budgetHint": "Hebergement, repas, transport local, guides et entrees. Hors vol international et visa.",
+    "budgetHint": "Hébergement, repas, transport local, guides et entrées. Hors vol international et visa.",
     "cloneCta": "Cloner ce voyage",
-    "cloneNote": "Cree un voyage dans « Mes voyages » avec toutes les etapes. Vous pourrez tout modifier ensuite.",
-    "cloneRequiresAuth": "Connectez-vous pour cloner cet itineraire.",
-    "cloned": "Itineraire clone dans vos voyages",
-    "notFound": "Itineraire introuvable",
+    "cloneNote": "Crée un voyage dans « Mes voyages » avec toutes les étapes. Vous pourrez tout modifier ensuite.",
+    "cloneRequiresAuth": "Connectez-vous pour cloner cet itinéraire.",
+    "cloned": "Itinéraire cloné dans vos voyages",
+    "notFound": "Itinéraire introuvable",
     "pace": {
       "tranquille": "Rythme tranquille",
-      "equilibre": "Rythme equilibre",
+      "equilibre": "Rythme équilibré",
       "intense": "Rythme soutenu"
     }
   },
   "nearMe": {
-    "enable": "Pres de moi",
-    "active": "Pres de moi ({{radius}} km)",
-    "disable": "Desactiver",
-    "widen": "Seulement {{count}} resultat(s) - elargir la zone",
-    "denied": "Localisation refusee. Autorisez-la dans les reglages de votre appareil pour voir ce qui est pres de vous.",
-    "servicesOff": "La localisation est desactivee sur votre telephone. Activez-la dans Parametres > Localisation, puis reessayez.",
-    "unavailable": "Impossible d'obtenir votre position pour le moment. Reessayez.",
-    "insecure": "La localisation n'est disponible qu'en connexion securisee (https)."
+    "enable": "Près de moi",
+    "active": "Près de moi ({{radius}} km)",
+    "disable": "Désactiver",
+    "widen": "Seulement {{count}} résultat(s) - élargir la zone",
+    "denied": "Localisation refusée. Autorisez-la dans les réglages de votre appareil pour voir ce qui est près de vous.",
+    "servicesOff": "La localisation est désactivée sur votre téléphone. Activez-la dans Paramètres > Localisation, puis réessayez.",
+    "unavailable": "Impossible d'obtenir votre position pour le moment. Réessayez.",
+    "insecure": "La localisation n'est disponible qu'en connexion sécurisée (https)."
   },
   "panorama": {
     "cta": "Visite 360°",

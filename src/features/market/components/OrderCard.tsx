@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ImageOff, Calendar } from 'lucide-react';
+import { ImageOff, Calendar, Truck } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Card } from '../../../shared/ui';
@@ -47,7 +47,25 @@ export function OrderCard({ order }: { order: OrderWithProduct }) {
             {t('market.orderQuantity', { count: order.quantity })}
           </span>
           <span className={styles.metaItem}>{t(`market.fulfillment.${order.fulfillment_mode}`)}</span>
+          {order.delivery_region && (
+            <span className={styles.metaItem}>
+              <Truck size={14} strokeWidth={2} />
+              {order.delivery_region}
+            </span>
+          )}
         </div>
+
+        {order.delivery_fee > 0 && (
+          <div className={styles.breakdown}>
+            <span>
+              {t('market.cartSubtotal')} : {order.subtotal.toLocaleString('fr-FR')} {order.currency}
+            </span>
+            <span>
+              {t('market.deliveryFee')} : {order.delivery_fee.toLocaleString('fr-FR')} {order.currency}
+              {order.delivery_provider ? ` · ${order.delivery_provider}` : ''}
+            </span>
+          </div>
+        )}
 
         <div className={styles.footer}>
           <span className={styles.price}>

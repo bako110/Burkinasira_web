@@ -1284,7 +1284,19 @@
       "les_deux": "Tʋʋlg bɩ rɩk"
     },
     "fulfillmentMode": "Tʋʋlg noore",
-    "contactUnavailable": "Koaadã ka be n na tõe n sõs ne fɛn-kãnga yĩnga ye."
+    "contactUnavailable": "Koaadã ka be n na tõe n sõs ne fɛn-kãnga yĩnga ye.",
+    "cartSubtotal": "Sous-total",
+    "deliveryRegion": "Région de livraison",
+    "deliveryRegionPlaceholder": "Choisir une région",
+    "deliveryAddress": "Adresse (facultatif)",
+    "deliveryAddressPlaceholder": "Quartier, rue, point de repère…",
+    "deliveryFee": "Frais de livraison",
+    "deliveryFeePending": "Choisir une région",
+    "deliveryFree": "Offerts",
+    "deliveryFeeUnavailable": "Les frais de livraison n'ont pas pu être calculés pour cette région.",
+    "deliveryEtaDays_one": "Livraison estimée sous {{count}} jour",
+    "deliveryEtaDays_other": "Livraison estimée sous {{count}} jours",
+    "deliveryEtaRange": "Livraison estimée sous {{min}} à {{max}} jours"
   },
   "community": {
     "title": "BurkinaSira tigims",

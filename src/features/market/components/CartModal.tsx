@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Trash2, ImageOff, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { Trash2, ImageOff, CheckCircle2, ShoppingBag, Truck } from 'lucide-react';
 
 import { Modal, Button } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { BURKINA_REGION_NAMES } from '../../../shared/data/burkinaRegions';
 import { useCartStore } from '../../../store/cart.store';
-import { useCreateOrder } from '../hooks/useOrders';
-import type { FulfillmentMode } from '../types';
+import { useCreateOrder, useDeliveryFeeQuote } from '../hooks/useOrders';
+import type { OrderFulfillmentMode } from '../types';
 import styles from './CartModal.module.css';
 
 interface CartModalProps {
@@ -26,14 +27,38 @@ export function CartModal({ open, onClose }: CartModalProps) {
   const clear = useCartStore((s) => s.clear);
   const { mutateAsync: createOrder } = useCreateOrder();
 
-  const [fulfillmentMode, setFulfillmentMode] = useState<FulfillmentMode>('les_deux');
+  const [fulfillmentMode, setFulfillmentMode] = useState<OrderFulfillmentMode>('retrait');
+  const [deliveryRegion, setDeliveryRegion] = useState('');
+  const [deliveryAddress, setDeliveryAddress] = useState('');
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [failedItemNames, setFailedItemNames] = useState<string[]>([]);
 
-  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const currency = items[0]?.currency ?? 'XOF';
+  const isDelivery = fulfillmentMode === 'livraison';
+
+  const {
+    data: feeQuote,
+    isFetching: isQuoting,
+    isError: isQuoteError,
+    error: quoteError,
+  } = useDeliveryFeeQuote(isDelivery ? deliveryRegion : undefined, subtotal);
+
+  const quoteErrorMessage =
+    (quoteError as { response?: { data?: { detail?: string } } })?.response?.data?.detail ??
+    t('market.deliveryFeeUnavailable');
+
+  // Frais de livraison retenus pour l'affichage du total. En mode retrait : 0.
+  // En livraison : le devis backend s'il a abouti, sinon on n'affiche pas de total ferme.
+  const deliveryFee = isDelivery ? feeQuote?.delivery_fee ?? null : 0;
+  const total = deliveryFee === null ? null : subtotal + deliveryFee;
+
+  const canCheckout =
+    items.length > 0 &&
+    !isCheckingOut &&
+    (!isDelivery || (Boolean(deliveryRegion) && !isQuoting && !isQuoteError && feeQuote != null));
 
   function handleClose() {
     setIsSuccess(false);
@@ -60,6 +85,12 @@ export function CartModal({ open, onClose }: CartModalProps) {
             product_id: item.product_id,
             quantity: item.quantity,
             fulfillment_mode: fulfillmentMode,
+            ...(isDelivery
+              ? {
+                  delivery_region: deliveryRegion,
+                  delivery_address: deliveryAddress.trim() || undefined,
+                }
+              : {}),
           });
           succeededIds.push(item.product_id);
         } catch {
@@ -83,6 +114,12 @@ export function CartModal({ open, onClose }: CartModalProps) {
       }
     }, t('market.cartCheckoutRequiresAuth'));
   }
+
+  const etaLabel = feeQuote?.eta_days_min
+    ? feeQuote.eta_days_max && feeQuote.eta_days_max !== feeQuote.eta_days_min
+      ? t('market.deliveryEtaRange', { min: feeQuote.eta_days_min, max: feeQuote.eta_days_max })
+      : t('market.deliveryEtaDays', { count: feeQuote.eta_days_min })
+    : null;
 
   return (
     <Modal open={open} onClose={handleClose} title={t('market.cartTitle')}>
@@ -174,19 +211,85 @@ export function CartModal({ open, onClose }: CartModalProps) {
             <select
               className={styles.fulfillmentSelect}
               value={fulfillmentMode}
-              onChange={(e) => setFulfillmentMode(e.target.value as FulfillmentMode)}
+              onChange={(e) => setFulfillmentMode(e.target.value as OrderFulfillmentMode)}
             >
-              <option value="les_deux">{t('market.fulfillment.les_deux')}</option>
-              <option value="livraison">{t('market.fulfillment.livraison')}</option>
               <option value="retrait">{t('market.fulfillment.retrait')}</option>
+              <option value="livraison">{t('market.fulfillment.livraison')}</option>
             </select>
           </div>
 
-          <div className={styles.totalRow}>
-            <span>{t('market.cartTotal')}</span>
-            <strong>
-              {total.toLocaleString('fr-FR')} {currency}
-            </strong>
+          {isDelivery && (
+            <div className={styles.deliveryBlock}>
+              <div className={styles.deliveryField}>
+                <label className={styles.deliveryLabel} htmlFor="cart-delivery-region">
+                  {t('market.deliveryRegion')}
+                </label>
+                <select
+                  id="cart-delivery-region"
+                  className={styles.fulfillmentSelect}
+                  value={deliveryRegion}
+                  onChange={(e) => setDeliveryRegion(e.target.value)}
+                >
+                  <option value="">{t('market.deliveryRegionPlaceholder')}</option>
+                  {BURKINA_REGION_NAMES.map((r) => (
+                    <option key={r} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className={styles.deliveryField}>
+                <label className={styles.deliveryLabel} htmlFor="cart-delivery-address">
+                  {t('market.deliveryAddress')}
+                </label>
+                <input
+                  id="cart-delivery-address"
+                  className={styles.deliveryInput}
+                  value={deliveryAddress}
+                  onChange={(e) => setDeliveryAddress(e.target.value)}
+                  placeholder={t('market.deliveryAddressPlaceholder')}
+                />
+              </div>
+              {deliveryRegion && isQuoteError && <p className={styles.error}>{quoteErrorMessage}</p>}
+            </div>
+          )}
+
+          <div className={styles.summary}>
+            <div className={styles.summaryRow}>
+              <span>{t('market.cartSubtotal')}</span>
+              <span>
+                {subtotal.toLocaleString('fr-FR')} {currency}
+              </span>
+            </div>
+            {isDelivery && (
+              <div className={styles.summaryRow}>
+                <span className={styles.deliveryLine}>
+                  <Truck size={14} strokeWidth={2} />
+                  {t('market.deliveryFee')}
+                  {feeQuote?.delivery_provider && (
+                    <span className={styles.provider}>· {feeQuote.delivery_provider}</span>
+                  )}
+                </span>
+                <span>
+                  {!deliveryRegion
+                    ? t('market.deliveryFeePending')
+                    : isQuoting
+                      ? t('common.loading')
+                      : isQuoteError
+                        ? '—'
+                        : feeQuote?.free_delivery_applied
+                          ? t('market.deliveryFree')
+                          : `${(feeQuote?.delivery_fee ?? 0).toLocaleString('fr-FR')} ${feeQuote?.currency ?? currency}`}
+                </span>
+              </div>
+            )}
+            {isDelivery && etaLabel && <p className={styles.eta}>{etaLabel}</p>}
+            <div className={styles.totalRow}>
+              <span>{t('market.cartTotal')}</span>
+              <strong>
+                {total === null ? '—' : `${total.toLocaleString('fr-FR')} ${currency}`}
+              </strong>
+            </div>
           </div>
 
           {checkoutError && <p className={styles.error}>{checkoutError}</p>}
@@ -195,7 +298,7 @@ export function CartModal({ open, onClose }: CartModalProps) {
             <Button variant="secondary" onClick={clear} disabled={isCheckingOut}>
               {t('market.cartClear')}
             </Button>
-            <Button fullWidth onClick={handleCheckout} disabled={isCheckingOut}>
+            <Button fullWidth onClick={handleCheckout} disabled={!canCheckout}>
               {isCheckingOut ? t('common.loading') : t('market.cartCheckout')}
             </Button>
           </div>

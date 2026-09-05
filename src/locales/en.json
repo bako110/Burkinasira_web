@@ -1284,7 +1284,19 @@
       "les_deux": "Delivery or pickup"
     },
     "fulfillmentMode": "Delivery method",
-    "contactUnavailable": "This seller cannot be contacted for this product."
+    "contactUnavailable": "This seller cannot be contacted for this product.",
+    "cartSubtotal": "Subtotal",
+    "deliveryRegion": "Delivery region",
+    "deliveryRegionPlaceholder": "Choose a region",
+    "deliveryAddress": "Address (optional)",
+    "deliveryAddressPlaceholder": "Neighbourhood, street, landmark…",
+    "deliveryFee": "Delivery fee",
+    "deliveryFeePending": "Choose a region",
+    "deliveryFree": "Free",
+    "deliveryFeeUnavailable": "Delivery fee could not be calculated for this region.",
+    "deliveryEtaDays_one": "Estimated delivery in {{count}} day",
+    "deliveryEtaDays_other": "Estimated delivery in {{count}} days",
+    "deliveryEtaRange": "Estimated delivery in {{min}}–{{max}} days"
   },
   "community": {
     "title": "BurkinaSira Community",

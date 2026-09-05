@@ -4,6 +4,8 @@ import type {
   ArtisanFilters,
   ArtisanSummary,
   CreateOrderPayload,
+  DeliveryFeeQuote,
+  DeliveryFeeQuoteRequest,
   Order,
   ProductDetail,
   ProductFilters,
@@ -34,6 +36,11 @@ export async function fetchArtisanById(artisanId: string): Promise<ArtisanSummar
 
 export async function createOrder(payload: CreateOrderPayload): Promise<Order> {
   const { data } = await apiClient.post<Order>('/market/orders', payload);
+  return data;
+}
+
+export async function quoteDeliveryFee(payload: DeliveryFeeQuoteRequest): Promise<DeliveryFeeQuote> {
+  const { data } = await apiClient.post<DeliveryFeeQuote>('/market/delivery-fees/quote', payload);
   return data;
 }
 

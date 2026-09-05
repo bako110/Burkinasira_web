@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { createOrder, fetchMyOrders, fetchProductById } from '../api/market.api';
+import { createOrder, fetchMyOrders, fetchProductById, quoteDeliveryFee } from '../api/market.api';
 import type { Order } from '../types';
 
 export interface OrderWithProduct extends Order {
@@ -37,5 +37,20 @@ export function useCreateOrder() {
   return useMutation({
     mutationFn: createOrder,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-orders'] }),
+  });
+}
+
+/**
+ * Estime les frais de livraison pour une région de destination et un sous-total.
+ * Désactivé tant que la région n'est pas renseignée. Le résultat sert d'aperçu ;
+ * le backend recalcule et fige les frais à la création de chaque commande.
+ */
+export function useDeliveryFeeQuote(region: string | undefined, subtotal: number) {
+  return useQuery({
+    queryKey: ['delivery-fee-quote', region, subtotal],
+    queryFn: () => quoteDeliveryFee({ region: region as string, subtotal }),
+    enabled: Boolean(region) && subtotal > 0,
+    staleTime: 5 * 60 * 1000,
+    retry: false,
   });
 }

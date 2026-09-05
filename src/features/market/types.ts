@@ -84,8 +84,16 @@ export interface Order {
   id: string;
   buyer_id: string;
   product_id: string;
+  artisan_id?: string;
   quantity: number;
   unit_price: number;
+  subtotal: number;
+  delivery_fee: number;
+  delivery_region?: string;
+  delivery_address?: string;
+  delivery_provider?: string;
+  delivery_eta_days_min?: number;
+  delivery_eta_days_max?: number;
   total_price: number;
   currency: string;
   fulfillment_mode: FulfillmentMode;
@@ -93,8 +101,36 @@ export interface Order {
   created_at: string;
 }
 
+/**
+ * Mode concret d'une commande : le backend refuse « les_deux » (ambigu pour le
+ * calcul des frais de livraison).
+ */
+export type OrderFulfillmentMode = 'livraison' | 'retrait';
+
 export interface CreateOrderPayload {
   product_id: string;
   quantity: number;
-  fulfillment_mode: FulfillmentMode;
+  fulfillment_mode: OrderFulfillmentMode;
+  /** Obligatoire quand fulfillment_mode vaut « livraison ». */
+  delivery_region?: string;
+  delivery_address?: string;
+}
+
+export interface DeliveryFeeQuoteRequest {
+  region: string;
+  subtotal: number;
+}
+
+export interface DeliveryFeeQuote {
+  region: string;
+  matched_region: string;
+  subtotal: number;
+  delivery_fee: number;
+  free_delivery_applied: boolean;
+  total: number;
+  currency: string;
+  agency_id?: string;
+  delivery_provider?: string;
+  eta_days_min?: number;
+  eta_days_max?: number;
 }
