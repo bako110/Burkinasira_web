@@ -1,9 +1,23 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Clock, Users, Languages, ImageOff, ArrowLeft, ExternalLink, Info } from 'lucide-react';
+import {
+  MapPin,
+  Star,
+  Clock,
+  Users,
+  Languages,
+  ImageOff,
+  ArrowLeft,
+  ExternalLink,
+  Info,
+  MessageCircle,
+} from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { ContactModal } from '../../messaging/components/ContactModal';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useExperienceDetail } from '../hooks/useExperienceDetail';
 import styles from './ExperienceDetailPage.module.css';
 
@@ -11,8 +25,14 @@ export function ExperienceDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const requireAuth = useRequireAuth();
+  const [contactOpen, setContactOpen] = useState(false);
 
   const { data: experience, isLoading, isError, refetch } = useExperienceDetail(id);
+
+  function handleContactHost() {
+    requireAuth(() => setContactOpen(true), t('experiences.contactRequiresAuth'));
+  }
 
   if (isLoading) {
     return (
@@ -151,6 +171,10 @@ export function ExperienceDetailPage() {
             ) : (
               <p className={styles.priceInfo}>{t('experiences.priceOnRequest')}</p>
             )}
+            <Button fullWidth onClick={handleContactHost}>
+              <MessageCircle size={16} strokeWidth={2} />
+              {t('experiences.contactHost')}
+            </Button>
             {mapsUrl && (
               <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
                 <ExternalLink size={15} strokeWidth={2} />
@@ -163,6 +187,15 @@ export function ExperienceDetailPage() {
       </div>
 
       <RelatedModules currentPath="/experiences" />
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        kind="touriste_hote"
+        otherUserId={experience.host_id}
+        recipientName={experience.host_name}
+        defaultMessage={t('experiences.contactDefaultMessage', { title: experience.title })}
+      />
     </div>
   );
 }

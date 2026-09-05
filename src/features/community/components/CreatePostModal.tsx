@@ -6,6 +6,7 @@ import { Modal, Button, Spinner } from '../../../shared/ui';
 import { useUploadMedia } from '../../../shared/hooks/useUploadMedia';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { useExperiences } from '../../experiences/hooks/useExperiences';
 import { useCreatePost } from '../hooks/useCreatePost';
 import type { PostType } from '../types';
 import styles from './CreatePostModal.module.css';
@@ -31,6 +32,11 @@ export function CreatePostModal({ open, onClose, groupId }: { open: boolean; onC
   const [placeName, setPlaceName] = useState('');
   const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null);
   const [isLocating, setIsLocating] = useState(false);
+  const [experienceId, setExperienceId] = useState('');
+
+  // Le lien vers une expérience vécue n'a de sens que pour un carnet de voyage.
+  const showExperiencePicker = type === 'carnet_voyage';
+  const { data: experiencesData } = useExperiences();
 
   function resetAndClose() {
     setType('recommandation');
@@ -38,6 +44,7 @@ export function CreatePostModal({ open, onClose, groupId }: { open: boolean; onC
     setMediaUrls([]);
     setPlaceName('');
     setCoords(null);
+    setExperienceId('');
     onClose();
   }
 
@@ -83,6 +90,7 @@ export function CreatePostModal({ open, onClose, groupId }: { open: boolean; onC
         media_urls: mediaUrls,
         group_id: groupId,
         location: coords ?? undefined,
+        related_experience_id: showExperiencePicker && experienceId ? experienceId : undefined,
       },
       {
         onSuccess: () => {
@@ -109,6 +117,27 @@ export function CreatePostModal({ open, onClose, groupId }: { open: boolean; onC
             ))}
           </select>
         </div>
+
+        {showExperiencePicker && (
+          <div className={styles.field}>
+            <label htmlFor="post-experience" className={styles.label}>
+              {t('community.linkExperience')}
+            </label>
+            <select
+              id="post-experience"
+              className={styles.select}
+              value={experienceId}
+              onChange={(e) => setExperienceId(e.target.value)}
+            >
+              <option value="">{t('community.linkExperienceNone')}</option>
+              {(experiencesData?.items ?? []).map((exp) => (
+                <option key={exp.id} value={exp.id}>
+                  {exp.title}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <div className={styles.field}>
           <label htmlFor="post-caption" className={styles.label}>

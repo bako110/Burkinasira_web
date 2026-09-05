@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, MessageCircle, ImageOff, ChevronLeft, ChevronRight, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, MessageCircle, ImageOff, ChevronLeft, ChevronRight, Send, Handshake } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Spinner, ImmersiveGallery, Modal, Avatar } from '../../../shared/ui';
@@ -53,6 +54,13 @@ export function PostCard({ post }: { post: Post }) {
       </div>
 
       {post.caption && <p className={styles.caption}>{post.caption}</p>}
+
+      {post.related_experience_id && (
+        <Link to={`/experiences/${post.related_experience_id}`} className={styles.experienceChip}>
+          <Handshake size={14} strokeWidth={2} />
+          {post.related_experience_title ?? t('community.linkedExperienceFallback')}
+        </Link>
+      )}
 
       {activeMedia && (
         <div className={styles.media}>

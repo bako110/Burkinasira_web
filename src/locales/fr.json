@@ -780,7 +780,16 @@
     },
     "filters": {
       "all": "Toutes"
-    }
+    },
+    "contactHost": "Contacter l'hôte",
+    "contactRequiresAuth": "Connectez-vous pour contacter l'hôte",
+    "contactDefaultMessage": "Bonjour, je suis intéressé(e) par votre expérience « {{title}} ».",
+    "localMeetTab": "Rencontres locales",
+    "localMeetHint": "Habitants, villages, séjours",
+    "localMeetTitle": "Rencontrer les habitants",
+    "localMeetText": "Des expériences proposées par des habitants : partager le quotidien d'un village, dormir chez l'habitant, découvrir un métier.",
+    "localMeetEmpty": "Aucune rencontre locale pour le moment.",
+    "seeAllExperiences": "Voir toutes les expériences"
   },
   "edu": {
     "title": "Tourisme éducatif",
@@ -1411,7 +1420,10 @@
     "allThemes": "Tous les thèmes",
     "otherRegion": "Autre (international / diaspora)",
     "customRegionLabel": "Précisez la région ou le pays",
-    "customRegionPlaceholder": "Ex : France, Canada, Côte d'Ivoire..."
+    "customRegionPlaceholder": "Ex : France, Canada, Côte d'Ivoire...",
+    "linkExperience": "Lier une expérience vécue",
+    "linkExperienceNone": "Aucune",
+    "linkedExperienceFallback": "Voir l'expérience"
   },
   "categories": {
     "site_naturel": "Site naturel",

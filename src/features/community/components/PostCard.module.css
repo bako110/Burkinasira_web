@@ -70,6 +70,24 @@
   white-space: pre-line;
 }
 
+.experienceChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: var(--space-3) var(--space-4) 0;
+  padding: 4px var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.experienceChip:hover {
+  text-decoration: underline;
+}
+
 .media {
   position: relative;
   margin-top: var(--space-3);

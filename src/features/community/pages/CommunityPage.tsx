@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus, Users, Image, HelpCircle, Heart, UsersRound } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Plus, Users, Image, HelpCircle, Heart, UsersRound, Handshake } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults, RegionProvinceFilter } from '../../../shared/ui';
+import { useExperiences } from '../../experiences/hooks/useExperiences';
+import { ExperienceCard } from '../../experiences/components/ExperienceCard';
+import type { ExperienceType } from '../../experiences/types';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useAuthStore } from '../../../store/auth.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -24,7 +28,17 @@ import { CreateGroupModal } from '../components/CreateGroupModal';
 import { GROUP_THEMES, type Post, type Question } from '../types';
 import styles from './CommunityPage.module.css';
 
-type Tab = 'posts' | 'questions' | 'favorites' | 'groups';
+type Tab = 'posts' | 'questions' | 'favorites' | 'groups' | 'localMeet';
+
+/** Types d'expériences relevant du tourisme communautaire (touriste ↔ habitant). */
+const LOCAL_MEET_TYPES: ExperienceType[] = [
+  'rencontre_habitant',
+  'visite_village',
+  'hebergement_habitant',
+  'decouverte_metier',
+  'agritourisme',
+  'rencontre_artiste',
+];
 
 const POSTS_PAGE_SIZE = 12;
 
@@ -68,6 +82,14 @@ export function CommunityPage() {
     groupRegion,
     groupTheme || undefined,
     groupProvince,
+  );
+
+  // Rencontres locales : on récupère les expériences et on ne garde que celles
+  // qui relèvent du tourisme communautaire (contact direct avec des habitants).
+  const { data: experiencesData, isLoading: isLoadingLocalMeet } = useExperiences();
+  const localMeetExperiences = useMemo(
+    () => (experiencesData?.items ?? []).filter((e) => LOCAL_MEET_TYPES.includes(e.type)),
+    [experiencesData],
   );
 
   function applyGroupRegionProvince(regionValue: string | undefined, provinceValue: string | undefined) {
@@ -146,6 +168,19 @@ export function CommunityPage() {
             <span className={styles.navText}>
               <span className={styles.navLabel}>{t('community.tabGroups')}</span>
               <span className={styles.navHint}>{t('community.navHintGroups')}</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            className={clsx(styles.navCard, tab === 'localMeet' && styles.navCardActive)}
+            onClick={() => setTab('localMeet')}
+          >
+            <span className={clsx(styles.navIcon, styles.navIconLocalMeet)}>
+              <Handshake size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.navText}>
+              <span className={styles.navLabel}>{t('experiences.localMeetTab')}</span>
+              <span className={styles.navHint}>{t('experiences.localMeetHint')}</span>
             </span>
           </button>
         </div>
@@ -313,6 +348,40 @@ export function CommunityPage() {
                   <GroupCard key={group.id} group={group} />
                 ))}
               </div>
+            )}
+          </div>
+        )}
+
+        {tab === 'localMeet' && (
+          <div className={styles.tabContent}>
+            <div className={styles.localMeetIntro}>
+              <h2 className={styles.localMeetTitle}>{t('experiences.localMeetTitle')}</h2>
+              <p className={styles.localMeetText}>{t('experiences.localMeetText')}</p>
+            </div>
+
+            {isLoadingLocalMeet && (
+              <div className={styles.center}>
+                <Spinner size={24} />
+              </div>
+            )}
+
+            {!isLoadingLocalMeet && localMeetExperiences.length === 0 && (
+              <EmptyResults variant="empty" title={t('experiences.localMeetEmpty')} />
+            )}
+
+            {!isLoadingLocalMeet && localMeetExperiences.length > 0 && (
+              <>
+                <div className={styles.grid}>
+                  {localMeetExperiences.map((experience) => (
+                    <ExperienceCard key={experience.id} experience={experience} />
+                  ))}
+                </div>
+                <div className={styles.loadMoreRow}>
+                  <Link to="/experiences" className={styles.seeAllLink}>
+                    {t('experiences.seeAllExperiences')}
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         )}

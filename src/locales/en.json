@@ -780,7 +780,16 @@
     },
     "filters": {
       "all": "All"
-    }
+    },
+    "contactHost": "Contact the host",
+    "contactRequiresAuth": "Sign in to contact the host",
+    "contactDefaultMessage": "Hello, I am interested in your experience \"{{title}}\".",
+    "localMeetTab": "Local encounters",
+    "localMeetHint": "Locals, villages, homestays",
+    "localMeetTitle": "Meet the locals",
+    "localMeetText": "Experiences hosted by locals: share daily village life, stay with a family, learn a craft.",
+    "localMeetEmpty": "No local encounters yet.",
+    "seeAllExperiences": "See all experiences"
   },
   "edu": {
     "title": "Educational tourism",
@@ -1411,7 +1420,10 @@
     "allThemes": "All themes",
     "otherRegion": "Other (international / diaspora)",
     "customRegionLabel": "Specify the region or country",
-    "customRegionPlaceholder": "E.g. France, Canada, Ivory Coast..."
+    "customRegionPlaceholder": "E.g. France, Canada, Ivory Coast...",
+    "linkExperience": "Link a lived experience",
+    "linkExperienceNone": "None",
+    "linkedExperienceFallback": "View the experience"
   },
   "categories": {
     "site_naturel": "Natural site",

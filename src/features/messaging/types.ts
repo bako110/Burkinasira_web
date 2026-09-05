@@ -4,6 +4,7 @@ export type ConversationKind =
   | 'touriste_restaurant'
   | 'touriste_artisan'
   | 'touriste_transport'
+  | 'touriste_hote'
   | 'entreprise_prestataire'
   | 'support_client'
   | 'groupe_voyageurs';

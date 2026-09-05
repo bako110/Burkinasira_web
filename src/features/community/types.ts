@@ -14,6 +14,8 @@ export interface Post {
   caption?: string;
   media_urls: string[];
   related_destination_id?: string;
+  related_experience_id?: string;
+  related_experience_title?: string;
   group_id?: string;
   location?: GeoPoint;
   like_count: number;
@@ -27,6 +29,7 @@ export interface CreatePostPayload {
   caption?: string;
   media_urls?: string[];
   related_destination_id?: string;
+  related_experience_id?: string;
   group_id?: string;
   location?: GeoPoint;
 }
