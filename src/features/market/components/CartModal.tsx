@@ -161,7 +161,7 @@ export function CartModal({ open, onClose }: CartModalProps) {
               <div key={item.product_id} className={styles.item}>
                 <div className={styles.itemImage}>
                   {item.photo ? (
-                    <img src={item.photo} alt="" />
+                    <img src={item.photo} alt="" className={styles.itemImg} />
                   ) : (
                     <ProductImagePlaceholder category={item.category} iconSize={18} />
                   )}

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { BedDouble, UtensilsCrossed, Bus, ShoppingBasket, Compass, PartyPopper, ArrowRight } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui/Reveal';
-import { FloatingFlags } from '../../../shared/ui';
 import styles from './CategoryShowcase.module.css';
 
 const CATEGORIES = [
@@ -20,15 +19,19 @@ export function CategoryShowcase() {
 
   return (
     <section className={styles.section}>
-      <FloatingFlags tone="subtle" />
-      <Reveal>
-        <h2 className={styles.heading}>{t('home.categoriesTitle')}</h2>
-        <p className={styles.subheading}>{t('home.categoriesSubtitle')}</p>
-      </Reveal>
+      <div className={styles.headingRow}>
+        <Reveal className={styles.headingCol}>
+          <span className={styles.kicker}>{t('home.badge')}</span>
+          <h2 className={styles.heading}>{t('home.categoriesTitle')}</h2>
+        </Reveal>
+        <Reveal delay={80} className={styles.subheadingCol}>
+          <p className={styles.subheading}>{t('home.categoriesSubtitle')}</p>
+        </Reveal>
+      </div>
 
       <div className={styles.grid}>
         {CATEGORIES.map((cat, i) => (
-          <Reveal key={cat.key} delay={i * 70}>
+          <Reveal key={cat.key} delay={i * 70} className={styles.cardOuter}>
             <Link to={cat.to} className={styles.card} data-tone={cat.tone}>
               <span className={styles.iconWrap}>
                 <cat.Icon size={22} strokeWidth={1.75} className={styles.icon} />

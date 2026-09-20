@@ -14,7 +14,7 @@ export function EduOutingCard({ outing }: { outing: EduOuting }) {
     <Link to={`/edu/${outing.id}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.iconWrap}>
-          <GraduationCap size={32} strokeWidth={1.5} />
+          <GraduationCap size={32} strokeWidth={1.5} className={styles.icon} />
           <span className={styles.categoryBadge}>{t(`edu.types.${outing.type}`, outing.type)}</span>
         </div>
         <div className={styles.body}>

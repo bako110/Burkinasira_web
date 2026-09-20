@@ -120,18 +120,6 @@
   font-weight: 600;
 }
 
-.onDutyBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px var(--space-2);
-  border-radius: var(--radius-full);
-  background-color: var(--color-success);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
 .body {
   display: flex;
   flex-direction: column;
@@ -148,7 +136,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .body {
     flex-direction: row;
     align-items: flex-start;
@@ -187,7 +175,7 @@
   flex-shrink: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .sidebar {
     width: 320px;
     position: sticky;
@@ -204,13 +192,6 @@
   background-color: var(--color-bg-raised);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
-}
-
-.priceInfo {
-  margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 800;
-  color: var(--color-brand);
 }
 
 .contactList {
@@ -254,30 +235,6 @@ a.contactRow:hover svg {
   color: var(--color-brand);
   font-size: 0.8125rem;
   font-weight: 600;
-}
-
-.hoursList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.hoursRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-2) 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.875rem;
-}
-
-.hoursDay {
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.hoursTime {
-  color: var(--color-text-muted);
 }
 
 .operator {

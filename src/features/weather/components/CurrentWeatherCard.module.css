@@ -1,11 +1,40 @@
 .card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-5);
+  padding: var(--space-6);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #075985 60%, #0c2f42 100%);
   color: #fff;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-7);
+  }
+}
+
+.mesh {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-mesh);
+  opacity: 0.45;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffe9b8;
 }
 
 .main {

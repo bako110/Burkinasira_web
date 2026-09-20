@@ -10,11 +10,11 @@ import {
   ImageOff,
   ArrowLeft,
   ExternalLink,
-  Info,
   MessageCircle,
+  Maximize2,
 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -27,6 +27,8 @@ export function ExperienceDetailPage() {
   const navigate = useNavigate();
   const requireAuth = useRequireAuth();
   const [contactOpen, setContactOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryStart, setGalleryStart] = useState(0);
 
   const { data: experience, isLoading, isError, refetch } = useExperienceDetail(id);
 
@@ -59,13 +61,19 @@ export function ExperienceDetailPage() {
     );
   }
 
-  const cover = experience.photos?.[0];
-  const gallery = experience.photos?.slice(1, 5) ?? [];
+  const photos = experience.photos ?? [];
+  const cover = photos[0];
+  const gallery = photos.slice(1, 5);
   const location = [experience.city, experience.region].filter(Boolean).join(', ');
   const mapsUrl = experience.location
     ? `https://www.google.com/maps?q=${experience.location.latitude},${experience.location.longitude}`
     : undefined;
   const durationHours = experience.duration_minutes ? experience.duration_minutes / 60 : undefined;
+
+  function openGallery(index: number) {
+    setGalleryStart(index);
+    setGalleryOpen(true);
+  }
 
   return (
     <div className={styles.page}>
@@ -97,26 +105,43 @@ export function ExperienceDetailPage() {
               </span>
             )}
           </div>
+
+          {photos.length > 0 && (
+            <div className={styles.heroActions}>
+              <button type="button" className={styles.heroActionBtn} onClick={() => openGallery(0)}>
+                <Maximize2 size={15} strokeWidth={2} />
+                {t('gallery.ctaExperience')}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {gallery.length > 0 && (
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
-            <img key={i} src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            <Reveal key={i} delay={i * 70} className={styles.galleryItem}>
+              <button type="button" className={styles.galleryImgButton} onClick={() => openGallery(i + 1)}>
+                <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+                {i === gallery.length - 1 && photos.length > 5 && (
+                  <span className={styles.galleryMoreOverlay}>+{photos.length - 5}</span>
+                )}
+              </button>
+            </Reveal>
           ))}
         </div>
       )}
 
       <div className={styles.body}>
         <div className={styles.main}>
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+            <h2 className={styles.sectionTitle}>{experience.title}</h2>
             <p className={styles.description}>{experience.description}</p>
-          </section>
+          </Reveal>
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('experiences.details')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('experiences.details')}</span>
             <div className={styles.detailsList}>
               {typeof durationHours === 'number' && (
                 <div className={styles.detailRow}>
@@ -137,14 +162,11 @@ export function ExperienceDetailPage() {
                 </div>
               )}
             </div>
-          </section>
+          </Reveal>
 
           {experience.revenue_share && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>
-                <Info size={16} strokeWidth={2} />
-                {t('experiences.revenueShareTitle')}
-              </h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('experiences.revenueShareTitle')}</span>
               <div className={styles.revenueBox}>
                 {typeof experience.revenue_share.host_percent === 'number' && (
                   <span>{t('experiences.revenueHost', { percent: experience.revenue_share.host_percent })}</span>
@@ -158,7 +180,7 @@ export function ExperienceDetailPage() {
                   <p className={styles.revenueNotes}>{experience.revenue_share.notes}</p>
                 )}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 
@@ -176,10 +198,12 @@ export function ExperienceDetailPage() {
               {t('experiences.contactHost')}
             </Button>
             {mapsUrl && (
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
-                <ExternalLink size={15} strokeWidth={2} />
-                <span>{t('destinations.openInMaps')}</span>
-              </a>
+              <div className={styles.contactList}>
+                <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
+                  <ExternalLink size={15} strokeWidth={2} />
+                  <span>{t('destinations.openInMaps')}</span>
+                </a>
+              </div>
             )}
           </div>
           <ReportErrorButton itemType="experience" itemId={experience.id} className={styles.reportBtn} />
@@ -195,6 +219,14 @@ export function ExperienceDetailPage() {
         otherUserId={experience.host_id}
         recipientName={experience.host_name}
         defaultMessage={t('experiences.contactDefaultMessage', { title: experience.title })}
+      />
+
+      <ImmersiveGallery
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        urls={photos}
+        title={experience.title}
+        startIndex={galleryStart}
       />
     </div>
   );

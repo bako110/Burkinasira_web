@@ -134,47 +134,58 @@ export function MarketPage() {
         </div>
 
         {tab === 'products' && (
-          <>
-            <ProductFilters active={urlCategory} onChange={applyCategory} />
-
-            {!showInitialLoading && !isError && (
-              <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-            )}
-
-            {showInitialLoading && (
-              <div className={styles.grid}>
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <CardSkeleton key={i} />
-                ))}
+          <div className={styles.layout}>
+            <aside className={styles.sidebar}>
+              <div className={styles.sidebarInner}>
+                <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+                <ProductFilters active={urlCategory} onChange={applyCategory} />
               </div>
-            )}
+            </aside>
 
-            {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+            <div className={styles.results}>
+              <div className={styles.mobileFilters}>
+                <ProductFilters active={urlCategory} onChange={applyCategory} />
+              </div>
 
-            {!showInitialLoading && !isError && accumulated.length === 0 && (
-              <EmptyResults variant="empty" title={t('market.empty')} text={t('explore.emptyText')} />
-            )}
+              {!showInitialLoading && !isError && (
+                <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+              )}
 
-            {!showInitialLoading && !isError && accumulated.length > 0 && (
-              <>
+              {showInitialLoading && (
                 <div className={styles.grid}>
-                  {accumulated.map((product, i) => (
-                    <Reveal key={product.id} delay={Math.min(i, 10) * 40}>
-                      <ProductCard product={product} />
-                    </Reveal>
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <CardSkeleton key={i} />
                   ))}
                 </div>
+              )}
 
-                {hasMore && (
-                  <div className={styles.loadMoreRow}>
-                    <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                      {isFetching ? t('common.loading') : t('explore.loadMore')}
-                    </Button>
+              {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+              {!showInitialLoading && !isError && accumulated.length === 0 && (
+                <EmptyResults variant="empty" title={t('market.empty')} text={t('explore.emptyText')} />
+              )}
+
+              {!showInitialLoading && !isError && accumulated.length > 0 && (
+                <>
+                  <div className={styles.grid}>
+                    {accumulated.map((product, i) => (
+                      <Reveal key={product.id} delay={Math.min(i, 10) * 40}>
+                        <ProductCard product={product} />
+                      </Reveal>
+                    ))}
                   </div>
-                )}
-              </>
-            )}
-          </>
+
+                  {hasMore && (
+                    <div className={styles.loadMoreRow}>
+                      <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                        {isFetching ? t('common.loading') : t('explore.loadMore')}
+                      </Button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
         )}
 
         {tab === 'artisans' && (

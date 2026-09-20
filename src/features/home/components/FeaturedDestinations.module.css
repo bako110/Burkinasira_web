@@ -2,11 +2,9 @@
   position: relative;
   overflow: hidden;
   padding: var(--space-8) var(--space-4);
-  max-width: 1200px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  background-color: var(--color-bg-subtle);
-  border-radius: var(--radius-lg);
 }
 
 @media (max-width: 480px) {
@@ -16,8 +14,6 @@
 }
 
 .headingRow {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -26,30 +22,49 @@
   margin-bottom: var(--space-6);
 }
 
-.heading {
-  margin: 0 0 var(--space-2);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
+@media (min-width: 1024px) {
+  .headingRow {
+    margin-bottom: var(--space-8);
+  }
 }
 
-.subheading {
+.headingCol {
+  max-width: 620px;
+}
+
+.kicker {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.heading {
   margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.55;
   color: var(--color-text-muted);
-  font-size: 1rem;
 }
 
 .seeAll {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   color: var(--color-brand);
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   text-decoration: none;
   white-space: nowrap;
+  transition: gap var(--transition-fast);
 }
 
 .seeAll:hover {
-  text-decoration: underline;
+  gap: var(--space-2);
 }
 
 .grid {
@@ -71,6 +86,43 @@
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-5);
+  }
+
+  /* editorial lead tile: the first destination spans a larger, immersive block */
+  .gridItem:nth-child(1),
+  .skeleton:nth-child(1) {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+
+  .gridItem:nth-child(2),
+  .skeleton:nth-child(2) {
+    grid-column: span 2;
+  }
+
+  .gridItem:nth-child(3),
+  .skeleton:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .gridItem:nth-child(4),
+  .gridItem:nth-child(5),
+  .gridItem:nth-child(6),
+  .skeleton:nth-child(4),
+  .skeleton:nth-child(5),
+  .skeleton:nth-child(6) {
+    grid-column: span 2;
+  }
+}
+
+.gridItem {
+  height: 100%;
 }
 
 .skeleton {

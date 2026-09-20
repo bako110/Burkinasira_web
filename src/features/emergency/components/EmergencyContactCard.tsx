@@ -17,16 +17,20 @@ export function EmergencyContactCard({ contact }: { contact: EmergencyContact })
   const Icon = ICONS[contact.type] ?? MoreHorizontal;
 
   return (
-    <a href={`tel:${contact.phone_number}`} className={styles.card}>
+    <a
+      href={`tel:${contact.phone_number}`}
+      className={styles.card}
+      aria-label={`${t('emergency.callAction')} ${contact.label || t(`emergency.types.${contact.type}`)} ${contact.phone_number}`}
+    >
       <span className={styles.icon}>
-        <Icon size={22} strokeWidth={1.75} />
+        <Icon size={24} strokeWidth={1.75} />
       </span>
       <div className={styles.text}>
         <span className={styles.label}>{contact.label || t(`emergency.types.${contact.type}`)}</span>
         <span className={styles.number}>{contact.phone_number}</span>
       </div>
       <span className={styles.callBtn}>
-        <Phone size={16} strokeWidth={2} />
+        <Phone size={18} strokeWidth={2} />
       </span>
     </a>
   );

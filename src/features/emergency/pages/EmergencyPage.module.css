@@ -7,15 +7,22 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: var(--space-7) var(--space-4) var(--space-6);
-  background: linear-gradient(135deg, #dc2626 0%, #7c2d12 100%);
+  padding: var(--space-8) var(--space-4) var(--space-7);
+  background: linear-gradient(150deg, #dc2626 0%, #991b1b 55%, #450a0a 100%);
   isolation: isolate;
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding: var(--space-5) var(--space-3) var(--space-4);
+    padding: var(--space-6) var(--space-3) var(--space-5);
   }
+}
+
+.heroMesh {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-mesh);
+  opacity: 0.45;
 }
 
 .heroContent {
@@ -34,25 +41,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.16);
   color: #fff;
 }
 
 .heroTitle {
   margin: 0;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.75rem, 4.6vw, 2.75rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .heroSubtitle {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.9375rem;
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9688rem;
+  line-height: 1.6;
 }
 
 .heroActions {
@@ -60,29 +70,74 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-3);
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  padding: var(--space-5) var(--space-4) var(--space-8);
-  max-width: 800px;
+  gap: var(--space-7);
+  padding: var(--space-6) var(--space-4) var(--space-8);
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .body {
+    padding: var(--space-8) var(--space-6) var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  .body {
+    padding: var(--space-5) var(--space-3) var(--space-6);
+    gap: var(--space-6);
+  }
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-danger);
 }
 
 .sectionTitle {
-  margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 700;
+  margin: var(--space-1) 0 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.contactsHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .contactsHead {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
 }
 
 .alertList {
@@ -100,11 +155,64 @@
 .contactGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 @media (max-width: 480px) {
   .contactGrid {
     grid-template-columns: 1fr;
   }
+}
+
+.tipBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-brand-surface);
+  border: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .tipBlock {
+    padding: var(--space-6);
+  }
+}
+
+.tipList {
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .tipList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tipList li {
+  position: relative;
+  padding: var(--space-3) var(--space-3) var(--space-3) calc(var(--space-3) + 14px);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.tipList li::before {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
 }

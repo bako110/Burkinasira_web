@@ -19,9 +19,10 @@
 }
 
 .itemImage {
+  position: relative;
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  aspect-ratio: 1;
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
@@ -31,7 +32,8 @@
   color: var(--color-text-subtle);
 }
 
-.itemImage img {
+.itemImg {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -48,6 +50,7 @@
 .itemName {
   font-size: 0.875rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--color-text);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -220,13 +223,19 @@
 }
 
 .totalRow strong {
-  font-size: 1.125rem;
-  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-brand);
 }
 
 .actions {
+  position: sticky;
+  bottom: 0;
   display: flex;
   gap: var(--space-3);
+  padding-top: var(--space-3);
+  background-color: var(--color-bg-raised);
 }
 
 .error {

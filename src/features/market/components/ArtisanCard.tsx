@@ -20,7 +20,7 @@ export function ArtisanCard({ artisan }: ArtisanCardProps) {
     <div className={styles.card}>
       <div className={styles.avatar}>
         {artisan.photo_url ? (
-          <img src={artisan.photo_url} alt={artisan.display_name} />
+          <img src={artisan.photo_url} alt={artisan.display_name} className={styles.avatarImg} />
         ) : (
           <User size={22} strokeWidth={1.5} />
         )}
@@ -51,7 +51,12 @@ export function ArtisanCard({ artisan }: ArtisanCardProps) {
         </div>
         {artisan.story && <p className={styles.story}>{artisan.story}</p>}
         {allMedia.length > 0 && (
-          <Button variant="secondary" size="sm" onClick={() => setGalleryOpen(true)}>
+          <Button
+            className={styles.galleryBtn}
+            variant="secondary"
+            size="sm"
+            onClick={() => setGalleryOpen(true)}
+          >
             <Maximize2 size={14} strokeWidth={2} />
             {t('gallery.ctaArtisan')}
           </Button>

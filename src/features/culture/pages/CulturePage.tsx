@@ -105,53 +105,71 @@ export function CulturePage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <CultureFilters active={urlType} onChange={applyType} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <CultureFilters active={urlType} onChange={applyType} layout="stack" />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <CultureFilters active={urlType} onChange={applyType} />
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults variant="empty" title={t('culture.empty')} text={t('explore.emptyText')} />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((content, i) => (
-                <Reveal key={content.id} delay={Math.min(i, 8) * 50}>
-                  <CultureCard content={content} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults variant="empty" title={t('culture.empty')} text={t('explore.emptyText')} />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((content, i) => (
+                  <Reveal key={content.id} delay={Math.min(i, 8) * 50}>
+                    <CultureCard content={content} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/culture" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/culture" />
+        </div>
       </div>
     </div>
   );

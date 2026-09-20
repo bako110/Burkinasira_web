@@ -167,20 +167,38 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
 }
 
 .sectionTitle {
   margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 700;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .description {
   margin: 0;
   color: var(--color-text-muted);
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 680px;
 }
 
 .mediaGrid {
@@ -190,19 +208,28 @@
 }
 
 .mediaThumbButton {
+  position: relative;
   display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   padding: 0;
   border: none;
   border-radius: var(--radius-md);
   overflow: hidden;
   cursor: pointer;
+  background-color: var(--color-bg-inset);
 }
 
 .mediaThumb {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.mediaThumbButton:hover .mediaThumb {
+  transform: scale(1.06);
 }
 
 .sidebar {
@@ -231,7 +258,7 @@
   border-radius: var(--radius-lg);
   background-color: var(--color-bg-raised);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
 }
 
 .priceInfo {

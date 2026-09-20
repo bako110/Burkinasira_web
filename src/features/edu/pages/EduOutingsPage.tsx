@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, RelatedModules } from '../../../shared/ui';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useEduOutings } from '../hooks/useEduOutings';
 import { EduOutingCard } from '../components/EduOutingCard';
@@ -72,6 +72,11 @@ export function EduOutingsPage() {
     });
   }
 
+  function resetFilters() {
+    setQueryInput('');
+    setSearchParams({});
+  }
+
   const total = data?.total ?? 0;
   const hasMore = accumulated.length > 0 && accumulated.length < total;
   const showInitialLoading = isLoading && page === 1;
@@ -90,53 +95,63 @@ export function EduOutingsPage() {
       />
 
       <div className={styles.body}>
-        <EduOutingFilters active={urlType} onChange={applyType} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <EduOutingFilters active={urlType} onChange={applyType} layout="stack" />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <EduOutingFilters active={urlType} onChange={applyType} />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('edu.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((outing, i) => (
-                <Reveal key={outing.id} delay={Math.min(i, 8) * 50}>
-                  <EduOutingCard outing={outing} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('edu.empty')}
+              text={t('explore.emptyText')}
+              onReset={resetFilters}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((outing, i) => (
+                  <Reveal key={outing.id} delay={Math.min(i, 8) * 50}>
+                    <EduOutingCard outing={outing} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
+
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/edu" />
+        </div>
       </div>
     </div>
   );

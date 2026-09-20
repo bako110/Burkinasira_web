@@ -43,112 +43,119 @@ export function Hero() {
       <div className={styles.pattern} aria-hidden="true" />
       <FloatingFlags tone="bold" />
 
-      <div className={styles.content}>
-        <span className={styles.badge}>{t('home.badge')}</span>
+      <div className={styles.layout}>
+        <div className={styles.textBlock}>
+          <span className={styles.badge}>{t('home.badge')}</span>
 
-        <h1 className={styles.title}>
-          <span className={styles.titleLine}>{t('home.titleLine1')}</span>
-          <span className={styles.titleAccent}>{t('home.titleLine2')}</span>
-        </h1>
+          <h1 className={styles.title}>
+            <span className={styles.titleLine}>{t('home.titleLine1')}</span>
+            <span className={styles.titleAccent}>{t('home.titleLine2')}</span>
+          </h1>
 
-        <p className={styles.subtitle}>{t('home.subtitle')}</p>
+          <p className={styles.subtitle}>{t('home.subtitle')}</p>
 
-        <div className={styles.searchWrap} ref={wrapRef}>
-          <form className={styles.searchBar} onSubmit={handleSearch} autoComplete="off">
-            <Search size={20} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
-            <input
-              className={styles.searchInput}
-              placeholder={t('home.searchPlaceholder')}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onFocus={() => setFocused(true)}
-              aria-label={t('common.search')}
-            />
-            <button type="submit" className={styles.searchButton}>
-              {t('common.search')}
-            </button>
-          </form>
+          <div className={styles.statsRow}>
+            <div className={styles.statItem}>
+              <MapPin size={16} strokeWidth={2} className={styles.statIcon} aria-hidden="true" />
+              <div>
+                <strong>47</strong>
+                <span>{t('home.floatProvinces')}</span>
+              </div>
+            </div>
+            <div className={styles.statDivider} aria-hidden="true" />
+            <div className={styles.statItem}>
+              <span className={styles.floatStars} aria-hidden="true">
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+              </span>
+              <span className={styles.statLabel}>{t('home.floatRating')}</span>
+            </div>
+          </div>
+        </div>
 
-          {showSuggestions && (
-            <div className={styles.suggestions}>
-              {isFetching && (
-                <div className={styles.suggestionsLoading}>
-                  <Spinner size={18} />
-                </div>
-              )}
+        <div className={styles.searchPanel}>
+          <div className={styles.searchWrap} ref={wrapRef}>
+            <form className={styles.searchBar} onSubmit={handleSearch} autoComplete="off">
+              <Search size={20} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
+              <input
+                className={styles.searchInput}
+                placeholder={t('home.searchPlaceholder')}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onFocus={() => setFocused(true)}
+                aria-label={t('common.search')}
+              />
+              <button type="submit" className={styles.searchButton}>
+                {t('common.search')}
+              </button>
+            </form>
 
-              {!isFetching && data && data.items.length > 0 && (
-                <>
-                  {data.items.map((destination) => (
+            {showSuggestions && (
+              <div className={styles.suggestions}>
+                {isFetching && (
+                  <div className={styles.suggestionsLoading}>
+                    <Spinner size={18} />
+                  </div>
+                )}
+
+                {!isFetching && data && data.items.length > 0 && (
+                  <>
+                    {data.items.map((destination) => (
+                      <Link
+                        key={destination.id}
+                        to={`/explore/${destination.slug}`}
+                        className={styles.suggestionItem}
+                        onClick={() => setFocused(false)}
+                      >
+                        <span className={styles.suggestionThumb}>
+                          {destination.photo ? (
+                            <img src={destination.photo} alt="" />
+                          ) : (
+                            <ImageOff size={16} strokeWidth={1.75} />
+                          )}
+                        </span>
+                        <span className={styles.suggestionText}>
+                          <span className={styles.suggestionName}>{destination.name}</span>
+                          <span className={styles.suggestionMeta}>
+                            {[destination.city, destination.region].filter(Boolean).join(', ')}
+                          </span>
+                        </span>
+                      </Link>
+                    ))}
                     <Link
-                      key={destination.id}
-                      to={`/explore/${destination.slug}`}
-                      className={styles.suggestionItem}
+                      to={`/explore?q=${encodeURIComponent(query)}`}
+                      className={styles.suggestionSeeAll}
                       onClick={() => setFocused(false)}
                     >
-                      <span className={styles.suggestionThumb}>
-                        {destination.photo ? (
-                          <img src={destination.photo} alt="" />
-                        ) : (
-                          <ImageOff size={16} strokeWidth={1.75} />
-                        )}
-                      </span>
-                      <span className={styles.suggestionText}>
-                        <span className={styles.suggestionName}>{destination.name}</span>
-                        <span className={styles.suggestionMeta}>
-                          {[destination.city, destination.region].filter(Boolean).join(', ')}
-                        </span>
-                      </span>
+                      {t('home.seeAllResults', { query })}
                     </Link>
-                  ))}
-                  <Link
-                    to={`/explore?q=${encodeURIComponent(query)}`}
-                    className={styles.suggestionSeeAll}
-                    onClick={() => setFocused(false)}
-                  >
-                    {t('home.seeAllResults', { query })}
-                  </Link>
-                </>
-              )}
+                  </>
+                )}
 
-              {!isFetching && data && data.items.length === 0 && (
-                <p className={styles.suggestionsEmpty}>{t('home.noSuggestions')}</p>
-              )}
-            </div>
-          )}
-        </div>
+                {!isFetching && data && data.items.length === 0 && (
+                  <p className={styles.suggestionsEmpty}>{t('home.noSuggestions')}</p>
+                )}
+              </div>
+            )}
+          </div>
 
-        <div className={styles.quickTags}>
-          {(t('home.quickTags', { returnObjects: true }) as string[]).map((tag) => (
-            <button
-              key={tag}
-              type="button"
-              className={styles.tag}
-              onClick={() => navigate(`/explore?q=${encodeURIComponent(tag)}`)}
-            >
-              {tag}
-            </button>
-          ))}
+          <p className={styles.quickTagsLabel}>{t('common.exploreAlso')}</p>
+          <div className={styles.quickTags}>
+            {(t('home.quickTags', { returnObjects: true }) as string[]).map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                className={styles.tag}
+                onClick={() => navigate(`/explore?q=${encodeURIComponent(tag)}`)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className={styles.floatCardLeft} aria-hidden="true">
-        <MapPin size={16} strokeWidth={2} />
-        <div>
-          <strong>47</strong>
-          <span>{t('home.floatProvinces')}</span>
-        </div>
-      </div>
-
-      <div className={styles.floatCardRight} aria-hidden="true">
-        <div className={styles.floatStars}>
-          <Star size={13} strokeWidth={2} fill="currentColor" />
-          <Star size={13} strokeWidth={2} fill="currentColor" />
-          <Star size={13} strokeWidth={2} fill="currentColor" />
-          <Star size={13} strokeWidth={2} fill="currentColor" />
-          <Star size={13} strokeWidth={2} fill="currentColor" />
-        </div>
-        <span>{t('home.floatRating')}</span>
       </div>
 
       <div className={styles.scrollHint} aria-hidden="true">

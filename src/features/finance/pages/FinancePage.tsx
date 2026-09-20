@@ -129,62 +129,82 @@ export function FinancePage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <MoneyFilters active={urlType} onChange={applyType} />
-        <NearMeToggle nearMe={nearMe} resultCount={total} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <MoneyFilters active={urlType} onChange={applyType} layout="stack" />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <MoneyFilters active={urlType} onChange={applyType} />
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('finance.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((service, i) => (
-                <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
-                  <MoneyServiceCard service={service} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('finance.empty')}
+              text={t('explore.emptyText')}
+              onReset={() => {
+                setQueryInput('');
+                setSearchParams({});
+              }}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((service, i) => (
+                  <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
+                    <MoneyServiceCard service={service} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/finance" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/finance" />
+        </div>
       </div>
     </div>
   );

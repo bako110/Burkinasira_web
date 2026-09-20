@@ -6,8 +6,20 @@
   border: 1px solid transparent;
 }
 
-.icon {
+.iconBadge {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: currentColor;
+  color: inherit;
+}
+
+.iconBadge svg {
+  color: var(--color-bg-raised);
 }
 
 .title {

@@ -14,12 +14,14 @@ export function FinalCta() {
     <section className={styles.section}>
       <Reveal className={styles.card}>
         <div className={styles.glow} aria-hidden="true" />
+        <div className={styles.pattern} aria-hidden="true" />
         <FloatingFlags tone="bold" />
+        <span className={styles.kicker}>{t('home.badge')}</span>
         <h2 className={styles.title}>{t('home.ctaTitle')}</h2>
         <p className={styles.text}>{t('home.ctaText')}</p>
         <div className={styles.actions}>
           <Link to="/explore" className={styles.primaryBtn}>
-            {t('nav.explore')}
+            {t('home.ctaButton')}
           </Link>
           {!isAuthenticated && (
             <Link to="/register" className={styles.secondaryBtn}>

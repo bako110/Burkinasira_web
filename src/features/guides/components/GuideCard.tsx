@@ -18,54 +18,53 @@ export function GuideCard({ guide }: { guide: GuideSummary }) {
   return (
     <Card className={styles.card}>
       <Link to={`/guides/${guide.slug}`} className={styles.link}>
-        <div className={styles.header}>
-          <div className={styles.avatarWrap}>
-            {guide.photo_url ? (
-              <img src={guide.photo_url} alt={guide.display_name} className={styles.avatar} loading="lazy" />
-            ) : (
-              <div className={styles.avatarPlaceholder}>
-                <User size={22} strokeWidth={1.5} />
-              </div>
-            )}
-            {guide.is_verified && (
-              <span className={styles.verifiedBadge}>
-                <ShieldCheck size={12} strokeWidth={2} />
-              </span>
-            )}
-          </div>
-          <div className={styles.headerText}>
-            <h3 className={styles.name}>{guide.display_name}</h3>
-            {guide.regions_covered.length > 0 && (
-              <p className={styles.location}>
-                <MapPin size={13} strokeWidth={2} />
-                {guide.regions_covered.slice(0, 2).join(', ')}
-              </p>
-            )}
-          </div>
+        <div className={styles.avatarWrap}>
+          {guide.photo_url ? (
+            <img src={guide.photo_url} alt={guide.display_name} className={styles.avatar} loading="lazy" />
+          ) : (
+            <div className={styles.avatarPlaceholder}>
+              <User size={26} strokeWidth={1.5} />
+            </div>
+          )}
+          {guide.is_verified && (
+            <span className={styles.verifiedBadge}>
+              <ShieldCheck size={12} strokeWidth={2} />
+            </span>
+          )}
         </div>
 
-        {guide.specialties.length > 0 && (
-          <div className={styles.tags}>
-            {guide.specialties.slice(0, 3).map((s) => (
-              <span key={s} className={styles.tag}>
-                {s}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className={styles.body}>
+          <h3 className={styles.name}>{guide.display_name}</h3>
+          {guide.regions_covered.length > 0 && (
+            <p className={styles.location}>
+              <MapPin size={13} strokeWidth={2} />
+              {guide.regions_covered.slice(0, 2).join(', ')}
+            </p>
+          )}
 
-        <div className={styles.footer}>
-          {typeof guide.average_rating === 'number' && guide.review_count > 0 && (
-            <span className={styles.rating}>
-              <Star size={13} strokeWidth={2} fill="currentColor" />
-              {guide.average_rating.toFixed(1)}
-            </span>
+          {guide.specialties.length > 0 && (
+            <div className={styles.tags}>
+              {guide.specialties.slice(0, 3).map((s) => (
+                <span key={s} className={styles.tag}>
+                  {s}
+                </span>
+              ))}
+            </div>
           )}
-          {typeof guide.daily_rate === 'number' && (
-            <span className={styles.price}>
-              {t('guides.perDay', { price: guide.daily_rate.toLocaleString('fr-FR'), currency: guide.currency })}
-            </span>
-          )}
+
+          <div className={styles.footer}>
+            {typeof guide.average_rating === 'number' && guide.review_count > 0 && (
+              <span className={styles.rating}>
+                <Star size={13} strokeWidth={2} fill="currentColor" />
+                {guide.average_rating.toFixed(1)}
+              </span>
+            )}
+            {typeof guide.daily_rate === 'number' && (
+              <span className={styles.price}>
+                {t('guides.perDay', { price: guide.daily_rate.toLocaleString('fr-FR'), currency: guide.currency })}
+              </span>
+            )}
+          </div>
         </div>
       </Link>
 

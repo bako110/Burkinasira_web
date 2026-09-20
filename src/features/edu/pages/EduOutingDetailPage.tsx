@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Users, GraduationCap, ArrowLeft, ExternalLink } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useEduOutingDetail } from '../hooks/useEduOutingDetail';
@@ -53,7 +53,7 @@ export function EduOutingDetailPage() {
     <div className={styles.page}>
       <div className={styles.heroImage}>
         <div className={styles.heroPlaceholder}>
-          <GraduationCap size={40} strokeWidth={1.5} />
+          <GraduationCap size={48} strokeWidth={1.5} />
         </div>
         <div className={styles.heroOverlay} />
         <DetailBackButton fallbackTo="/edu" className={styles.backBtn} />
@@ -73,13 +73,14 @@ export function EduOutingDetailPage() {
 
       <div className={styles.body}>
         <div className={styles.main}>
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+            <h2 className={styles.sectionTitle}>{outing.title}</h2>
             <p className={styles.description}>{outing.description}</p>
-          </section>
+          </Reveal>
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('edu.details')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('edu.details')}</span>
             <div className={styles.detailsList}>
               {outing.target_level && (
                 <div className={styles.detailRow}>
@@ -94,7 +95,7 @@ export function EduOutingDetailPage() {
                 </div>
               )}
             </div>
-          </section>
+          </Reveal>
         </div>
 
         <aside className={styles.sidebar}>
@@ -110,10 +111,12 @@ export function EduOutingDetailPage() {
               {t('edu.bookForGroup')}
             </Button>
             {mapsUrl && (
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
-                <ExternalLink size={15} strokeWidth={2} />
-                <span>{t('destinations.openInMaps')}</span>
-              </a>
+              <div className={styles.contactList}>
+                <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
+                  <ExternalLink size={15} strokeWidth={2} />
+                  <span>{t('destinations.openInMaps')}</span>
+                </a>
+              </div>
             )}
           </div>
           <ReportErrorButton itemType="edu_outing" itemId={outing.id} className={styles.reportBtn} />

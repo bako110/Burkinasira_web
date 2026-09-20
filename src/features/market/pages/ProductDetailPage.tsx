@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Star, Truck, Package, MessageCircle, Maximize2, ShoppingCart, Check } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useCartStore } from '../../../store/cart.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -128,82 +128,94 @@ export function ProductDetailPage() {
           )}
         </div>
 
-        <div className={styles.info}>
-          <span className={styles.categoryBadge}>{t(`market.categories.${product.category}`, product.category)}</span>
-          <h1 className={styles.title}>{product.name}</h1>
+        <aside className={styles.info}>
+          <div className={styles.infoCard}>
+            <span className={styles.categoryBadge}>{t(`market.categories.${product.category}`, product.category)}</span>
+            <h1 className={styles.title}>{product.name}</h1>
 
-          {typeof product.average_rating === 'number' && product.average_rating > 0 && (
-            <span className={styles.rating}>
-              <Star size={15} strokeWidth={2} fill="currentColor" />
-              {product.average_rating.toFixed(1)}
-              {typeof product.review_count === 'number' && product.review_count > 0 && (
-                <span className={styles.reviewCount}>({product.review_count})</span>
-              )}
-            </span>
-          )}
+            {typeof product.average_rating === 'number' && product.average_rating > 0 && (
+              <span className={styles.rating}>
+                <Star size={15} strokeWidth={2} fill="currentColor" />
+                {product.average_rating.toFixed(1)}
+                {typeof product.review_count === 'number' && product.review_count > 0 && (
+                  <span className={styles.reviewCount}>({product.review_count})</span>
+                )}
+              </span>
+            )}
 
-          <p className={styles.price}>
-            {product.price.toLocaleString('fr-FR')} {product.currency}
-          </p>
+            <p className={styles.price}>
+              {product.price.toLocaleString('fr-FR')} {product.currency}
+            </p>
 
-          {product.description && <p className={styles.description}>{product.description}</p>}
+            {product.fulfillment_mode && (
+              <span className={styles.fulfillment}>
+                {product.fulfillment_mode === 'retrait' ? (
+                  <Package size={14} strokeWidth={2} />
+                ) : (
+                  <Truck size={14} strokeWidth={2} />
+                )}
+                {t(`market.fulfillment.${product.fulfillment_mode}`)}
+              </span>
+            )}
 
-          {product.fulfillment_mode && (
-            <span className={styles.fulfillment}>
-              {product.fulfillment_mode === 'retrait' ? (
-                <Package size={14} strokeWidth={2} />
-              ) : (
-                <Truck size={14} strokeWidth={2} />
-              )}
-              {t(`market.fulfillment.${product.fulfillment_mode}`)}
-            </span>
-          )}
-
-          {!outOfStock && (
-            <div className={styles.quantityRow}>
-              <span className={styles.quantityLabel}>{t('bookings.quantity')}</span>
-              <div className={styles.quantityControls}>
-                <button
-                  type="button"
-                  className={styles.quantityBtn}
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                >
-                  −
-                </button>
-                <span className={styles.quantityValue}>{quantity}</span>
-                <button
-                  type="button"
-                  className={styles.quantityBtn}
-                  onClick={() => setQuantity((q) => (product.stock_quantity ? Math.min(product.stock_quantity, q + 1) : q + 1))}
-                >
-                  +
-                </button>
+            {!outOfStock && (
+              <div className={styles.quantityRow}>
+                <span className={styles.quantityLabel}>{t('bookings.quantity')}</span>
+                <div className={styles.quantityControls}>
+                  <button
+                    type="button"
+                    className={styles.quantityBtn}
+                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  >
+                    −
+                  </button>
+                  <span className={styles.quantityValue}>{quantity}</span>
+                  <button
+                    type="button"
+                    className={styles.quantityBtn}
+                    onClick={() => setQuantity((q) => (product.stock_quantity ? Math.min(product.stock_quantity, q + 1) : q + 1))}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
+
+            <Button fullWidth disabled={outOfStock} onClick={handleAddToCart}>
+              {justAdded ? <Check size={16} strokeWidth={2.5} /> : <ShoppingCart size={16} strokeWidth={2} />}
+              {outOfStock ? t('market.outOfStock') : t('market.addToCart')}
+            </Button>
+
+            {/* Contacter le vendeur ne dépend pas du stock : toujours possible
+                dès qu'on connaît l'artisan qui a publié le produit. */}
+            <Button
+              fullWidth
+              variant="secondary"
+              disabled={isLoadingArtisan || !canContactArtisan}
+              onClick={handleContactArtisan}
+            >
+              <MessageCircle size={16} strokeWidth={2} />
+              {t('market.contactArtisan')}
+            </Button>
+          </div>
+        </aside>
+      </div>
+
+      <div className={styles.body}>
+        <div className={styles.main}>
+          {product.description && (
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+              <h2 className={styles.sectionTitle}>{product.name}</h2>
+              <p className={styles.description}>{product.description}</p>
+            </Reveal>
           )}
-
-          <Button fullWidth disabled={outOfStock} onClick={handleAddToCart}>
-            {justAdded ? <Check size={16} strokeWidth={2.5} /> : <ShoppingCart size={16} strokeWidth={2} />}
-            {outOfStock ? t('market.outOfStock') : t('market.addToCart')}
-          </Button>
-
-          {/* Contacter le vendeur ne dépend pas du stock : toujours possible
-              dès qu'on connaît l'artisan qui a publié le produit. */}
-          <Button
-            fullWidth
-            variant="secondary"
-            disabled={isLoadingArtisan || !canContactArtisan}
-            onClick={handleContactArtisan}
-          >
-            <MessageCircle size={16} strokeWidth={2} />
-            {t('market.contactArtisan')}
-          </Button>
 
           {artisan && (
-            <>
-              <h2 className={styles.artisanSectionTitle}>{t('market.soldBy')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('market.soldBy')}</span>
               <ArtisanCard artisan={artisan} />
-            </>
+            </Reveal>
           )}
         </div>
       </div>

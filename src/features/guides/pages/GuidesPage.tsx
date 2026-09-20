@@ -98,57 +98,62 @@ export function GuidesPage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
-          </div>
-        )}
-
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
-
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('guides.empty')}
-            text={t('explore.emptyText')}
-            onReset={resetFilters}
+        <aside className={styles.filtersRail}>
+          <span className={styles.filtersKicker}>{t('explore.filtersLabel')}</span>
+          <RegionProvinceFilter
+            region={urlRegion}
+            province={urlProvince}
+            onChange={applyRegionProvince}
+            showProvince
           />
-        )}
+        </aside>
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+        <div className={styles.results}>
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
+
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((guide, i) => (
-                <Reveal key={guide.id} delay={Math.min(i, 8) * 50}>
-                  <GuideCard guide={guide} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('guides.empty')}
+              text={t('explore.emptyText')}
+              onReset={resetFilters}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((guide, i) => (
+                  <Reveal key={guide.id} delay={Math.min(i, 8) * 50}>
+                    <GuideCard guide={guide} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/guides" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/guides" />
+        </div>
       </div>
     </div>
   );

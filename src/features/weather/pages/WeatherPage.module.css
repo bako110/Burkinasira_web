@@ -7,14 +7,14 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: var(--space-7) var(--space-4) var(--space-6);
-  background: linear-gradient(135deg, #0284c7 0%, #075985 100%);
+  padding: var(--space-8) var(--space-4) var(--space-7);
+  background: linear-gradient(150deg, #0284c7 0%, #075985 55%, #0c2f42 100%);
   isolation: isolate;
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding: var(--space-5) var(--space-3) var(--space-4);
+    padding: var(--space-6) var(--space-3) var(--space-5);
   }
 }
 
@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0;
   background: var(--gradient-mesh);
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .heroContent {
@@ -34,45 +34,76 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .heroIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
+  margin-top: var(--space-2);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
 .heroTitle {
-  margin: 0;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin: var(--space-2) 0 0;
+  font-size: clamp(1.75rem, 4.6vw, 2.75rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .heroSubtitle {
   margin: 0;
+  max-width: 46ch;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.9375rem;
+  font-size: 0.9688rem;
+  line-height: 1.6;
+}
+
+.regionField {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-3);
+}
+
+.regionIcon {
+  position: absolute;
+  left: var(--space-4);
+  color: rgba(255, 255, 255, 0.75);
+  pointer-events: none;
 }
 
 .regionSelect {
-  margin-top: var(--space-2);
-  height: 44px;
-  padding: 0 var(--space-4);
+  height: 46px;
+  padding: 0 var(--space-4) 0 42px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   background-color: rgba(255, 255, 255, 0.12);
   color: #fff;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background-color var(--transition-fast);
+}
+
+.regionSelect:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .regionSelect option {
@@ -82,17 +113,25 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  padding: var(--space-5) var(--space-4) var(--space-8);
-  max-width: 800px;
+  gap: var(--space-7);
+  padding: var(--space-6) var(--space-4) var(--space-8);
+  max-width: 880px;
   width: 100%;
   margin: 0 auto;
 }
 
+@media (min-width: 1024px) {
+  .body {
+    max-width: 1000px;
+    padding: var(--space-8) var(--space-6) var(--space-8);
+    gap: var(--space-8);
+  }
+}
+
 @media (max-width: 480px) {
   .body {
-    padding: var(--space-4) var(--space-3) var(--space-6);
-    gap: var(--space-5);
+    padding: var(--space-5) var(--space-3) var(--space-6);
+    gap: var(--space-6);
   }
 }
 
@@ -100,12 +139,29 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
 }
 
 .sectionTitle {
-  margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 700;
+  margin: 0 0 var(--space-1);
+  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .alertList {
@@ -121,18 +177,32 @@
 }
 
 .tipsList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .tipsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .tipCard {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  padding: var(--space-4);
+  padding: var(--space-5);
   border-radius: var(--radius-lg);
-  background-color: var(--color-bg-inset);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.tipCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-strong);
 }
 
 .tipSeason {
@@ -140,12 +210,12 @@
   font-weight: 700;
   color: var(--color-brand);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
 }
 
 .tipTitle {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
 }
@@ -154,5 +224,5 @@
   margin: 0;
   font-size: 0.875rem;
   color: var(--color-text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }

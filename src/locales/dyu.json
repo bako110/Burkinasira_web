@@ -7,6 +7,8 @@
     "save": "Mara",
     "cancel": "Dabila",
     "search": "Ɲini",
+    "call": "Wele",
+    "filters": "Woloma",
     "seeAll": "Bɛɛ lajɛ",
     "seeMore": "Wɛrɛ lajɛ",
     "seeLess": "A dɔgɔya",
@@ -32,7 +34,8 @@
     "ctaRestaurant": "Dumunikɛyɔrɔ lajɛ",
     "ctaTransport": "Mobili lajɛ",
     "ctaArtisan": "Baarayɔrɔ lajɛ",
-    "ctaDestination": "Fotow lajɛ"
+    "ctaDestination": "Fotow lajɛ",
+    "ctaExperience": "Fotow lajɛ"
   },
   "nav": {
     "home": "So",
@@ -420,6 +423,7 @@
   },
   "explore": {
     "subtitle": "Yɔrɔw, ko caman ni ladɛrɛsi sɛbɛw ɲini Burkina Faso bɛɛ kɔnɔ.",
+    "filtersLabel": "Sugandili",
     "filters": {
       "all": "Bɛɛ",
       "site_naturel": "Yɔrɔ dabolomanw",
@@ -438,7 +442,8 @@
     "emptyText": "I ka daɲɛ wɛrɛ ɲini walima ka kilasi wɛrɛ sugandi.",
     "errorText": "Jaabiw ma se ka layidu sisan.",
     "resetFilters": "Woloma ɲinini kura",
-    "loadMore": "Jaabi wɛrɛw lajɛ"
+    "loadMore": "Jaabi wɛrɛw lajɛ",
+    "filtersLabel": "Woloma sugu la"
   },
   "hotels": {
     "title": "Sigi-yɔrɔw Burkina Faso",
@@ -516,6 +521,7 @@
     "contactDefaultMessage": "Aw ni ce, ne b'a fɛ « {{name}} » kɔnɔ."
   },
   "mobility": {
+    "badge": "Taama",
     "title": "Taama ni yɔrɔ-yɔrɔ ta",
     "subtitle": "Takisiw, mobili sigikɛlaw ni loselen mobiliw Burkina Faso kɔnɔ.",
     "empty": "Baarakɛla si ma sɔrɔ",
@@ -983,6 +989,8 @@
   "international": {
     "title": "Taama fɔlɔ ɲɛminɛbaga",
     "subtitle": "Fɛn bɛɛ i mago bɛ min na dɔn sani i ka taama fɔlɔ Burkina Faso: laada, wari, sariyaw, kɛnɛya ni taama minɛnw.",
+    "kicker": "Taama fɔlɔ Burkina Faso",
+    "categoryStep": "Fɛɛrɛ",
     "empty": "Ɲɛminɛbaga in ma sɔrɔ kan in na fɔlɔ",
     "categories": {
       "culture_usages": "Laada ni delenw",
@@ -1076,6 +1084,9 @@
     "onDuty": "A bɛ baara la",
     "onDutyFilter": "Farimasi minnu bɛ baara la",
     "detailNotFound": "Yɔrɔ ma sɔrɔ",
+    "practicalInfo": "Kunnafoni nafamaw",
+    "onDutyNotice": "A dabɛn baara la sisan",
+    "callNow": "Wele sisan",
     "filters": {
       "all": "Bɛɛ",
       "pharmacie": "Farimasi",
@@ -1101,8 +1112,18 @@
     "title": "Kɔrɔfɛtaw ni lakana",
     "subtitle": "Nimɔrɔ nafamaw ni lakana kunnafoniw sisan.",
     "alertsTitle": "Kunnafoni sisan",
+    "alertsKicker": "I ka kan ka dɔn",
     "contactsTitle": "Kɔrɔfɛta nimɔrɔw",
+    "contactsKicker": "Waati bɛɛ la sɔrɔla",
+    "callAction": "Weele",
     "empty": "Nimɔrɔ si tɛ yen",
+    "reflexesKicker": "Lakana delenw",
+    "reflexesTitle": "Kɔrɔfɛta kɔnɔ",
+    "reflexes": {
+      "stayCalm": "I ka sabali ka koɲuman lajɛ sanni ka wale kɛ.",
+      "shareLocation": "I ka i nɔ jɛrɛlen di dɛmɛbagaw ma joona joona.",
+      "trustedContact": "I ka i dan mɔgɔ dɔ ladɔnniya i cogo la."
+    },
     "types": {
       "police": "Polisi",
       "pompiers": "Tasumabolibaw",
@@ -1147,15 +1168,19 @@
       "mobile_money": "Mobile money",
       "bureau_change": "Wari falenyɔrɔ"
     },
-    "searchPlaceholder": "Bangi, gishɛ, dugu..."
+    "searchPlaceholder": "Bangi, gishɛ, dugu...",
+    "practicalInfo": "Kunnafoni nafamaw"
   },
   "connectivity": {
+    "badge": "Kunnafoni nafama",
     "title": "Ɛntɛrinɛti sennkɛ",
     "subtitle": "Baarakɛlaw, SIM feerelaw ni Wi-Fi Burkina Faso kɔnɔ.",
     "empty": "Yɔrɔ si ma sɔrɔ",
     "free": "Fu",
     "esim": "eSIM bɛ yen",
     "detailNotFound": "Yɔrɔ ma sɔrɔ",
+    "connectionInfo": "Kunnafoni sennkɛli kan",
+    "noExtraInfo": "Kunnafoni wɛrɛ ma sɔrɔ yɔrɔ in kan.",
     "filters": {
       "all": "Bɛɛ",
       "operateur_telecom": "Baarakɛla",
@@ -1178,11 +1203,15 @@
   "weather": {
     "title": "Waati sanni ni sigida",
     "subtitle": "Waati sisan cogo, a bɛnkɛ ni waati laadili.",
+    "kicker": "Waati sanni ni waatiw",
     "regionLabel": "Mara",
     "currentTitle": "Waati sisan",
     "forecastTitle": "Bɛnkɛli",
+    "forecastKicker": "Tile 5 nata",
     "alertsTitle": "Kunnafoni sisan",
+    "alertsKicker": "I ka kan ka dɔn",
     "tipsTitle": "Waati laadili",
+    "tipsKicker": "I ka taama labɛn",
     "noDataForRegion": "Waati kunnafoni si tɛ mara in na",
     "noForecast": "Bɛnkɛli si tɛ yen",
     "noData": "Kunnafoni tɛ sɔrɔ",
@@ -1196,6 +1225,9 @@
     "empty": "Ko si ma sɔrɔ",
     "detailNotFound": "Ko ma sɔrɔ",
     "relatedDestinations": "Yɔrɔ minnu bɛ nin na",
+    "detailKickerSummary": "A kunkanni",
+    "detailKickerStory": "Maana",
+    "relatedDestinationsKicker": "Ka taa yɔrɔ min na",
     "filters": {
       "all": "Bɛɛ",
       "histoire": "Tariku",
@@ -1521,6 +1553,16 @@
     "ctaTitle": "I labɛnnen don ka Burkina Faso lajɛ wa?",
     "ctaText": "I don BurkinaSira la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
     "ctaButton": "Ɲini daminɛ"
+  },
+  "footer": {
+    "tagline": "Platform min bɛ Burkina Faso taama-baara bɛɛ lajɛ: yɔrɔw, sigi-yɔrɔw, ɲɛminɛbagaw ni baaraw.",
+    "discoverTitle": "I ka lajɛ",
+    "practicalTitle": "Nafa",
+    "aboutTitle": "An kunnafoni",
+    "legalTitle": "Sariya",
+    "privacy": "Gundo",
+    "terms": "Baara-sariyaw",
+    "rights": "Josirilenw bɛɛ tanga."
   },
   "planner": {
     "kicker": "Taama labɛn",

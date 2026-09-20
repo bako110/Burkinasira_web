@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Utensils, Maximize2, View, MessageCircle } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -122,7 +122,9 @@ export function RestaurantDetailPage() {
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
             <button key={i} type="button" className={styles.galleryImgButton} onClick={() => openGallery(i + 1)}>
-              <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+              <span className={styles.galleryImgWrap}>
+                <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+              </span>
             </button>
           ))}
         </div>
@@ -131,14 +133,14 @@ export function RestaurantDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {restaurant.description && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
               <p className={styles.description}>{restaurant.description}</p>
-            </section>
+            </Reveal>
           )}
 
           {restaurant.dietary_tags.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <div className={styles.tagList}>
                 {restaurant.dietary_tags.map((tag) => (
                   <span key={tag} className={styles.tag}>
@@ -146,11 +148,11 @@ export function RestaurantDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{t('destinations.services')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('destinations.services')}</span>
             <div className={styles.serviceList}>
               {restaurant.accepts_table_booking && (
                 <span className={styles.serviceTag}>{t('restaurants.tableBooking')}</span>
@@ -160,14 +162,14 @@ export function RestaurantDetailPage() {
                 <span className={styles.serviceTag}>{t('restaurants.cookingWorkshop')}</span>
               )}
             </div>
-          </section>
+          </Reveal>
 
           {restaurant.menu.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>
-                <Utensils size={18} strokeWidth={2} />
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>
+                <Utensils size={14} strokeWidth={2} />
                 {t('restaurants.menu')}
-              </h2>
+              </span>
               <div className={styles.menuList}>
                 {restaurant.menu.map((item, i) => (
                   <div key={i} className={styles.menuRow}>
@@ -186,12 +188,12 @@ export function RestaurantDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {restaurant.opening_hours.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.openingHours')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.openingHours')}</span>
               <div className={styles.hoursList}>
                 {restaurant.opening_hours.map((h) => (
                   <div key={h.day} className={styles.hoursRow}>
@@ -202,12 +204,13 @@ export function RestaurantDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
+            <span className={styles.sidebarKicker}>{t('destinations.contact', 'Contact')}</span>
             <div className={styles.contactList}>
               {restaurant.address && (
                 <div className={styles.contactRow}>

@@ -15,7 +15,9 @@ export function SecurityAlertBanner({ alert }: { alert: SecurityAlert }) {
 
   return (
     <div className={clsx(styles.banner, styles[alert.severity])}>
-      <Icon size={20} strokeWidth={2} className={styles.icon} />
+      <span className={styles.iconBadge}>
+        <Icon size={20} strokeWidth={2} />
+      </span>
       <div className={styles.text}>
         <p className={styles.title}>{alert.title}</p>
         <p className={styles.description}>{alert.description}</p>

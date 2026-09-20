@@ -16,6 +16,13 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .hero {
+    padding: calc(var(--space-8) + var(--space-6)) var(--space-4) calc(var(--space-8) + var(--space-6));
+    min-height: 92vh;
+  }
+}
+
 .mesh {
   position: absolute;
   inset: 0;
@@ -41,22 +48,58 @@
   }
 }
 
-.content {
+.layout {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: var(--space-5);
+  gap: var(--space-7);
   max-width: 720px;
   width: 100%;
   animation: heroRise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (max-width: 480px) {
-  .content {
-    gap: var(--space-4);
+  .layout {
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-7);
+    max-width: 1180px;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1440px) {
+  .layout {
+    max-width: 1320px;
+    gap: var(--space-8);
+  }
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .textBlock {
+    align-items: flex-start;
+    text-align: left;
+    flex: 1 1 480px;
+    max-width: 540px;
+    gap: var(--space-6);
   }
 }
 
@@ -79,9 +122,10 @@
   background-color: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   backdrop-filter: blur(6px);
 }
 
@@ -90,11 +134,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
-  line-height: 1.05;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  line-height: 1.03;
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .titleAccent {
@@ -106,16 +150,46 @@
 
 .subtitle {
   margin: 0;
-  max-width: 520px;
+  max-width: 560px;
   color: rgba(255, 255, 255, 0.86);
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.6;
+}
+
+.searchPanel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 560px;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  animation: floatIn 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+}
+
+@media (min-width: 1024px) {
+  .searchPanel {
+    flex: 1 1 420px;
+    max-width: 460px;
+    padding: var(--space-6);
+  }
+}
+
+@media (min-width: 1440px) {
+  .searchPanel {
+    max-width: 500px;
+    padding: var(--space-7);
+  }
 }
 
 .searchWrap {
   position: relative;
   width: 100%;
-  max-width: 560px;
 }
 
 .searchBar {
@@ -127,6 +201,15 @@
   border-radius: var(--radius-full);
   background-color: rgba(255, 255, 255, 0.98);
   box-shadow: var(--shadow-lg);
+}
+
+.quickTagsLabel {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .suggestions {
@@ -195,6 +278,7 @@
 }
 
 .suggestionThumb img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -280,7 +364,7 @@
 .quickTags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-2);
 }
 
@@ -303,86 +387,75 @@
   transform: translateY(-1px);
 }
 
-.floatCardLeft,
-.floatCardRight {
-  display: none;
-  position: absolute;
-  z-index: 1;
+.statsRow {
+  display: flex;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: center;
+  gap: var(--space-4);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
-  background-color: rgba(255, 255, 255, 0.97);
-  color: #1c1a17;
-  box-shadow: var(--shadow-lg);
-  animation: floatIn 900ms cubic-bezier(0.16, 1, 0.3, 1) both, floatBob 5s ease-in-out 900ms infinite;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 @media (min-width: 1024px) {
-  .floatCardLeft,
-  .floatCardRight {
-    display: flex;
+  .statsRow {
+    justify-content: flex-start;
   }
 }
 
-.floatCardLeft {
-  left: 6%;
-  top: 22%;
-  animation-delay: 400ms, 1300ms;
-  color: var(--color-brand-700);
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: #fff;
 }
 
-.floatCardLeft strong {
-  display: block;
-  font-size: 1.125rem;
+.statItem div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.statItem strong {
+  font-size: 1.0625rem;
   font-weight: 800;
-  line-height: 1.1;
 }
 
-.floatCardLeft span {
+.statItem > div > span,
+.statLabel {
   font-size: 0.6875rem;
-  color: #6b655c;
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 600;
 }
 
-.floatCardRight {
-  right: 6%;
-  bottom: 20%;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-1);
-  animation-delay: 650ms, 1550ms;
+.statIcon {
+  flex-shrink: 0;
+  color: #ffd8a8;
+}
+
+.statDivider {
+  width: 1px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
 }
 
 .floatStars {
   display: flex;
   gap: 2px;
-  color: #f2760f;
-}
-
-.floatCardRight span {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #4a453d;
+  color: #ffd8a8;
 }
 
 @keyframes floatIn {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.94);
+    transform: translateY(16px) scale(0.96);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes floatBob {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
   }
 }
 
@@ -428,10 +501,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mesh,
-  .content,
-  .scrollDot,
-  .floatCardLeft,
-  .floatCardRight {
+  .layout,
+  .searchPanel,
+  .scrollDot {
     animation: none;
   }
 }

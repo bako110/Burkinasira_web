@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Reveal } from '../../../shared/ui/Reveal';
 import { AnimatedCounter } from '../../../shared/ui/AnimatedCounter';
-import { FloatingFlags } from '../../../shared/ui';
 import styles from './StatsBand.module.css';
 
 const STATS = [
@@ -17,7 +16,7 @@ export function StatsBand() {
 
   return (
     <section className={styles.band}>
-      <FloatingFlags tone="bold" />
+      <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.grid}>
         {STATS.map((stat, i) => (
           <Reveal key={stat.key} delay={i * 90} className={styles.item}>

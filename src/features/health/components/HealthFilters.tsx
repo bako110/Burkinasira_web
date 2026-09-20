@@ -19,10 +19,33 @@ const TYPES: { key: string; value: HealthFacilityType | undefined; Icon: typeof 
 interface HealthFiltersProps {
   active: HealthFacilityType | undefined;
   onChange: (value: HealthFacilityType | undefined) => void;
+  layout?: 'row' | 'stack';
 }
 
-export function HealthFilters({ active, onChange }: HealthFiltersProps) {
+export function HealthFilters({ active, onChange, layout = 'row' }: HealthFiltersProps) {
   const { t } = useTranslation();
+
+  if (layout === 'stack') {
+    return (
+      <div className={styles.stack}>
+        {TYPES.map(({ key, value, Icon }) => {
+          const isActive = active === value;
+          return (
+            <button
+              key={key}
+              type="button"
+              className={clsx(styles.stackItem, isActive && styles.stackItemActive)}
+              onClick={() => onChange(value)}
+              aria-pressed={isActive}
+            >
+              <Icon size={16} strokeWidth={2} className={styles.stackIcon} />
+              {t(`health.filters.${key}`)}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.scroller}>

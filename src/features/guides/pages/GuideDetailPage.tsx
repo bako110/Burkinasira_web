@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCircle2, MessageCircle } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
 import { ContactModal } from '../../messaging/components/ContactModal';
@@ -96,14 +96,14 @@ export function GuideDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {guide.bio && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('guides.about')}</h2>
               <p className={styles.description}>{guide.bio}</p>
-            </section>
+            </Reveal>
           )}
 
           {guide.specialties.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('guides.specialties')}</h2>
               <div className={styles.tagList}>
                 {guide.specialties.map((s) => (
@@ -112,11 +112,11 @@ export function GuideDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {guide.languages.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <Languages size={18} strokeWidth={2} />
                 {t('guides.languages')}
@@ -128,11 +128,11 @@ export function GuideDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {guide.certifications.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <Award size={18} strokeWidth={2} />
                 {t('guides.certifications')}
@@ -148,7 +148,7 @@ export function GuideDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
         </div>

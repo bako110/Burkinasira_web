@@ -1,33 +1,44 @@
 .link {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
 
 .card {
+  height: 100%;
   display: flex;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.icon {
-  flex-shrink: 0;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.iconBanner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-brand-surface);
   color: var(--color-brand);
+  background: linear-gradient(135deg, var(--color-brand-surface), var(--color-bg-inset));
+  flex-shrink: 0;
 }
 
 .body {
   flex: 1;
-  min-width: 0;
+  padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .typeLabel {
@@ -42,21 +53,38 @@
   margin: 0;
   font-size: 0.9375rem;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .operator {
   margin: 0;
   font-size: 0.8125rem;
   color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .location {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin: 2px 0 0;
+  margin: 0;
   font-size: 0.8125rem;
   color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .location svg {
@@ -68,7 +96,6 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 4px;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-brand);

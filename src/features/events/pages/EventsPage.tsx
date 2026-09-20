@@ -134,59 +134,64 @@ export function EventsPage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <EventFilters active={urlCategory} onChange={applyCategory} />
-        <NearMeToggle nearMe={nearMe} resultCount={total} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
-          </div>
-        )}
-
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
-
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('events.empty')}
-            text={t('explore.emptyText')}
-            onReset={resetFilters}
+        <aside className={styles.filtersRail}>
+          <span className={styles.filtersKicker}>{t('explore.filtersLabel')}</span>
+          <RegionProvinceFilter
+            region={urlRegion}
+            province={urlProvince}
+            onChange={applyRegionProvince}
+            showProvince
           />
-        )}
+          <EventFilters active={urlCategory} onChange={applyCategory} />
+          <NearMeToggle nearMe={nearMe} resultCount={total} />
+        </aside>
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+        <div className={styles.results}>
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
+
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((event, i) => (
-                <Reveal key={event.id} delay={Math.min(i, 8) * 50}>
-                  <EventCard event={event} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('events.empty')}
+              text={t('explore.emptyText')}
+              onReset={resetFilters}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((event, i) => (
+                  <Reveal key={event.id} delay={Math.min(i, 8) * 50}>
+                    <EventCard event={event} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/events" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/events" />
+        </div>
       </div>
     </div>
   );

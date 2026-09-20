@@ -19,10 +19,34 @@ const TYPES: { key: string; value: TransportType | undefined; Icon: typeof Layou
 interface TransportFiltersProps {
   active: TransportType | undefined;
   onChange: (value: TransportType | undefined) => void;
+  /** Layout vertical pour la sidebar desktop (sinon rangée scrollable mobile/tablette). */
+  layout?: 'row' | 'stack';
 }
 
-export function TransportFilters({ active, onChange }: TransportFiltersProps) {
+export function TransportFilters({ active, onChange, layout = 'row' }: TransportFiltersProps) {
   const { t } = useTranslation();
+
+  if (layout === 'stack') {
+    return (
+      <div className={styles.stack}>
+        {TYPES.map(({ key, value, Icon }) => {
+          const isActive = active === value;
+          return (
+            <button
+              key={key}
+              type="button"
+              className={clsx(styles.stackItem, isActive && styles.stackItemActive)}
+              onClick={() => onChange(value)}
+              aria-pressed={isActive}
+            >
+              <Icon size={17} strokeWidth={2} className={styles.stackIcon} />
+              {t(`mobility.filters.${key}`)}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.scroller}>

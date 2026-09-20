@@ -176,13 +176,16 @@ export function DestinationDetailPage() {
       {gallery.length > 0 && (
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
-            <Reveal key={i} delay={i * 70}>
+            <Reveal key={i} delay={i * 70} className={styles.galleryItem}>
               <button
                 type="button"
                 className={styles.galleryImgButton}
                 onClick={() => openGallery(i + 1)}
               >
                 <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+                {i === gallery.length - 1 && photos.length > 5 && (
+                  <span className={styles.galleryMoreOverlay}>+{photos.length - 5}</span>
+                )}
               </button>
             </Reveal>
           ))}
@@ -192,22 +195,23 @@ export function DestinationDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {destination.description && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+              <h2 className={styles.sectionTitle}>{destination.name}</h2>
               <p className={styles.description}>{destination.description}</p>
-            </section>
+            </Reveal>
           )}
 
           {destination.history && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.history')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.history')}</span>
               <p className={styles.description}>{destination.history}</p>
-            </section>
+            </Reveal>
           )}
 
           {destination.services_on_site && destination.services_on_site.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.services')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.services')}</span>
               <div className={styles.tagList}>
                 {destination.services_on_site.map((service) => (
                   <span key={service} className={styles.tag}>
@@ -215,12 +219,12 @@ export function DestinationDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {destination.opening_hours && destination.opening_hours.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.openingHours')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.openingHours')}</span>
               <div className={styles.hoursList}>
                 {destination.opening_hours.map((h) => (
                   <div key={h.day} className={styles.hoursRow}>
@@ -231,13 +235,13 @@ export function DestinationDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {destination.accessibility?.wheelchair_accessible !== null &&
             destination.accessibility?.wheelchair_accessible !== undefined && (
-              <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>{t('destinations.accessibility')}</h2>
+              <Reveal as="section" className={styles.section}>
+                <span className={styles.sectionKicker}>{t('destinations.accessibility')}</span>
                 <p className={styles.accessibilityRow}>
                   <Accessibility size={16} strokeWidth={2} />
                   {destination.accessibility.wheelchair_accessible
@@ -247,7 +251,7 @@ export function DestinationDetailPage() {
                 {destination.accessibility.notes && (
                   <p className={styles.description}>{destination.accessibility.notes}</p>
                 )}
-              </section>
+              </Reveal>
             )}
         </div>
 

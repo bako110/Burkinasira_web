@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLink, Tag, Maximize2, View, MessageCircle } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -135,7 +135,9 @@ export function HotelDetailPage() {
               className={styles.galleryImgButton}
               onClick={() => openGallery(i + 1)}
             >
-              <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+              <span className={styles.galleryImgWrap}>
+                <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+              </span>
             </button>
           ))}
         </div>
@@ -144,15 +146,15 @@ export function HotelDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {hotel.description && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
               <p className={styles.description}>{hotel.description}</p>
-            </section>
+            </Reveal>
           )}
 
           {hotel.amenities.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('hotels.amenities')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('hotels.amenities')}</span>
               <div className={styles.tagList}>
                 {hotel.amenities.map((amenity) => (
                   <span key={amenity} className={styles.tag}>
@@ -160,12 +162,12 @@ export function HotelDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {hotel.room_types.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('hotels.roomTypes')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('hotels.roomTypes')}</span>
               <div className={styles.roomList}>
                 {hotel.room_types.map((room, i) => (
                   <div key={i} className={styles.roomCard}>
@@ -197,12 +199,12 @@ export function HotelDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {hotel.offers.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('hotels.offers')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('hotels.offers')}</span>
               <div className={styles.offerList}>
                 {hotel.offers.map((offer, i) => (
                   <div key={i} className={styles.offerCard}>
@@ -219,12 +221,13 @@ export function HotelDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
+            <span className={styles.infoCardKicker}>{t('hotels.contactProvider')}</span>
             <div className={styles.contactList}>
               {hotel.address && (
                 <div className={styles.contactRow}>

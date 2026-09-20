@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 import { Reveal } from '../../../shared/ui/Reveal';
-import { FloatingFlags } from '../../../shared/ui';
 import { useDestinations } from '../../destinations/hooks/useDestinations';
 import { DestinationCard } from '../../destinations/components/DestinationCard';
 import styles from './FeaturedDestinations.module.css';
@@ -15,20 +15,20 @@ export function FeaturedDestinations() {
 
   return (
     <section className={styles.section}>
-      <FloatingFlags tone="subtle" />
       <Reveal className={styles.headingRow}>
-        <div>
-          <h2 className={styles.heading}>{t('home.featuredTitle')}</h2>
-          <p className={styles.subheading}>{t('home.featuredSubtitle')}</p>
+        <div className={styles.headingCol}>
+          <span className={styles.kicker}>{t('home.featuredTitle')}</span>
+          <h2 className={styles.heading}>{t('home.featuredSubtitle')}</h2>
         </div>
         <Link to="/explore" className={styles.seeAll}>
-          {t('common.seeAll')} →
+          {t('common.seeAll')}
+          <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
         </Link>
       </Reveal>
 
       {isLoading && (
         <div className={styles.grid}>
-          {Array.from({ length: 3 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className={styles.skeleton} />
           ))}
         </div>
@@ -46,7 +46,7 @@ export function FeaturedDestinations() {
       {hasItems && (
         <div className={styles.grid}>
           {data.items.map((destination, i) => (
-            <Reveal key={destination.id} delay={i * 80}>
+            <Reveal key={destination.id} delay={i * 80} className={styles.gridItem}>
               <DestinationCard destination={destination} />
             </Reveal>
           ))}

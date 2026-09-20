@@ -1,11 +1,37 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Star, Phone, ShieldCheck, ArrowLeft, Car, ExternalLink, Maximize2, MessageCircle } from 'lucide-react';
-
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery } from '../../../shared/ui';
+import {
+  MapPin,
+  Star,
+  Phone,
+  ShieldCheck,
+  ArrowLeft,
+  Car,
+  CarTaxiFront,
+  CarFront,
+  Bike,
+  PlaneTakeoff,
+  BusFront,
+  Compass,
+  ExternalLink,
+  Maximize2,
+  MessageCircle,
+} from 'lucide-react';
+import type { TransportType } from '../types';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+
+const TYPE_ICON: Record<TransportType, typeof Car> = {
+  taxi_vtc: CarTaxiFront,
+  chauffeur_prive: Car,
+  location_voiture: CarFront,
+  location_moto: Bike,
+  transport_interurbain: BusFront,
+  transfert_aeroport: PlaneTakeoff,
+  transport_touristique_prive: Compass,
+};
 import { ReviewsSection } from '../../reviews';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
@@ -21,6 +47,7 @@ export function TransportDetailPage() {
   const [contactOpen, setContactOpen] = useState(false);
 
   const { data: provider, isLoading, isError, refetch } = useTransportProviderDetail(id);
+  const HeroIcon = provider ? TYPE_ICON[provider.type] ?? Car : Car;
 
   function handleContact() {
     requireAuth(() => setContactOpen(true), t('mobility.contactRequiresAuth'));
@@ -69,7 +96,7 @@ export function TransportDetailPage() {
         <DetailBackButton fallbackTo="/mobility" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
-            <Car size={28} strokeWidth={1.5} />
+            <HeroIcon size={28} strokeWidth={1.5} />
           </span>
           <div className={styles.heroText}>
             <span className={styles.typeLabel}>{t(`mobility.types.${provider.type}`, provider.type)}</span>
@@ -107,22 +134,23 @@ export function TransportDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {provider.description && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+              <h2 className={styles.sectionTitle}>{provider.name}</h2>
               <p className={styles.description}>{provider.description}</p>
-            </section>
+            </Reveal>
           )}
 
           {provider.vehicle_info && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('mobility.vehicleInfo')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('mobility.vehicleInfo')}</span>
               <p className={styles.description}>{provider.vehicle_info}</p>
-            </section>
+            </Reveal>
           )}
 
           {allMedia.length > 0 && (
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('gallery.title')}</h2>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('gallery.title')}</span>
               <div className={styles.mediaGrid}>
                 {allMedia.map((url, i) => (
                   <button key={i} type="button" className={styles.mediaThumbButton} onClick={() => openGallery(i)}>
@@ -134,7 +162,7 @@ export function TransportDetailPage() {
                   </button>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 

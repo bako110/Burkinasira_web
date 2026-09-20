@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Phone, ArrowLeft, Clock, ExternalLink, Pill, Building2, Stethoscope, FlaskConical, Cross, Smile, MoreHorizontal } from 'lucide-react';
+import { MapPin, Phone, ArrowLeft, Clock, ExternalLink, Pill, Building2, Stethoscope, FlaskConical, Cross, Smile, MoreHorizontal, PhoneCall } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { useHealthFacilityDetail } from '../hooks/useHealthFacilityDetail';
@@ -89,14 +89,14 @@ export function HealthFacilityDetailPage() {
         <div className={styles.main}>
           {facility.description && (
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
+              <span className={styles.kicker}>{t('destinations.about')}</span>
               <p className={styles.description}>{facility.description}</p>
             </section>
           )}
 
           {facility.services.length > 0 && (
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.services')}</h2>
+              <span className={styles.kicker}>{t('destinations.services')}</span>
               <div className={styles.tagList}>
                 {facility.services.map((service) => (
                   <span key={service} className={styles.tag}>
@@ -109,7 +109,7 @@ export function HealthFacilityDetailPage() {
 
           {facility.opening_hours.length > 0 && (
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>{t('destinations.openingHours')}</h2>
+              <span className={styles.kicker}>{t('destinations.openingHours')}</span>
               <div className={styles.hoursList}>
                 {facility.opening_hours.map((h) => (
                   <div key={h.day} className={styles.hoursRow}>
@@ -126,6 +126,13 @@ export function HealthFacilityDetailPage() {
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
+            <span className={styles.kicker}>{t('health.practicalInfo')}</span>
+            {facility.is_on_duty && (
+              <div className={styles.onDutyNotice}>
+                <Clock size={15} strokeWidth={2} />
+                {t('health.onDutyNotice')}
+              </div>
+            )}
             <div className={styles.contactList}>
               {facility.address && (
                 <div className={styles.contactRow}>
@@ -146,6 +153,17 @@ export function HealthFacilityDetailPage() {
                 </a>
               )}
             </div>
+            {facility.contact_phone && (
+              <Button
+                fullWidth
+                onClick={() => {
+                  window.location.href = `tel:${facility.contact_phone}`;
+                }}
+              >
+                <PhoneCall size={16} strokeWidth={2} />
+                {t('health.callNow')}
+              </Button>
+            )}
           </div>
         </aside>
       </div>

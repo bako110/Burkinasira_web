@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Calendar, ImageOff, ArrowLeft, ExternalLink, Ticket, Clock } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -98,7 +98,9 @@ export function EventDetailPage() {
       {gallery.length > 0 && (
         <div className={styles.gallery}>
           {gallery.map((photo, i) => (
-            <img key={i} src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            <div key={i} className={styles.galleryItem}>
+              <img src={photo} alt="" className={styles.galleryImg} loading="lazy" />
+            </div>
           ))}
         </div>
       )}
@@ -106,14 +108,14 @@ export function EventDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {event.description && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
               <p className={styles.description}>{event.description}</p>
-            </section>
+            </Reveal>
           )}
 
           {event.program.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <Clock size={18} strokeWidth={2} />
                 {t('events.program')}
@@ -129,11 +131,11 @@ export function EventDetailPage() {
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {linkedHotels.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('events.linkedHotels')}</h2>
               <div className={styles.linkedGrid}>
                 {linkedHotels.map((hotel) => (
@@ -147,11 +149,11 @@ export function EventDetailPage() {
                   />
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {linkedTransportProviders.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
               <h2 className={styles.sectionTitle}>{t('events.linkedTransport')}</h2>
               <div className={styles.linkedGrid}>
                 {linkedTransportProviders.map((provider) => (
@@ -167,7 +169,7 @@ export function EventDetailPage() {
                   />
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 

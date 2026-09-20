@@ -7,6 +7,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "search": "Search",
+    "call": "Call",
+    "filters": "Filters",
     "seeAll": "See all",
     "seeMore": "See more",
     "seeLess": "See less",
@@ -32,7 +34,8 @@
     "ctaRestaurant": "Visit the restaurant",
     "ctaTransport": "Visit the vehicle",
     "ctaArtisan": "Visit the workshop",
-    "ctaDestination": "View photos"
+    "ctaDestination": "View photos",
+    "ctaExperience": "View photos"
   },
   "nav": {
     "home": "Home",
@@ -420,6 +423,7 @@
   },
   "explore": {
     "subtitle": "Find places, experiences and verified addresses all across Burkina Faso.",
+    "filtersLabel": "Filters",
     "filters": {
       "all": "All",
       "site_naturel": "Natural sites",
@@ -438,7 +442,8 @@
     "emptyText": "Try another keyword or a different category.",
     "errorText": "Results could not be loaded right now.",
     "resetFilters": "Reset filters",
-    "loadMore": "Show more results"
+    "loadMore": "Show more results",
+    "filtersLabel": "Filter by category"
   },
   "hotels": {
     "title": "Stays in Burkina Faso",
@@ -516,6 +521,7 @@
     "contactDefaultMessage": "Hello, I'm interested in \"{{name}}\"."
   },
   "mobility": {
+    "badge": "Getting around",
     "title": "Transport & mobility",
     "subtitle": "Taxis, private drivers, car rentals and transfers across Burkina Faso.",
     "empty": "No provider found",
@@ -983,6 +989,8 @@
   "international": {
     "title": "First visit guide",
     "subtitle": "Everything you need to know before your first trip to Burkina Faso: culture, currency, formalities, health and transport.",
+    "kicker": "First trip to Burkina Faso",
+    "categoryStep": "Step",
     "empty": "The guide is not available yet in this language",
     "categories": {
       "culture_usages": "Culture & customs",
@@ -1076,6 +1084,9 @@
     "onDuty": "On duty",
     "onDutyFilter": "On-duty pharmacies",
     "detailNotFound": "Facility not found",
+    "practicalInfo": "Practical info",
+    "onDutyNotice": "Currently open on duty",
+    "callNow": "Call now",
     "filters": {
       "all": "All",
       "pharmacie": "Pharmacy",
@@ -1101,8 +1112,18 @@
     "title": "Emergency & safety",
     "subtitle": "Useful numbers and active security alerts.",
     "alertsTitle": "Active alerts",
+    "alertsKicker": "Good to know",
     "contactsTitle": "Emergency numbers",
+    "contactsKicker": "Always within reach",
+    "callAction": "Call",
     "empty": "No number available",
+    "reflexesKicker": "Safety reflexes",
+    "reflexesTitle": "In case of emergency",
+    "reflexes": {
+      "stayCalm": "Stay calm and assess the situation before acting.",
+      "shareLocation": "Share your exact location with rescuers as soon as possible.",
+      "trustedContact": "Let a trusted contact know about your situation."
+    },
     "types": {
       "police": "Police",
       "pompiers": "Fire department",
@@ -1147,15 +1168,19 @@
       "mobile_money": "Mobile money",
       "bureau_change": "Exchange office"
     },
-    "searchPlaceholder": "A bank, an ATM, a city..."
+    "searchPlaceholder": "A bank, an ATM, a city...",
+    "practicalInfo": "Practical info"
   },
   "connectivity": {
+    "badge": "Practical info",
     "title": "Connectivity",
     "subtitle": "Operators, SIM sellers and Wi-Fi across Burkina Faso.",
     "empty": "No point found",
     "free": "Free",
     "esim": "eSIM available",
     "detailNotFound": "Point not found",
+    "connectionInfo": "Connection information",
+    "noExtraInfo": "No further information available for this point.",
     "filters": {
       "all": "All",
       "operateur_telecom": "Operator",
@@ -1178,11 +1203,15 @@
   "weather": {
     "title": "Weather & environment",
     "subtitle": "Current conditions, forecasts and seasonal tips.",
+    "kicker": "Climate & seasons",
     "regionLabel": "Region",
     "currentTitle": "Current weather",
     "forecastTitle": "Forecast",
+    "forecastKicker": "Next 5 days",
     "alertsTitle": "Active alerts",
+    "alertsKicker": "Good to know",
     "tipsTitle": "Seasonal tips",
+    "tipsKicker": "Prepare your stay",
     "noDataForRegion": "No weather data for this region",
     "noForecast": "No forecast available",
     "noData": "Data unavailable",
@@ -1196,6 +1225,9 @@
     "empty": "No content found",
     "detailNotFound": "Content not found",
     "relatedDestinations": "Related destinations",
+    "detailKickerSummary": "In brief",
+    "detailKickerStory": "The story",
+    "relatedDestinationsKicker": "Worth visiting",
     "filters": {
       "all": "All",
       "histoire": "History",
@@ -1521,6 +1553,16 @@
     "ctaTitle": "Ready to explore Burkina Faso?",
     "ctaText": "Join BurkinaSira and start discovering authentic places, experiences and encounters.",
     "ctaButton": "Start exploring"
+  },
+  "footer": {
+    "tagline": "The platform that brings together all of Burkinabè tourism: destinations, stays, guides and crafts.",
+    "discoverTitle": "Discover",
+    "practicalTitle": "Practical",
+    "aboutTitle": "About",
+    "legalTitle": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms of use",
+    "rights": "All rights reserved."
   },
   "planner": {
     "kicker": "Trip planner",

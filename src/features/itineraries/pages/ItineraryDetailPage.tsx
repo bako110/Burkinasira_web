@@ -12,9 +12,10 @@ import {
   Lightbulb,
   ArrowRight,
   Sparkles,
+  Info,
 } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
@@ -69,9 +70,12 @@ export function ItineraryDetailPage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <ItineraryCover theme={itinerary.coverTheme} className={styles.heroCover} />
+        <div className={styles.heroCoverWrap} aria-hidden="true">
+          <ItineraryCover theme={itinerary.coverTheme} className={styles.heroCover} />
+        </div>
         <div className={styles.heroScrim} aria-hidden="true" />
         <DetailBackButton fallbackTo="/itineraries" className={styles.backBtn} />
+
         <div className={styles.heroContent}>
           <span className={styles.kicker}>
             <Sparkles size={13} strokeWidth={2} />
@@ -98,27 +102,35 @@ export function ItineraryDetailPage() {
 
       <div className={styles.body}>
         <div className={styles.mainCol}>
-          <p className={styles.intro}>{itinerary.intro}</p>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('itineraries.introKicker')}</span>
+            <p className={styles.intro}>{itinerary.intro}</p>
 
-          <div className={styles.infoCards}>
-            <div className={styles.infoCard}>
-              <Users size={16} strokeWidth={2} />
-              <div>
-                <span className={styles.infoLabel}>{t('itineraries.forWho')}</span>
-                <p className={styles.infoValue}>{itinerary.audience.join(' · ')}</p>
+            <div className={styles.infoCards}>
+              <div className={styles.infoCard}>
+                <span className={styles.infoIcon} aria-hidden="true">
+                  <Users size={17} strokeWidth={2} />
+                </span>
+                <div className={styles.infoText}>
+                  <span className={styles.infoLabel}>{t('itineraries.forWho')}</span>
+                  <p className={styles.infoValue}>{itinerary.audience.join(' · ')}</p>
+                </div>
+              </div>
+              <div className={styles.infoCard}>
+                <span className={styles.infoIcon} aria-hidden="true">
+                  <CalendarRange size={17} strokeWidth={2} />
+                </span>
+                <div className={styles.infoText}>
+                  <span className={styles.infoLabel}>{t('itineraries.bestSeason')}</span>
+                  <p className={styles.infoValue}>{itinerary.bestSeason}</p>
+                </div>
               </div>
             </div>
-            <div className={styles.infoCard}>
-              <CalendarRange size={16} strokeWidth={2} />
-              <div>
-                <span className={styles.infoLabel}>{t('itineraries.bestSeason')}</span>
-                <p className={styles.infoValue}>{itinerary.bestSeason}</p>
-              </div>
-            </div>
-          </div>
+          </Reveal>
 
-          <section className={styles.highlightsBlock}>
-            <h2 className={styles.blockTitle}>{t('itineraries.highlightsTitle')}</h2>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('itineraries.highlightsKicker')}</span>
+            <h2 className={styles.sectionTitle}>{t('itineraries.highlightsTitle')}</h2>
             <ul className={styles.highlightsList}>
               {itinerary.highlights.map((h) => (
                 <li key={h}>
@@ -127,67 +139,89 @@ export function ItineraryDetailPage() {
                 </li>
               ))}
             </ul>
-          </section>
+          </Reveal>
 
-          {/* Programme jour par jour */}
-          <section className={styles.programme}>
-            <h2 className={styles.blockTitle}>{t('itineraries.programmeTitle')}</h2>
-            <div className={styles.days}>
+          {/* Programme jour par jour, présenté en timeline */}
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('itineraries.programmeKicker')}</span>
+            <h2 className={styles.sectionTitle}>{t('itineraries.programmeTitle')}</h2>
+
+            <ol className={styles.timeline}>
               {itinerary.days.map((day, di) => (
-                <article key={di} className={styles.day}>
-                  <header className={styles.dayHeader}>
+                <li key={di} className={styles.day}>
+                  <div className={styles.dayRail} aria-hidden="true">
                     <span className={styles.dayNum}>{di + 1}</span>
-                    <div>
+                  </div>
+
+                  <div className={styles.dayCard}>
+                    <header className={styles.dayHeader}>
+                      <span className={styles.dayBadge}>
+                        {t('itineraries.dayLabel', { num: di + 1 })}
+                      </span>
                       <h3 className={styles.dayTitle}>{day.title}</h3>
                       <p className={styles.daySummary}>{day.summary}</p>
-                    </div>
-                  </header>
+                    </header>
 
-                  <ol className={styles.stops}>
-                    {day.stops.map((stop, si) => (
-                      <li key={si} className={styles.stop}>
-                        <div className={styles.stopSide}>
-                          {stop.time && <span className={styles.stopTime}>{stop.time}</span>}
-                          <span className={styles.stopType}>{t(`trips.itemTypes.${stop.type}`)}</span>
-                        </div>
-                        <div className={styles.stopMain}>
-                          <p className={styles.stopTitle}>
-                            {stop.destinationSlug ? (
-                              <Link to={`/explore/${stop.destinationSlug}`} className={styles.stopLink}>
-                                {stop.title}
-                                <ArrowRight size={13} strokeWidth={2} />
-                              </Link>
-                            ) : (
-                              stop.title
-                            )}
-                            {typeof stop.estimatedCost === 'number' && stop.estimatedCost > 0 && (
-                              <span className={styles.stopCost}>{formatXof(stop.estimatedCost)}</span>
-                            )}
-                          </p>
-                          <p className={styles.stopDesc}>{stop.description}</p>
-                          {stop.tip && (
-                            <p className={styles.stopTip}>
-                              <Lightbulb size={13} strokeWidth={2} />
-                              {stop.tip}
+                    <ol className={styles.stops}>
+                      {day.stops.map((stop, si) => (
+                        <li key={si} className={styles.stop}>
+                          <div className={styles.stopSide}>
+                            {stop.time && <span className={styles.stopTime}>{stop.time}</span>}
+                            <span className={styles.stopType}>
+                              {t(`trips.itemTypes.${stop.type}`)}
+                            </span>
+                          </div>
+                          <div className={styles.stopMain}>
+                            <p className={styles.stopTitle}>
+                              {stop.destinationSlug ? (
+                                <Link
+                                  to={`/explore/${stop.destinationSlug}`}
+                                  className={styles.stopLink}
+                                >
+                                  {stop.title}
+                                  <ArrowRight size={13} strokeWidth={2} />
+                                </Link>
+                              ) : (
+                                stop.title
+                              )}
+                              {typeof stop.estimatedCost === 'number' && stop.estimatedCost > 0 && (
+                                <span className={styles.stopCost}>
+                                  {formatXof(stop.estimatedCost)}
+                                </span>
+                              )}
                             </p>
-                          )}
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                </article>
+                            <p className={styles.stopDesc}>{stop.description}</p>
+                            {stop.tip && (
+                              <p className={styles.stopTip}>
+                                <Lightbulb size={13} strokeWidth={2} />
+                                {stop.tip}
+                              </p>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </li>
               ))}
-            </div>
-          </section>
+            </ol>
+          </Reveal>
 
-          <section className={styles.notIncluded}>
-            <h2 className={styles.blockTitle}>{t('itineraries.notIncludedTitle')}</h2>
-            <ul>
-              {itinerary.notIncluded.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-          </section>
+          <Reveal as="section" className={styles.sectionPlain}>
+            <div className={styles.notIncluded}>
+              <span className={styles.notIncludedIcon} aria-hidden="true">
+                <Info size={18} strokeWidth={2} />
+              </span>
+              <div className={styles.notIncludedMain}>
+                <h2 className={styles.notIncludedTitle}>{t('itineraries.notIncludedTitle')}</h2>
+                <ul>
+                  {itinerary.notIncluded.map((n) => (
+                    <li key={n}>{n}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
 
           <div className={styles.adviceMobile}>
             <TravelAdvice collapsedByDefault />

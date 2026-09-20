@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ImageOff, User, MapPin } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { DestinationCard } from '../../destinations/components/DestinationCard';
 import { useCultureContentDetail } from '../hooks/useCultureContentDetail';
 import { useRelatedDestinations } from '../hooks/useRelatedDestinations';
@@ -76,33 +76,44 @@ export function CultureContentDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {content.media_type === 'audio' && content.media_url && (
-            <audio controls className={styles.mediaPlayer} src={content.media_url} />
+            <Reveal as="section" className={styles.section}>
+              <audio controls className={styles.mediaPlayer} src={content.media_url} />
+            </Reveal>
           )}
           {content.media_type === 'video' && content.media_url && (
-            <video controls className={styles.mediaPlayer} src={content.media_url} />
+            <Reveal as="section" className={styles.section}>
+              <div className={styles.videoWrap}>
+                <video controls className={styles.mediaVideo} src={content.media_url} />
+              </div>
+            </Reveal>
           )}
 
           {content.summary && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('culture.detailKickerSummary')}</span>
               <p className={styles.summary}>{content.summary}</p>
-            </section>
+            </Reveal>
           )}
 
           {content.content && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('culture.detailKickerStory')}</span>
               <p className={styles.contentText}>{content.content}</p>
-            </section>
+            </Reveal>
           )}
 
           {relatedDestinations.length > 0 && (
-            <section className={styles.section}>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('culture.relatedDestinationsKicker')}</span>
               <h2 className={styles.sectionTitle}>{t('culture.relatedDestinations')}</h2>
               <div className={styles.relatedGrid}>
-                {relatedDestinations.map((destination) => (
-                  <DestinationCard key={destination.id} destination={destination} />
+                {relatedDestinations.map((destination, i) => (
+                  <Reveal key={destination.id} delay={Math.min(i, 6) * 60}>
+                    <DestinationCard destination={destination} />
+                  </Reveal>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
       </div>

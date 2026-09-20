@@ -22,10 +22,34 @@ const TYPES: (RoadServiceType | undefined)[] = [
 interface RoadServiceFiltersProps {
   active: RoadServiceType | undefined;
   onChange: (value: RoadServiceType | undefined) => void;
+  /** Layout vertical pour la sidebar desktop (sinon rangée scrollable mobile/tablette). */
+  layout?: 'row' | 'stack';
 }
 
-export function RoadServiceFilters({ active, onChange }: RoadServiceFiltersProps) {
+export function RoadServiceFilters({ active, onChange, layout = 'row' }: RoadServiceFiltersProps) {
   const { t } = useTranslation();
+
+  if (layout === 'stack') {
+    return (
+      <div className={styles.stack}>
+        {TYPES.map((value) => {
+          const isActive = active === value;
+          return (
+            <button
+              key={value ?? 'all'}
+              type="button"
+              className={clsx(styles.stackItem, isActive && styles.stackItemActive)}
+              onClick={() => onChange(value)}
+              aria-pressed={isActive}
+            >
+              {!value && <LayoutGrid size={16} strokeWidth={2} className={styles.stackIcon} />}
+              {value ? t(`roads.types.${value}`) : t('roads.filters.all')}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.scroller}>

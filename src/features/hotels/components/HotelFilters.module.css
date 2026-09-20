@@ -43,11 +43,18 @@
 }
 
 .chipActive {
-  background-color: var(--color-brand);
-  border-color: var(--color-brand);
+  background: var(--gradient-sunset);
+  border-color: transparent;
   color: var(--color-text-on-brand);
+  box-shadow: var(--shadow-sm);
 }
 
 .chipActive:hover {
   color: var(--color-text-on-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
 }

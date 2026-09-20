@@ -20,6 +20,77 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .body {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-7);
+    padding: var(--space-7) var(--space-4) var(--space-8);
+    max-width: 1320px;
+  }
+}
+
+/* Sidebar filtres, visible et sticky uniquement à partir du desktop */
+
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    flex-shrink: 0;
+    width: 260px;
+    position: sticky;
+    top: calc(72px + var(--space-5));
+  }
+}
+
+.sidebarInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+}
+
+.sidebarKicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.sidebarDivider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Filtres mobiles/tablette : rangée scrollable au-dessus de la grille */
+
+.mobileFilters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .mobileFilters {
+    display: none;
+  }
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+  flex: 1;
+}
+
 .resultsCount {
   margin: 0;
   font-size: 0.875rem;
@@ -40,6 +111,13 @@
 }
 
 @media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1440px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }

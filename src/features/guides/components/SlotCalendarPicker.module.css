@@ -12,7 +12,8 @@
 
 .monthLabel {
   font-size: 0.9375rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.005em;
   text-transform: capitalize;
 }
 
@@ -27,10 +28,12 @@
   background-color: var(--color-bg);
   color: var(--color-text);
   cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .navBtn:hover {
-  border-color: var(--color-border-strong);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
 }
 
 .weekdays {
@@ -76,16 +79,22 @@
   border-color: var(--color-border);
   cursor: pointer;
   font-weight: 600;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
 }
 
 .dayCellAvailable:hover {
   border-color: var(--color-brand);
+  transform: translateY(-1px);
 }
 
 .dayCellSelected {
-  background-color: var(--color-brand);
-  border-color: var(--color-brand);
+  background: var(--gradient-sunset);
+  border-color: transparent;
   color: #fff;
+}
+
+.dayCellSelected:hover {
+  transform: none;
 }
 
 .noDates {
@@ -129,15 +138,21 @@
   cursor: pointer;
   font: inherit;
   text-align: left;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .slotOption:hover {
   border-color: var(--color-border-strong);
+  transform: translateY(-1px);
 }
 
 .slotOptionSelected {
   border-color: var(--color-brand);
   background-color: var(--color-brand-surface);
+}
+
+.slotOptionSelected:hover {
+  transform: none;
 }
 
 .slotTime {

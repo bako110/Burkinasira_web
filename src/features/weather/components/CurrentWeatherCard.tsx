@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Thermometer, Droplets, Wind, Gauge } from 'lucide-react';
+import { Thermometer, Droplets, Wind, Gauge, Sun } from 'lucide-react';
 
 import type { WeatherSnapshot } from '../types';
 import styles from './CurrentWeatherCard.module.css';
@@ -9,6 +9,10 @@ export function CurrentWeatherCard({ snapshot }: { snapshot: WeatherSnapshot }) 
 
   return (
     <div className={styles.card}>
+      <div className={styles.mesh} aria-hidden="true" />
+      <span className={styles.badge}>
+        <Sun size={22} strokeWidth={1.75} />
+      </span>
       <div className={styles.main}>
         {typeof snapshot.temperature_celsius === 'number' && (
           <span className={styles.temperature}>{Math.round(snapshot.temperature_celsius)}°C</span>

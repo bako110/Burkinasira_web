@@ -8,6 +8,7 @@ import { LanguageSwitcher, ThemeToggle, ConfirmDialog } from '../../shared/ui';
 import { useAuthStore } from '../../store/auth.store';
 import { useLogoutConfirm } from '../../shared/hooks/useLogoutConfirm';
 import { MobileTabBar } from './MobileTabBar';
+import { Footer } from './Footer';
 import { ExploreMenu } from './ExploreMenu';
 import { DiscoverMenu, DISCOVER_LINKS, PRACTICAL_LINKS } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
@@ -208,6 +209,8 @@ export function AppLayout() {
       <main className={styles.main}>
         <Outlet />
       </main>
+
+      <Footer />
 
       <MobileTabBar />
 

@@ -97,6 +97,28 @@ export function RoadServicesPage() {
   const hasMore = accumulated.length > 0 && accumulated.length < total;
   const showInitialLoading = isLoading && page === 1;
 
+  const actions = (
+    <div className={styles.actionsRow}>
+      <Button
+        variant={nearMeActive ? 'primary' : 'secondary'}
+        onClick={toggleNearMe}
+        disabled={isLocating}
+        fullWidth
+      >
+        <LocateFixed size={16} strokeWidth={2} />
+        {isLocating ? t('roads.locating') : t('roads.nearMe')}
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={() => requireAuth(() => setReportOpen(true), t('roads.reportBreakdownRequiresAuth'))}
+        fullWidth
+      >
+        <ShieldAlert size={16} strokeWidth={2} />
+        {t('roads.reportBreakdown')}
+      </Button>
+    </div>
+  );
+
   return (
     <div className={styles.page}>
       <ListingHero
@@ -111,72 +133,69 @@ export function RoadServicesPage() {
       />
 
       <div className={styles.body}>
-        <div className={styles.actionsRow}>
-          <Button
-            variant={nearMeActive ? 'primary' : 'secondary'}
-            onClick={toggleNearMe}
-            disabled={isLocating}
-          >
-            <LocateFixed size={16} strokeWidth={2} />
-            {isLocating ? t('roads.locating') : t('roads.nearMe')}
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => requireAuth(() => setReportOpen(true), t('roads.reportBreakdownRequiresAuth'))}
-          >
-            <ShieldAlert size={16} strokeWidth={2} />
-            {t('roads.reportBreakdown')}
-          </Button>
-        </div>
-
-        <RoadServiceFilters active={urlType} onChange={applyType} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('roads.filters.all')}</span>
+            <RoadServiceFilters active={urlType} onChange={applyType} layout="stack" />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <span className={styles.sidebarKicker}>{t('roads.reportBreakdown')}</span>
+            {actions}
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            {actions}
+            <RoadServiceFilters active={urlType} onChange={applyType} />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('roads.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setNearMeActive(false);
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((service, i) => (
-                <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
-                  <RoadServiceCard service={service} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('roads.empty')}
+              text={t('explore.emptyText')}
+              onReset={() => {
+                setQueryInput('');
+                setNearMeActive(false);
+                setSearchParams({});
+              }}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((service, i) => (
+                  <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
+                    <RoadServiceCard service={service} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
+
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
 
       <ReportBreakdownModal open={reportOpen} onClose={() => setReportOpen(false)} />

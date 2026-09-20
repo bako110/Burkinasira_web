@@ -22,19 +22,22 @@ export function MeetupCard({ meetup }: { meetup: CommunityMeetup }) {
 
   return (
     <Card className={styles.card}>
+      <span className={styles.kicker}>{t('diaspora.tabMeetups')}</span>
       <h3 className={styles.title}>{meetup.title}</h3>
       {meetup.description && <p className={styles.description}>{meetup.description}</p>}
-      <div className={styles.row}>
-        <MapPin size={14} strokeWidth={2} />
-        <span>{meetup.region}</span>
-      </div>
-      <div className={styles.row}>
-        <Calendar size={14} strokeWidth={2} />
-        <span>{new Date(meetup.scheduled_at).toLocaleString('fr-FR')}</span>
+      <div className={styles.metaList}>
+        <div className={styles.row}>
+          <MapPin size={14} strokeWidth={2} />
+          <span>{meetup.region}</span>
+        </div>
+        <div className={styles.row}>
+          <Calendar size={14} strokeWidth={2} />
+          <span>{new Date(meetup.scheduled_at).toLocaleString('fr-FR')}</span>
+        </div>
       </div>
       <div className={styles.footer}>
         <span className={styles.participantCount}>
-          <Users size={13} strokeWidth={2} style={{ verticalAlign: 'text-bottom', marginRight: 4 }} />
+          <Users size={13} strokeWidth={2} className={styles.participantIcon} />
           {t('diaspora.participantCount', { count: meetup.participant_ids.length })}
         </span>
         <Button

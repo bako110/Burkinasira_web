@@ -7,7 +7,6 @@ import {
   Reveal,
   EmptyResults,
   CardSkeleton,
-  ListingHero,
   RelatedModules,
   RegionProvinceFilter,
   NearMeToggle,
@@ -17,6 +16,7 @@ import { useNearMe } from '../../../shared/hooks/useNearMe';
 import { useTransportProviders } from '../hooks/useTransportProviders';
 import { TransportCard } from '../components/TransportCard';
 import { TransportFilters } from '../components/TransportFilters';
+import { MobilityHero } from '../components/MobilityHero';
 import type { TransportProviderSummary, TransportType } from '../types';
 import styles from './MobilityPage.module.css';
 
@@ -117,74 +117,84 @@ export function MobilityPage() {
 
   return (
     <div className={styles.page}>
-      <ListingHero
-        title={t('mobility.title')}
-        subtitle={t('mobility.subtitle')}
-        searchPlaceholder={t('mobility.searchPlaceholder')}
-        searchLabel={t('common.search')}
-        searchButtonLabel={t('common.search')}
-        query={queryInput}
-        onQueryChange={setQueryInput}
-        onSubmit={applySearch}
-      />
+      <MobilityHero query={queryInput} onQueryChange={setQueryInput} onSubmit={applySearch} />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <TransportFilters active={urlType} onChange={applyType} />
-        <NearMeToggle nearMe={nearMe} resultCount={total} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <TransportFilters active={urlType} onChange={applyType} layout="stack" />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <TransportFilters active={urlType} onChange={applyType} />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('mobility.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((provider, i) => (
-                <Reveal key={provider.id} delay={Math.min(i, 8) * 50}>
-                  <TransportCard provider={provider} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('mobility.empty')}
+              text={t('explore.emptyText')}
+              onReset={() => {
+                setQueryInput('');
+                setSearchParams({});
+              }}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((provider, i) => (
+                  <Reveal key={provider.id} delay={Math.min(i, 8) * 50}>
+                    <TransportCard provider={provider} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/mobility" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/mobility" />
+        </div>
       </div>
     </div>
   );

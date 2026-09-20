@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, BadgeCheck, Landmark, HeartHandshake } from 'lucide-react';
 
-import { FloatingFlags } from '../../../shared/ui';
+import { Reveal } from '../../../shared/ui/Reveal';
 import styles from './TrustBand.module.css';
 
 const ITEMS = [
@@ -16,13 +16,14 @@ export function TrustBand() {
 
   return (
     <section className={styles.band}>
-      <FloatingFlags tone="subtle" />
       <div className={styles.inner}>
-        {ITEMS.map(({ key, Icon }) => (
-          <div key={key} className={styles.item}>
-            <Icon size={18} strokeWidth={2} className={styles.icon} />
+        {ITEMS.map(({ key, Icon }, i) => (
+          <Reveal key={key} delay={i * 60} className={styles.item}>
+            <span className={styles.iconWrap}>
+              <Icon size={16} strokeWidth={2} className={styles.icon} />
+            </span>
             <span>{t(`home.trust.${key}`)}</span>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

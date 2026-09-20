@@ -24,6 +24,13 @@
   border-bottom-right-radius: var(--radius-lg);
 }
 
+@media (min-width: 1024px) {
+  .heroImage {
+    height: min(64vh, 560px);
+    min-height: 380px;
+  }
+}
+
 .heroImg {
   width: 100%;
   height: 100%;
@@ -91,29 +98,40 @@
   right: 0;
   bottom: 0;
   padding: var(--space-6) var(--space-4);
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
   width: 100%;
 }
 
+@media (min-width: 1024px) {
+  .heroContent {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
 .categoryBadge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 4px var(--space-3);
   border-radius: var(--radius-full);
   background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
   font-size: 0.6875rem;
   font-weight: 700;
-  text-transform: capitalize;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   backdrop-filter: blur(4px);
 }
 
 .title {
-  margin: var(--space-2) 0 var(--space-2);
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: clamp(1.75rem, 5vw, 3.25rem);
+  line-height: 1.05;
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  max-width: 900px;
 }
 
 .heroMeta {
@@ -184,7 +202,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-2);
-  max-width: 1100px;
+  max-width: 1180px;
   width: 100%;
   margin: var(--space-4) auto 0;
   padding: 0 var(--space-4);
@@ -196,9 +214,23 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .gallery {
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding: 0 var(--space-6);
+  }
+}
+
+.galleryItem {
+  height: 100%;
+}
+
 .galleryImgButton {
+  position: relative;
   display: block;
   width: 100%;
+  height: 100%;
   padding: 0;
   border: none;
   border-radius: var(--radius-md);
@@ -209,6 +241,7 @@
 }
 
 .galleryImg {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -219,20 +252,35 @@
   transform: scale(1.06);
 }
 
+.galleryMoreOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(20, 18, 15, 0.55);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 800;
+  backdrop-filter: blur(2px);
+}
+
 .body {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   padding: var(--space-6) var(--space-4) var(--space-8);
-  max-width: 1100px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .body {
     flex-direction: row;
     align-items: flex-start;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-6) var(--space-8);
   }
 }
 
@@ -241,26 +289,44 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-7);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
 }
 
 .sectionTitle {
   margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 700;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .description {
   margin: 0;
   color: var(--color-text-muted);
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 680px;
 }
 
 .tagList {
@@ -316,11 +382,11 @@
   flex-shrink: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .sidebar {
-    width: 320px;
+    width: 340px;
     position: sticky;
-    top: calc(64px + var(--space-4));
+    top: calc(72px + var(--space-5));
   }
 }
 
@@ -332,7 +398,7 @@
   border-radius: var(--radius-lg);
   background-color: var(--color-bg-raised);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .priceInfo {

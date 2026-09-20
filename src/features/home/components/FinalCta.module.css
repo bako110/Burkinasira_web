@@ -1,6 +1,6 @@
 .section {
   padding: var(--space-7) var(--space-4) var(--space-8);
-  max-width: 1200px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
 }
@@ -19,6 +19,12 @@
   isolation: isolate;
 }
 
+@media (min-width: 1024px) {
+  .card {
+    padding: calc(var(--space-8) + var(--space-4)) var(--space-6);
+  }
+}
+
 @media (max-width: 480px) {
   .card {
     padding: var(--space-6) var(--space-4);
@@ -33,23 +39,51 @@
   z-index: 0;
 }
 
+.pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 75%);
+}
+
+.kicker {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
 .title {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  max-width: 720px;
 }
 
 .text {
   position: relative;
   z-index: 1;
   margin: 0;
-  max-width: 480px;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 

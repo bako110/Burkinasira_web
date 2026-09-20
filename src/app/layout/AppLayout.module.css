@@ -21,7 +21,14 @@
   height: 64px;
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .headerInner {
+    height: 72px;
+    gap: var(--space-6);
+  }
 }
 
 .brand {
@@ -30,10 +37,16 @@
   gap: var(--space-2);
   font-weight: 800;
   font-size: 1.0625rem;
+  letter-spacing: -0.01em;
   text-decoration: none;
   color: var(--color-text);
   flex-shrink: 0;
   min-width: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.brand:hover {
+  opacity: 0.82;
 }
 
 .brand span {
@@ -43,8 +56,8 @@
 }
 
 .logo {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
@@ -52,7 +65,8 @@
 
 .nav {
   display: none;
-  gap: var(--space-4);
+  align-items: center;
+  gap: var(--space-5);
   flex: 1;
 }
 
@@ -63,21 +77,42 @@
 }
 
 .navLink {
+  position: relative;
   text-decoration: none;
   color: var(--color-text-muted);
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.9125rem;
+  letter-spacing: 0.005em;
   padding: var(--space-2) 0;
-  border-bottom: 2px solid transparent;
+  transition: color var(--transition-base);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-sunset);
+  transition: right var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navLink:hover {
   color: var(--color-text);
 }
 
+.navLink:hover::after {
+  right: 0;
+}
+
 .navLinkActive {
-  color: var(--color-brand);
-  border-bottom-color: var(--color-brand);
+  color: var(--color-text);
+}
+
+.navLinkActive::after {
+  right: 0;
 }
 
 /* Hamburger toggle (mobile) */
@@ -94,11 +129,13 @@
   background-color: transparent;
   color: var(--color-text);
   cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .menuToggle:hover {
   border-color: var(--color-border-strong);
   background-color: var(--color-bg-inset);
+  color: var(--color-brand);
 }
 
 @media (min-width: 768px) {
@@ -124,17 +161,25 @@
 }
 
 .loginLink {
-  height: 36px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
-  padding: 0 var(--space-4);
-  border-radius: var(--radius-md);
-  background-color: var(--color-brand);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-full);
+  background: var(--gradient-sunset);
   color: var(--color-text-on-brand);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8125rem;
+  letter-spacing: 0.01em;
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.loginLink:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .logoutBtn {
@@ -172,15 +217,16 @@
   height: 36px;
   display: inline-flex;
   align-items: center;
-  padding: 0 var(--space-3);
-  border-radius: var(--radius-md);
-  background-color: var(--color-brand);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--gradient-sunset);
   color: var(--color-text-on-brand);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.75rem;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Drawer (mobile menu) */
@@ -277,10 +323,22 @@
   color: var(--color-text);
   font-weight: 600;
   font-size: 0.9375rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .drawerLink:hover {
   background-color: var(--color-bg-inset);
+}
+
+.drawerLink.active,
+.drawerLink[aria-current='page'] {
+  color: var(--color-brand);
+  background-color: var(--color-brand-surface);
+}
+
+.drawerLink.active .drawerLinkIcon,
+.drawerLink[aria-current='page'] .drawerLinkIcon {
+  color: var(--color-brand);
 }
 
 .drawerLinkIcon {
@@ -366,12 +424,19 @@
   justify-content: center;
   width: 100%;
   height: 44px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-brand);
+  border-radius: var(--radius-full);
+  background: var(--gradient-sunset);
   color: var(--color-text-on-brand);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.drawerLogin:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .main {

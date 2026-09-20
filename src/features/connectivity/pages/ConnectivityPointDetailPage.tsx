@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Phone, ArrowLeft, ExternalLink, Wifi, Radio, Store, Building } from 'lucide-react';
+import { MapPin, Phone, ArrowLeft, ExternalLink, Wifi, Radio, Store, Building, Gift, Smartphone } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { useConnectivityPointDetail } from '../hooks/useConnectivityPointDetail';
@@ -53,6 +53,7 @@ export function ConnectivityPointDetailPage() {
   const mapsUrl = point.location
     ? `https://www.google.com/maps?q=${point.location.latitude},${point.location.longitude}`
     : undefined;
+  const hasConnectionInfo = point.is_free || point.offers_esim;
 
   return (
     <div className={styles.page}>
@@ -82,6 +83,31 @@ export function ConnectivityPointDetailPage() {
       </section>
 
       <div className={styles.body}>
+        <div className={styles.main}>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>{t('connectivity.connectionInfo')}</h2>
+            <div className={styles.tagList}>
+              <span className={styles.tag}>
+                <Icon size={14} strokeWidth={2} />
+                {t(`connectivity.types.${point.type}`, point.type)}
+              </span>
+              {point.is_free && (
+                <span className={styles.tag}>
+                  <Gift size={14} strokeWidth={2} />
+                  {t('connectivity.free')}
+                </span>
+              )}
+              {point.offers_esim && (
+                <span className={styles.tag}>
+                  <Smartphone size={14} strokeWidth={2} />
+                  {t('connectivity.esim')}
+                </span>
+              )}
+            </div>
+            {!hasConnectionInfo && <p className={styles.description}>{t('connectivity.noExtraInfo')}</p>}
+          </section>
+        </div>
+
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
             <div className={styles.contactList}>

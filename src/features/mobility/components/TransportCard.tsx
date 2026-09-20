@@ -1,5 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Star, MapPin, ShieldCheck, Car, Bike, Plane, Bus as BusIcon } from 'lucide-react';
+import {
+  Star,
+  MapPin,
+  ShieldCheck,
+  Car,
+  CarTaxiFront,
+  CarFront,
+  Bike,
+  PlaneTakeoff,
+  BusFront,
+  Compass,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Card } from '../../../shared/ui';
@@ -7,13 +18,13 @@ import type { TransportProviderSummary, TransportType } from '../types';
 import styles from './TransportCard.module.css';
 
 const TYPE_ICON: Record<TransportType, typeof Car> = {
-  taxi_vtc: Car,
+  taxi_vtc: CarTaxiFront,
   chauffeur_prive: Car,
-  location_voiture: Car,
+  location_voiture: CarFront,
   location_moto: Bike,
-  transport_interurbain: BusIcon,
-  transfert_aeroport: Plane,
-  transport_touristique_prive: BusIcon,
+  transport_interurbain: BusFront,
+  transfert_aeroport: PlaneTakeoff,
+  transport_touristique_prive: Compass,
 };
 
 export function TransportCard({ provider }: { provider: TransportProviderSummary }) {
@@ -25,7 +36,11 @@ export function TransportCard({ provider }: { provider: TransportProviderSummary
     <Link to={`/mobility/${provider.slug}`} className={styles.link}>
       <Card className={styles.card}>
         <div className={styles.iconBanner}>
-          <Icon size={30} strokeWidth={1.5} />
+          {provider.photo ? (
+            <img src={provider.photo} alt={provider.name} className={styles.image} loading="lazy" />
+          ) : (
+            <Icon size={30} strokeWidth={1.5} />
+          )}
           {provider.is_verified && (
             <span className={styles.verifiedBadge}>
               <ShieldCheck size={13} strokeWidth={2} />

@@ -18,10 +18,34 @@ const TYPES: { key: string; value: ConnectivityPointType | undefined; Icon: type
 interface ConnectivityFiltersProps {
   active: ConnectivityPointType | undefined;
   onChange: (value: ConnectivityPointType | undefined) => void;
+  /** Layout vertical pour la sidebar desktop (sinon rangée scrollable mobile/tablette). */
+  layout?: 'row' | 'stack';
 }
 
-export function ConnectivityFilters({ active, onChange }: ConnectivityFiltersProps) {
+export function ConnectivityFilters({ active, onChange, layout = 'row' }: ConnectivityFiltersProps) {
   const { t } = useTranslation();
+
+  if (layout === 'stack') {
+    return (
+      <div className={styles.stack}>
+        {TYPES.map(({ key, value, Icon }) => {
+          const isActive = active === value;
+          return (
+            <button
+              key={key}
+              type="button"
+              className={clsx(styles.stackItem, isActive && styles.stackItemActive)}
+              onClick={() => onChange(value)}
+              aria-pressed={isActive}
+            >
+              <Icon size={17} strokeWidth={2} className={styles.stackIcon} />
+              {t(`connectivity.filters.${key}`)}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.scroller}>

@@ -7,6 +7,8 @@
     "save": "Bao",
     "cancel": "Bas",
     "search": "Bao",
+    "call": "Boll",
+    "filters": "Zãag",
     "seeAll": "Ges fãa",
     "seeMore": "Ges n paase",
     "seeLess": "Ges bilf-bilfu",
@@ -32,7 +34,8 @@
     "ctaRestaurant": "Ges rɩ-zĩiga",
     "ctaTransport": "Ges pʋɩʋgã",
     "ctaArtisan": "Ges tʋʋm-zĩiga",
-    "ctaDestination": "Ges fotow"
+    "ctaDestination": "Ges fotow",
+    "ctaExperience": "Ges fotow"
   },
   "nav": {
     "home": "Zaka",
@@ -420,6 +423,7 @@
   },
   "explore": {
     "subtitle": "Bao zĩis, tʋʋm-tʋmde la zĩis sẽn tigme Burkina Faso zug fãa.",
+    "filtersLabel": "Tususe",
     "filters": {
       "all": "Fãa",
       "site_naturel": "Bãong-zĩis",
@@ -438,7 +442,8 @@
     "emptyText": "Maan m-baoodo ne gomd a to bɩ tigims a to.",
     "errorText": "D ka tõe n wa ne bũmb woto sɛka ye.",
     "resetFilters": "Le sɩng bãoodo",
-    "loadMore": "Ges bũmb a taab"
+    "loadMore": "Ges bũmb a taab",
+    "filtersLabel": "Yãk buud ne lebgr"
   },
   "hotels": {
     "title": "Zaka-kɩʋʋg Burkina Faso",
@@ -516,6 +521,7 @@
     "contactDefaultMessage": "Ne y sõma, mam data ne « {{name}} »."
   },
   "mobility": {
+    "badge": "Sore",
     "title": "Sore la wagd-taab",
     "subtitle": "Taksi, sor-tʋmdb la voatʋr-loose Burkina Faso pʋgẽ.",
     "empty": "Ka tʋm-tʋmd baa a yembre",
@@ -983,6 +989,8 @@
   "international": {
     "title": "Sɩngr sore-yalg sor-tʋmd",
     "subtitle": "Bũmb fãa f sẽn dat n bãng taoor n yɩ f sore-yalgã Burkina Faso: rog-n-mikde, ligde, tigsg-vẽkr, laafi la loaad pekre.",
+    "kicker": "Sore-yalg sɩngr Burkina Faso",
+    "categoryStep": "Naoor",
     "empty": "Sor-tʋmdã nan ka be goamã pʋgẽ ye",
     "categories": {
       "culture_usages": "Rog-n-mikd la minim",
@@ -1076,6 +1084,9 @@
     "onDuty": "A bee tʋʋm",
     "onDutyFilter": "Farmasi sẽn bee tʋʋm",
     "detailNotFound": "Zĩig ka be ye",
+    "practicalInfo": "Vẽnegr sõma",
+    "onDutyNotice": "A pak la a bee tʋʋm masã",
+    "callNow": "Boolg masã",
     "filters": {
       "all": "Fãa",
       "pharmacie": "Farmasi",
@@ -1101,8 +1112,18 @@
     "title": "Yell-kãse la lɛɛgengo",
     "subtitle": "Telefon nins sẽn tar yõod la yell-kãse sẽn zãada.",
     "alertsTitle": "Yell-kãse sẽn zãada",
+    "alertsKicker": "Bãng-y-woto",
     "contactsTitle": "Yell-kãse telefon",
+    "contactsKicker": "Wakat fãa yaa nana",
+    "callAction": "Boll-y",
     "empty": "Ka telefon baa a yembre",
+    "reflexesKicker": "Lɛɛgengo minim",
+    "reflexesTitle": "Yell-kãse sã n zĩnd",
+    "reflexes": {
+      "stayCalm": "Bɩ f gũus n bãng bũmb ninga sẽn maandẽ taoor n maan bũmb.",
+      "shareLocation": "Kõ f zĩig zãmsem lɛɛgengo neb wakat sẽn yaa fãagr.",
+      "trustedContact": "Wilg f zak neda a yembr f zĩigã."
+    },
     "types": {
       "police": "Poliis",
       "pompiers": "Bugum-sãamdba",
@@ -1147,15 +1168,19 @@
       "mobile_money": "Mobile money",
       "bureau_change": "Ligd-toeem-zĩig"
     },
-    "searchPlaceholder": "Bãnk, gishɛ, tẽng..."
+    "searchPlaceholder": "Bãnk, gishɛ, tẽng...",
+    "practicalInfo": "Sõngr-vãeeg"
   },
   "connectivity": {
+    "badge": "Kibar-tũuse",
     "title": "Internet zoodo",
     "subtitle": "Tʋm-tʋmdb, SIM koeese la Wi-Fi Burkina Faso pʋgẽ.",
     "empty": "Ka zĩig baa a yembre",
     "free": "Zaka",
     "esim": "eSIM bee",
     "detailNotFound": "Zĩig ka be ye",
+    "connectionInfo": "Zoodo kibare",
+    "noExtraInfo": "Kibar-a to ka be zĩig kãngã yĩnga ye.",
     "filters": {
       "all": "Fãa",
       "operateur_telecom": "Tʋm-tʋmda",
@@ -1178,11 +1203,15 @@
   "weather": {
     "title": "Sa wakat la zĩig-yaool",
     "subtitle": "Sa wakat sẽn be masã, a sẽn na n yɩ, la saagr saglg.",
+    "kicker": "Sa wakat la yʋʋm-kʋʋdgu",
     "regionLabel": "Tẽngã",
     "currentTitle": "Sa wakat sẽn be masã",
     "forecastTitle": "Wilgri",
+    "forecastKicker": "Daar a nu sẽn watẽ",
     "alertsTitle": "Yell-kãse sẽn zãada",
+    "alertsKicker": "Bãng-y-woto",
     "tipsTitle": "Saagr saglg",
+    "tipsKicker": "Segl f sore-yalgã",
     "noDataForRegion": "Ka sa-wakat kibar tẽngã kãnga yĩnga ye",
     "noForecast": "Ka wilgri baa a yembre",
     "noData": "Kibare ka be ye",
@@ -1196,6 +1225,9 @@
     "empty": "Ka bũmb baa a yembre",
     "detailNotFound": "Bũmb ka be ye",
     "relatedDestinations": "Zĩis sẽn tar tʋʋlgo",
+    "detailKickerSummary": "Sõsg koɛɛg",
+    "detailKickerStory": "Sõsgo",
+    "relatedDestinationsKicker": "N tɩ ges",
     "filters": {
       "all": "Fãa",
       "histoire": "Kibay",
@@ -1521,6 +1553,16 @@
     "ctaTitle": "Fo sɩd n dat n ges Burkina Faso?",
     "ctaText": "Wa naan BurkinaSira n sɔsg n bao zĩis la nedbã sẽn zĩnd tẽngã pʋgẽ.",
     "ctaButton": "Sɔsg baorã"
+  },
+  "footer": {
+    "tagline": "Zĩig sẽn tigim Burkina Faso sã-tʋʋmd fãa: zĩis, zaka-kɩʋʋg, sor-tʋmdb la tʋʋmd.",
+    "discoverTitle": "Bao n ges",
+    "practicalTitle": "Sõngre",
+    "aboutTitle": "Tõnd yell",
+    "legalTitle": "Tõogo",
+    "privacy": "Sãmbsãmb",
+    "terms": "Tʋʋm-noy",
+    "rights": "Zu-loees fãa gũusame."
   },
   "planner": {
     "kicker": "Sor-yalg maandg",

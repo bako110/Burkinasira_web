@@ -72,6 +72,11 @@ export function FamilyServicesPage() {
     });
   }
 
+  function resetFilters() {
+    setQueryInput('');
+    setSearchParams({});
+  }
+
   const total = data?.total ?? 0;
   const hasMore = accumulated.length > 0 && accumulated.length < total;
   const showInitialLoading = isLoading && page === 1;
@@ -90,53 +95,61 @@ export function FamilyServicesPage() {
       />
 
       <div className={styles.body}>
-        <FamilyServiceFilters active={urlType} onChange={applyType} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <FamilyServiceFilters active={urlType} onChange={applyType} layout="stack" />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <FamilyServiceFilters active={urlType} onChange={applyType} />
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('family.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((service, i) => (
-                <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
-                  <FamilyServiceCard service={service} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('family.empty')}
+              text={t('explore.emptyText')}
+              onReset={resetFilters}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((service, i) => (
+                  <Reveal key={service.id} delay={Math.min(i, 8) * 50}>
+                    <FamilyServiceCard service={service} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
+
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ShieldAlert, Siren, FileWarning } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Spinner, Reveal, EmptyResults, Button, RegionProvinceFilter } from '../../../shared/ui';
+import { Spinner, Reveal, EmptyResults, Button, RegionProvinceFilter, RelatedModules } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useEmergencyContacts } from '../hooks/useEmergencyContacts';
 import { useSecurityAlerts } from '../hooks/useSecurityAlerts';
@@ -27,18 +27,20 @@ export function EmergencyPage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        <div className={styles.heroMesh} aria-hidden="true" />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
-            <ShieldAlert size={28} strokeWidth={1.75} />
+            <ShieldAlert size={30} strokeWidth={1.75} />
           </span>
           <h1 className={styles.heroTitle}>{t('emergency.title')}</h1>
           <p className={styles.heroSubtitle}>{t('emergency.subtitle')}</p>
           <div className={styles.heroActions}>
             <Button
               variant="danger"
+              size="lg"
               onClick={() => requireAuth(() => setSosOpen(true), t('emergency.sosRequiresAuth'))}
             >
-              <Siren size={16} strokeWidth={2} />
+              <Siren size={18} strokeWidth={2} />
               {t('emergency.sosTrigger')}
             </Button>
             <Button variant="secondary" onClick={() => setIncidentOpen(true)}>
@@ -53,10 +55,9 @@ export function EmergencyPage() {
       <ReportIncidentModal open={incidentOpen} onClose={() => setIncidentOpen(false)} />
 
       <div className={styles.body}>
-        <RegionProvinceFilter region={region} onChange={(regionValue) => setRegion(regionValue)} />
-
         {!isLoadingAlerts && activeAlerts.length > 0 && (
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('emergency.alertsKicker')}</span>
             <h2 className={styles.sectionTitle}>{t('emergency.alertsTitle')}</h2>
             <div className={styles.alertList}>
               {activeAlerts.map((alert, i) => (
@@ -65,11 +66,17 @@ export function EmergencyPage() {
                 </Reveal>
               ))}
             </div>
-          </section>
+          </Reveal>
         )}
 
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>{t('emergency.contactsTitle')}</h2>
+        <Reveal as="section" className={styles.section}>
+          <div className={styles.contactsHead}>
+            <div>
+              <span className={styles.sectionKicker}>{t('emergency.contactsKicker')}</span>
+              <h2 className={styles.sectionTitle}>{t('emergency.contactsTitle')}</h2>
+            </div>
+            <RegionProvinceFilter region={region} onChange={(regionValue) => setRegion(regionValue)} />
+          </div>
 
           {isLoadingContacts && (
             <div className={styles.center}>
@@ -92,7 +99,19 @@ export function EmergencyPage() {
               ))}
             </div>
           )}
-        </section>
+        </Reveal>
+
+        <Reveal as="section" className={styles.tipBlock}>
+          <span className={styles.sectionKicker}>{t('emergency.reflexesKicker')}</span>
+          <h2 className={styles.sectionTitle}>{t('emergency.reflexesTitle')}</h2>
+          <ul className={styles.tipList}>
+            <li>{t('emergency.reflexes.stayCalm')}</li>
+            <li>{t('emergency.reflexes.shareLocation')}</li>
+            <li>{t('emergency.reflexes.trustedContact')}</li>
+          </ul>
+        </Reveal>
+
+        <RelatedModules currentPath="/emergency" />
       </div>
     </div>
   );

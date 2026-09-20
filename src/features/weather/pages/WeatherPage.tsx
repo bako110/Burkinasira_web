@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CloudSun } from 'lucide-react';
+import { CloudSun, MapPin } from 'lucide-react';
 
 import { Spinner, Reveal, EmptyResults, RelatedModules } from '../../../shared/ui';
 import { useCurrentWeather } from '../hooks/useCurrentWeather';
@@ -29,30 +29,35 @@ export function WeatherPage() {
       <section className={styles.hero}>
         <div className={styles.heroMesh} aria-hidden="true" />
         <div className={styles.heroContent}>
+          <span className={styles.kicker}>{t('weather.kicker')}</span>
           <span className={styles.heroIcon}>
-            <CloudSun size={28} strokeWidth={1.75} />
+            <CloudSun size={30} strokeWidth={1.75} />
           </span>
           <h1 className={styles.heroTitle}>{t('weather.title')}</h1>
           <p className={styles.heroSubtitle}>{t('weather.subtitle')}</p>
 
-          <select
-            className={styles.regionSelect}
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-            aria-label={t('weather.regionLabel')}
-          >
-            {BURKINA_REGIONS.map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
+          <div className={styles.regionField}>
+            <MapPin size={15} strokeWidth={2} className={styles.regionIcon} />
+            <select
+              className={styles.regionSelect}
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              aria-label={t('weather.regionLabel')}
+            >
+              {BURKINA_REGIONS.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </section>
 
       <div className={styles.body}>
         {activeAlerts.length > 0 && (
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('weather.alertsKicker')}</span>
             <h2 className={styles.sectionTitle}>{t('weather.alertsTitle')}</h2>
             <div className={styles.alertList}>
               {activeAlerts.map((alert, i) => (
@@ -61,10 +66,11 @@ export function WeatherPage() {
                 </Reveal>
               ))}
             </div>
-          </section>
+          </Reveal>
         )}
 
-        <section className={styles.section}>
+        <Reveal as="section" className={styles.section}>
+          <span className={styles.sectionKicker}>{region}</span>
           <h2 className={styles.sectionTitle}>{t('weather.currentTitle')}</h2>
           {isLoadingCurrent && (
             <div className={styles.center}>
@@ -75,9 +81,10 @@ export function WeatherPage() {
           {!isLoadingCurrent && !current && (
             <EmptyResults variant="empty" title={t('weather.noDataForRegion')} text={t('explore.emptyText')} />
           )}
-        </section>
+        </Reveal>
 
-        <section className={styles.section}>
+        <Reveal as="section" className={styles.section}>
+          <span className={styles.sectionKicker}>{t('weather.forecastKicker')}</span>
           <h2 className={styles.sectionTitle}>{t('weather.forecastTitle')}</h2>
           {isLoadingForecast && (
             <div className={styles.center}>
@@ -88,23 +95,22 @@ export function WeatherPage() {
           {!isLoadingForecast && (!forecast || forecast.length === 0) && (
             <EmptyResults variant="empty" title={t('weather.noForecast')} text={t('explore.emptyText')} />
           )}
-        </section>
+        </Reveal>
 
         {tips && tips.length > 0 && (
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('weather.tipsKicker')}</span>
             <h2 className={styles.sectionTitle}>{t('weather.tipsTitle')}</h2>
             <div className={styles.tipsList}>
               {tips.map((tip, i) => (
-                <Reveal key={tip.id} delay={i * 60}>
-                  <div className={styles.tipCard}>
-                    <span className={styles.tipSeason}>{tip.season}</span>
-                    <p className={styles.tipTitle}>{tip.title}</p>
-                    <p className={styles.tipContent}>{tip.content}</p>
-                  </div>
+                <Reveal key={tip.id} delay={i * 60} className={styles.tipCard}>
+                  <span className={styles.tipSeason}>{tip.season}</span>
+                  <p className={styles.tipTitle}>{tip.title}</p>
+                  <p className={styles.tipContent}>{tip.content}</p>
                 </Reveal>
               ))}
             </div>
-          </section>
+          </Reveal>
         )}
 
         <RelatedModules currentPath="/weather" />

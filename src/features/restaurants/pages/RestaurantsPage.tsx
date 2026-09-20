@@ -134,60 +134,73 @@ export function RestaurantsPage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <RestaurantFilters active={urlType} onChange={applyType} />
-        <NearMeToggle nearMe={nearMe} resultCount={total} />
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.filtersSidebar}>
+          <div className={styles.filtersCard}>
+            <span className={styles.filtersKicker}>{t('explore.filters', 'Filtres')}</span>
+            <div className={styles.filtersStack}>
+              <RegionProvinceFilter
+                region={urlRegion}
+                province={urlProvince}
+                onChange={applyRegionProvince}
+                showProvince
+              />
+              <RestaurantFilters active={urlType} onChange={applyType} />
+              <NearMeToggle nearMe={nearMe} resultCount={total} />
+            </div>
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <Reveal className={styles.resultsHeader}>
+            <span className={styles.kicker}>{t('restaurants.title')}</span>
+            <h2 className={styles.heading}>{t('restaurants.subtitle')}</h2>
+            {!showInitialLoading && !isError && (
+              <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+            )}
+          </Reveal>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('restaurants.empty')}
-            text={t('explore.emptyText')}
-            onReset={resetFilters}
-          />
-        )}
-
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((restaurant, i) => (
-                <Reveal key={restaurant.id} delay={Math.min(i, 8) * 50}>
-                  <RestaurantCard restaurant={restaurant} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('restaurants.empty')}
+              text={t('explore.emptyText')}
+              onReset={resetFilters}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((restaurant, i) => (
+                  <Reveal key={restaurant.id} delay={Math.min(i, 8) * 50}>
+                    <RestaurantCard restaurant={restaurant} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/restaurants" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
+
+      <RelatedModules currentPath="/restaurants" />
     </div>
   );
 }

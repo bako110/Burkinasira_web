@@ -36,10 +36,34 @@ const TYPES: { key: string; value: CultureContentType | undefined; Icon: typeof 
 interface CultureFiltersProps {
   active: CultureContentType | undefined;
   onChange: (value: CultureContentType | undefined) => void;
+  /** Layout vertical pour la sidebar desktop (sinon rangée scrollable mobile/tablette). */
+  layout?: 'row' | 'stack';
 }
 
-export function CultureFilters({ active, onChange }: CultureFiltersProps) {
+export function CultureFilters({ active, onChange, layout = 'row' }: CultureFiltersProps) {
   const { t } = useTranslation();
+
+  if (layout === 'stack') {
+    return (
+      <div className={styles.stack}>
+        {TYPES.map(({ key, value, Icon }) => {
+          const isActive = active === value;
+          return (
+            <button
+              key={key}
+              type="button"
+              className={clsx(styles.stackItem, isActive && styles.stackItemActive)}
+              onClick={() => onChange(value)}
+              aria-pressed={isActive}
+            >
+              <Icon size={17} strokeWidth={2} className={styles.stackIcon} />
+              {t(`culture.filters.${key}`)}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.scroller}>

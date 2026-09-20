@@ -143,73 +143,102 @@ export function HealthPage() {
       />
 
       <div className={styles.body}>
-        <RegionProvinceFilter
-          region={urlRegion}
-          province={urlProvince}
-          onChange={applyRegionProvince}
-          showProvince
-        />
-        <NearMeToggle nearMe={nearMe} resultCount={total} />
-        <div className={styles.filterRow}>
-          <HealthFilters active={urlType} onChange={applyType} />
-          <button
-            type="button"
-            className={clsx(styles.dutyToggle, onDutyOnly && styles.dutyToggleActive)}
-            onClick={toggleOnDuty}
-            aria-pressed={onDutyOnly}
-          >
-            <Clock size={15} strokeWidth={2} />
-            {t('health.onDutyFilter')}
-          </button>
-        </div>
-
-        {!showInitialLoading && !isError && (
-          <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
-        )}
-
-        {showInitialLoading && (
-          <div className={styles.grid}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <CardSkeleton key={i} />
-            ))}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarInner}>
+            <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+            <HealthFilters active={urlType} onChange={applyType} layout="stack" />
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <button
+              type="button"
+              className={clsx(styles.dutyToggle, onDutyOnly && styles.dutyToggleActive)}
+              onClick={toggleOnDuty}
+              aria-pressed={onDutyOnly}
+            >
+              <Clock size={15} strokeWidth={2} />
+              {t('health.onDutyFilter')}
+            </button>
+            <div className={styles.sidebarDivider} aria-hidden="true" />
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
           </div>
-        )}
+        </aside>
 
-        {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+        <div className={styles.results}>
+          <div className={styles.mobileFilters}>
+            <RegionProvinceFilter
+              region={urlRegion}
+              province={urlProvince}
+              onChange={applyRegionProvince}
+              showProvince
+            />
+            <NearMeToggle nearMe={nearMe} resultCount={total} />
+            <div className={styles.filterRow}>
+              <HealthFilters active={urlType} onChange={applyType} />
+              <button
+                type="button"
+                className={clsx(styles.dutyToggle, onDutyOnly && styles.dutyToggleActive)}
+                onClick={toggleOnDuty}
+                aria-pressed={onDutyOnly}
+              >
+                <Clock size={15} strokeWidth={2} />
+                {t('health.onDutyFilter')}
+              </button>
+            </div>
+          </div>
 
-        {!showInitialLoading && !isError && accumulated.length === 0 && (
-          <EmptyResults
-            variant="empty"
-            title={t('health.empty')}
-            text={t('explore.emptyText')}
-            onReset={() => {
-              setQueryInput('');
-              setSearchParams({});
-            }}
-          />
-        )}
+          {!showInitialLoading && !isError && (
+            <p className={styles.resultsCount}>{t('explore.resultsCount', { count: total })}</p>
+          )}
 
-        {!showInitialLoading && !isError && accumulated.length > 0 && (
-          <>
+          {showInitialLoading && (
             <div className={styles.grid}>
-              {accumulated.map((facility, i) => (
-                <Reveal key={facility.id} delay={Math.min(i, 8) * 50}>
-                  <HealthFacilityCard facility={facility} />
-                </Reveal>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <CardSkeleton key={i} />
               ))}
             </div>
+          )}
 
-            {hasMore && (
-              <div className={styles.loadMoreRow}>
-                <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
-                  {isFetching ? t('common.loading') : t('explore.loadMore')}
-                </Button>
+          {!showInitialLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+          {!showInitialLoading && !isError && accumulated.length === 0 && (
+            <EmptyResults
+              variant="empty"
+              title={t('health.empty')}
+              text={t('explore.emptyText')}
+              onReset={() => {
+                setQueryInput('');
+                setSearchParams({});
+              }}
+            />
+          )}
+
+          {!showInitialLoading && !isError && accumulated.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {accumulated.map((facility, i) => (
+                  <Reveal key={facility.id} delay={Math.min(i, 8) * 50}>
+                    <HealthFacilityCard facility={facility} />
+                  </Reveal>
+                ))}
               </div>
-            )}
-          </>
-        )}
 
-        <RelatedModules currentPath="/health" />
+              {hasMore && (
+                <div className={styles.loadMoreRow}>
+                  <Button variant="secondary" onClick={() => setPage((p) => p + 1)} disabled={isFetching}>
+                    {isFetching ? t('common.loading') : t('explore.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
+
+          <RelatedModules currentPath="/health" />
+        </div>
       </div>
     </div>
   );

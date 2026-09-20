@@ -12,8 +12,10 @@ export function DiasporaContentCard({ content }: { content: DiasporaContent }) {
   return (
     <Link to={`/diaspora/${content.id}`} className={styles.link}>
       <Card className={styles.card}>
-        <div className={styles.iconWrap}>
-          <Globe2 size={32} strokeWidth={1.5} />
+        <div className={styles.imageWrap}>
+          <div className={styles.imagePlaceholder}>
+            <Globe2 size={32} strokeWidth={1.5} className={styles.imagePlaceholderIcon} />
+          </div>
           <span className={styles.categoryBadge}>{t(`diaspora.types.${content.type}`, content.type)}</span>
         </div>
         <div className={styles.body}>

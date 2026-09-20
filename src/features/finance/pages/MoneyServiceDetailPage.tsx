@@ -1,6 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Phone, ArrowLeft, ExternalLink, Landmark, CreditCard, Smartphone, ArrowLeftRight } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  ArrowLeft,
+  ExternalLink,
+  Landmark,
+  CreditCard,
+  Smartphone,
+  ArrowLeftRight,
+  Clock,
+} from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
 import { useMoneyServiceDetail } from '../hooks/useMoneyServiceDetail';
@@ -81,6 +91,7 @@ export function MoneyServiceDetailPage() {
         <div className={styles.main}>
           {service.opening_hours.length > 0 && (
             <section className={styles.section}>
+              <span className={styles.sectionKicker}>{t('finance.title')}</span>
               <h2 className={styles.sectionTitle}>{t('destinations.openingHours')}</h2>
               <div className={styles.hoursList}>
                 {service.opening_hours.map((h) => (
@@ -98,6 +109,26 @@ export function MoneyServiceDetailPage() {
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
+            <span className={styles.infoCardKicker}>
+              <Clock size={14} strokeWidth={2} />
+              {t('finance.practicalInfo')}
+            </span>
+
+            <div className={styles.ctaRow}>
+              {service.contact_phone && (
+                <a href={`tel:${service.contact_phone}`} className={styles.ctaBtnPrimary}>
+                  <Phone size={16} strokeWidth={2} />
+                  {t('common.call')}
+                </a>
+              )}
+              {mapsUrl && (
+                <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.ctaBtnSecondary}>
+                  <ExternalLink size={16} strokeWidth={2} />
+                  {t('destinations.openInMaps')}
+                </a>
+              )}
+            </div>
+
             <div className={styles.contactList}>
               {service.address && (
                 <div className={styles.contactRow}>

@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--space-5) var(--space-4) var(--space-8);
-  max-width: 1100px;
+  padding: var(--space-5) var(--space-4) 0;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
 }
@@ -22,12 +22,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .layout {
     flex-direction: row;
     align-items: flex-start;
+    gap: var(--space-8);
+    padding-bottom: var(--space-7);
   }
 }
 
@@ -58,9 +61,25 @@
 }
 
 .mainImage {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.mainImageButton:hover .mainImage {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainImage {
+    transition: none;
+  }
+
+  .mainImageButton:hover .mainImage {
+    transform: none;
+  }
 }
 
 .expandHint {
@@ -109,6 +128,7 @@
 .thumbBtn {
   width: 64px;
   height: 64px;
+  aspect-ratio: 1;
   flex-shrink: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -123,17 +143,36 @@
 }
 
 .thumbImg {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Sidebar infos/CTA, sticky à droite dès le desktop (même patte que DestinationDetailPage) */
+
 .info {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .info {
+    width: 360px;
+    position: sticky;
+    top: calc(72px + var(--space-5));
+  }
+}
+
+.infoCard {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
 }
 
 .categoryBadge {
@@ -142,13 +181,15 @@
   border-radius: var(--radius-full);
   background-color: var(--color-brand-surface);
   color: var(--color-brand);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .title {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
   font-weight: 800;
   letter-spacing: -0.01em;
 }
@@ -168,17 +209,19 @@
 }
 
 .price {
-  margin: var(--space-2) 0 0;
+  margin: var(--space-1) 0 0;
   font-size: 1.75rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--color-brand);
 }
 
 .description {
   margin: 0;
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--color-text-muted);
+  max-width: 680px;
 }
 
 .quantityRow {
@@ -238,11 +281,46 @@
   font-weight: 600;
 }
 
-.artisanSectionTitle {
-  margin: var(--space-2) 0 0;
-  font-size: 0.875rem;
+/* Sections éditoriales sous le fold : description, artisan (même patte que DestinationDetailPage) */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space-8);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  max-width: 760px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  color: var(--color-brand);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }

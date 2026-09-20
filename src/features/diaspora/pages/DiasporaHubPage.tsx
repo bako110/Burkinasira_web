@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { PlusCircle } from 'lucide-react';
 
-import { Button, Reveal, EmptyResults, CardSkeleton, ListingHero, Tabs } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, Tabs } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useDebouncedValue } from '../../../shared/hooks/useDebouncedValue';
 import { useDiasporaContent } from '../hooks/useDiasporaContent';
 import { useMeetups } from '../hooks/useMeetups';
+import { DiasporaHero } from '../components/DiasporaHero';
 import { DiasporaContentCard } from '../components/DiasporaContentCard';
 import { DiasporaContentFilters } from '../components/DiasporaContentFilters';
 import { MeetupCard } from '../components/MeetupCard';
@@ -51,21 +52,13 @@ export function DiasporaHubPage() {
 
   const contentQuery = useDiasporaContent({ type, q: urlQuery || undefined });
   const meetupsQuery = useMeetups();
+  const contentTotal = contentQuery.data?.length ?? 0;
 
   return (
     <div className={styles.page}>
-      <ListingHero
-        title={t('diaspora.title')}
-        subtitle={t('diaspora.subtitle')}
-        searchPlaceholder={t('diaspora.searchPlaceholder')}
-        searchLabel={t('common.search')}
-        searchButtonLabel={t('common.search')}
-        query={queryInput}
-        onQueryChange={setQueryInput}
-        onSubmit={applySearch}
-      />
+      <DiasporaHero query={queryInput} onQueryChange={setQueryInput} onSubmit={applySearch} />
 
-      <div className={styles.body}>
+      <div className={styles.tabsRow}>
         <Tabs
           items={[
             { key: 'content', label: t('diaspora.tabContent') },
@@ -74,10 +67,25 @@ export function DiasporaHubPage() {
           active={tab}
           onChange={(key) => setTab(key as 'content' | 'meetups')}
         />
+      </div>
 
-        {tab === 'content' && (
-          <>
-            <DiasporaContentFilters active={type} onChange={setType} />
+      {tab === 'content' && (
+        <div className={styles.body}>
+          <aside className={styles.sidebar}>
+            <div className={styles.sidebarInner}>
+              <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
+              <DiasporaContentFilters active={type} onChange={setType} layout="stack" />
+            </div>
+          </aside>
+
+          <div className={styles.results}>
+            <div className={styles.mobileFilters}>
+              <DiasporaContentFilters active={type} onChange={setType} />
+            </div>
+
+            {!contentQuery.isLoading && !contentQuery.isError && (
+              <p className={styles.resultsCount}>{t('explore.resultsCount', { count: contentTotal })}</p>
+            )}
 
             {contentQuery.isLoading && (
               <div className={styles.grid}>
@@ -91,11 +99,16 @@ export function DiasporaHubPage() {
               <EmptyResults variant="error" onRetry={() => contentQuery.refetch()} />
             )}
 
-            {!contentQuery.isLoading && !contentQuery.isError && (contentQuery.data?.length ?? 0) === 0 && (
-              <EmptyResults variant="empty" title={t('diaspora.empty')} text={t('explore.emptyText')} onReset={() => setType(undefined)} />
+            {!contentQuery.isLoading && !contentQuery.isError && contentTotal === 0 && (
+              <EmptyResults
+                variant="empty"
+                title={t('diaspora.empty')}
+                text={t('explore.emptyText')}
+                onReset={() => setType(undefined)}
+              />
             )}
 
-            {!contentQuery.isLoading && !contentQuery.isError && (contentQuery.data?.length ?? 0) > 0 && (
+            {!contentQuery.isLoading && !contentQuery.isError && contentTotal > 0 && (
               <div className={styles.grid}>
                 {contentQuery.data!.map((content, i) => (
                   <Reveal key={content.id} delay={Math.min(i, 8) * 50}>
@@ -104,49 +117,49 @@ export function DiasporaHubPage() {
                 ))}
               </div>
             )}
-          </>
-        )}
+          </div>
+        </div>
+      )}
 
-        {tab === 'meetups' && (
-          <>
-            <div className={styles.actionsRow}>
-              <Button
-                variant="secondary"
-                onClick={() => requireAuth(() => setCreateOpen(true), t('diaspora.createMeetupRequiresAuth'))}
-              >
-                <PlusCircle size={16} strokeWidth={2} />
-                {t('diaspora.organizeMeetup')}
-              </Button>
+      {tab === 'meetups' && (
+        <div className={styles.meetupsBody}>
+          <div className={styles.actionsRow}>
+            <Button
+              variant="secondary"
+              onClick={() => requireAuth(() => setCreateOpen(true), t('diaspora.createMeetupRequiresAuth'))}
+            >
+              <PlusCircle size={16} strokeWidth={2} />
+              {t('diaspora.organizeMeetup')}
+            </Button>
+          </div>
+
+          {meetupsQuery.isLoading && (
+            <div className={styles.meetupGrid}>
+              {Array.from({ length: 4 }).map((_, i) => (
+                <CardSkeleton key={i} />
+              ))}
             </div>
+          )}
 
-            {meetupsQuery.isLoading && (
-              <div className={styles.meetupGrid}>
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <CardSkeleton key={i} />
-                ))}
-              </div>
-            )}
+          {!meetupsQuery.isLoading && meetupsQuery.isError && (
+            <EmptyResults variant="error" onRetry={() => meetupsQuery.refetch()} />
+          )}
 
-            {!meetupsQuery.isLoading && meetupsQuery.isError && (
-              <EmptyResults variant="error" onRetry={() => meetupsQuery.refetch()} />
-            )}
+          {!meetupsQuery.isLoading && !meetupsQuery.isError && (meetupsQuery.data?.length ?? 0) === 0 && (
+            <EmptyResults variant="empty" title={t('diaspora.emptyMeetups')} text={t('explore.emptyText')} />
+          )}
 
-            {!meetupsQuery.isLoading && !meetupsQuery.isError && (meetupsQuery.data?.length ?? 0) === 0 && (
-              <EmptyResults variant="empty" title={t('diaspora.emptyMeetups')} text={t('explore.emptyText')} />
-            )}
-
-            {!meetupsQuery.isLoading && !meetupsQuery.isError && (meetupsQuery.data?.length ?? 0) > 0 && (
-              <div className={styles.meetupGrid}>
-                {meetupsQuery.data!.map((meetup, i) => (
-                  <Reveal key={meetup.id} delay={Math.min(i, 8) * 50}>
-                    <MeetupCard meetup={meetup} />
-                  </Reveal>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-      </div>
+          {!meetupsQuery.isLoading && !meetupsQuery.isError && (meetupsQuery.data?.length ?? 0) > 0 && (
+            <div className={styles.meetupGrid}>
+              {meetupsQuery.data!.map((meetup, i) => (
+                <Reveal key={meetup.id} delay={Math.min(i, 8) * 50}>
+                  <MeetupCard meetup={meetup} />
+                </Reveal>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <CreateMeetupModal open={createOpen} onClose={() => setCreateOpen(false)} />
     </div>
