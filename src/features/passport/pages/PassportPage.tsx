@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Trophy, MapPin } from 'lucide-react';
 
-import { Card, Spinner, Reveal, DetailBackButton } from '../../../shared/ui';
+import { Spinner, Reveal, DetailBackButton } from '../../../shared/ui';
 import { useAuthStore } from '../../../store/auth.store';
 import { useMyPassport } from '../hooks/useMyPassport';
 import { useBadges } from '../hooks/useBadges';
@@ -21,33 +21,40 @@ export function PassportPage() {
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo={fallbackPath} variant="link">
-        {t('common.back')}
-      </DetailBackButton>
-      <h1 className={styles.title}>{t('passport.title')}</h1>
+      <section className={styles.hero}>
+        <DetailBackButton fallbackTo={fallbackPath} className={styles.backBtn} />
+        <div className={styles.heroContent}>
+          <span className={styles.kicker}>{t('passport.cardTagline')}</span>
+          <h1 className={styles.title}>{t('passport.title')}</h1>
+        </div>
+      </section>
 
       {isLoading && (
-        <div className={styles.center}>
+        <div className={styles.centerPage}>
           <Spinner size={28} />
         </div>
       )}
 
       {!isLoading && passport && user && (
-        <>
-          <section>
-            <h2 className={styles.sectionTitle}>{t('passport.cardTitle')}</h2>
-            <BurkinaSiraIdCard user={user} points={passport.points} />
-          </section>
+        <div className={styles.body}>
+          <Reveal>
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>{t('passport.cardTitle')}</h2>
+              <BurkinaSiraIdCard user={user} points={passport.points} />
+            </section>
+          </Reveal>
 
-          <Card className={styles.pointsCard}>
-            <Trophy size={32} strokeWidth={1.5} className={styles.pointsIcon} />
-            <div>
-              <span className={styles.pointsValue}>{passport.points.toLocaleString('fr-FR')}</span>
-              <span className={styles.pointsLabel}>{t('passport.points')}</span>
+          <Reveal delay={40}>
+            <div className={styles.pointsCard}>
+              <Trophy size={32} strokeWidth={1.5} className={styles.pointsIcon} />
+              <div>
+                <span className={styles.pointsValue}>{passport.points.toLocaleString('fr-FR')}</span>
+                <span className={styles.pointsLabel}>{t('passport.points')}</span>
+              </div>
             </div>
-          </Card>
+          </Reveal>
 
-          <section>
+          <section className={styles.section}>
             <h2 className={styles.sectionTitle}>{t('passport.badgesTitle')}</h2>
             {badges && badges.length > 0 ? (
               <div className={styles.badgeGrid}>
@@ -62,7 +69,7 @@ export function PassportPage() {
             )}
           </section>
 
-          <section>
+          <section className={styles.section}>
             <h2 className={styles.sectionTitle}>{t('passport.stampsTitle')}</h2>
             {passport.stamps.length > 0 ? (
               <div className={styles.stampList}>
@@ -82,7 +89,7 @@ export function PassportPage() {
               <p className={styles.empty}>{t('passport.noStamps')}</p>
             )}
           </section>
-        </>
+        </div>
       )}
     </div>
   );

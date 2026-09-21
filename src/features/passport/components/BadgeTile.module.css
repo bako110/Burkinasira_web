@@ -5,13 +5,40 @@
   gap: var(--space-2);
   padding: var(--space-3);
   border-radius: var(--radius-lg);
-  background-color: var(--color-brand-surface);
   text-align: center;
+  border: 1px solid transparent;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.tileEarned {
+  background: linear-gradient(160deg, var(--color-brand-surface) 0%, var(--color-bg-raised) 100%);
+  border-color: var(--color-brand-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.tileEarned:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brand-300);
 }
 
 .tileLocked {
   background-color: var(--color-bg-inset);
-  opacity: 0.55;
+  border-color: var(--color-border);
+  opacity: 0.6;
+}
+
+.tileLocked:hover {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tileEarned:hover {
+    transition: none;
+    transform: none;
+  }
 }
 
 .icon {
@@ -23,14 +50,28 @@
   border-radius: 50%;
   background-color: var(--color-bg-raised);
   color: var(--color-brand);
+  box-shadow: var(--shadow-sm);
+}
+
+.tileEarned .icon {
+  background: var(--gradient-sunset);
+  color: #fff;
 }
 
 .tileLocked .icon {
+  background-color: var(--color-bg-inset);
   color: var(--color-text-subtle);
+  box-shadow: none;
 }
 
 .name {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+  color: var(--color-text);
+}
+
+.tileLocked .name {
+  color: var(--color-text-subtle);
+  font-weight: 600;
 }

@@ -74,6 +74,7 @@ import { ResetPasswordPage } from '../../features/auth/pages/ResetPasswordPage';
 import { VerifyCardPage } from '../../features/auth/pages/VerifyCardPage';
 import { ProLayout } from '../layout/ProLayout';
 import { PendingVerificationPage } from '../../features/pro/pages/PendingVerificationPage';
+import { DocumentsPage } from '../../features/pro/pages/DocumentsPage';
 import { ProOverviewPage } from '../../features/pro/pages/ProOverviewPage';
 import { ProHotelPage } from '../../features/pro/pages/ProHotelPage';
 import { ProRestaurantPage } from '../../features/pro/pages/ProRestaurantPage';
@@ -186,6 +187,7 @@ export const router = createBrowserRouter([
         element: <ProLayout />,
         children: [
           { path: '/pro/guide', element: <GuideAnalyticsPage /> },
+          { path: '/pro/guide/documents', element: <DocumentsPage /> },
           { path: '/pro/guide/profile', element: <GuideProfilePage /> },
           { path: '/pro/guide/availability', element: <GuideAvailabilityPage /> },
           { path: '/pro/guide/bookings', element: <GuideBookingsPage /> },
@@ -198,6 +200,7 @@ export const router = createBrowserRouter([
           { path: '/pro/guide/account/info', element: <PersonalInfoPage /> },
           { path: '/pro/guide/account/password', element: <ChangePasswordPage /> },
           { path: '/pro/provider', element: <ProOverviewPage /> },
+          { path: '/pro/provider/documents', element: <DocumentsPage /> },
           { path: '/pro/provider/hotel', element: <ProHotelPage /> },
           { path: '/pro/provider/restaurant', element: <ProRestaurantPage /> },
           { path: '/pro/provider/transport', element: <ProTransportPage /> },

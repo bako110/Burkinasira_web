@@ -10,16 +10,33 @@
 
 .headerRow {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
 }
 
 .title {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .headerActions {
@@ -34,6 +51,9 @@
 }
 
 .tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
   border: none;
   border-bottom: 2px solid transparent;
@@ -42,6 +62,7 @@
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
+  transition: color var(--transition-fast);
 }
 
 .tab:hover {
@@ -51,6 +72,25 @@
 .tabActive {
   color: var(--color-brand);
   border-bottom-color: var(--color-brand);
+}
+
+.tabBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
+  font-size: 0.6875rem;
+  font-weight: 800;
+}
+
+.tabActive .tabBadge {
+  background-color: var(--color-brand);
+  color: var(--color-text-on-brand);
 }
 
 .center {

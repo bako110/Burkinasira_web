@@ -91,157 +91,183 @@ export function TransportProviderForm({ provider, onSaved, onCancel }: Transport
 
   return (
     <form onSubmit={handleSubmit} className={formStyles.form}>
-      <div className={formStyles.field}>
-        <label htmlFor="transport_name" className={formStyles.label}>
-          {t('pro.name')}
-        </label>
-        <input
-          id="transport_name"
-          className={formStyles.input}
-          required
-          minLength={2}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+      <div className={formStyles.sectionCard}>
+        <div className={formStyles.sectionHead}>
+          <span className={formStyles.sectionKicker}>{t('pro.sectionGeneral', 'Informations générales')}</span>
+          <h3 className={formStyles.sectionTitle}>{t('pro.name')}</h3>
+        </div>
+
+        <div className={formStyles.fieldGrid}>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_name" className={formStyles.label}>
+              {t('pro.name')}
+            </label>
+            <input
+              id="transport_name"
+              className={formStyles.input}
+              required
+              minLength={2}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className={formStyles.field}>
+            <label htmlFor="transport_type" className={formStyles.label}>
+              {t('pro.type')}
+            </label>
+            <select
+              id="transport_type"
+              className={formStyles.select}
+              value={type}
+              onChange={(e) => setType(e.target.value as TransportType)}
+            >
+              {TRANSPORT_TYPES.map((option) => (
+                <option key={option} value={option}>
+                  {t(`mobility.types.${option}`, option)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={`${formStyles.field} ${formStyles.fieldGridWide}`}>
+            <label htmlFor="transport_description" className={formStyles.label}>
+              {t('pro.description')}
+            </label>
+            <textarea
+              id="transport_description"
+              className={formStyles.textarea}
+              rows={3}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className={formStyles.sectionCard}>
+        <div className={formStyles.sectionHead}>
+          <span className={formStyles.sectionKicker}>{t('pro.sectionMedia', 'Photos & vidéos')}</span>
+          <h3 className={formStyles.sectionTitle}>{t('pro.photosAndVideos')}</h3>
+        </div>
+        <MediaGalleryInput
+          label={t('pro.photosAndVideos')}
+          photos={photos}
+          videos={videos}
+          onPhotosChange={setPhotos}
+          onVideosChange={setVideos}
         />
       </div>
 
-      <div className={formStyles.field}>
-        <label htmlFor="transport_type" className={formStyles.label}>
-          {t('pro.type')}
-        </label>
-        <select
-          id="transport_type"
-          className={formStyles.select}
-          value={type}
-          onChange={(e) => setType(e.target.value as TransportType)}
-        >
-          {TRANSPORT_TYPES.map((option) => (
-            <option key={option} value={option}>
-              {t(`mobility.types.${option}`, option)}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className={formStyles.field}>
-        <label htmlFor="transport_description" className={formStyles.label}>
-          {t('pro.description')}
-        </label>
-        <textarea
-          id="transport_description"
-          className={formStyles.textarea}
-          rows={3}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-
-      <MediaGalleryInput
-        label={t('pro.photosAndVideos')}
-        photos={photos}
-        videos={videos}
-        onPhotosChange={setPhotos}
-        onVideosChange={setVideos}
-      />
-
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_region" className={formStyles.label}>
-            {t('pro.region')}
-          </label>
-          <select
-            id="transport_region"
-            className={formStyles.select}
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-          >
-            {BURKINA_REGIONS.map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
+      <div className={formStyles.sectionCard}>
+        <div className={formStyles.sectionHead}>
+          <span className={formStyles.sectionKicker}>{t('pro.sectionLocation', 'Localisation')}</span>
+          <h3 className={formStyles.sectionTitle}>{t('pro.location')}</h3>
         </div>
+
+        <div className={formStyles.fieldGrid}>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_region" className={formStyles.label}>
+              {t('pro.region')}
+            </label>
+            <select
+              id="transport_region"
+              className={formStyles.select}
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+            >
+              {BURKINA_REGIONS.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_province" className={formStyles.label}>
+              {t('pro.province')}
+            </label>
+            <input
+              id="transport_province"
+              className={formStyles.input}
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+            />
+          </div>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_city" className={formStyles.label}>
+              {t('pro.city')}
+            </label>
+            <input
+              id="transport_city"
+              className={formStyles.input}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_vehicle_info" className={formStyles.label}>
+              {t('pro.vehicleInfo')}
+            </label>
+            <input
+              id="transport_vehicle_info"
+              className={formStyles.input}
+              value={vehicleInfo}
+              onChange={(e) => setVehicleInfo(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className={formStyles.field}>
-          <label htmlFor="transport_province" className={formStyles.label}>
-            {t('pro.province')}
-          </label>
-          <input
-            id="transport_province"
-            className={formStyles.input}
-            value={province}
-            onChange={(e) => setProvince(e.target.value)}
+          <label className={formStyles.label}>{t('pro.location')}</label>
+          <LocationPicker
+            latitude={latitude}
+            longitude={longitude}
+            onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }}
+            myLocationLabel={t('pro.myLocation')}
+            locatingLabel={t('pro.locating')}
+            geoErrorLabel={t('pro.geoError')}
           />
         </div>
       </div>
 
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_city" className={formStyles.label}>
-            {t('pro.city')}
-          </label>
-          <input
-            id="transport_city"
-            className={formStyles.input}
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
+      <div className={formStyles.sectionCard}>
+        <div className={formStyles.sectionHead}>
+          <span className={formStyles.sectionKicker}>{t('pro.sectionPricingContact', 'Tarifs & contact')}</span>
+          <h3 className={formStyles.sectionTitle}>{t('pro.priceEstimate')} / {t('pro.contactPhone')}</h3>
         </div>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_vehicle_info" className={formStyles.label}>
-            {t('pro.vehicleInfo')}
-          </label>
-          <input
-            id="transport_vehicle_info"
-            className={formStyles.input}
-            value={vehicleInfo}
-            onChange={(e) => setVehicleInfo(e.target.value)}
-          />
+
+        <div className={formStyles.row}>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_price_estimate" className={formStyles.label}>
+              {t('pro.priceEstimate')}
+            </label>
+            <input
+              id="transport_price_estimate"
+              type="number"
+              step="any"
+              className={formStyles.input}
+              value={priceEstimate}
+              onChange={(e) => setPriceEstimate(e.target.value)}
+            />
+          </div>
+          <div className={formStyles.field}>
+            <label htmlFor="transport_phone" className={formStyles.label}>
+              {t('pro.contactPhone')}
+            </label>
+            <input
+              id="transport_phone"
+              type="tel"
+              className={formStyles.input}
+              required
+              value={contactPhone}
+              onChange={(e) => setContactPhone(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 
-      <div className={formStyles.field}>
-        <label className={formStyles.label}>{t('pro.location')}</label>
-        <LocationPicker
-          latitude={latitude}
-          longitude={longitude}
-          onChange={(lat, lng) => { setLatitude(lat); setLongitude(lng); }}
-          myLocationLabel={t('pro.myLocation')}
-          locatingLabel={t('pro.locating')}
-          geoErrorLabel={t('pro.geoError')}
-        />
-      </div>
-
-      <div className={formStyles.row}>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_price_estimate" className={formStyles.label}>
-            {t('pro.priceEstimate')}
-          </label>
-          <input
-            id="transport_price_estimate"
-            type="number"
-            step="any"
-            className={formStyles.input}
-            value={priceEstimate}
-            onChange={(e) => setPriceEstimate(e.target.value)}
-          />
-        </div>
-        <div className={formStyles.field}>
-          <label htmlFor="transport_phone" className={formStyles.label}>
-            {t('pro.contactPhone')}
-          </label>
-          <input
-            id="transport_phone"
-            type="tel"
-            className={formStyles.input}
-            required
-            value={contactPhone}
-            onChange={(e) => setContactPhone(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div className={formStyles.row}>
+      <div className={formStyles.formActions}>
         <Button type="button" variant="secondary" fullWidth onClick={onCancel}>
           {t('pro.cancel')}
         </Button>

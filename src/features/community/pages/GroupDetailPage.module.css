@@ -42,6 +42,34 @@
   opacity: 0.85;
 }
 
+.heroWithImage {
+  padding-top: var(--space-7);
+}
+
+@media (min-width: 768px) {
+  .heroWithImage {
+    padding-top: var(--space-6);
+  }
+}
+
+.heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+}
+
+.heroWithImage .heroOverlay {
+  background: linear-gradient(180deg, rgba(20, 18, 15, 0.35) 0%, rgba(20, 18, 15, 0.72) 100%);
+}
+
 .backBtn {
   position: relative;
   z-index: 1;
@@ -110,9 +138,16 @@
   flex-direction: column;
   gap: var(--space-5);
   padding: var(--space-5) var(--space-4) var(--space-8);
-  max-width: 640px;
+  max-width: 780px;
   width: 100%;
   margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .body {
+    max-width: 900px;
+    padding: var(--space-6) var(--space-6) var(--space-8);
+  }
 }
 
 .description {
@@ -149,6 +184,7 @@
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .tab:hover {
@@ -158,6 +194,12 @@
 .tabActive {
   color: var(--color-brand);
   border-bottom-color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
 }
 
 .chatSection {
@@ -197,6 +239,15 @@
   gap: var(--space-3);
 }
 
+@media (min-width: 800px) {
+  .postsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: var(--space-4);
+  }
+}
+
 .section {
   display: flex;
   flex-direction: column;
@@ -215,6 +266,14 @@
   gap: var(--space-2);
 }
 
+@media (min-width: 700px) {
+  .memberList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2) var(--space-3);
+  }
+}
+
 .memberRow {
   display: flex;
   align-items: center;
@@ -222,6 +281,11 @@
   padding: var(--space-3);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-inset);
+  transition: background-color var(--transition-fast);
+}
+
+.memberRow:hover {
+  background-color: var(--color-brand-surface);
 }
 
 .memberAvatar {

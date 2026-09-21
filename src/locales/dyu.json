@@ -22,7 +22,10 @@
     "regionFilter": "Mara sugandi",
     "allRegions": "Mara bɛɛ",
     "provinceFilter": "Provɛnsi sugandi",
-    "allProvinces": "Provɛnsi bɛɛ"
+    "allProvinces": "Provɛnsi bɛɛ",
+    "practicalInfo": "Kunafoni nafamaw",
+    "atAGlance": "A lajɛli surun",
+    "address": "Sigiyɔrɔ"
   },
   "gallery": {
     "title": "Fotow lajɛli",
@@ -142,11 +145,24 @@
     "resetSubmit": "Tɔgɔ gundo kura sɛmɛntiya",
     "resetSuccess": "Tɔgɔ gundo yɛlɛmana. I bɛ se ka don sisan.",
     "resetError": "Nin sɛbɛnjuru man ɲi walima a waatiwɔ. Segin ka a ɲini.",
-    "resetNoToken": "Sɛbɛnjuru dafabali. Segin ka a ɲini."
+    "resetNoToken": "Sɛbɛnjuru dafabali. Segin ka a ɲini.",
+    "brandTitleLine1": "Burkina Faso",
+    "brandTitleLine2": "bɛ i makɔnɔ",
+    "brandTextLogin": "I ka taama ni sikaraw ni BurkinaSira badiw sɔrɔ sisan.",
+    "brandTextRegister": "I ka jate dilan ka daminɛ ni provinces 47 lakodɔn.",
+    "brandStatDestinations": "yɔrɔw",
+    "brandStatRegions": "mara",
+    "brandStatProvinces": "provɛnsi"
   },
   "pro": {
     "pendingTitle": "Sɛriyɛ lakodɔn tɛmɛnen",
     "pendingSubtitle": "I ka sɛbɛnw ci walasa an jɛkulu ka se ka i ka baarakɛla jatebɔ sɛmɛntiya.",
+    "pendingAnytimeNotice": "I bɛ se ka i ka profil yɛlɛma ani ka sɛbɛn kura ci waati o waati, hali ci fɔlɔ kɔfɛ.",
+    "editProfileZone": "N ka profil yɛlɛma",
+    "editProfileZoneHint": "Kunnafoni ninnu bɛ yenafanw ye ni i jatebɔ sɛmɛntiyara kɔ. I bɛ se ka olu yɛlɛma waati o waati.",
+    "submitDocumentZoneHint": "Sɛbɛn dɔ dɔn kɛ ka i seereya. I bɛ se ka sɛbɛn caaman ci, hali ka sɛbɛn banna nɔnabila.",
+    "submittedDocumentsHint": "I ka sɛbɛn cilenw ni u sɛgɛsɛgɛli jɔyɔrɔ.",
+    "reviewNotesLabel": "Kunba:",
     "requirementsTitle": "Fɛn minnu ka kan ka kɛ walasa ka sɛmɛntiya",
     "reqIdentityGuide": "Danbe sɛbɛn min bɛnnen (CNI, pasipɔri walima bolibaara pɛrimi)",
     "reqProfileGuide": "Jatebɔ dafalen: i tɔgɔ, i ka kunnafoni surun, i ka kanw ani i ka kunnafoni sugandiw",
@@ -211,6 +227,10 @@
     "collapseSidebar": "Menu datali",
     "tab_analytics": "Jateminɛ",
     "tab_profile": "Jatebɔ",
+    "tab_documents": "N ka sɛbɛnw",
+    "documentsKicker": "Lakodɔnni",
+    "documentsTitle": "N ka sɛbɛnw",
+    "documentsSubtitle": "I ka baara-jatebɔ yɛlɛma ani i ka sɛbɛn-lasenw ka jɔyɔrɔ lajɛ.",
     "tab_availability": "Waati bɛnnenw",
     "tab_bookings": "Minɛninw",
     "tab_reviews": "Hakilinaw",
@@ -423,7 +443,7 @@
   },
   "explore": {
     "subtitle": "Yɔrɔw, ko caman ni ladɛrɛsi sɛbɛw ɲini Burkina Faso bɛɛ kɔnɔ.",
-    "filtersLabel": "Sugandili",
+    "filtersLabel": "Woloma sugu la",
     "filters": {
       "all": "Bɛɛ",
       "site_naturel": "Yɔrɔ dabolomanw",
@@ -442,8 +462,7 @@
     "emptyText": "I ka daɲɛ wɛrɛ ɲini walima ka kilasi wɛrɛ sugandi.",
     "errorText": "Jaabiw ma se ka layidu sisan.",
     "resetFilters": "Woloma ɲinini kura",
-    "loadMore": "Jaabi wɛrɛw lajɛ",
-    "filtersLabel": "Woloma sugu la"
+    "loadMore": "Jaabi wɛrɛw lajɛ"
   },
   "hotels": {
     "title": "Sigi-yɔrɔw Burkina Faso",
@@ -617,6 +636,7 @@
     }
   },
   "bookings": {
+    "kicker": "Taama ni sigi-yɔrɔ tarawu",
     "title": "N ka sigi-yɔrɔ tarawu",
     "modalTitle": "Sigi-yɔrɔ tarawu",
     "date": "Don",
@@ -671,6 +691,7 @@
     "temporarilyUnavailable": "Jɔ̀sɔli tɛ se sisan. I ka a lajɛ tugun kɔfɛ."
   },
   "trips": {
+    "kicker": "Taama ni labɛnni",
     "myTripsTitle": "N ka taamaw",
     "empty": "I ma taama si labɛn fɔlɔ",
     "emptyText": "I ka taama fɔlɔ labɛn i yɛrɛ ye.",
@@ -998,7 +1019,10 @@
       "formalites": "Sariyaw",
       "sante_securite": "Kɛnɛya ni lakana",
       "transport": "Taama minɛnw"
-    }
+    },
+    "summary": "Kunnafoni",
+    "entryCount_one": "kunnafoni {{count}}",
+    "entryCount_other": "kunnafoni {{count}}"
   },
   "dataQuality": {
     "reportError": "Fili lasɔmi",
@@ -1018,6 +1042,7 @@
   },
   "messaging": {
     "title": "Bataki",
+    "kicker": "Bataki",
     "placeholder": "Bataki sɛbɛn...",
     "empty": "Baro si tɛ yen",
     "emptyText": "I ka baro ɲɛminɛbagaw, sigi-yɔrɔw ni baarakɛlaw fɛ bɛna bɔ yan.",
@@ -1075,7 +1100,8 @@
     "cardTagline": "Bɔ · Ɲɛnamaya · Kafɛnkɛ",
     "memberSince": "Tɔnbaara kabini {{date}}",
     "downloadCard": "N ka karti sigi",
-    "cardDownloadError": "Karti sigili ma se ka kɛ"
+    "cardDownloadError": "Karti sigili ma se ka kɛ",
+    "badgeLocked": "Badizi min bɛ ka yɛlɛma"
   },
   "health": {
     "title": "Kɛnɛya Burkina Faso",
@@ -1564,6 +1590,9 @@
     "terms": "Baara-sariyaw",
     "rights": "Josirilenw bɛɛ tanga."
   },
+  "legal": {
+    "tableOfContents": "Sommaire"
+  },
   "planner": {
     "kicker": "Taama labɛn",
     "subtitle": "I ka sigi labɛn: sigi-yɔrɔ, dumuni, bolimafɛn, ɲɛminɛbagaw — ka wari bɛɛ jate.",
@@ -1737,7 +1766,18 @@
       "tranquille": "Taama nɔgɔman",
       "equilibre": "Taama cɛncɛn",
       "intense": "Taama teliya"
-    }
+    },
+    "statRoutes": "Siraw",
+    "statRegions": "Marabolow",
+    "statDays": "Tilew",
+    "featuredKicker": "Sɛbɛnnikɛlaw ka sugandili",
+    "featuredTitle": "Sira i man kan ka min to",
+    "allKicker": "Sira bɛɛ",
+    "allTitle": "Sira tɔw",
+    "introKicker": "Taama kɔnɔkow",
+    "highlightsKicker": "Waati kɛrɛnkɛrɛnnenw",
+    "programmeKicker": "Taamacogo",
+    "dayLabel": "Tile {{num}}"
   },
   "nearMe": {
     "enable": "N gɛrɛfɛ",
@@ -1794,6 +1834,7 @@
     "rate": "Jateminɛ",
     "rated": "Hakilina bilalen",
     "rateThisStay": "I ka taama kɛra cogo di?",
+    "sectionKicker": "Taamalaw ka fɔlen",
     "sectionTitle": "Hakilinaw",
     "none": "Hakilina si tɛ yen fɔlɔ.",
     "count_one": "hakilina {{count}}",

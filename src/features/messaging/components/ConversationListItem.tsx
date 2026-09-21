@@ -31,11 +31,13 @@ export function ConversationListItem({ conversation, active, onClick }: Conversa
         </span>
       </div>
       {conversation.last_message_at && (
-        <span className={styles.time}>
-          {new Date(conversation.last_message_at).toLocaleDateString(i18n.language, {
-            day: '2-digit',
-            month: '2-digit',
-          })}
+        <span className={styles.meta}>
+          <span className={styles.time}>
+            {new Date(conversation.last_message_at).toLocaleDateString(i18n.language, {
+              day: '2-digit',
+              month: '2-digit',
+            })}
+          </span>
         </span>
       )}
     </button>

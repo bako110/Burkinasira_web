@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Trash2 } from 'lucide-react';
+import { Trash2, AlertTriangle } from 'lucide-react';
 
 import { Card, Button, DetailBackButton } from '../../../shared/ui';
+import { Reveal } from '../../../shared/ui/Reveal';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
@@ -35,15 +36,27 @@ export function DangerZonePage() {
       <DetailBackButton fallbackTo="/profile" variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <h1 className={styles.title}>{t('profile.dangerZone')}</h1>
 
-      <Card className={styles.dangerSection}>
-        <p className={styles.dangerText}>{t('profile.deleteAccountText')}</p>
-        <Button variant="danger" size="sm" onClick={() => setDeleteOpen(true)}>
-          <Trash2 size={15} strokeWidth={2} />
-          {t('profile.deleteAccount')}
-        </Button>
-      </Card>
+      <div className={styles.header}>
+        <span className={styles.kicker}>{t('nav.profile')}</span>
+        <h1 className={styles.title}>{t('profile.dangerZone')}</h1>
+      </div>
+
+      <Reveal>
+        <Card className={styles.dangerSection}>
+          <div className={styles.dangerHeader}>
+            <span className={styles.dangerIcon}>
+              <AlertTriangle size={20} strokeWidth={1.75} />
+            </span>
+            <h2 className={styles.dangerTitle}>{t('profile.deleteAccount')}</h2>
+          </div>
+          <p className={styles.dangerText}>{t('profile.deleteAccountText')}</p>
+          <Button variant="danger" size="sm" onClick={() => setDeleteOpen(true)}>
+            <Trash2 size={15} strokeWidth={2} />
+            {t('profile.deleteAccount')}
+          </Button>
+        </Card>
+      </Reveal>
 
       <DeleteAccountDialog
         open={deleteOpen}

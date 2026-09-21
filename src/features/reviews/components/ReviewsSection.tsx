@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ThumbsUp } from 'lucide-react';
 
-import { Spinner, Avatar } from '../../../shared/ui';
+import { Spinner, Avatar, Reveal } from '../../../shared/ui';
 import { useMarkReviewHelpful, useReviewsForTarget } from '../hooks';
 import type { ReviewTargetType } from '../types';
 import { StarRating } from './StarRating';
@@ -19,10 +19,11 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
 
   if (isLoading) {
     return (
-      <section className={styles.section}>
+      <Reveal as="section" className={styles.section}>
+        <span className={styles.sectionKicker}>{t('reviews.sectionKicker')}</span>
         <h2 className={styles.title}>{t('reviews.sectionTitle')}</h2>
         <Spinner size={22} />
-      </section>
+      </Reveal>
     );
   }
 
@@ -32,7 +33,8 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
   const maxCount = Math.max(1, ...Object.values(breakdown));
 
   return (
-    <section className={styles.section}>
+    <Reveal as="section" className={styles.section}>
+      <span className={styles.sectionKicker}>{t('reviews.sectionKicker')}</span>
       <h2 className={styles.title}>{t('reviews.sectionTitle')}</h2>
 
       {total === 0 ? (
@@ -42,7 +44,7 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
           <div className={styles.summary}>
             <div className={styles.summaryScore}>
               <span className={styles.average}>{average.toFixed(1)}</span>
-              <StarRating value={average} size={16} />
+              <StarRating value={average} size={18} />
               <span className={styles.count}>{t('reviews.count', { count: total })}</span>
             </div>
             <div className={styles.breakdown}>
@@ -88,7 +90,9 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
                 {review.photos.length > 0 && (
                   <div className={styles.photos}>
                     {review.photos.map((url) => (
-                      <img key={url} src={url} alt="" className={styles.photo} />
+                      <span key={url} className={styles.photo}>
+                        <img src={url} alt="" />
+                      </span>
                     ))}
                   </div>
                 )}
@@ -115,6 +119,6 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
           </ul>
         </>
       )}
-    </section>
+    </Reveal>
   );
 }

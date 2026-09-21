@@ -2,6 +2,7 @@ import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Card, PasswordInput, Button, DetailBackButton } from '../../../shared/ui';
+import { Reveal } from '../../../shared/ui/Reveal';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
 import { useChangePassword } from '../hooks/useChangePassword';
@@ -48,57 +49,63 @@ export function ChangePasswordPage() {
       <DetailBackButton fallbackTo="/profile" variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <h1 className={styles.title}>{t('profile.passwordTitle')}</h1>
 
-      <Card className={styles.section}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="text"
-            name="username"
-            autoComplete="username"
-            value={user?.email ?? ''}
-            readOnly
-            hidden
-          />
-          <PasswordInput
-            label={t('profile.currentPassword')}
-            name="profile-current-password"
-            autoComplete="current-password"
-            value={currentPassword}
-            onChange={(e) => {
-              setCurrentPassword(e.target.value);
-              reset();
-            }}
-            required
-            showLabel={t('auth.showPassword')}
-            hideLabel={t('auth.hidePassword')}
-          />
-          <PasswordInput
-            label={t('profile.newPassword')}
-            name="profile-new-password"
-            autoComplete="new-password"
-            minLength={8}
-            value={newPassword}
-            onChange={(e) => {
-              setNewPassword(e.target.value);
-              setShowStrengthError(false);
-              reset();
-            }}
-            required
-            showLabel={t('auth.showPassword')}
-            hideLabel={t('auth.hidePassword')}
-          />
-          <p className={styles.hint}>{t('auth.passwordHint')}</p>
-          {showStrengthError && passwordIssues.length > 0 && (
-            <p className={styles.error}>{t(PASSWORD_ISSUE_KEYS[passwordIssues[0]])}</p>
-          )}
-          {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
-          {isSuccess && <p className={styles.success}>{t('profile.passwordSaved')}</p>}
-          <Button type="submit" disabled={isPending}>
-            {isPending ? t('common.loading') : t('profile.changePassword')}
-          </Button>
-        </form>
-      </Card>
+      <div className={styles.header}>
+        <span className={styles.kicker}>{t('nav.profile')}</span>
+        <h1 className={styles.title}>{t('profile.passwordTitle')}</h1>
+      </div>
+
+      <Reveal>
+        <Card className={styles.section}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <input
+              type="text"
+              name="username"
+              autoComplete="username"
+              value={user?.email ?? ''}
+              readOnly
+              hidden
+            />
+            <PasswordInput
+              label={t('profile.currentPassword')}
+              name="profile-current-password"
+              autoComplete="current-password"
+              value={currentPassword}
+              onChange={(e) => {
+                setCurrentPassword(e.target.value);
+                reset();
+              }}
+              required
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
+            />
+            <PasswordInput
+              label={t('profile.newPassword')}
+              name="profile-new-password"
+              autoComplete="new-password"
+              minLength={8}
+              value={newPassword}
+              onChange={(e) => {
+                setNewPassword(e.target.value);
+                setShowStrengthError(false);
+                reset();
+              }}
+              required
+              showLabel={t('auth.showPassword')}
+              hideLabel={t('auth.hidePassword')}
+            />
+            <p className={styles.hint}>{t('auth.passwordHint')}</p>
+            {showStrengthError && passwordIssues.length > 0 && (
+              <p className={styles.error}>{t(PASSWORD_ISSUE_KEYS[passwordIssues[0]])}</p>
+            )}
+            {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
+            {isSuccess && <p className={styles.success}>{t('profile.passwordSaved')}</p>}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.loading') : t('profile.changePassword')}
+            </Button>
+          </form>
+        </Card>
+      </Reveal>
     </div>
   );
 }

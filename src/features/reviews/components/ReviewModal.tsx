@@ -76,9 +76,9 @@ export function ReviewModal({ open, onClose, bookingId, itemTitle }: ReviewModal
       <form onSubmit={handleSubmit} className={styles.form}>
         <p className={styles.itemTitle}>{itemTitle}</p>
 
-        <div className={styles.field}>
+        <div className={`${styles.field} ${styles.ratingField}`}>
           <span className={styles.label}>{t('reviews.yourRating')}</span>
-          <StarRating value={rating} size={30} onChange={setRating} label={t('reviews.yourRating')} />
+          <StarRating value={rating} size={32} onChange={setRating} label={t('reviews.yourRating')} />
         </div>
 
         <div className={styles.field}>

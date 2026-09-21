@@ -125,9 +125,15 @@
   flex-direction: column;
   gap: var(--space-5);
   padding: var(--space-5) var(--space-4) var(--space-8);
-  max-width: 800px;
+  max-width: 880px;
   width: 100%;
   margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .body {
+    padding: var(--space-7) var(--space-6) var(--space-8);
+  }
 }
 
 .actionsRow {
@@ -151,10 +157,61 @@
 .daysList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
+}
+
+.dayRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .dayRow {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+.dayRail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.dayRail::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  bottom: calc(-1 * var(--space-5) - 4px);
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-brand-300), transparent);
+}
+
+.dayRow:last-child .dayRail::before {
+  display: none;
+}
+
+.dayNum {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gradient-sunset);
+  color: var(--color-text-on-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8125rem;
+  box-shadow: var(--shadow-md);
 }
 
 .dayCard {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -162,6 +219,13 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-raised);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.dayCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-strong);
 }
 
 .dayHeader {
@@ -174,7 +238,8 @@
 .dayTitle {
   margin: 0;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   text-transform: capitalize;
 }
 
@@ -198,6 +263,11 @@
   padding: var(--space-3);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-inset);
+  transition: background-color var(--transition-fast);
+}
+
+.itemRow:hover {
+  background-color: var(--color-bg-subtle);
 }
 
 .itemMain {
@@ -271,4 +341,11 @@
 .removeBtn:hover {
   background-color: rgba(220, 38, 38, 0.1);
   color: var(--color-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dayCard,
+  .itemRow {
+    transition: none;
+  }
 }

@@ -19,7 +19,10 @@ export function MyTripsPage() {
         {t('common.back')}
       </DetailBackButton>
       <div className={styles.headerRow}>
-        <h1 className={styles.title}>{t('trips.myTripsTitle')}</h1>
+        <div className={styles.headerBlock}>
+          <span className={styles.kicker}>{t('trips.kicker')}</span>
+          <h1 className={styles.title}>{t('trips.myTripsTitle')}</h1>
+        </div>
         <Button onClick={() => setCreateOpen(true)}>
           <Plus size={16} strokeWidth={2} />
           {t('trips.createCta')}

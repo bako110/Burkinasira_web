@@ -1,0 +1,221 @@
+.zoneCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .zoneCard {
+    padding: var(--space-6);
+  }
+}
+
+.zoneTitle {
+  margin: 0 0 4px;
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.zoneHint {
+  margin: 0 0 var(--space-4);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 480px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.select {
+  height: 48px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-inset);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+}
+
+.fileRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--color-border-strong);
+  background-color: var(--color-bg-subtle);
+  text-align: center;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.fileRow:hover {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-surface);
+}
+
+.fileButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  align-self: center;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--gradient-earth);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.fileButton:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.fileName {
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileHint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-subtle);
+}
+
+.emptyText {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.requestList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.requestItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-subtle);
+  border-left: 3px solid var(--color-border-strong);
+}
+
+.requestItemRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.reviewNotes {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  color: var(--color-text);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.reviewNotesIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-danger);
+}
+
+.requestItemPending {
+  border-left-color: var(--color-warning);
+}
+
+.requestItemActive {
+  border-left-color: var(--color-success);
+}
+
+.requestItemRejected {
+  border-left-color: var(--color-danger);
+}
+
+.requestType {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.badgePending {
+  background-color: rgba(217, 119, 6, 0.14);
+  color: var(--color-warning);
+}
+
+.badgeActive {
+  background-color: rgba(22, 163, 74, 0.14);
+  color: var(--color-success);
+}
+
+.badgeRejected {
+  background-color: rgba(220, 38, 38, 0.12);
+  color: var(--color-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fileRow,
+  .fileButton {
+    transition: none;
+  }
+}

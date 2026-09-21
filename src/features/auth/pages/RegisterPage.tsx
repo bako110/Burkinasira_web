@@ -10,6 +10,7 @@ import { useRegister } from '../hooks/useRegister';
 import { AuthHeader } from '../components/AuthHeader';
 import { StepIndicator } from '../components/StepIndicator';
 import { SocialAuthButtons } from '../components/SocialAuthButtons';
+import { AuthBrandPanel } from '../components/AuthBrandPanel';
 import type { SignupRole } from '../types';
 import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import { getPasswordIssues, type PasswordIssue } from '../utils/passwordStrength';
@@ -82,6 +83,9 @@ export function RegisterPage() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.split}>
+        <AuthBrandPanel textKey="auth.brandTextRegister" />
+        <div className={styles.formSide}>
       <Card className={styles.card}>
         <DetailBackButton fallbackTo="/" variant="link">
           {t('common.back')}
@@ -260,6 +264,8 @@ export function RegisterPage() {
           </Link>
         </p>
       </Card>
+        </div>
+      </div>
     </div>
   );
 }

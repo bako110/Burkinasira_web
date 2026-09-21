@@ -34,13 +34,17 @@ export function NotificationBell() {
     <div className={styles.wrap} ref={ref}>
       <button
         type="button"
-        className={styles.trigger}
+        className={clsx(styles.trigger, unreadCount > 0 && styles.triggerActive)}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={t('notifications.title')}
       >
         <Bell size={19} strokeWidth={2} />
-        {unreadCount > 0 && <span className={styles.badge}>{unreadCount > 9 ? '9+' : unreadCount}</span>}
+        {unreadCount > 0 && (
+          <span className={styles.badge} key={unreadCount}>
+            {unreadCount > 9 ? '9+' : unreadCount}
+          </span>
+        )}
       </button>
 
       {open && (
@@ -79,7 +83,10 @@ export function NotificationBell() {
                   className={clsx(styles.item, !notification.is_read && styles.itemUnread)}
                   onClick={() => !notification.is_read && markRead(notification.id)}
                 >
-                  <span className={styles.itemTitle}>{notification.title}</span>
+                  <span className={styles.itemHeader}>
+                    <span className={styles.itemTitle}>{notification.title}</span>
+                    {!notification.is_read && <span className={styles.itemDot} aria-hidden="true" />}
+                  </span>
                   <span className={styles.itemBody}>{notification.body}</span>
                   <span className={styles.itemTime}>
                     {new Date(notification.created_at).toLocaleDateString(i18n.language, {

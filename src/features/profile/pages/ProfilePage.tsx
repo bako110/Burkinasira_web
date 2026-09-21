@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from 'react';
+import { type FormEvent, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -17,13 +17,15 @@ import {
   GraduationCap,
   Users2,
   Wrench,
+  Upload,
 } from 'lucide-react';
 
-import { Card, Input, PasswordInput, Button, ConfirmDialog, Avatar } from '../../../shared/ui';
+import { Card, Input, PasswordInput, Button, ConfirmDialog, Avatar, Spinner } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
 import { useLogoutConfirm } from '../../../shared/hooks/useLogoutConfirm';
+import { useUploadMedia } from '../../../shared/hooks/useUploadMedia';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { useChangePassword } from '../hooks/useChangePassword';
 import { useDeleteAccount } from '../hooks/useDeleteAccount';
@@ -58,14 +60,31 @@ export function ProfilePage() {
   const { mutate: changePassword, isPending: isSavingPassword, isSuccess: passwordSaved, error: passwordError, reset: resetPassword } =
     useChangePassword();
   const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
+  const uploadMedia = useUploadMedia();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [fullName, setFullName] = useState(user?.full_name ?? '');
   const [phone, setPhone] = useState(user?.phone ?? '');
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url ?? '');
 
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
 
   const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const isUploadingPhoto = uploadMedia.isPending;
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    uploadMedia.mutate(file, {
+      onSuccess: (media) => {
+        setAvatarUrl(media.url);
+        updateProfile({ avatar_url: media.url });
+      },
+      onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
+    });
+  }
 
   function handleProfileSubmit(e: FormEvent) {
     e.preventDefault();
@@ -160,6 +179,31 @@ export function ProfilePage() {
       <div className={styles.main}>
         <Card className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('profile.editTitle')}</h2>
+
+          <div className={styles.photoRow}>
+            <div className={styles.photoPreview}>
+              {avatarUrl ? <img src={avatarUrl} alt="" /> : <User size={28} strokeWidth={1.5} />}
+            </div>
+            <div className={styles.photoActions}>
+              <button
+                type="button"
+                className={styles.photoButton}
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isUploadingPhoto}
+              >
+                {isUploadingPhoto ? <Spinner size={16} /> : <Upload size={16} strokeWidth={2} />}
+                {t('profile.uploadPhoto')}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+                onChange={handlePhotoChange}
+              />
+            </div>
+          </div>
+
           <form onSubmit={handleProfileSubmit} className={styles.form}>
             <Input
               label={t('auth.fullName')}

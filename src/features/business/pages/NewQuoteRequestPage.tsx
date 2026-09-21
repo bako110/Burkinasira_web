@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Briefcase } from 'lucide-react';
 
-import { Button, Input, DetailBackButton } from '../../../shared/ui';
+import { Button, Input, DetailBackButton, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useCreateQuoteRequest } from '../hooks/useCreateQuoteRequest';
 import { ServiceTypePicker } from '../components/ServiceTypePicker';
@@ -46,57 +47,68 @@ export function NewQuoteRequestPage() {
       <DetailBackButton fallbackTo="/business" variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <h1 className={styles.title}>{t('business.newQuoteTitle')}</h1>
-      <p className={styles.subtitle}>{t('business.newQuoteSubtitle')}</p>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <Input
-          label={t('business.companyName')}
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-          minLength={2}
-          required
-        />
+      <Reveal className={styles.headerBlock}>
+        <span className={styles.kicker}>
+          <Briefcase size={13} strokeWidth={2} />
+          {t('nav.business')}
+        </span>
+        <h1 className={styles.title}>{t('business.newQuoteTitle')}</h1>
+        <p className={styles.subtitle}>{t('business.newQuoteSubtitle')}</p>
+      </Reveal>
 
-        <div className={styles.field}>
-          <label className={styles.label}>{t('business.serviceTypesLabel')}</label>
-          <ServiceTypePicker selected={serviceTypes} onChange={setServiceTypes} />
-        </div>
+      <Reveal as="section" delay={80} className={styles.formCard}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <Input
+            label={t('business.companyName')}
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            minLength={2}
+            required
+          />
 
-        <Input
-          label={t('business.regionOptional')}
-          value={region}
-          onChange={(e) => setRegion(e.target.value)}
-        />
+          <div className={styles.field}>
+            <label className={styles.label}>{t('business.serviceTypesLabel')}</label>
+            <ServiceTypePicker selected={serviceTypes} onChange={setServiceTypes} />
+          </div>
 
-        <Input
-          label={t('business.eventDateOptional')}
-          type="date"
-          value={eventDate}
-          onChange={(e) => setEventDate(e.target.value)}
-        />
+          <div className={styles.fieldRow}>
+            <Input
+              label={t('business.regionOptional')}
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+            />
 
-        <Input
-          label={t('business.participantCount')}
-          type="number"
-          min={1}
-          value={participantCount}
-          onChange={(e) => setParticipantCount(e.target.value)}
-          required
-        />
+            <Input
+              label={t('business.eventDateOptional')}
+              type="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+            />
+          </div>
 
-        <Input
-          label={t('family.notesOptional')}
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        />
+          <Input
+            label={t('business.participantCount')}
+            type="number"
+            min={1}
+            value={participantCount}
+            onChange={(e) => setParticipantCount(e.target.value)}
+            required
+          />
 
-        {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
+          <Input
+            label={t('family.notesOptional')}
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
 
-        <Button type="submit" fullWidth disabled={isPending || !canSubmit}>
-          {isPending ? t('common.loading') : t('business.submitQuoteRequest')}
-        </Button>
-      </form>
+          {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
+
+          <Button type="submit" fullWidth disabled={isPending || !canSubmit}>
+            {isPending ? t('common.loading') : t('business.submitQuoteRequest')}
+          </Button>
+        </form>
+      </Reveal>
     </div>
   );
 }

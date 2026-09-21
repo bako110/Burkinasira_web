@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Plus, Users, Image, HelpCircle, Heart, UsersRound, Handshake } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, RegionProvinceFilter } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, RegionProvinceFilter, Reveal } from '../../../shared/ui';
 import { useExperiences } from '../../experiences/hooks/useExperiences';
 import { ExperienceCard } from '../../experiences/components/ExperienceCard';
 import type { ExperienceType } from '../../experiences/types';
@@ -207,8 +207,10 @@ export function CommunityPage() {
             {!isLoadingPosts && accumulatedPosts.length > 0 && (
               <>
                 <div className={styles.postList}>
-                  {accumulatedPosts.map((post) => (
-                    <PostCard key={post.id} post={post} />
+                  {accumulatedPosts.map((post, i) => (
+                    <Reveal key={post.id} delay={(i % POSTS_PAGE_SIZE) * 50}>
+                      <PostCard post={post} />
+                    </Reveal>
                   ))}
                 </div>
 
@@ -251,8 +253,10 @@ export function CommunityPage() {
 
             {!isLoadingQuestions && questions && questions.length > 0 && (
               <div className={styles.list}>
-                {questions.map((question) => (
-                  <QuestionCard key={question.id} question={question} onClick={() => setActiveQuestion(question)} />
+                {questions.map((question, i) => (
+                  <Reveal key={question.id} delay={i * 50}>
+                    <QuestionCard question={question} onClick={() => setActiveQuestion(question)} />
+                  </Reveal>
                 ))}
               </div>
             )}
@@ -291,8 +295,10 @@ export function CommunityPage() {
 
             {isAuthenticated && !isLoadingLists && favoriteLists && favoriteLists.length > 0 && (
               <div className={styles.grid}>
-                {favoriteLists.map((list) => (
-                  <FavoriteListCard key={list.id} list={list} onDelete={handleDeleteList} />
+                {favoriteLists.map((list, i) => (
+                  <Reveal key={list.id} delay={i * 60}>
+                    <FavoriteListCard list={list} onDelete={handleDeleteList} />
+                  </Reveal>
                 ))}
               </div>
             )}
@@ -344,8 +350,10 @@ export function CommunityPage() {
 
             {!isLoadingGroups && groups && groups.length > 0 && (
               <div className={styles.grid}>
-                {groups.map((group) => (
-                  <GroupCard key={group.id} group={group} />
+                {groups.map((group, i) => (
+                  <Reveal key={group.id} delay={i * 60}>
+                    <GroupCard group={group} />
+                  </Reveal>
                 ))}
               </div>
             )}
@@ -372,8 +380,10 @@ export function CommunityPage() {
             {!isLoadingLocalMeet && localMeetExperiences.length > 0 && (
               <>
                 <div className={styles.grid}>
-                  {localMeetExperiences.map((experience) => (
-                    <ExperienceCard key={experience.id} experience={experience} />
+                  {localMeetExperiences.map((experience, i) => (
+                    <Reveal key={experience.id} delay={i * 60}>
+                      <ExperienceCard experience={experience} />
+                    </Reveal>
                   ))}
                 </div>
                 <div className={styles.loadMoreRow}>

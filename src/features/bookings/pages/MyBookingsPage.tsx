@@ -42,7 +42,10 @@ export function MyBookingsPage() {
       <DetailBackButton fallbackTo="/profile" variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <h1 className={styles.title}>{t('bookings.title')}</h1>
+      <div className={styles.headerBlock}>
+        <span className={styles.kicker}>{t('bookings.kicker')}</span>
+        <h1 className={styles.title}>{t('bookings.title')}</h1>
+      </div>
 
       {isLoading && (
         <div className={styles.grid}>

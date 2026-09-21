@@ -1,8 +1,24 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Phone, ArrowLeft, Clock, ExternalLink, Pill, Building2, Stethoscope, FlaskConical, Cross, Smile, MoreHorizontal, PhoneCall } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  ArrowLeft,
+  Clock,
+  ExternalLink,
+  Pill,
+  Building2,
+  Stethoscope,
+  FlaskConical,
+  Cross,
+  Smile,
+  MoreHorizontal,
+  PhoneCall,
+  Compass,
+  HeartPulse,
+} from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { useHealthFacilityDetail } from '../hooks/useHealthFacilityDetail';
 import type { HealthFacilityType } from '../types';
 import styles from './HealthFacilityDetailPage.module.css';
@@ -54,6 +70,7 @@ export function HealthFacilityDetailPage() {
   const mapsUrl = facility.location
     ? `https://www.google.com/maps?q=${facility.location.latitude},${facility.location.longitude}`
     : undefined;
+  const typeLabel = t(`health.types.${facility.type}`, facility.type);
 
   return (
     <div className={styles.page}>
@@ -62,10 +79,10 @@ export function HealthFacilityDetailPage() {
         <DetailBackButton fallbackTo="/health" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
-            <Icon size={28} strokeWidth={1.5} />
+            <Icon size={34} strokeWidth={1.5} />
           </span>
           <div className={styles.heroText}>
-            <span className={styles.typeLabel}>{t(`health.types.${facility.type}`, facility.type)}</span>
+            <span className={styles.categoryBadge}>{typeLabel}</span>
             <h1 className={styles.title}>{facility.name}</h1>
             <div className={styles.heroMeta}>
               {location && (
@@ -76,7 +93,7 @@ export function HealthFacilityDetailPage() {
               )}
               {facility.is_on_duty && (
                 <span className={styles.onDutyBadge}>
-                  <Clock size={14} strokeWidth={2} />
+                  <Clock size={13} strokeWidth={2} />
                   {t('health.onDuty')}
                 </span>
               )}
@@ -88,15 +105,66 @@ export function HealthFacilityDetailPage() {
       <div className={styles.body}>
         <div className={styles.main}>
           {facility.description && (
-            <section className={styles.section}>
-              <span className={styles.kicker}>{t('destinations.about')}</span>
+            <Reveal as="section" className={styles.section}>
+              <span className={styles.sectionKicker}>{t('destinations.about')}</span>
+              <h2 className={styles.sectionTitle}>{facility.name}</h2>
               <p className={styles.description}>{facility.description}</p>
-            </section>
+            </Reveal>
           )}
 
+          <Reveal as="section" className={styles.section} delay={80}>
+            <span className={styles.sectionKicker}>{t('common.atAGlance')}</span>
+            <h2 className={styles.sectionTitle}>{t('health.practicalInfo')}</h2>
+            <div className={styles.factGrid}>
+              <div className={styles.factCard}>
+                <span className={styles.factIcon}>
+                  <Compass size={18} strokeWidth={2} />
+                </span>
+                <div className={styles.factBody}>
+                  <span className={styles.factLabel}>{t('health.title')}</span>
+                  <span className={styles.factValue}>{typeLabel}</span>
+                </div>
+              </div>
+              {(facility.address || location) && (
+                <div className={styles.factCard}>
+                  <span className={styles.factIcon}>
+                    <MapPin size={18} strokeWidth={2} />
+                  </span>
+                  <div className={styles.factBody}>
+                    <span className={styles.factLabel}>{t('common.address')}</span>
+                    <span className={styles.factValue}>{facility.address ?? location}</span>
+                  </div>
+                </div>
+              )}
+              {facility.contact_phone && (
+                <div className={styles.factCard}>
+                  <span className={styles.factIcon}>
+                    <Phone size={18} strokeWidth={2} />
+                  </span>
+                  <div className={styles.factBody}>
+                    <span className={styles.factLabel}>{t('common.call')}</span>
+                    <span className={styles.factValue}>{facility.contact_phone}</span>
+                  </div>
+                </div>
+              )}
+              {facility.is_on_duty && (
+                <div className={styles.factCard}>
+                  <span className={styles.factIcon}>
+                    <HeartPulse size={18} strokeWidth={2} />
+                  </span>
+                  <div className={styles.factBody}>
+                    <span className={styles.factLabel}>{t('health.onDuty')}</span>
+                    <span className={styles.factValue}>{t('health.onDutyNotice')}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </Reveal>
+
           {facility.services.length > 0 && (
-            <section className={styles.section}>
-              <span className={styles.kicker}>{t('destinations.services')}</span>
+            <Reveal as="section" className={styles.section} delay={120}>
+              <span className={styles.sectionKicker}>{t('health.title')}</span>
+              <h2 className={styles.sectionTitle}>{t('destinations.services')}</h2>
               <div className={styles.tagList}>
                 {facility.services.map((service) => (
                   <span key={service} className={styles.tag}>
@@ -104,35 +172,61 @@ export function HealthFacilityDetailPage() {
                   </span>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {facility.opening_hours.length > 0 && (
-            <section className={styles.section}>
-              <span className={styles.kicker}>{t('destinations.openingHours')}</span>
+            <Reveal as="section" className={styles.section} delay={160}>
+              <span className={styles.sectionKicker}>{t('common.practicalInfo')}</span>
+              <h2 className={styles.sectionTitle}>{t('destinations.openingHours')}</h2>
               <div className={styles.hoursList}>
                 {facility.opening_hours.map((h) => (
                   <div key={h.day} className={styles.hoursRow}>
                     <span className={styles.hoursDay}>{h.day}</span>
-                    <span className={styles.hoursTime}>
+                    <span className={h.closed ? styles.hoursClosed : styles.hoursTime}>
                       {h.closed ? t('destinations.closed') : `${h.open_time ?? '—'} – ${h.close_time ?? '—'}`}
                     </span>
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
         </div>
 
         <aside className={styles.sidebar}>
           <div className={styles.infoCard}>
-            <span className={styles.kicker}>{t('health.practicalInfo')}</span>
+            <span className={styles.infoCardKicker}>
+              <Clock size={14} strokeWidth={2} />
+              {t('health.practicalInfo')}
+            </span>
+
             {facility.is_on_duty && (
               <div className={styles.onDutyNotice}>
                 <Clock size={15} strokeWidth={2} />
                 {t('health.onDutyNotice')}
               </div>
             )}
+
+            <div className={styles.ctaRow}>
+              {facility.contact_phone && (
+                <Button
+                  fullWidth
+                  onClick={() => {
+                    window.location.href = `tel:${facility.contact_phone}`;
+                  }}
+                >
+                  <PhoneCall size={16} strokeWidth={2} />
+                  {t('health.callNow')}
+                </Button>
+              )}
+              {mapsUrl && (
+                <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.ctaBtnSecondary}>
+                  <ExternalLink size={16} strokeWidth={2} />
+                  {t('destinations.openInMaps')}
+                </a>
+              )}
+            </div>
+
             <div className={styles.contactList}>
               {facility.address && (
                 <div className={styles.contactRow}>
@@ -153,17 +247,6 @@ export function HealthFacilityDetailPage() {
                 </a>
               )}
             </div>
-            {facility.contact_phone && (
-              <Button
-                fullWidth
-                onClick={() => {
-                  window.location.href = `tel:${facility.contact_phone}`;
-                }}
-              >
-                <PhoneCall size={16} strokeWidth={2} />
-                {t('health.callNow')}
-              </Button>
-            )}
           </div>
         </aside>
       </div>

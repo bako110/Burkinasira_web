@@ -7,6 +7,7 @@ import { Button, Card } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { AuthHeader } from '../components/AuthHeader';
+import { AuthBrandPanel } from '../components/AuthBrandPanel';
 import { useFinalizeGoogleRole } from '../hooks/useGoogleLogin';
 import type { SignupRole } from '../types';
 import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
@@ -70,6 +71,9 @@ export function GoogleRolePage() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.split}>
+        <AuthBrandPanel textKey="auth.brandTextRegister" />
+        <div className={styles.formSide}>
       <Card className={styles.card}>
         <AuthHeader title={t('auth.googleRoleTitle')} subtitle={t('auth.googleRoleSubtitle')} />
 
@@ -125,6 +129,8 @@ export function GoogleRolePage() {
           </Button>
         </form>
       </Card>
+        </div>
+      </div>
     </div>
   );
 }

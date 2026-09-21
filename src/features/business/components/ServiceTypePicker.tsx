@@ -1,19 +1,29 @@
 import { useTranslation } from 'react-i18next';
-import { CheckSquare, Square } from 'lucide-react';
+import {
+  Presentation,
+  Users2,
+  Landmark,
+  HeartHandshake,
+  BusFront,
+  UtensilsCrossed,
+  PartyPopper,
+  Camera,
+  Check,
+} from 'lucide-react';
 import clsx from 'clsx';
 
 import type { BusinessServiceType } from '../types';
 import styles from './ServiceTypePicker.module.css';
 
-const TYPES: BusinessServiceType[] = [
-  'salle_conference',
-  'seminaire',
-  'congres',
-  'team_building',
-  'transport_groupe',
-  'restauration_groupe',
-  'prestataire_evenementiel',
-  'photographie_audiovisuel',
+const TYPES: { key: BusinessServiceType; Icon: typeof Presentation }[] = [
+  { key: 'salle_conference', Icon: Presentation },
+  { key: 'seminaire', Icon: Users2 },
+  { key: 'congres', Icon: Landmark },
+  { key: 'team_building', Icon: HeartHandshake },
+  { key: 'transport_groupe', Icon: BusFront },
+  { key: 'restauration_groupe', Icon: UtensilsCrossed },
+  { key: 'prestataire_evenementiel', Icon: PartyPopper },
+  { key: 'photographie_audiovisuel', Icon: Camera },
 ];
 
 interface ServiceTypePickerProps {
@@ -34,18 +44,25 @@ export function ServiceTypePicker({ selected, onChange }: ServiceTypePickerProps
 
   return (
     <div className={styles.grid}>
-      {TYPES.map((type) => {
-        const isActive = selected.includes(type);
+      {TYPES.map(({ key, Icon }) => {
+        const isActive = selected.includes(key);
         return (
           <button
-            key={type}
+            key={key}
             type="button"
-            className={clsx(styles.chip, isActive && styles.chipActive)}
-            onClick={() => toggle(type)}
+            className={clsx(styles.card, isActive && styles.cardActive)}
+            onClick={() => toggle(key)}
             aria-pressed={isActive}
           >
-            {isActive ? <CheckSquare size={16} strokeWidth={2} /> : <Square size={16} strokeWidth={2} />}
-            {t(`business.serviceTypes.${type}`)}
+            {isActive && (
+              <span className={styles.checkBadge}>
+                <Check size={11} strokeWidth={3} />
+              </span>
+            )}
+            <span className={styles.iconWrap}>
+              <Icon size={20} strokeWidth={1.75} />
+            </span>
+            <span className={styles.cardLabel}>{t(`business.serviceTypes.${key}`)}</span>
           </button>
         );
       })}

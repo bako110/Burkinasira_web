@@ -32,7 +32,7 @@ export function BookingCard({ booking, onCancel, isCancelling, onReview, hasRevi
     booking.status === 'completed' && REVIEWABLE_ITEM_TYPES.includes(booking.item_type) && Boolean(onReview);
 
   return (
-    <Card className={styles.card}>
+    <Card className={clsx(styles.card, styles[STATUS_TONE[booking.status]])}>
       <div className={styles.header}>
         <span className={styles.itemType}>{t(`bookings.itemTypes.${booking.item_type}`)}</span>
         <span className={clsx(styles.status, styles[STATUS_TONE[booking.status]])}>

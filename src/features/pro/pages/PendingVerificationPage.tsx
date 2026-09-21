@@ -1,6 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Upload, CheckCircle2, Lightbulb } from 'lucide-react';
+import { ShieldCheck, Upload, CheckCircle2, Lightbulb, AlertTriangle } from 'lucide-react';
 
 import { Button, Card, Spinner } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
@@ -31,6 +31,13 @@ const BADGE_CLASS: Record<VerificationStatus, string> = {
   active: styles.badgeActive,
   suspended: styles.badgeRejected,
   rejected: styles.badgeRejected,
+};
+
+const REQUEST_ITEM_CLASS: Record<VerificationStatus, string> = {
+  pending: styles.requestItemPending,
+  active: styles.requestItemActive,
+  suspended: styles.requestItemRejected,
+  rejected: styles.requestItemRejected,
 };
 
 export function PendingVerificationPage() {
@@ -86,6 +93,7 @@ export function PendingVerificationPage() {
           </span>
           <h1 className={styles.title}>{t('pro.pendingTitle')}</h1>
           <p className={styles.subtitle}>{t('pro.pendingSubtitle')}</p>
+          <p className={styles.anytimeNotice}>{t('pro.pendingAnytimeNotice')}</p>
         </div>
 
         <div className={styles.infoSection}>
@@ -118,21 +126,26 @@ export function PendingVerificationPage() {
           </ul>
         </div>
 
-        {isGuide ? (
-          <>
-            <h2 className={styles.listTitle}>{t('pro.guideProfileTitle')}</h2>
-            <GuideProfileForm />
-            <hr className={styles.divider} />
-          </>
-        ) : (
-          <>
-            <ProviderProfileForm />
-            <hr className={styles.divider} />
-          </>
-        )}
+        <section className={styles.zone}>
+          <span className={styles.stepBadge}>
+            <span className={styles.stepNumber}>1</span>
+            {t('pro.editProfileZone')}
+          </span>
+          <h2 className={styles.listTitle}>{isGuide ? t('pro.guideProfileTitle') : t('pro.providerProfileTitle')}</h2>
+          <p className={styles.zoneHint}>{t('pro.editProfileZoneHint')}</p>
+          {isGuide ? <GuideProfileForm /> : <ProviderProfileForm />}
+        </section>
 
-        <h2 className={styles.listTitle}>{t('pro.submitDocumentTitle')}</h2>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <hr className={styles.divider} />
+
+        <section className={styles.zone}>
+          <span className={styles.stepBadge}>
+            <span className={styles.stepNumber}>2</span>
+            {t('pro.submitDocumentTitle')}
+          </span>
+          <h2 className={styles.listTitle}>{t('pro.submitDocumentTitle')}</h2>
+          <p className={styles.zoneHint}>{t('pro.submitDocumentZoneHint')}</p>
+          <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
             <label htmlFor="document_type" className={styles.label}>
               {t('pro.documentType')}
@@ -171,33 +184,51 @@ export function PendingVerificationPage() {
           </div>
           <p className={styles.fileHint}>{t('pro.fileFormatsHint')}</p>
 
-          <Button type="submit" fullWidth disabled={isSubmitting}>
-            {isSubmitting ? <Spinner size={18} /> : t('pro.submitDocument')}
-          </Button>
-        </form>
+            <Button type="submit" fullWidth disabled={isSubmitting}>
+              {isSubmitting ? <Spinner size={18} /> : t('pro.submitDocument')}
+            </Button>
+          </form>
+        </section>
 
         <hr className={styles.divider} />
 
-        <h2 className={styles.listTitle}>{t('pro.submittedDocuments')}</h2>
+        <section className={styles.zone}>
+          <span className={styles.stepBadge}>
+            <span className={styles.stepNumber}>3</span>
+            {t('pro.submittedDocuments')}
+          </span>
+          <h2 className={styles.listTitle}>{t('pro.submittedDocuments')}</h2>
+          <p className={styles.zoneHint}>{t('pro.submittedDocumentsHint')}</p>
 
-        {isLoading && <Spinner size={22} />}
+          {isLoading && <Spinner size={22} />}
 
-        {!isLoading && requests && requests.length === 0 && (
-          <p className={styles.subtitle}>{t('pro.noDocumentsYet')}</p>
-        )}
+          {!isLoading && requests && requests.length === 0 && (
+            <p className={styles.subtitle}>{t('pro.noDocumentsYet')}</p>
+          )}
 
-        {!isLoading && requests && requests.length > 0 && (
-          <div className={styles.requestList}>
-            {requests.map((r) => (
-              <div key={r.id} className={styles.requestItem}>
-                <span className={styles.requestType}>
-                  {t(DOCUMENT_TYPES.find((d) => d.value === r.document_type)?.labelKey ?? 'pro.docAutre')}
-                </span>
-                <span className={`${styles.badge} ${BADGE_CLASS[r.status]}`}>{t(`pro.status_${r.status}`)}</span>
-              </div>
-            ))}
-          </div>
-        )}
+          {!isLoading && requests && requests.length > 0 && (
+            <div className={styles.requestList}>
+              {requests.map((r) => (
+                <div key={r.id} className={`${styles.requestItem} ${REQUEST_ITEM_CLASS[r.status]}`}>
+                  <div className={styles.requestItemRow}>
+                    <span className={styles.requestType}>
+                      {t(DOCUMENT_TYPES.find((d) => d.value === r.document_type)?.labelKey ?? 'pro.docAutre')}
+                    </span>
+                    <span className={`${styles.badge} ${BADGE_CLASS[r.status]}`}>{t(`pro.status_${r.status}`)}</span>
+                  </div>
+                  {(r.status === 'rejected' || r.status === 'suspended') && r.review_notes && (
+                    <p className={styles.reviewNotes}>
+                      <AlertTriangle size={14} strokeWidth={2} className={styles.reviewNotesIcon} />
+                      <span>
+                        <strong>{t('pro.reviewNotesLabel')}</strong> {r.review_notes}
+                      </span>
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
         <div className={styles.logoutRow}>
           <button type="button" className={styles.logoutButton} onClick={clearSession}>

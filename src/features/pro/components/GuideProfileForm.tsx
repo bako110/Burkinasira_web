@@ -108,121 +108,141 @@ export function GuideProfileForm({ onSaved }: GuideProfileFormProps) {
         </div>
       )}
 
-      <div className={styles.photoRow}>
-        <div className={styles.photoPreview}>
-          {photoUrl ? <img src={photoUrl} alt="" /> : <ImageOff size={22} strokeWidth={1.5} />}
+      <div className={styles.sectionCard}>
+        <div className={styles.sectionHead}>
+          <span className={styles.sectionKicker}>{t('pro.sectionIdentity', 'Identité')}</span>
+          <h3 className={styles.sectionTitle}>{t('pro.displayName')}</h3>
         </div>
-        <button
-          type="button"
-          className={styles.photoButton}
-          onClick={() => fileInputRef.current?.click()}
-          disabled={isUploadingPhoto}
-        >
-          {isUploadingPhoto ? <Spinner size={16} /> : <Upload size={16} strokeWidth={2} />}
-          {t('pro.uploadPhoto')}
-        </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          hidden
-          onChange={handlePhotoChange}
-        />
-      </div>
 
-      <div className={styles.field}>
-        <label htmlFor="display_name" className={styles.label}>
-          {t('pro.displayName')}
-        </label>
-        <input
-          id="display_name"
-          className={styles.input}
-          required
-          minLength={2}
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="bio" className={styles.label}>
-          {t('pro.bio')}
-        </label>
-        <textarea
-          id="bio"
-          className={styles.textarea}
-          rows={3}
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-        />
-      </div>
-
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="languages" className={styles.label}>
-            {t('pro.languages')}
-          </label>
+        <div className={styles.photoRow}>
+          <div className={styles.photoPreview}>
+            {photoUrl ? <img src={photoUrl} alt="" /> : <ImageOff size={22} strokeWidth={1.5} />}
+          </div>
+          <button
+            type="button"
+            className={styles.photoButton}
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isUploadingPhoto}
+          >
+            {isUploadingPhoto ? <Spinner size={16} /> : <Upload size={16} strokeWidth={2} />}
+            {t('pro.uploadPhoto')}
+          </button>
           <input
-            id="languages"
-            className={styles.input}
-            placeholder={t('pro.languagesPlaceholder')}
-            value={languages}
-            onChange={(e) => setLanguages(e.target.value)}
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+            onChange={handlePhotoChange}
           />
         </div>
+
         <div className={styles.field}>
-          <label htmlFor="specialties" className={styles.label}>
-            {t('pro.specialties')}
+          <label htmlFor="display_name" className={styles.label}>
+            {t('pro.displayName')}
           </label>
           <input
-            id="specialties"
+            id="display_name"
             className={styles.input}
-            placeholder={t('pro.specialtiesPlaceholder')}
-            value={specialties}
-            onChange={(e) => setSpecialties(e.target.value)}
+            required
+            minLength={2}
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor="bio" className={styles.label}>
+            {t('pro.bio')}
+          </label>
+          <textarea
+            id="bio"
+            className={styles.textarea}
+            rows={3}
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
           />
         </div>
       </div>
 
-      <div className={styles.field}>
-        <label htmlFor="region" className={styles.label}>
-          {t('pro.regionCovered')}
-        </label>
-        <select id="region" className={styles.select} value={region} onChange={(e) => setRegion(e.target.value)}>
-          {BURKINA_REGIONS.map((r) => (
-            <option key={r} value={r}>
-              {r}
-            </option>
-          ))}
-        </select>
+      <div className={styles.sectionCard}>
+        <div className={styles.sectionHead}>
+          <span className={styles.sectionKicker}>{t('pro.sectionExpertise', 'Expertise')}</span>
+          <h3 className={styles.sectionTitle}>{t('pro.languages')} / {t('pro.specialties')}</h3>
+        </div>
+
+        <div className={styles.fieldGrid}>
+          <div className={styles.field}>
+            <label htmlFor="languages" className={styles.label}>
+              {t('pro.languages')}
+            </label>
+            <input
+              id="languages"
+              className={styles.input}
+              placeholder={t('pro.languagesPlaceholder')}
+              value={languages}
+              onChange={(e) => setLanguages(e.target.value)}
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="specialties" className={styles.label}>
+              {t('pro.specialties')}
+            </label>
+            <input
+              id="specialties"
+              className={styles.input}
+              placeholder={t('pro.specialtiesPlaceholder')}
+              value={specialties}
+              onChange={(e) => setSpecialties(e.target.value)}
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="region" className={styles.label}>
+              {t('pro.regionCovered')}
+            </label>
+            <select id="region" className={styles.select} value={region} onChange={(e) => setRegion(e.target.value)}>
+              {BURKINA_REGIONS.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="daily_rate" className={styles.label}>
-            {t('pro.dailyRate')}
-          </label>
-          <input
-            id="daily_rate"
-            type="number"
-            step="any"
-            className={styles.input}
-            value={dailyRate}
-            onChange={(e) => setDailyRate(e.target.value)}
-          />
+      <div className={styles.sectionCard}>
+        <div className={styles.sectionHead}>
+          <span className={styles.sectionKicker}>{t('pro.sectionRates', 'Tarifs')}</span>
+          <h3 className={styles.sectionTitle}>{t('pro.dailyRate')} / {t('pro.hourlyRate')}</h3>
         </div>
-        <div className={styles.field}>
-          <label htmlFor="hourly_rate" className={styles.label}>
-            {t('pro.hourlyRate')}
-          </label>
-          <input
-            id="hourly_rate"
-            type="number"
-            step="any"
-            className={styles.input}
-            value={hourlyRate}
-            onChange={(e) => setHourlyRate(e.target.value)}
-          />
+
+        <div className={styles.row}>
+          <div className={styles.field}>
+            <label htmlFor="daily_rate" className={styles.label}>
+              {t('pro.dailyRate')}
+            </label>
+            <input
+              id="daily_rate"
+              type="number"
+              step="any"
+              className={styles.input}
+              value={dailyRate}
+              onChange={(e) => setDailyRate(e.target.value)}
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="hourly_rate" className={styles.label}>
+              {t('pro.hourlyRate')}
+            </label>
+            <input
+              id="hourly_rate"
+              type="number"
+              step="any"
+              className={styles.input}
+              value={hourlyRate}
+              onChange={(e) => setHourlyRate(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import { Button, Card, Input, DetailBackButton } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { requestPasswordReset } from '../api/auth.api';
 import { AuthHeader } from '../components/AuthHeader';
+import { AuthBrandPanel } from '../components/AuthBrandPanel';
 import styles from './AuthPage.module.css';
 
 export function ForgotPasswordPage() {
@@ -32,40 +33,45 @@ export function ForgotPasswordPage() {
 
   return (
     <div className={styles.page}>
-      <Card className={styles.card}>
-        <DetailBackButton fallbackTo="/login" variant="link">
-          {t('common.back')}
-        </DetailBackButton>
-        <AuthHeader title={t('auth.forgotTitle')} />
+      <div className={styles.split}>
+        <AuthBrandPanel textKey="auth.brandTextLogin" />
+        <div className={styles.formSide}>
+          <Card className={styles.card}>
+            <DetailBackButton fallbackTo="/login" variant="link">
+              {t('common.back')}
+            </DetailBackButton>
+            <AuthHeader title={t('auth.forgotTitle')} />
 
-        {sent ? (
-          <div className={styles.successBlock}>
-            <MailCheck size={40} strokeWidth={1.5} className={styles.successIcon} />
-            <p>{t('auth.forgotSentText')}</p>
-            <Link to="/login" className={styles.backToLogin}>
-              {t('auth.loginCta')}
-            </Link>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <p className={styles.hint}>{t('auth.forgotIntro')}</p>
-            <Input
-              label={t('auth.email')}
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {error && <p className={styles.error}>{error}</p>}
-            <Button type="submit" fullWidth disabled={isPending || !email}>
-              {isPending ? t('common.loading') : t('auth.forgotSubmit')}
-            </Button>
-          </form>
-        )}
-      </Card>
+            {sent ? (
+              <div className={styles.successBlock}>
+                <MailCheck size={40} strokeWidth={1.5} className={styles.successIcon} />
+                <p>{t('auth.forgotSentText')}</p>
+                <Link to="/login" className={styles.backToLogin}>
+                  {t('auth.loginCta')}
+                </Link>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <p className={styles.hint}>{t('auth.forgotIntro')}</p>
+                <Input
+                  label={t('auth.email')}
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  autoFocus
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {error && <p className={styles.error}>{error}</p>}
+                <Button type="submit" fullWidth disabled={isPending || !email}>
+                  {isPending ? t('common.loading') : t('auth.forgotSubmit')}
+                </Button>
+              </form>
+            )}
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

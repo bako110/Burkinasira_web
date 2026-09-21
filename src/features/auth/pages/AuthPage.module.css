@@ -7,6 +7,168 @@
   background-color: var(--color-bg-subtle);
 }
 
+@media (min-width: 1024px) {
+  .page {
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+  }
+}
+
+.split {
+  display: flex;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.formSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .formSide {
+    flex: 1 1 55%;
+    padding: var(--space-7);
+  }
+}
+
+.brandSide {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .brandSide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 1 45%;
+    padding: var(--space-8) var(--space-7);
+    overflow: hidden;
+    background: var(--gradient-savanna);
+    isolation: isolate;
+  }
+}
+
+.brandMesh {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-mesh);
+  opacity: 0.9;
+  animation: authMeshDrift 20s ease-in-out infinite alternate;
+}
+
+.brandPattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 75%);
+}
+
+@keyframes authMeshDrift {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-2%, 2%);
+  }
+}
+
+.brandContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.brandBadge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.brandTitle {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.brandTitleAccent {
+  background: linear-gradient(90deg, #ffd8a8, #ffffff 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brandText {
+  margin: 0;
+  max-width: 420px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.brandFlag {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(620px, 60%);
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0.92;
+}
+
+.brandStats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--space-5);
+}
+
+.brandStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brandStatValue {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.brandStatLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brandMesh {
+    animation: none;
+  }
+}
+
 .card {
   width: 100%;
   max-width: 400px;
@@ -16,6 +178,12 @@
 @media (max-width: 480px) {
   .card {
     padding: var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    box-shadow: var(--shadow-lg);
   }
 }
 
@@ -94,16 +262,28 @@
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .roleOption:hover {
   border-color: var(--color-brand);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
 .roleOptionActive {
   border-color: var(--color-brand);
   background-color: var(--color-brand-surface);
+  box-shadow: 0 0 0 3px var(--color-brand-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roleOption {
+    transition: none;
+  }
+  .roleOption:hover {
+    transform: none;
+  }
 }
 
 .roleRadio {

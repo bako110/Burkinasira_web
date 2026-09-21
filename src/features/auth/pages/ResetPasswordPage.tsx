@@ -8,6 +8,7 @@ import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { resetPassword } from '../api/auth.api';
 import { AuthHeader } from '../components/AuthHeader';
+import { AuthBrandPanel } from '../components/AuthBrandPanel';
 import { getPasswordIssues, type PasswordIssue } from '../utils/passwordStrength';
 import styles from './AuthPage.module.css';
 
@@ -55,6 +56,9 @@ export function ResetPasswordPage() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.split}>
+        <AuthBrandPanel textKey="auth.brandTextLogin" />
+        <div className={styles.formSide}>
       <Card className={styles.card}>
         <DetailBackButton fallbackTo="/login" variant="link">
           {t('common.back')}
@@ -115,6 +119,8 @@ export function ResetPasswordPage() {
           </form>
         )}
       </Card>
+        </div>
+      </div>
     </div>
   );
 }

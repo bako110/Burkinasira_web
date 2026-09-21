@@ -1,23 +1,97 @@
 .page {
   display: flex;
   flex-direction: column;
+  flex: 1;
+}
+
+.centerPage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.hero {
+  position: relative;
+  padding: var(--space-6) var(--space-4) var(--space-5);
+  background: var(--gradient-savanna);
+}
+
+.backBtn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: var(--space-3);
+  transition: background-color var(--transition-fast);
+}
+
+.backBtn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backBtn {
+    transition: none;
+  }
+}
+
+.heroContent {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  color: #fff;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-6);
-  padding: var(--space-5) var(--space-4) var(--space-8);
+  padding: var(--space-6) var(--space-4) var(--space-8);
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
 }
 
-.title {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-7) 0;
+.sectionTitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .pointsCard {
@@ -25,7 +99,9 @@
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-5);
+  border-radius: var(--radius-lg);
   background: var(--gradient-sunset);
+  box-shadow: var(--shadow-lg);
 }
 
 .pointsIcon {
@@ -45,12 +121,6 @@
   font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
-}
-
-.sectionTitle {
-  margin: 0 0 var(--space-3);
-  font-size: 1.0625rem;
-  font-weight: 700;
 }
 
 .badgeGrid {
@@ -73,6 +143,18 @@
   border-radius: var(--radius-md);
   background-color: var(--color-bg-raised);
   border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.stampRow:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-brand-200);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stampRow {
+    transition: none;
+  }
 }
 
 .stampIcon {

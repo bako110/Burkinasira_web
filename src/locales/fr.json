@@ -22,7 +22,10 @@
     "regionFilter": "Filtrer par région",
     "allRegions": "Toutes les régions",
     "provinceFilter": "Filtrer par province",
-    "allProvinces": "Toutes les provinces"
+    "allProvinces": "Toutes les provinces",
+    "practicalInfo": "Infos pratiques",
+    "atAGlance": "En un coup d’œil",
+    "address": "Adresse"
   },
   "gallery": {
     "title": "Galerie",
@@ -142,11 +145,24 @@
     "resetSubmit": "Valider le nouveau mot de passe",
     "resetSuccess": "Mot de passe modifié. Vous pouvez vous connecter.",
     "resetError": "Ce lien est invalide ou expiré. Refaites une demande.",
-    "resetNoToken": "Lien incomplet. Refaites une demande de réinitialisation."
+    "resetNoToken": "Lien incomplet. Refaites une demande de réinitialisation.",
+    "brandTitleLine1": "Le Burkina Faso",
+    "brandTitleLine2": "vous attend",
+    "brandTextLogin": "Retrouvez vos voyages, vos réservations et vos badges BurkinaSira en un instant.",
+    "brandTextRegister": "Créez votre compte et commencez à explorer 47 provinces d'expériences authentiques.",
+    "brandStatDestinations": "sites",
+    "brandStatRegions": "régions",
+    "brandStatProvinces": "provinces"
   },
   "pro": {
     "pendingTitle": "Vérification en cours",
     "pendingSubtitle": "Envoyez vos documents pour que notre équipe valide votre compte professionnel.",
+    "pendingAnytimeNotice": "Vous pouvez modifier votre profil et soumettre un nouveau document à tout moment, même après un premier envoi.",
+    "editProfileZone": "Modifier mon profil",
+    "editProfileZoneHint": "Ces informations sont visibles par les touristes une fois votre compte validé. Vous pouvez les mettre à jour à tout moment.",
+    "submitDocumentZoneHint": "Ajoutez une pièce justificative. Vous pouvez soumettre plusieurs documents, y compris pour remplacer un document rejeté.",
+    "submittedDocumentsHint": "Historique de vos envois et leur statut de validation.",
+    "reviewNotesLabel": "Motif :",
     "requirementsTitle": "Ce qui est requis pour être validé",
     "reqIdentityGuide": "Une pièce d'identité valide (CNI, passeport ou permis de conduire)",
     "reqProfileGuide": "Un profil complet : nom affiché, bio, langues parlées et spécialités",
@@ -211,6 +227,10 @@
     "collapseSidebar": "Replier le menu",
     "tab_analytics": "Statistiques",
     "tab_profile": "Profil",
+    "tab_documents": "Mes documents",
+    "documentsKicker": "Vérification",
+    "documentsTitle": "Mes documents",
+    "documentsSubtitle": "Modifiez votre profil professionnel et suivez le statut de vos documents soumis.",
     "tab_availability": "Disponibilités",
     "tab_bookings": "Réservations",
     "tab_reviews": "Avis",
@@ -423,7 +443,7 @@
   },
   "explore": {
     "subtitle": "Trouvez des lieux, des expériences et des adresses vérifiées partout au Burkina Faso.",
-    "filtersLabel": "Filtres",
+    "filtersLabel": "Filtrer par catégorie",
     "filters": {
       "all": "Tout",
       "site_naturel": "Sites naturels",
@@ -442,8 +462,7 @@
     "emptyText": "Essayez un autre mot-clé ou changez de catégorie.",
     "errorText": "Impossible de charger les résultats pour le moment.",
     "resetFilters": "Réinitialiser les filtres",
-    "loadMore": "Voir plus de résultats",
-    "filtersLabel": "Filtrer par catégorie"
+    "loadMore": "Voir plus de résultats"
   },
   "hotels": {
     "title": "Hébergements au Burkina Faso",
@@ -617,6 +636,7 @@
     }
   },
   "bookings": {
+    "kicker": "Voyage & réservations",
     "title": "Mes réservations",
     "modalTitle": "Réservation",
     "date": "Date",
@@ -671,6 +691,7 @@
     "temporarilyUnavailable": "Réservations temporairement indisponibles. Merci de réessayer plus tard."
   },
   "trips": {
+    "kicker": "Voyage & planification",
     "myTripsTitle": "Mes voyages",
     "empty": "Vous n'avez planifié aucun voyage",
     "emptyText": "Créez votre premier itinéraire personnalisé.",
@@ -998,7 +1019,10 @@
       "formalites": "Formalités",
       "sante_securite": "Santé et sécurité",
       "transport": "Transport"
-    }
+    },
+    "summary": "Sommaire",
+    "entryCount_one": "{{count}} repère",
+    "entryCount_other": "{{count}} repères"
   },
   "dataQuality": {
     "reportError": "Signaler une erreur",
@@ -1018,6 +1042,7 @@
   },
   "messaging": {
     "title": "Messages",
+    "kicker": "Messagerie",
     "placeholder": "Écrire un message...",
     "empty": "Aucune conversation",
     "emptyText": "Vos échanges avec les guides, hôtels et prestataires apparaîtront ici.",
@@ -1075,7 +1100,8 @@
     "cardTagline": "Découvrir · Vivre · Partager",
     "memberSince": "Membre depuis {{date}}",
     "downloadCard": "Télécharger ma carte",
-    "cardDownloadError": "Impossible de télécharger la carte"
+    "cardDownloadError": "Impossible de télécharger la carte",
+    "badgeLocked": "Badge à débloquer"
   },
   "health": {
     "title": "Santé au Burkina Faso",
@@ -1564,6 +1590,9 @@
     "terms": "Conditions d'utilisation",
     "rights": "Tous droits réservés."
   },
+  "legal": {
+    "tableOfContents": "Sommaire"
+  },
   "planner": {
     "kicker": "Planificateur de voyage",
     "subtitle": "Composez votre séjour : hébergement, repas, transport, guides — et estimez la dépense globale.",
@@ -1737,7 +1766,18 @@
       "tranquille": "Rythme tranquille",
       "equilibre": "Rythme équilibré",
       "intense": "Rythme soutenu"
-    }
+    },
+    "statRoutes": "Parcours",
+    "statRegions": "Régions",
+    "statDays": "Jours",
+    "featuredKicker": "Coup de cœur de la rédaction",
+    "featuredTitle": "L’itinéraire à ne pas manquer",
+    "allKicker": "Toute la collection",
+    "allTitle": "Les autres parcours",
+    "introKicker": "L’esprit du voyage",
+    "highlightsKicker": "Les temps forts",
+    "programmeKicker": "Le déroulé",
+    "dayLabel": "Jour {{num}}"
   },
   "nearMe": {
     "enable": "Près de moi",
@@ -1794,6 +1834,7 @@
     "rate": "Noter",
     "rated": "Avis publié",
     "rateThisStay": "Comment s’est passé votre séjour ?",
+    "sectionKicker": "Ce qu'en disent les voyageurs",
     "sectionTitle": "Avis",
     "none": "Aucun avis pour le moment.",
     "count_one": "{{count}} avis",

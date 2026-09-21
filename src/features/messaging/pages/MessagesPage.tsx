@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
 import clsx from 'clsx';
 
 import { EmptyResults, Spinner, DetailBackButton } from '../../../shared/ui';
@@ -31,10 +31,13 @@ export function MessagesPage() {
   return (
     <div className={styles.page}>
       <aside className={clsx(styles.sidebar, activeId && styles.sidebarHiddenMobile)}>
-        <DetailBackButton fallbackTo={fallbackTo} variant="link">
-          {t('common.back')}
-        </DetailBackButton>
-        <h1 className={styles.title}>{t('messaging.title')}</h1>
+        <div className={styles.sidebarHeader}>
+          <DetailBackButton fallbackTo={fallbackTo} variant="link">
+            {t('common.back')}
+          </DetailBackButton>
+          <span className={styles.kicker}>{t('messaging.kicker')}</span>
+          <h1 className={styles.title}>{t('messaging.title')}</h1>
+        </div>
 
         {isLoading && (
           <div className={styles.center}>
@@ -70,10 +73,17 @@ export function MessagesPage() {
         {activeConversation ? (
           <>
             <div className={styles.chatHeader}>
-              <button type="button" className={styles.backBtn} onClick={() => setActiveId(undefined)}>
-                {t('common.back')}
+              <button
+                type="button"
+                className={styles.backBtn}
+                onClick={() => setActiveId(undefined)}
+                aria-label={t('common.back')}
+              >
+                <ArrowLeft size={18} strokeWidth={2} />
               </button>
-              <span>{activeConversation.display_name || t(`messaging.kinds.${activeConversation.kind}`)}</span>
+              <span className={styles.chatHeaderName}>
+                {activeConversation.display_name || t(`messaging.kinds.${activeConversation.kind}`)}
+              </span>
             </div>
             <ChatWindow conversationId={activeConversation.id} />
           </>

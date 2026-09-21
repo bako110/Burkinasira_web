@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Globe2, ArrowLeft, ExternalLink } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { useDiasporaContentDetail } from '../hooks/useDiasporaContentDetail';
 import styles from './DiasporaContentDetailPage.module.css';
@@ -43,16 +43,21 @@ export function DiasporaContentDetailPage() {
     ? `https://www.google.com/maps?q=${content.location.latitude},${content.location.longitude}`
     : undefined;
 
+  const paragraphs = content.description
+    .split(/\n{2,}|\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
   return (
     <div className={styles.page}>
-      <div className={styles.heroImage}>
-        <div className={styles.heroPlaceholder}>
-          <Globe2 size={40} strokeWidth={1.5} />
-        </div>
-        <div className={styles.heroOverlay} />
+      <section className={styles.hero}>
+        <div className={styles.heroMesh} aria-hidden="true" />
         <DetailBackButton fallbackTo="/diaspora" className={styles.backBtn} />
         <div className={styles.heroContent}>
-          <span className={styles.categoryBadge}>{t(`diaspora.types.${content.type}`, content.type)}</span>
+          <span className={styles.categoryBadge}>
+            <Globe2 size={13} strokeWidth={2} />
+            {t(`diaspora.types.${content.type}`, content.type)}
+          </span>
           <h1 className={styles.title}>{content.title}</h1>
           {content.region && (
             <div className={styles.heroMeta}>
@@ -62,26 +67,57 @@ export function DiasporaContentDetailPage() {
               </span>
             </div>
           )}
+          <span className={styles.heroRule} aria-hidden="true" />
         </div>
-      </div>
+      </section>
 
       <div className={styles.body}>
         <div className={styles.main}>
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
+            <span className={styles.sectionKicker}>{t('diaspora.title')}</span>
             <h2 className={styles.sectionTitle}>{t('destinations.about')}</h2>
-            <p className={styles.description}>{content.description}</p>
-          </section>
+            <div className={styles.prose}>
+              {paragraphs.map((paragraph, i) => (
+                <p key={i} className={styles.paragraph}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </Reveal>
+
+          <hr className={styles.divider} />
+
+          <Reveal as="section" className={styles.section} delay={80}>
+            <span className={styles.sectionKicker}>{t('common.exploreAlso')}</span>
+            <p className={styles.pullQuote}>{t('diaspora.subtitle')}</p>
+          </Reveal>
         </div>
 
         <aside className={styles.sidebar}>
-          {mapsUrl && (
-            <div className={styles.infoCard}>
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.contactRow}>
-                <ExternalLink size={15} strokeWidth={2} />
-                <span>{t('destinations.openInMaps')}</span>
-              </a>
+          <div className={styles.infoCard}>
+            <span className={styles.infoCardKicker}>
+              <Globe2 size={14} strokeWidth={2} />
+              {t('common.practicalInfo')}
+            </span>
+            <div className={styles.contactList}>
+              <div className={styles.contactRow}>
+                <Globe2 size={15} strokeWidth={2} />
+                <span>{t(`diaspora.types.${content.type}`, content.type)}</span>
+              </div>
+              {content.region && (
+                <div className={styles.contactRow}>
+                  <MapPin size={15} strokeWidth={2} />
+                  <span>{content.region}</span>
+                </div>
+              )}
             </div>
-          )}
+            {mapsUrl && (
+              <a href={mapsUrl} target="_blank" rel="noreferrer" className={styles.ctaBtnSecondary}>
+                <ExternalLink size={16} strokeWidth={2} />
+                {t('destinations.openInMaps')}
+              </a>
+            )}
+          </div>
           <ReportErrorButton itemType="diaspora_content" itemId={content.id} className={styles.reportBtn} />
         </aside>
       </div>

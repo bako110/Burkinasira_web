@@ -22,7 +22,10 @@
     "regionFilter": "Tẽnga yãk",
     "allRegions": "Tẽns fãa",
     "provinceFilter": "Provẽs yãk",
-    "allProvinces": "Provẽs fãa"
+    "allProvinces": "Provẽs fãa",
+    "practicalInfo": "Sagl-sõng bûmb",
+    "atAGlance": "Gesg bilf",
+    "address": "Zaka"
   },
   "gallery": {
     "title": "Foto-zĩiga",
@@ -142,11 +145,24 @@
     "resetSubmit": "Kɩt tɩ gõ-lokr paalgã yɩ sɩda",
     "resetSuccess": "Gõ-lokrã toeema. Fo tõe n kẽ.",
     "resetError": "Sɛb-noor kãnga ka sõma wall a weoogame. Maan kos-kʋʋr paalga.",
-    "resetNoToken": "Sɛb-noorã ka zãnga ye. Maan kos-kʋʋr paalga."
+    "resetNoToken": "Sɛb-noorã ka zãnga ye. Maan kos-kʋʋr paalga.",
+    "brandTitleLine1": "Burkina Faso",
+    "brandTitleLine2": "gũusame yãmb",
+    "brandTextLogin": "Bao y sẽn tʋʋm-teed la y kũun-teed la y BurkinaSira sɩɩlem zĩig ye zug.",
+    "brandTextRegister": "Naan f konte n sɩng n bãng provinces 47 sẽn tar teed sẽn yaa sɩda.",
+    "brandStatDestinations": "zĩy",
+    "brandStatRegions": "tẽnsã",
+    "brandStatProvinces": "provẽsã"
   },
   "pro": {
     "pendingTitle": "B gũusg y sɛb-kɩtga",
     "pendingSubtitle": "Tʋm-y y sɛba tɩ tõnd zamaan na le sak y tʋʋm-tʋmd konte.",
+    "pendingAnytimeNotice": "Y tõe n fẽgd y profil la y tʋm sɛb-paalg wakat fãa, baa yɛs pipi tʋmb poore.",
+    "editProfileZone": "Fẽgd mam profil",
+    "editProfileZoneHint": "Kibay kãnga wilgdame sãando nins sẽn wat b sak y konte poore. Y tõe n fẽgd-b-la wakat fãa.",
+    "submitDocumentZoneHint": "Paas-y sɛb-kãseng. Y tõe n tʋm sɛb wʋsg, hal n lebs sɛb ning b sẽn zãgs.",
+    "submittedDocumentsHint": "Y sẽn tʋm sɛba la b tagsg pʋgẽ zĩig.",
+    "reviewNotesLabel": "Bʋʋm:",
     "requirementsTitle": "Bũmb nins sẽn segd n zĩnd tɩ b sak-y",
     "reqIdentityGuide": "Karen-sɛb sẽn tar bĩnga (CNI, pasporo bɩ moto-sɛba)",
     "reqProfileGuide": "Y konte sẽn pids zãng: y yʋʋr, y biografi, y goam la y tʋʋm-buud",
@@ -211,6 +227,10 @@
     "collapseSidebar": "Pʋg menu wã",
     "tab_analytics": "Sõsg-kɩbaya",
     "tab_profile": "Konte",
+    "tab_documents": "Mam sɛb-kãens",
+    "documentsKicker": "Sõsg-kɩbaya",
+    "documentsTitle": "Mam sɛb-kãens",
+    "documentsSubtitle": "Toeem f pʋg-sõsgo la ges f sɛb-kãens sẽn tʋm.",
     "tab_availability": "Wakaty",
     "tab_bookings": "Sɛb-kɩtgo",
     "tab_reviews": "Sagls",
@@ -423,7 +443,7 @@
   },
   "explore": {
     "subtitle": "Bao zĩis, tʋʋm-tʋmde la zĩis sẽn tigme Burkina Faso zug fãa.",
-    "filtersLabel": "Tususe",
+    "filtersLabel": "Yãk buud ne lebgr",
     "filters": {
       "all": "Fãa",
       "site_naturel": "Bãong-zĩis",
@@ -442,8 +462,7 @@
     "emptyText": "Maan m-baoodo ne gomd a to bɩ tigims a to.",
     "errorText": "D ka tõe n wa ne bũmb woto sɛka ye.",
     "resetFilters": "Le sɩng bãoodo",
-    "loadMore": "Ges bũmb a taab",
-    "filtersLabel": "Yãk buud ne lebgr"
+    "loadMore": "Ges bũmb a taab"
   },
   "hotels": {
     "title": "Zaka-kɩʋʋg Burkina Faso",
@@ -617,6 +636,7 @@
     }
   },
   "bookings": {
+    "kicker": "Taama la reereems",
     "title": "Mam reereems",
     "modalTitle": "Reereem",
     "date": "Rasem",
@@ -671,6 +691,7 @@
     "temporarilyUnavailable": "Sẽk-yãkr ka tõe masã ye. Bɩ y le maak ka la wʋsg."
   },
   "trips": {
+    "kicker": "Taama la togsg",
     "myTripsTitle": "Mam sore-yalse",
     "empty": "F nan-a sore-yalg ye",
     "emptyText": "Naan f sore-yalg pipi sẽn ya foom yiimã.",
@@ -998,7 +1019,10 @@
       "formalites": "Tigsg-vẽkr",
       "sante_securite": "Laafi la lɛɛgengo",
       "transport": "Loaad pekre"
-    }
+    },
+    "summary": "Gom-zut",
+    "entryCount_one": "bãngr-bũmb {{count}}",
+    "entryCount_other": "bãngr-bũmb {{count}}"
   },
   "dataQuality": {
     "reportError": "Wilg belgre",
@@ -1018,6 +1042,7 @@
   },
   "messaging": {
     "title": "Kʋʋg-goam",
+    "kicker": "Kʋʋg-goam",
     "placeholder": "Gʋls koees...",
     "empty": "Ka sõsg baa a yembre",
     "emptyText": "F sõsg ne sor-tʋmdb, zaka-kɩʋʋg la tʋm-tʋmdb na yi zĩig kãnga.",
@@ -1075,7 +1100,8 @@
     "cardTagline": "Bao · Vɩɩmd · Portage",
     "memberSince": "Tʋm-tʋmd hal {{date}}",
     "downloadCard": "Karse mam karti wã",
-    "cardDownloadError": "Pa tõe n karse karti wã ye"
+    "cardDownloadError": "Pa tõe n karse karti wã ye",
+    "badgeLocked": "Badzhã sẽn na n bãmb"
   },
   "health": {
     "title": "Laafi Burkina Faso",
@@ -1564,6 +1590,9 @@
     "terms": "Tʋʋm-noy",
     "rights": "Zu-loees fãa gũusame."
   },
+  "legal": {
+    "tableOfContents": "Sommaire"
+  },
   "planner": {
     "kicker": "Sor-yalg maandg",
     "subtitle": "Maan fo yaab-yaab: gã·d-zĩiga, rɩɩb, vẽeg-vẽeg, sor-tʋmdb — la ges ligd fãa taab.",
@@ -1737,7 +1766,18 @@
       "tranquille": "Kẽn-bʋgsg",
       "equilibre": "Kẽn-zems",
       "intense": "Kẽn-tao"
-    }
+    },
+    "statRoutes": "Sore",
+    "statRegions": "Tẽns",
+    "statDays": "Rasma",
+    "featuredKicker": "Gʋlsdbã sũ-noog",
+    "featuredTitle": "Sore f sẽn pa segd n bas",
+    "allKicker": "Sore fãa",
+    "allTitle": "Sore a taaba",
+    "introKicker": "Sore-yalgã võore",
+    "highlightsKicker": "Wakat sẽn tar yõod",
+    "programmeKicker": "Kẽnd-kãnga",
+    "dayLabel": "Daar {{num}}"
   },
   "nearMe": {
     "enable": "Mam sɛɛg",
@@ -1794,6 +1834,7 @@
     "rate": "Geelg",
     "rated": "Tagsg yiisame",
     "rateThisStay": "Fo kẽndã yɩɩ wãn?",
+    "sectionKicker": "Sõsdba sẽn yetã",
     "sectionTitle": "Tagsg-dãmba",
     "none": "Tagsg baa a ye ka be ye.",
     "count_one": "tagsg {{count}}",

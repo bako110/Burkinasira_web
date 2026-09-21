@@ -12,7 +12,9 @@ export function BookingUnavailable({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation();
   return (
     <div className={styles.success}>
-      <AlertTriangle size={40} strokeWidth={1.5} className={styles.unavailableIcon} />
+      <span className={styles.unavailableIcon}>
+        <AlertTriangle size={36} strokeWidth={1.5} />
+      </span>
       <p className={styles.successTitle}>{t('bookings.temporarilyUnavailable')}</p>
       <Button fullWidth onClick={onClose}>
         {t('common.back')}

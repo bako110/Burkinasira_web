@@ -21,6 +21,10 @@
   background-color: var(--color-bg-inset);
 }
 
+.triggerActive {
+  color: var(--color-brand);
+}
+
 .badge {
   position: absolute;
   top: -4px;
@@ -37,6 +41,27 @@
   align-items: center;
   justify-content: center;
   border: 2px solid var(--color-bg-raised);
+  animation: badgePop 320ms ease;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    animation: none;
+  }
 }
 
 .panel {

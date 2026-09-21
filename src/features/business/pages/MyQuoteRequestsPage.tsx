@@ -14,20 +14,20 @@ export function MyQuoteRequestsPage() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.header}>
-        <div className={styles.headerIcon}>
-          <Briefcase size={28} strokeWidth={1.5} />
-        </div>
-        <div>
+      <Reveal className={styles.hero}>
+        <div className={styles.heroText}>
+          <span className={styles.kicker}>
+            <Briefcase size={13} strokeWidth={2} />
+            {t('nav.business', 'Tourisme d’affaires')}
+          </span>
           <h1 className={styles.title}>{t('business.title')}</h1>
           <p className={styles.subtitle}>{t('business.subtitle')}</p>
         </div>
-      </div>
-
-      <Button onClick={() => navigate('/business/new')}>
-        <PlusCircle size={16} strokeWidth={2} />
-        {t('business.newQuoteButton')}
-      </Button>
+        <Button onClick={() => navigate('/business/new')} className={styles.newButton}>
+          <PlusCircle size={16} strokeWidth={2} />
+          {t('business.newQuoteButton')}
+        </Button>
+      </Reveal>
 
       <h2 className={styles.sectionTitle}>{t('business.myQuotes')}</h2>
 
@@ -42,13 +42,19 @@ export function MyQuoteRequestsPage() {
       {!isLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
 
       {!isLoading && !isError && (!data || data.length === 0) && (
-        <EmptyResults variant="empty" title={t('business.myQuotesEmpty')} text={t('bookings.emptyText')} />
+        <div className={styles.emptyWrap}>
+          <EmptyResults variant="empty" title={t('business.myQuotesEmpty')} text={t('bookings.emptyText')} />
+          <Button variant="secondary" onClick={() => navigate('/business/new')}>
+            <PlusCircle size={16} strokeWidth={2} />
+            {t('business.newQuoteButton')}
+          </Button>
+        </div>
       )}
 
       {!isLoading && !isError && data && data.length > 0 && (
         <div className={styles.grid}>
           {data.map((quote, i) => (
-            <Reveal key={quote.id} delay={Math.min(i, 8) * 50}>
+            <Reveal key={quote.id} delay={Math.min(i, 8) * 60}>
               <QuoteRequestCard quote={quote} />
             </Reveal>
           ))}

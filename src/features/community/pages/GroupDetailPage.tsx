@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Users, Lock, ArrowLeft, Plus, MapPin, Tag } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, Avatar } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Avatar, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useAuthStore } from '../../../store/auth.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -84,8 +84,13 @@ export function GroupDetailPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroMesh} aria-hidden="true" />
+      <section className={clsx(styles.hero, group.cover_photo && styles.heroWithImage)}>
+        {group.cover_photo ? (
+          <img src={group.cover_photo} alt="" className={styles.heroImg} />
+        ) : (
+          <div className={styles.heroMesh} aria-hidden="true" />
+        )}
+        <div className={styles.heroOverlay} aria-hidden="true" />
         <DetailBackButton fallbackTo="/community" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
@@ -161,7 +166,7 @@ export function GroupDetailPage() {
         </div>
 
         {tab === 'chat' && (
-          <section className={styles.chatSection}>
+          <Reveal as="section" className={styles.chatSection}>
             {isMember && group.conversation_id ? (
               <ChatWindow conversationId={group.conversation_id} />
             ) : (
@@ -171,11 +176,11 @@ export function GroupDetailPage() {
                 text={t('community.chatRequiresMembershipText')}
               />
             )}
-          </section>
+          </Reveal>
         )}
 
         {tab === 'posts' && (
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
             <div className={styles.postsHeader}>
               <Button size="sm" onClick={handleOpenCreatePost}>
                 <Plus size={15} strokeWidth={2} />
@@ -195,16 +200,18 @@ export function GroupDetailPage() {
 
             {!isLoadingPosts && postsData && postsData.items.length > 0 && (
               <div className={styles.postsList}>
-                {postsData.items.map((post) => (
-                  <PostCard key={post.id} post={post} />
+                {postsData.items.map((post, i) => (
+                  <Reveal key={post.id} delay={(i % 12) * 50}>
+                    <PostCard post={post} />
+                  </Reveal>
                 ))}
               </div>
             )}
-          </section>
+          </Reveal>
         )}
 
         {tab === 'members' && (
-          <section className={styles.section}>
+          <Reveal as="section" className={styles.section}>
             <div className={styles.memberList}>
               {group.members.map((member) => (
                 <div key={member.id} className={styles.memberRow}>
@@ -221,7 +228,7 @@ export function GroupDetailPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </Reveal>
         )}
       </div>
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Check, Settings } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Reveal } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { useAuthStore } from '../../../store/auth.store';
 import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
@@ -42,8 +42,12 @@ export function NotificationsPage() {
       <DetailBackButton fallbackTo={fallbackTo} variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <div className={styles.headerRow}>
-        <h1 className={styles.title}>{t('notifications.title')}</h1>
+
+      <Reveal as="section" className={styles.headerRow}>
+        <div className={styles.headerText}>
+          <span className={styles.kicker}>{t('nav.notifications')}</span>
+          <h1 className={styles.title}>{t('notifications.title')}</h1>
+        </div>
         <div className={styles.headerActions}>
           {unreadCount > 0 && (
             <Button variant="ghost" size="sm" onClick={() => markAllRead()} disabled={isMarkingAll}>
@@ -51,14 +55,23 @@ export function NotificationsPage() {
               {t('notifications.markAllRead')}
             </Button>
           )}
-          <Button variant="ghost" size="sm" onClick={() => setShowPrefs((v) => !v)}>
+          <Button
+            variant={showPrefs ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setShowPrefs((v) => !v)}
+            aria-expanded={showPrefs}
+          >
             <Settings size={15} strokeWidth={2} />
             {t('notifications.preferences')}
           </Button>
         </div>
-      </div>
+      </Reveal>
 
-      {showPrefs && <NotificationPreferencesPanel />}
+      {showPrefs && (
+        <Reveal>
+          <NotificationPreferencesPanel />
+        </Reveal>
+      )}
 
       <div className={styles.tabs}>
         <button
@@ -74,6 +87,7 @@ export function NotificationsPage() {
           onClick={() => setTab('unread')}
         >
           {t('notifications.tabUnread')}
+          {unreadCount > 0 && <span className={styles.tabBadge}>{unreadCount > 99 ? '99+' : unreadCount}</span>}
         </button>
       </div>
 
@@ -91,13 +105,10 @@ export function NotificationsPage() {
 
       {!isLoading && !isError && notifications && notifications.length > 0 && (
         <div className={styles.list}>
-          {notifications.map((notification) => (
-            <NotificationItem
-              key={notification.id}
-              notification={notification}
-              onMarkRead={markRead}
-              onDelete={handleDelete}
-            />
+          {notifications.map((notification, index) => (
+            <Reveal key={notification.id} delay={Math.min(index, 8) * 60}>
+              <NotificationItem notification={notification} onMarkRead={markRead} onDelete={handleDelete} />
+            </Reveal>
           ))}
         </div>
       )}

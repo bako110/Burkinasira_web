@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Building, UtensilsCrossed, Car, ShoppingBag, Clock, CheckCircle2 } from 'lucide-react';
 import clsx from 'clsx';
@@ -22,7 +22,7 @@ const KIND_OPTIONS: { value: EstablishmentKind; labelKey: string; Icon: typeof B
 
 export function ProviderProfileForm() {
   const { t } = useTranslation();
-  const [kind, setKind] = useState<EstablishmentKind>('hotel');
+  const [kind, setKind] = useState<EstablishmentKind | null>(null);
 
   const { data: hotels, isLoading: isLoadingHotels } = useMyHotels();
   const { data: restaurants, isLoading: isLoadingRestaurants } = useMyRestaurants();
@@ -33,31 +33,64 @@ export function ProviderProfileForm() {
     (hotels?.length ?? 0) + (restaurants?.length ?? 0) + (transportProviders?.length ?? 0) + (artisanProfile ? 1 : 0);
   const isLoadingAny = isLoadingHotels || isLoadingRestaurants || isLoadingTransport || isLoadingArtisan;
 
+  // Un prestataire n'a qu'un seul type d'établissement : dès qu'on connaît lequel,
+  // on va directement à son formulaire sans lui faire choisir un onglet.
+  const knownKind: EstablishmentKind | null =
+    (hotels?.length ?? 0) > 0
+      ? 'hotel'
+      : (restaurants?.length ?? 0) > 0
+        ? 'restaurant'
+        : (transportProviders?.length ?? 0) > 0
+          ? 'transport'
+          : artisanProfile
+            ? 'artisan'
+            : null;
+
+  useEffect(() => {
+    if (!isLoadingAny && knownKind && kind === null) {
+      setKind(knownKind);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoadingAny, knownKind]);
+
+  const activeKind = kind ?? 'hotel';
+  const showKindPicker = !isLoadingAny && knownKind === null;
+
   return (
     <div className={styles.wrap}>
       <h2 className={styles.title}>{t('pro.providerProfileTitle')}</h2>
       <p className={styles.hint}>{t('pro.providerProfileHint')}</p>
 
-      <div className={styles.kindTabs}>
-        {KIND_OPTIONS.map(({ value, labelKey, Icon }) => (
-          <button
-            key={value}
-            type="button"
-            className={clsx(styles.kindTab, kind === value && styles.kindTabActive)}
-            onClick={() => setKind(value)}
-          >
-            <Icon size={16} strokeWidth={2} />
-            {t(labelKey)}
-          </button>
-        ))}
-      </div>
+      {showKindPicker && (
+        <div className={styles.kindTabs}>
+          {KIND_OPTIONS.map(({ value, labelKey, Icon }) => (
+            <button
+              key={value}
+              type="button"
+              className={clsx(styles.kindTab, activeKind === value && styles.kindTabActive)}
+              onClick={() => setKind(value)}
+            >
+              <Icon size={16} strokeWidth={2} />
+              {t(labelKey)}
+            </button>
+          ))}
+        </div>
+      )}
 
-      <div className={styles.formCard}>
-        {kind === 'hotel' && <HotelForm onSaved={() => {}} onCancel={() => {}} />}
-        {kind === 'restaurant' && <RestaurantForm onSaved={() => {}} onCancel={() => {}} />}
-        {kind === 'transport' && <TransportProviderForm onSaved={() => {}} onCancel={() => {}} />}
-        {kind === 'artisan' && <ArtisanProfileForm profile={artisanProfile ?? undefined} onSaved={() => {}} />}
-      </div>
+      {isLoadingAny && (
+        <div className={styles.loadingRow}>
+          <Spinner size={20} />
+        </div>
+      )}
+
+      {!isLoadingAny && (
+        <div className={styles.formCard}>
+          {activeKind === 'hotel' && <HotelForm onSaved={() => {}} onCancel={() => {}} />}
+          {activeKind === 'restaurant' && <RestaurantForm onSaved={() => {}} onCancel={() => {}} />}
+          {activeKind === 'transport' && <TransportProviderForm onSaved={() => {}} onCancel={() => {}} />}
+          {activeKind === 'artisan' && <ArtisanProfileForm profile={artisanProfile ?? undefined} onSaved={() => {}} />}
+        </div>
+      )}
 
       <div className={styles.submittedSection}>
         <h3 className={styles.submittedTitle}>{t('pro.submittedEstablishments')}</h3>

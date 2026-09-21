@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Upload, User } from 'lucide-react';
 
 import { Card, Input, Button, Spinner, DetailBackButton } from '../../../shared/ui';
+import { Reveal } from '../../../shared/ui/Reveal';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useAuthStore } from '../../../store/auth.store';
 import { useUploadMedia } from '../../../shared/hooks/useUploadMedia';
@@ -48,57 +49,65 @@ export function PersonalInfoPage() {
       <DetailBackButton fallbackTo="/profile" variant="link">
         {t('common.back')}
       </DetailBackButton>
-      <h1 className={styles.title}>{t('profile.editTitle')}</h1>
 
-      <Card className={styles.section}>
-        <div className={styles.photoRow}>
-          <div className={styles.photoPreview}>
-            {avatarUrl ? (
-              <img src={avatarUrl} alt="" />
-            ) : (
-              <User size={28} strokeWidth={1.5} />
-            )}
+      <div className={styles.header}>
+        <span className={styles.kicker}>{t('nav.profile')}</span>
+        <h1 className={styles.title}>{t('profile.editTitle')}</h1>
+      </div>
+
+      <Reveal>
+        <Card className={styles.section}>
+          <div className={styles.photoRow}>
+            <div className={styles.photoPreview}>
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="" />
+              ) : (
+                <User size={28} strokeWidth={1.5} />
+              )}
+            </div>
+            <div className={styles.photoActions}>
+              <button
+                type="button"
+                className={styles.photoButton}
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isUploadingPhoto}
+              >
+                {isUploadingPhoto ? <Spinner size={16} /> : <Upload size={16} strokeWidth={2} />}
+                {t('profile.uploadPhoto')}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+                onChange={handlePhotoChange}
+              />
+            </div>
           </div>
-          <button
-            type="button"
-            className={styles.photoButton}
-            onClick={() => fileInputRef.current?.click()}
-            disabled={isUploadingPhoto}
-          >
-            {isUploadingPhoto ? <Spinner size={16} /> : <Upload size={16} strokeWidth={2} />}
-            {t('profile.uploadPhoto')}
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/jpeg,image/png,image/webp"
-            hidden
-            onChange={handlePhotoChange}
-          />
-        </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <Input
-            label={t('auth.fullName')}
-            name="profile-full-name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-          <Input
-            label={t('auth.phone')}
-            name="profile-phone"
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
-          {isSuccess && <p className={styles.success}>{t('profile.saved')}</p>}
-          <Button type="submit" disabled={isPending}>
-            {isPending ? t('common.loading') : t('common.save')}
-          </Button>
-        </form>
-      </Card>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <Input
+              label={t('auth.fullName')}
+              name="profile-full-name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+            <Input
+              label={t('auth.phone')}
+              name="profile-phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            {error && <p className={styles.error}>{extractApiErrorMessage(error, t('common.error'))}</p>}
+            {isSuccess && <p className={styles.success}>{t('profile.saved')}</p>}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.loading') : t('common.save')}
+            </Button>
+          </form>
+        </Card>
+      </Reveal>
     </div>
   );
 }

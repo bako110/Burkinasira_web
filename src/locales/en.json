@@ -22,7 +22,10 @@
     "regionFilter": "Filter by region",
     "allRegions": "All regions",
     "provinceFilter": "Filter by province",
-    "allProvinces": "All provinces"
+    "allProvinces": "All provinces",
+    "practicalInfo": "Practical info",
+    "atAGlance": "At a glance",
+    "address": "Address"
   },
   "gallery": {
     "title": "Gallery",
@@ -142,11 +145,24 @@
     "resetSubmit": "Set new password",
     "resetSuccess": "Password changed. You can now sign in.",
     "resetError": "This link is invalid or expired. Request a new one.",
-    "resetNoToken": "Incomplete link. Request a new reset."
+    "resetNoToken": "Incomplete link. Request a new reset.",
+    "brandTitleLine1": "Burkina Faso",
+    "brandTitleLine2": "is waiting for you",
+    "brandTextLogin": "Find your trips, bookings and BurkinaSira badges in an instant.",
+    "brandTextRegister": "Create your account and start exploring 47 provinces of authentic experiences.",
+    "brandStatDestinations": "sites",
+    "brandStatRegions": "regions",
+    "brandStatProvinces": "provinces"
   },
   "pro": {
     "pendingTitle": "Verification in progress",
     "pendingSubtitle": "Submit your documents so our team can approve your professional account.",
+    "pendingAnytimeNotice": "You can update your profile and submit a new document at any time, even after a first submission.",
+    "editProfileZone": "Edit my profile",
+    "editProfileZoneHint": "This information is visible to tourists once your account is approved. You can update it at any time.",
+    "submitDocumentZoneHint": "Add a supporting document. You can submit several documents, including to replace a rejected one.",
+    "submittedDocumentsHint": "History of your submissions and their review status.",
+    "reviewNotesLabel": "Reason:",
     "requirementsTitle": "What's required to get approved",
     "reqIdentityGuide": "A valid ID (national ID card, passport, or driver's license)",
     "reqProfileGuide": "A complete profile: display name, bio, spoken languages and specialties",
@@ -211,6 +227,10 @@
     "collapseSidebar": "Collapse menu",
     "tab_analytics": "Analytics",
     "tab_profile": "Profile",
+    "tab_documents": "My documents",
+    "documentsKicker": "Verification",
+    "documentsTitle": "My documents",
+    "documentsSubtitle": "Edit your professional profile and track the status of your submitted documents.",
     "tab_availability": "Availability",
     "tab_bookings": "Bookings",
     "tab_reviews": "Reviews",
@@ -423,7 +443,7 @@
   },
   "explore": {
     "subtitle": "Find places, experiences and verified addresses all across Burkina Faso.",
-    "filtersLabel": "Filters",
+    "filtersLabel": "Filter by category",
     "filters": {
       "all": "All",
       "site_naturel": "Natural sites",
@@ -442,8 +462,7 @@
     "emptyText": "Try another keyword or a different category.",
     "errorText": "Results could not be loaded right now.",
     "resetFilters": "Reset filters",
-    "loadMore": "Show more results",
-    "filtersLabel": "Filter by category"
+    "loadMore": "Show more results"
   },
   "hotels": {
     "title": "Stays in Burkina Faso",
@@ -617,6 +636,7 @@
     }
   },
   "bookings": {
+    "kicker": "Travel & bookings",
     "title": "My bookings",
     "modalTitle": "Booking",
     "date": "Date",
@@ -671,6 +691,7 @@
     "temporarilyUnavailable": "Bookings are temporarily unavailable. Please try again later."
   },
   "trips": {
+    "kicker": "Travel & planning",
     "myTripsTitle": "My trips",
     "empty": "You haven't planned any trips yet",
     "emptyText": "Create your first personalized itinerary.",
@@ -998,7 +1019,10 @@
       "formalites": "Formalities",
       "sante_securite": "Health & safety",
       "transport": "Transport"
-    }
+    },
+    "summary": "Contents",
+    "entryCount_one": "{{count}} key point",
+    "entryCount_other": "{{count}} key points"
   },
   "dataQuality": {
     "reportError": "Report an error",
@@ -1018,6 +1042,7 @@
   },
   "messaging": {
     "title": "Messages",
+    "kicker": "Messaging",
     "placeholder": "Write a message...",
     "empty": "No conversations",
     "emptyText": "Your exchanges with guides, hotels and providers will appear here.",
@@ -1075,7 +1100,8 @@
     "cardTagline": "Discover · Live · Share",
     "memberSince": "Member since {{date}}",
     "downloadCard": "Download my card",
-    "cardDownloadError": "Could not download the card"
+    "cardDownloadError": "Could not download the card",
+    "badgeLocked": "Badge to unlock"
   },
   "health": {
     "title": "Health in Burkina Faso",
@@ -1564,6 +1590,9 @@
     "terms": "Terms of use",
     "rights": "All rights reserved."
   },
+  "legal": {
+    "tableOfContents": "Table of contents"
+  },
   "planner": {
     "kicker": "Trip planner",
     "subtitle": "Build your stay: lodging, meals, transport, guides — and estimate the total cost.",
@@ -1737,7 +1766,18 @@
       "tranquille": "Relaxed pace",
       "equilibre": "Balanced pace",
       "intense": "Fast pace"
-    }
+    },
+    "statRoutes": "Routes",
+    "statRegions": "Regions",
+    "statDays": "Days",
+    "featuredKicker": "Editors’ pick",
+    "featuredTitle": "The itinerary not to miss",
+    "allKicker": "The whole collection",
+    "allTitle": "Other routes",
+    "introKicker": "The spirit of the trip",
+    "highlightsKicker": "Highlights",
+    "programmeKicker": "The run-through",
+    "dayLabel": "Day {{num}}"
   },
   "nearMe": {
     "enable": "Near me",
@@ -1794,6 +1834,7 @@
     "rate": "Rate",
     "rated": "Reviewed",
     "rateThisStay": "How was your experience?",
+    "sectionKicker": "What travellers say",
     "sectionTitle": "Reviews",
     "none": "No reviews yet.",
     "count_one": "{{count}} review",

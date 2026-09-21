@@ -27,7 +27,7 @@ export function StarRating({ value, size = 18, onChange, label }: StarRatingProp
             key={i}
             size={size}
             strokeWidth={2}
-            className={styles.star}
+            className={i <= Math.round(value) ? `${styles.star} ${styles.starFilled}` : styles.star}
             fill={i <= Math.round(value) ? 'currentColor' : 'none'}
           />
         ))}
@@ -54,7 +54,7 @@ export function StarRating({ value, size = 18, onChange, label }: StarRatingProp
           <Star
             size={size}
             strokeWidth={2}
-            className={styles.star}
+            className={i <= shown ? `${styles.star} ${styles.starFilled}` : styles.star}
             fill={i <= shown ? 'currentColor' : 'none'}
           />
         </button>

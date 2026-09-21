@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  background-color: var(--color-bg-subtle);
 }
 
 .loading {
@@ -33,13 +34,16 @@
   max-width: 75%;
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-lg);
-  background-color: var(--color-bg-inset);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
   border-bottom-left-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .bubbleMine {
   background: var(--gradient-sunset);
-  color: #fff;
+  border-color: transparent;
+  color: var(--color-text-on-brand);
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-sm);
 }
@@ -49,6 +53,7 @@
   font-size: 0.875rem;
   line-height: 1.45;
   word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .bubbleTime {
@@ -63,43 +68,69 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
   flex-shrink: 0;
 }
 
 .input {
   flex: 1;
   min-width: 0;
-  height: 40px;
-  padding: 0 var(--space-3);
+  height: 42px;
+  padding: 0 var(--space-4);
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-inset);
   color: var(--color-text);
   font-size: 0.875rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--color-text-subtle);
 }
 
 .input:focus {
   outline: none;
   border-color: var(--color-brand);
+  background-color: var(--color-bg);
+  box-shadow: 0 0 0 3px var(--color-brand-surface);
 }
 
 .sendBtn {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-brand);
-  color: #fff;
+  background: var(--gradient-sunset);
+  color: var(--color-text-on-brand);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.sendBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .sendBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sendBtn {
+    transition: none;
+  }
+
+  .sendBtn:hover:not(:disabled) {
+    transform: none;
+  }
 }

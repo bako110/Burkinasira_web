@@ -85,7 +85,9 @@ export function BookingModal({
         <BookingUnavailable onClose={handleClose} />
       ) : isSuccess ? (
         <div className={styles.success}>
-          <CheckCircle2 size={40} strokeWidth={1.5} className={styles.successIcon} />
+          <span className={styles.successIcon}>
+            <CheckCircle2 size={36} strokeWidth={1.5} />
+          </span>
           <p className={styles.successTitle}>{t('bookings.successTitle')}</p>
           <p className={styles.successText}>{t('bookings.successText')}</p>
           <Button fullWidth onClick={handleClose}>

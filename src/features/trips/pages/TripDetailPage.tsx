@@ -169,55 +169,60 @@ export function TripDetailPage() {
         )}
 
         <div className={styles.daysList}>
-          {trip.days.map((day) => (
-            <div key={day.date} className={styles.dayCard}>
-              <div className={styles.dayHeader}>
-                <h2 className={styles.dayTitle}>
-                  {new Date(day.date).toLocaleDateString(i18n.language, {
-                    weekday: 'long',
-                    day: '2-digit',
-                    month: 'long',
-                  })}
-                </h2>
-                <Button variant="ghost" size="sm" onClick={() => setAddItemDate(day.date)}>
-                  <Plus size={15} strokeWidth={2} />
-                  {t('trips.addItemCta')}
-                </Button>
+          {trip.days.map((day, dayIdx) => (
+            <div key={day.date} className={styles.dayRow}>
+              <div className={styles.dayRail}>
+                <span className={styles.dayNum}>{dayIdx + 1}</span>
               </div>
+              <div className={styles.dayCard}>
+                <div className={styles.dayHeader}>
+                  <h2 className={styles.dayTitle}>
+                    {new Date(day.date).toLocaleDateString(i18n.language, {
+                      weekday: 'long',
+                      day: '2-digit',
+                      month: 'long',
+                    })}
+                  </h2>
+                  <Button variant="ghost" size="sm" onClick={() => setAddItemDate(day.date)}>
+                    <Plus size={15} strokeWidth={2} />
+                    {t('trips.addItemCta')}
+                  </Button>
+                </div>
 
-              {day.items.length === 0 ? (
-                <p className={styles.dayEmpty}>{t('trips.dayEmpty')}</p>
-              ) : (
-                <div className={styles.itemsList}>
-                  {day.items.map((item, idx) => (
-                    <div key={idx} className={styles.itemRow}>
-                      <div className={styles.itemMain}>
-                        {item.time && <span className={styles.itemTime}>{item.time}</span>}
-                        <div>
-                          <p className={styles.itemTitle}>{item.title}</p>
-                          <span className={styles.itemType}>{t(`trips.itemTypes.${item.type}`)}</span>
-                          {item.notes && <p className={styles.itemNotes}>{item.notes}</p>}
+                {day.items.length === 0 ? (
+                  <p className={styles.dayEmpty}>{t('trips.dayEmpty')}</p>
+                ) : (
+                  <div className={styles.itemsList}>
+                    {day.items.map((item, idx) => (
+                      <div key={idx} className={styles.itemRow}>
+                        <div className={styles.itemMain}>
+                          {item.time && <span className={styles.itemTime}>{item.time}</span>}
+                          <div>
+                            <p className={styles.itemTitle}>{item.title}</p>
+                            <span className={styles.itemType}>{t(`trips.itemTypes.${item.type}`)}</span>
+                            {item.notes && <p className={styles.itemNotes}>{item.notes}</p>}
+                          </div>
+                        </div>
+                        <div className={styles.itemActions}>
+                          {typeof item.estimated_cost === 'number' && (
+                            <span className={styles.itemCost}>
+                              {item.estimated_cost.toLocaleString('fr-FR')} {trip.currency}
+                            </span>
+                          )}
+                          <button
+                            type="button"
+                            className={styles.removeBtn}
+                            onClick={() => handleRemoveItem(day.date, idx)}
+                            aria-label={t('trips.removeItem')}
+                          >
+                            <Trash2 size={14} strokeWidth={2} />
+                          </button>
                         </div>
                       </div>
-                      <div className={styles.itemActions}>
-                        {typeof item.estimated_cost === 'number' && (
-                          <span className={styles.itemCost}>
-                            {item.estimated_cost.toLocaleString('fr-FR')} {trip.currency}
-                          </span>
-                        )}
-                        <button
-                          type="button"
-                          className={styles.removeBtn}
-                          onClick={() => handleRemoveItem(day.date, idx)}
-                          aria-label={t('trips.removeItem')}
-                        >
-                          <Trash2 size={14} strokeWidth={2} />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
