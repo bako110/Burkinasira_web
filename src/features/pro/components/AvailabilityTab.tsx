@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Trash2 } from 'lucide-react';
 
-import { Button, Modal, Spinner, EmptyResults } from '../../../shared/ui';
+import { Button, Modal, Spinner, EmptyResults, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useMyGuideProfile } from '../hooks/useGuideProfile';
@@ -21,6 +21,7 @@ export function AvailabilityTab() {
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | undefined>(undefined);
 
   function resetAndClose() {
     setDate('');
@@ -43,9 +44,13 @@ export function AvailabilityTab() {
     );
   }
 
-  function handleDelete(slotId: string) {
-    deleteSlot.mutate(slotId, {
-      onSuccess: () => push({ variant: 'success', message: t('pro.slotDeleted') }),
+  function handleConfirmDelete() {
+    if (!pendingDeleteId) return;
+    deleteSlot.mutate(pendingDeleteId, {
+      onSuccess: () => {
+        push({ variant: 'success', message: t('pro.slotDeleted') });
+        setPendingDeleteId(undefined);
+      },
       onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
     });
   }
@@ -85,7 +90,7 @@ export function AvailabilityTab() {
                 <button
                   type="button"
                   className={styles.deleteButton}
-                  onClick={() => handleDelete(slot.id)}
+                  onClick={() => setPendingDeleteId(slot.id)}
                   disabled={deleteSlot.isPending}
                   aria-label={t('pro.deleteSlot')}
                 >
@@ -145,6 +150,17 @@ export function AvailabilityTab() {
           </Button>
         </form>
       </Modal>
+
+      <ConfirmDialog
+        open={Boolean(pendingDeleteId)}
+        title={t('pro.deleteSlotConfirmTitle')}
+        message={t('pro.deleteSlotConfirmMessage')}
+        confirmLabel={t('common.delete')}
+        cancelLabel={t('common.cancel')}
+        variant="danger"
+        onCancel={() => setPendingDeleteId(undefined)}
+        onConfirm={handleConfirmDelete}
+      />
     </div>
   );
 }

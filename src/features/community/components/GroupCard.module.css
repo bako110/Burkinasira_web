@@ -6,6 +6,7 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-raised);
+  box-shadow: var(--shadow-sm);
   text-decoration: none;
   color: inherit;
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
@@ -30,7 +31,7 @@
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-brand-surface), var(--color-bg-inset));
+  background: var(--gradient-earth);
 }
 
 .coverImg {
@@ -42,7 +43,7 @@
 }
 
 .card:hover .coverImg {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -55,12 +56,23 @@
 }
 
 .coverPlaceholder {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-subtle);
+  color: rgba(255, 255, 255, 0.85);
+  isolation: isolate;
+}
+
+.coverPlaceholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-mesh);
+  opacity: 0.6;
 }
 
 .lockBadge {
@@ -70,36 +82,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background-color: rgba(20, 18, 15, 0.65);
   color: #fff;
+  backdrop-filter: blur(4px);
 }
 
 .memberBadge {
   position: absolute;
   bottom: var(--space-2);
   left: var(--space-2);
-  padding: 2px var(--space-2);
+  padding: 3px var(--space-3);
   border-radius: var(--radius-full);
   background-color: var(--color-success);
   color: #fff;
   font-size: 0.6875rem;
   font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-sm);
 }
 
 .info {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-4) var(--space-4);
+  padding: var(--space-4);
 }
 
 .name {
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .description {
@@ -123,19 +139,22 @@
 .tag {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  padding: 2px var(--space-2);
+  gap: 4px;
+  padding: 3px var(--space-2);
   border-radius: var(--radius-full);
-  background-color: var(--color-bg-inset);
-  color: var(--color-text-muted);
+  background-color: var(--color-brand-surface);
+  color: var(--color-brand);
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .memberCount {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  margin-top: auto;
+  padding-top: var(--space-1);
   font-size: 0.75rem;
+  font-weight: 600;
   color: var(--color-text-subtle);
 }

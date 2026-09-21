@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { ShieldAlert, Siren, FileWarning } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Spinner, Reveal, EmptyResults, Button, RegionProvinceFilter, RelatedModules } from '../../../shared/ui';
+import {
+  Spinner,
+  Reveal,
+  EmptyResults,
+  Button,
+  RegionProvinceFilter,
+  RelatedModules,
+  DetailBackButton,
+} from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useEmergencyContacts } from '../hooks/useEmergencyContacts';
 import { useSecurityAlerts } from '../hooks/useSecurityAlerts';
@@ -28,6 +36,7 @@ export function EmergencyPage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroMesh} aria-hidden="true" />
+        <DetailBackButton fallbackTo="/" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
             <ShieldAlert size={30} strokeWidth={1.75} />

@@ -2,6 +2,7 @@ import { type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Users } from 'lucide-react';
 
+import { DetailBackButton } from '../../../shared/ui';
 import styles from './DiasporaHero.module.css';
 
 interface DiasporaHeroProps {
@@ -22,6 +23,7 @@ export function DiasporaHero({ query, onQueryChange, onSubmit }: DiasporaHeroPro
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.pattern} aria-hidden="true" />
+      <DetailBackButton fallbackTo="/" className={styles.backBtn} />
 
       <div className={styles.content}>
         <span className={styles.badge}>

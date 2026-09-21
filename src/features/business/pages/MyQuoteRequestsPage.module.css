@@ -13,7 +13,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-4);
-  padding: var(--space-6) var(--space-5);
+  padding: calc(var(--space-6) + 48px) var(--space-5) var(--space-6);
   border-radius: var(--radius-lg);
   background: var(--gradient-earth);
   color: #fff;
@@ -28,6 +28,28 @@
   background: var(--gradient-mesh);
   opacity: 0.5;
   pointer-events: none;
+}
+
+.backBtn {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(20, 18, 15, 0.5);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.backBtn:hover {
+  background-color: rgba(20, 18, 15, 0.7);
 }
 
 .heroText {
@@ -128,7 +150,7 @@
   }
 
   .hero {
-    padding: var(--space-5) var(--space-4);
+    padding: calc(var(--space-5) + 48px) var(--space-4) var(--space-5);
   }
 
   .grid {

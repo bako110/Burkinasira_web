@@ -2,6 +2,7 @@ import { type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Compass } from 'lucide-react';
 
+import { DetailBackButton } from '../../../shared/ui';
 import styles from './ExploreHero.module.css';
 
 interface ExploreHeroProps {
@@ -22,6 +23,7 @@ export function ExploreHero({ query, onQueryChange, onSubmit }: ExploreHeroProps
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.pattern} aria-hidden="true" />
+      <DetailBackButton fallbackTo="/" className={styles.backBtn} />
 
       <div className={styles.content}>
         <span className={styles.badge}>

@@ -2,26 +2,17 @@
   position: relative;
   width: 100%;
   min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  mask-image: linear-gradient(to right, black calc(100% - 32px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 32px), transparent 100%);
-}
-
-.scroller::-webkit-scrollbar {
-  display: none;
 }
 
 .row {
   display: flex;
+  flex-direction: column;
   gap: var(--space-2);
-  padding-bottom: 2px;
 }
 
 .chip {
-  flex-shrink: 0;
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   align-items: center;
   gap: var(--space-2);
   height: 40px;

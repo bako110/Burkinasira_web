@@ -30,6 +30,28 @@
   mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
 }
 
+.backBtn {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(20, 18, 15, 0.5);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.backBtn:hover {
+  background-color: rgba(20, 18, 15, 0.7);
+}
+
 @keyframes meshDrift {
   0% {
     transform: scale(1) translate(0, 0);

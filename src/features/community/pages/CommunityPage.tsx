@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 import { Plus, Users, Image, HelpCircle, Heart, UsersRound, Handshake } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, RegionProvinceFilter, Reveal } from '../../../shared/ui';
+import {
+  Button,
+  Spinner,
+  EmptyResults,
+  RegionProvinceFilter,
+  Reveal,
+  DetailBackButton,
+  ConfirmDialog,
+} from '../../../shared/ui';
 import { useExperiences } from '../../experiences/hooks/useExperiences';
 import { ExperienceCard } from '../../experiences/components/ExperienceCard';
 import type { ExperienceType } from '../../experiences/types';
@@ -70,6 +78,7 @@ export function CommunityPage() {
   const { data: questions, isLoading: isLoadingQuestions } = useQuestions();
 
   const [createListOpen, setCreateListOpen] = useState(false);
+  const [pendingDeleteListId, setPendingDeleteListId] = useState<string | undefined>(undefined);
   const { data: favoriteLists, isLoading: isLoadingLists } = useMyFavoriteLists();
   const { mutate: deleteList } = useDeleteFavoriteList();
 
@@ -97,8 +106,10 @@ export function CommunityPage() {
     setGroupProvince(provinceValue);
   }
 
-  function handleDeleteList(id: string) {
-    deleteList(id, {
+  function handleConfirmDeleteList() {
+    if (!pendingDeleteListId) return;
+    deleteList(pendingDeleteListId, {
+      onSuccess: () => setPendingDeleteListId(undefined),
       onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
     });
   }
@@ -107,6 +118,7 @@ export function CommunityPage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroMesh} aria-hidden="true" />
+        <DetailBackButton fallbackTo="/" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.heroIcon}>
             <Users size={28} strokeWidth={1.75} />
@@ -116,75 +128,52 @@ export function CommunityPage() {
         </div>
       </section>
 
-      <div className={styles.body}>
-        <div className={styles.navGrid}>
+      <div className={styles.tabBar}>
+        <div className={styles.tabBarInner}>
           <button
             type="button"
-            className={clsx(styles.navCard, tab === 'posts' && styles.navCardActive)}
+            className={clsx(styles.tabBtn, tab === 'posts' && styles.tabBtnActive)}
             onClick={() => setTab('posts')}
           >
-            <span className={clsx(styles.navIcon, styles.navIconPosts)}>
-              <Image size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.navText}>
-              <span className={styles.navLabel}>{t('community.tabPostsFeed')}</span>
-              <span className={styles.navHint}>{t('community.navHintPosts')}</span>
-            </span>
+            <Image size={16} strokeWidth={2} />
+            {t('community.tabPostsFeed')}
           </button>
           <button
             type="button"
-            className={clsx(styles.navCard, tab === 'questions' && styles.navCardActive)}
+            className={clsx(styles.tabBtn, tab === 'questions' && styles.tabBtnActive)}
             onClick={() => setTab('questions')}
           >
-            <span className={clsx(styles.navIcon, styles.navIconQuestions)}>
-              <HelpCircle size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.navText}>
-              <span className={styles.navLabel}>{t('community.tabQuestions')}</span>
-              <span className={styles.navHint}>{t('community.navHintQuestions')}</span>
-            </span>
+            <HelpCircle size={16} strokeWidth={2} />
+            {t('community.tabQuestions')}
           </button>
           <button
             type="button"
-            className={clsx(styles.navCard, tab === 'favorites' && styles.navCardActive)}
+            className={clsx(styles.tabBtn, tab === 'favorites' && styles.tabBtnActive)}
             onClick={() => setTab('favorites')}
           >
-            <span className={clsx(styles.navIcon, styles.navIconFavorites)}>
-              <Heart size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.navText}>
-              <span className={styles.navLabel}>{t('community.tabFavorites')}</span>
-              <span className={styles.navHint}>{t('community.navHintFavorites')}</span>
-            </span>
+            <Heart size={16} strokeWidth={2} />
+            {t('community.tabFavorites')}
           </button>
           <button
             type="button"
-            className={clsx(styles.navCard, tab === 'groups' && styles.navCardActive)}
+            className={clsx(styles.tabBtn, tab === 'groups' && styles.tabBtnActive)}
             onClick={() => setTab('groups')}
           >
-            <span className={clsx(styles.navIcon, styles.navIconGroups)}>
-              <UsersRound size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.navText}>
-              <span className={styles.navLabel}>{t('community.tabGroups')}</span>
-              <span className={styles.navHint}>{t('community.navHintGroups')}</span>
-            </span>
+            <UsersRound size={16} strokeWidth={2} />
+            {t('community.tabGroups')}
           </button>
           <button
             type="button"
-            className={clsx(styles.navCard, tab === 'localMeet' && styles.navCardActive)}
+            className={clsx(styles.tabBtn, tab === 'localMeet' && styles.tabBtnActive)}
             onClick={() => setTab('localMeet')}
           >
-            <span className={clsx(styles.navIcon, styles.navIconLocalMeet)}>
-              <Handshake size={20} strokeWidth={1.75} />
-            </span>
-            <span className={styles.navText}>
-              <span className={styles.navLabel}>{t('experiences.localMeetTab')}</span>
-              <span className={styles.navHint}>{t('experiences.localMeetHint')}</span>
-            </span>
+            <Handshake size={16} strokeWidth={2} />
+            {t('experiences.localMeetTab')}
           </button>
         </div>
+      </div>
 
+      <div className={styles.body}>
         {tab === 'posts' && (
           <div className={styles.tabContent}>
             <div className={styles.tabHeader}>
@@ -297,7 +286,7 @@ export function CommunityPage() {
               <div className={styles.grid}>
                 {favoriteLists.map((list, i) => (
                   <Reveal key={list.id} delay={i * 60}>
-                    <FavoriteListCard list={list} onDelete={handleDeleteList} />
+                    <FavoriteListCard list={list} onDelete={setPendingDeleteListId} />
                   </Reveal>
                 ))}
               </div>
@@ -402,6 +391,17 @@ export function CommunityPage() {
       <QuestionDetailModal question={activeQuestion} onClose={() => setActiveQuestion(null)} />
       <CreateFavoriteListModal open={createListOpen} onClose={() => setCreateListOpen(false)} />
       <CreateGroupModal open={createGroupOpen} onClose={() => setCreateGroupOpen(false)} />
+
+      <ConfirmDialog
+        open={Boolean(pendingDeleteListId)}
+        title={t('community.deleteListConfirmTitle')}
+        message={t('community.deleteListConfirmMessage')}
+        confirmLabel={t('common.delete')}
+        cancelLabel={t('common.cancel')}
+        variant="danger"
+        onCancel={() => setPendingDeleteListId(undefined)}
+        onConfirm={handleConfirmDeleteList}
+      />
     </div>
   );
 }

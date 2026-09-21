@@ -16,29 +16,31 @@
 
 .hero {
   position: relative;
-  padding: var(--space-6) var(--space-4) var(--space-5);
+  padding: calc(var(--space-6) + 36px) var(--space-4) var(--space-5);
   background: linear-gradient(135deg, #dc5c0a 0%, #7c2d12 100%);
   isolation: isolate;
 }
 
 .backBtn {
-  position: relative;
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
   z-index: 1;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(20, 18, 15, 0.5);
   color: #fff;
   cursor: pointer;
-  margin-bottom: var(--space-3);
+  backdrop-filter: blur(4px);
 }
 
 .backBtn:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(20, 18, 15, 0.7);
 }
 
 .heroContent {

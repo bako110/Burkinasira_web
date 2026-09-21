@@ -1,6 +1,7 @@
 import { type FormEvent, type ReactNode } from 'react';
 import { Search } from 'lucide-react';
 
+import { DetailBackButton } from './DetailBackButton';
 import styles from './ListingHero.module.css';
 
 interface ListingHeroProps {
@@ -34,6 +35,7 @@ export function ListingHero({
   return (
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
+      <DetailBackButton fallbackTo="/" className={styles.backBtn} />
       <div className={styles.content}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>

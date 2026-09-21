@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { fetchGroups, fetchGroupDetail, createGroup, joinGroup, leaveGroup } from '../api/community.api';
+import { fetchGroups, fetchGroupDetail, createGroup, updateGroup, joinGroup, leaveGroup } from '../api/community.api';
+import type { UpdateGroupPayload } from '../types';
 
 export function useGroups(publicOnly = true, region?: string, theme?: string, province?: string) {
   return useQuery({
@@ -22,6 +23,17 @@ export function useCreateGroup() {
   return useMutation({
     mutationFn: createGroup,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['community-groups'] }),
+  });
+}
+
+export function useUpdateGroup(groupId: string) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: UpdateGroupPayload) => updateGroup(groupId, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['community-group', groupId] });
+      queryClient.invalidateQueries({ queryKey: ['community-groups'] });
+    },
   });
 }
 

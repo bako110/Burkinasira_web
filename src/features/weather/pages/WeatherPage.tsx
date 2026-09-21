@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CloudSun, MapPin } from 'lucide-react';
 
-import { Spinner, Reveal, EmptyResults, RelatedModules } from '../../../shared/ui';
+import { Spinner, Reveal, EmptyResults, RelatedModules, DetailBackButton } from '../../../shared/ui';
 import { useCurrentWeather } from '../hooks/useCurrentWeather';
 import { useForecast } from '../hooks/useForecast';
 import { useWeatherAlerts } from '../hooks/useWeatherAlerts';
@@ -28,6 +28,7 @@ export function WeatherPage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroMesh} aria-hidden="true" />
+        <DetailBackButton fallbackTo="/" className={styles.backBtn} />
         <div className={styles.heroContent}>
           <span className={styles.kicker}>{t('weather.kicker')}</span>
           <span className={styles.heroIcon}>

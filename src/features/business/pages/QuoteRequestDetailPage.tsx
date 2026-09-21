@@ -4,18 +4,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Calendar, Users, ArrowLeft, Trash2, UserPlus, Briefcase, UsersRound } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Input, Spinner, EmptyResults, DetailBackButton, Reveal } from '../../../shared/ui';
+import { Button, Input, Spinner, EmptyResults, DetailBackButton, Reveal, ConfirmDialog } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
+import { useToastStore } from '../../../store/toast.store';
 import { useQuoteRequestDetail } from '../hooks/useQuoteRequestDetail';
 import { useEventParticipants } from '../hooks/useEventParticipants';
 import { useAddEventParticipant } from '../hooks/useAddEventParticipant';
 import { useRemoveEventParticipant } from '../hooks/useRemoveEventParticipant';
+import type { EventParticipant } from '../types';
 import styles from './QuoteRequestDetailPage.module.css';
 
 export function QuoteRequestDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const push = useToastStore((s) => s.push);
 
   const { data: quote, isLoading, isError, refetch } = useQuoteRequestDetail(id);
   const { data: participants } = useEventParticipants(id);
@@ -24,6 +27,7 @@ export function QuoteRequestDetailPage() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [pendingRemove, setPendingRemove] = useState<EventParticipant | undefined>(undefined);
 
   function handleAdd(e: React.FormEvent) {
     e.preventDefault();
@@ -116,7 +120,7 @@ export function QuoteRequestDetailPage() {
                     <button
                       type="button"
                       className={styles.removeBtn}
-                      onClick={() => removeParticipant(p.id)}
+                      onClick={() => setPendingRemove(p)}
                       aria-label={t('business.removeParticipant')}
                     >
                       <Trash2 size={15} strokeWidth={2} />
@@ -175,6 +179,23 @@ export function QuoteRequestDetailPage() {
           </div>
         </Reveal>
       </div>
+
+      <ConfirmDialog
+        open={Boolean(pendingRemove)}
+        title={t('business.removeParticipantConfirmTitle')}
+        message={t('business.removeParticipantConfirmMessage')}
+        confirmLabel={t('business.removeParticipant')}
+        cancelLabel={t('common.cancel')}
+        variant="danger"
+        onCancel={() => setPendingRemove(undefined)}
+        onConfirm={() => {
+          if (!pendingRemove) return;
+          removeParticipant(pendingRemove.id, {
+            onSuccess: () => setPendingRemove(undefined),
+            onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
+          });
+        }}
+      />
     </div>
   );
 }

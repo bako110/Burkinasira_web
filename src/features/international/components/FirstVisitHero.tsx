@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Compass } from 'lucide-react';
 
+import { DetailBackButton } from '../../../shared/ui';
 import type { FirstVisitGuideCategory } from '../types';
 import styles from './FirstVisitHero.module.css';
 
@@ -25,6 +26,7 @@ export function FirstVisitHero({ chips }: FirstVisitHeroProps) {
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.pattern} aria-hidden="true" />
+      <DetailBackButton fallbackTo="/" className={styles.backBtn} />
 
       <div className={styles.content}>
         <span className={styles.badge}>

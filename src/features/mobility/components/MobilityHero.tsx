@@ -2,6 +2,7 @@ import { type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Navigation } from 'lucide-react';
 
+import { DetailBackButton } from '../../../shared/ui';
 import styles from './MobilityHero.module.css';
 
 interface MobilityHeroProps {
@@ -21,6 +22,7 @@ export function MobilityHero({ query, onQueryChange, onSubmit }: MobilityHeroPro
   return (
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
+      <DetailBackButton fallbackTo="/" className={styles.backBtn} />
 
       <div className={styles.content}>
         <span className={styles.badge}>

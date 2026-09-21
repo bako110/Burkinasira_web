@@ -103,6 +103,16 @@ export interface CreateGroupPayload {
   is_public?: boolean;
 }
 
+export interface UpdateGroupPayload {
+  name?: string;
+  description?: string;
+  cover_photo?: string;
+  region?: string;
+  province?: string;
+  theme?: string;
+  is_public?: boolean;
+}
+
 export const GROUP_THEMES = [
   'randonnee',
   'gastronomie',

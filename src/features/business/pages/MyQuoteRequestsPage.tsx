@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PlusCircle, Briefcase } from 'lucide-react';
 
-import { Button, Reveal, EmptyResults, CardSkeleton } from '../../../shared/ui';
+import { Button, Reveal, EmptyResults, CardSkeleton, DetailBackButton } from '../../../shared/ui';
 import { useMyQuoteRequests } from '../hooks/useMyQuoteRequests';
 import { QuoteRequestCard } from '../components/QuoteRequestCard';
 import styles from './MyQuoteRequestsPage.module.css';
@@ -15,6 +15,7 @@ export function MyQuoteRequestsPage() {
   return (
     <div className={styles.page}>
       <Reveal className={styles.hero}>
+        <DetailBackButton fallbackTo="/" className={styles.backBtn} />
         <div className={styles.heroText}>
           <span className={styles.kicker}>
             <Briefcase size={13} strokeWidth={2} />

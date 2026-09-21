@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Plus, Trash2, MapPin, Wallet, Calendar, Route, FileText } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, Input } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Input, ConfirmDialog } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useTripDetail } from '../hooks/useTripDetail';
@@ -36,6 +36,9 @@ export function TripDetailPage() {
   const [addItemDate, setAddItemDate] = useState<string | null>(null);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [newDayDate, setNewDayDate] = useState('');
+  const [pendingRemoveItem, setPendingRemoveItem] = useState<{ date: string; itemIndex: number } | undefined>(
+    undefined,
+  );
 
   function handleDelete() {
     if (!tripId) return;
@@ -51,11 +54,15 @@ export function TripDetailPage() {
     });
   }
 
-  function handleRemoveItem(date: string, itemIndex: number) {
+  function handleConfirmRemoveItem() {
+    if (!pendingRemoveItem) return;
     removeItem(
-      { date, item_index: itemIndex },
+      { date: pendingRemoveItem.date, item_index: pendingRemoveItem.itemIndex },
       {
-        onSuccess: () => push({ variant: 'success', message: t('trips.itemRemoved') }),
+        onSuccess: () => {
+          push({ variant: 'success', message: t('trips.itemRemoved') });
+          setPendingRemoveItem(undefined);
+        },
         onError: (err) => push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) }),
       },
     );
@@ -212,7 +219,7 @@ export function TripDetailPage() {
                           <button
                             type="button"
                             className={styles.removeBtn}
-                            onClick={() => handleRemoveItem(day.date, idx)}
+                            onClick={() => setPendingRemoveItem({ date: day.date, itemIndex: idx })}
                             aria-label={t('trips.removeItem')}
                           >
                             <Trash2 size={14} strokeWidth={2} />
@@ -242,6 +249,17 @@ export function TripDetailPage() {
         isPending={isDeleting}
         onConfirm={handleDelete}
         onClose={() => setDeleteOpen(false)}
+      />
+
+      <ConfirmDialog
+        open={Boolean(pendingRemoveItem)}
+        title={t('trips.removeItemConfirmTitle')}
+        message={t('trips.removeItemConfirmMessage')}
+        confirmLabel={t('trips.removeItem')}
+        cancelLabel={t('common.cancel')}
+        variant="danger"
+        onCancel={() => setPendingRemoveItem(undefined)}
+        onConfirm={handleConfirmRemoveItem}
       />
     </div>
   );

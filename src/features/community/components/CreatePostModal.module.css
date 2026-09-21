@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 .field {
@@ -20,27 +20,45 @@
   height: 44px;
   padding: 0 var(--space-3);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   background-color: var(--color-bg-inset);
   color: var(--color-text);
   font-size: 0.9375rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  background-color: var(--color-bg-raised);
+  box-shadow: 0 0 0 3px var(--color-brand-surface);
 }
 
 .textarea {
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-3);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   background-color: var(--color-bg-inset);
   color: var(--color-text);
   font-size: 0.9375rem;
   font-family: inherit;
+  line-height: 1.5;
   resize: vertical;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .textarea:focus {
   outline: none;
   border-color: var(--color-brand);
+  background-color: var(--color-bg-raised);
   box-shadow: 0 0 0 3px var(--color-brand-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select,
+  .textarea {
+    transition: none;
+  }
 }
 
 .hiddenInput {
@@ -91,17 +109,25 @@
   justify-content: center;
   gap: 4px;
   border-radius: var(--radius-md);
-  border: 2px dashed var(--color-border);
+  border: 2px dashed var(--color-border-strong);
   background: transparent;
   color: var(--color-text-muted);
   font-size: 0.6875rem;
   font-weight: 600;
   cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .uploadBtn:hover {
   border-color: var(--color-brand);
   color: var(--color-brand);
+  background-color: var(--color-brand-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uploadBtn {
+    transition: none;
+  }
 }
 
 .uploadBtn:disabled {
@@ -135,10 +161,18 @@
   height: 44px;
   padding: 0 var(--space-3);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   background-color: var(--color-bg-inset);
   color: var(--color-text);
   font-size: 0.9375rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.locationInput:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  background-color: var(--color-bg-raised);
+  box-shadow: 0 0 0 3px var(--color-brand-surface);
 }
 
 .locationBtn {
@@ -148,16 +182,24 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   background-color: var(--color-bg-inset);
   color: var(--color-text-muted);
   cursor: pointer;
   flex-shrink: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .locationBtn:hover {
   border-color: var(--color-brand);
   color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .locationInput,
+  .locationBtn {
+    transition: none;
+  }
 }
 
 .locationHint {

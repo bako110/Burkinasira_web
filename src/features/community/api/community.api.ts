@@ -10,6 +10,7 @@ import type {
   Group,
   GroupDetail,
   CreateGroupPayload,
+  UpdateGroupPayload,
   Question,
   CreateQuestionPayload,
   QuestionStatus,
@@ -96,6 +97,11 @@ export async function createGroup(payload: CreateGroupPayload): Promise<Group> {
 
 export async function fetchGroupDetail(groupId: string): Promise<GroupDetail> {
   const { data } = await apiClient.get<GroupDetail>(`/community/groups/${groupId}`);
+  return data;
+}
+
+export async function updateGroup(groupId: string, payload: UpdateGroupPayload): Promise<Group> {
+  const { data } = await apiClient.patch<Group>(`/community/groups/${groupId}`, payload);
   return data;
 }
 
