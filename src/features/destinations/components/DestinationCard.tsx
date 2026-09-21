@@ -1,12 +1,20 @@
 import { Link } from 'react-router-dom';
 import { Star, MapPin, ImageOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 import { Card } from '../../../shared/ui';
 import type { Destination } from '../types';
 import styles from './DestinationCard.module.css';
 
-export function DestinationCard({ destination }: { destination: Destination }) {
+interface DestinationCardProps {
+  destination: Destination;
+  /** 'fill' lets the image grow to fill its container instead of a fixed 4:3
+   * ratio — used for the editorial "lead" tile that spans extra grid rows. */
+  imageFit?: 'ratio' | 'fill';
+}
+
+export function DestinationCard({ destination, imageFit = 'ratio' }: DestinationCardProps) {
   const { t } = useTranslation();
   const cover = destination.photo;
   const location = [destination.city, destination.region].filter(Boolean).join(', ');
@@ -14,7 +22,7 @@ export function DestinationCard({ destination }: { destination: Destination }) {
   return (
     <Link to={`/explore/${destination.slug}`} className={styles.link}>
       <Card className={styles.card}>
-        <div className={styles.imageWrap}>
+        <div className={clsx(styles.imageWrap, imageFit === 'fill' && styles.imageWrapFill)}>
           {cover ? (
             <img src={cover} alt={destination.name} className={styles.image} loading="lazy" />
           ) : (

@@ -47,7 +47,7 @@ export function FeaturedDestinations() {
         <div className={styles.grid}>
           {data.items.map((destination, i) => (
             <Reveal key={destination.id} delay={i * 80} className={styles.gridItem}>
-              <DestinationCard destination={destination} />
+              <DestinationCard destination={destination} imageFit={i === 0 ? 'fill' : 'ratio'} />
             </Reveal>
           ))}
         </div>

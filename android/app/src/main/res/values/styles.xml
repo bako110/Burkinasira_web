@@ -13,8 +13,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:background">@null</item>
-        <!-- Android 15+ : ne pas forcer l'edge-to-edge, le plugin StatusBar gere les insets -->
-        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <!-- Android 15+ (SDK 35+) impose l'edge-to-edge : ce flag n'a plus
+             d'effet à partir du SDK 36 et Google Play le signale comme un
+             usage d'API obsolète. On laisse l'edge-to-edge s'appliquer et le
+             plugin StatusBar + le CSS (env(safe-area-inset-*)) gèrent les
+             marges à la place. -->
     </style>
 
 

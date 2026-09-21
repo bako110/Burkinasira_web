@@ -136,7 +136,7 @@ export function RestaurantsPage() {
       <div className={styles.body}>
         <aside className={styles.filtersSidebar}>
           <div className={styles.filtersCard}>
-            <span className={styles.filtersKicker}>{t('explore.filters', 'Filtres')}</span>
+            <span className={styles.filtersKicker}>{t('explore.filtersLabel')}</span>
             <div className={styles.filtersStack}>
               <RegionProvinceFilter
                 region={urlRegion}

@@ -125,6 +125,7 @@
   height: 100%;
 }
 
+
 .skeleton {
   aspect-ratio: 4 / 3.6;
   border-radius: var(--radius-lg);
