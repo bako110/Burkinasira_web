@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Settings } from 'lucide-react';
 import clsx from 'clsx';
 
-import { LanguageSwitcher, ThemeToggle } from '../../shared/ui';
+import { ThemeToggle } from '../../shared/ui';
 import styles from './SettingsMenu.module.css';
 
 export function SettingsMenu() {
@@ -34,10 +34,6 @@ export function SettingsMenu() {
 
       {open && (
         <div className={styles.panel}>
-          <div className={styles.section}>
-            <span className={styles.sectionLabel}>{t('common.language')}</span>
-            <LanguageSwitcher />
-          </div>
           <div className={styles.section}>
             <span className={styles.sectionLabel}>{t('common.appearance')}</span>
             <ThemeToggle />

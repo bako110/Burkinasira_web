@@ -13,6 +13,7 @@ import { ExploreMenu } from './ExploreMenu';
 import { DiscoverMenu, DISCOVER_LINKS, PRACTICAL_LINKS } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
 import { SettingsMenu } from './SettingsMenu';
+import { LanguageMenu } from './LanguageMenu';
 import { DrawerNavSection } from './DrawerNavSection';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
 import { CartButton } from '../../features/market/components/CartButton';
@@ -85,6 +86,7 @@ export function AppLayout() {
           </nav>
 
           <div className={styles.actionsDesktop}>
+            <LanguageMenu />
             <SettingsMenu />
 
             {isAuthenticated ? (
@@ -105,6 +107,7 @@ export function AppLayout() {
           </div>
 
           <div className={styles.actionsCompact}>
+            <LanguageMenu />
             <CartButton />
             {!isAuthenticated && (
               <NavLink to="/login" className={styles.loginLinkCompact}>
