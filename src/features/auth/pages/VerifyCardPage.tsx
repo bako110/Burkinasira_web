@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BadgeCheck, User, Calendar } from 'lucide-react';
 
-import { Spinner, EmptyResults } from '../../../shared/ui';
+import { Spinner, EmptyResults, Reveal } from '../../../shared/ui';
 import { useVerification } from '../hooks/useVerification';
 import styles from './VerifyCardPage.module.css';
 
@@ -35,7 +35,7 @@ export function VerifyCardPage() {
       )}
 
       {!isLoading && data && (
-        <div className={styles.card}>
+        <Reveal as="div" className={styles.card} delay={0}>
           <div className={styles.photoWrap}>
             {data.avatar_url ? (
               <img src={data.avatar_url} alt={data.full_name} className={styles.photo} />
@@ -74,7 +74,7 @@ export function VerifyCardPage() {
           </div>
 
           <p className={styles.disclaimer}>{t('verify.disclaimer')}</p>
-        </div>
+        </Reveal>
       )}
     </div>
   );

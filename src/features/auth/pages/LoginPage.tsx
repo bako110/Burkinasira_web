@@ -2,7 +2,7 @@ import { type FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { Button, Card, Input, PasswordInput, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, Input, PasswordInput, DetailBackButton, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { useLogin } from '../hooks/useLogin';
@@ -45,6 +45,7 @@ export function LoginPage() {
       <div className={styles.split}>
         <AuthBrandPanel textKey="auth.brandTextLogin" />
         <div className={styles.formSide}>
+          <Reveal delay={0}>
           <Card className={styles.card}>
             <DetailBackButton fallbackTo="/" variant="link">
               {t('common.back')}
@@ -107,6 +108,7 @@ export function LoginPage() {
               </Link>
             </p>
           </Card>
+          </Reveal>
         </div>
       </div>
     </div>

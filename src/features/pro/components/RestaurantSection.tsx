@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Building } from 'lucide-react';
 
-import { Button, Spinner, Modal, ConfirmDialog } from '../../../shared/ui';
+import { Button, Spinner, Modal, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import type { RestaurantDetail } from '../../restaurants/types';
@@ -64,8 +64,9 @@ export function RestaurantSection() {
         </div>
       ) : (
         <div className={styles.list}>
-          {restaurants.map((restaurant) => (
-            <div key={restaurant.id} className={styles.listItemWrap}>
+          {restaurants.map((restaurant, i) => (
+            <Reveal key={restaurant.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.listItemWrap}>
               <EstablishmentListItem
                 name={restaurant.name}
                 photo={restaurant.photos[0]}
@@ -88,6 +89,7 @@ export function RestaurantSection() {
                 onDelete={() => setPendingDelete(restaurant)}
               />
             </div>
+            </Reveal>
           ))}
         </div>
       )}

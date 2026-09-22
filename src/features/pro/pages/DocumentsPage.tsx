@@ -2,7 +2,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Upload, AlertTriangle } from 'lucide-react';
 
-import { Button, Card, Spinner } from '../../../shared/ui';
+import { Button, Card, Spinner, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useUploadMedia } from '../../../shared/hooks/useUploadMedia';
 import { useToastStore } from '../../../store/toast.store';
@@ -81,12 +81,15 @@ export function DocumentsPage() {
     <div className={wrapperStyles.page}>
       <ProPageHeader kicker={t('pro.documentsKicker')} title={t('pro.documentsTitle')} subtitle={t('pro.documentsSubtitle')} />
 
+      <Reveal as="section" delay={0}>
       <Card className={styles.zoneCard}>
         <h2 className={styles.zoneTitle}>{isGuide ? t('pro.guideProfileTitle') : t('pro.providerProfileTitle')}</h2>
         <p className={styles.zoneHint}>{t('pro.editProfileZoneHint')}</p>
         {isGuide ? <GuideProfileForm /> : <ProviderProfileForm />}
       </Card>
+      </Reveal>
 
+      <Reveal as="section" delay={80}>
       <Card className={styles.zoneCard}>
         <h2 className={styles.zoneTitle}>{t('pro.submitDocumentTitle')}</h2>
         <p className={styles.zoneHint}>{t('pro.submitDocumentZoneHint')}</p>
@@ -130,7 +133,9 @@ export function DocumentsPage() {
           </Button>
         </form>
       </Card>
+      </Reveal>
 
+      <Reveal as="section" delay={160}>
       <Card className={styles.zoneCard}>
         <h2 className={styles.zoneTitle}>{t('pro.submittedDocuments')}</h2>
         <p className={styles.zoneHint}>{t('pro.submittedDocumentsHint')}</p>
@@ -143,8 +148,9 @@ export function DocumentsPage() {
 
         {!isLoading && requests && requests.length > 0 && (
           <div className={styles.requestList}>
-            {requests.map((r) => (
-              <div key={r.id} className={`${styles.requestItem} ${REQUEST_ITEM_CLASS[r.status]}`}>
+            {requests.map((r, i) => (
+              <Reveal key={r.id} delay={Math.min(i, 8) * 50}>
+              <div className={`${styles.requestItem} ${REQUEST_ITEM_CLASS[r.status]}`}>
                 <div className={styles.requestItemRow}>
                   <span className={styles.requestType}>
                     {t(DOCUMENT_TYPES.find((d) => d.value === r.document_type)?.labelKey ?? 'pro.docAutre')}
@@ -160,10 +166,12 @@ export function DocumentsPage() {
                   </p>
                 )}
               </div>
+              </Reveal>
             ))}
           </div>
         )}
       </Card>
+      </Reveal>
     </div>
   );
 }

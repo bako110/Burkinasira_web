@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Trash2 } from 'lucide-react';
 
-import { Button, Modal, Spinner, EmptyResults, ConfirmDialog } from '../../../shared/ui';
+import { Button, Modal, Spinner, EmptyResults, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useMyGuideProfile } from '../hooks/useGuideProfile';
@@ -75,8 +75,9 @@ export function AvailabilityTab() {
 
       {!isLoading && sortedSlots.length > 0 && (
         <div className={styles.slotList}>
-          {sortedSlots.map((slot) => (
-            <div key={slot.id} className={styles.slotItem}>
+          {sortedSlots.map((slot, i) => (
+            <Reveal key={slot.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.slotItem}>
               <div className={styles.slotInfo}>
                 <span className={styles.slotDate}>{slot.date}</span>
                 <span className={styles.slotTime}>
@@ -98,6 +99,7 @@ export function AvailabilityTab() {
                 </button>
               )}
             </div>
+            </Reveal>
           ))}
         </div>
       )}

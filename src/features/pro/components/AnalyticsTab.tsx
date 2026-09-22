@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Users, Wallet, Receipt, CheckCircle2 } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Spinner } from '../../../shared/ui';
+import { Spinner, Reveal } from '../../../shared/ui';
 import { useMyGuideAnalytics, useMyProviderAnalytics } from '../hooks/useGuideAnalytics';
 import type { GuideAnalyticsSummary, ProviderItemType } from '../types';
 import { StatTile } from './StatTile';
@@ -75,21 +75,29 @@ function AnalyticsTabContent({
   return (
     <div className={styles.container}>
       <div className={styles.statGrid}>
-        <StatTile label={t('pro.statTotalCustomers')} value={countFormatter(data.total_customers)} Icon={Users} />
-        <StatTile label={t('pro.statTotalRevenue')} value={currencyFormatter(data.total_revenue)} Icon={Wallet} />
-        <StatTile
-          label={t('pro.statAverageBooking')}
-          value={currencyFormatter(data.average_booking_value)}
-          Icon={Receipt}
-        />
-        <StatTile
-          label={t('pro.statCompletionRate')}
-          value={`${data.completion_rate}%`}
-          Icon={CheckCircle2}
-        />
+        <Reveal delay={0}>
+          <StatTile label={t('pro.statTotalCustomers')} value={countFormatter(data.total_customers)} Icon={Users} />
+        </Reveal>
+        <Reveal delay={50}>
+          <StatTile label={t('pro.statTotalRevenue')} value={currencyFormatter(data.total_revenue)} Icon={Wallet} />
+        </Reveal>
+        <Reveal delay={100}>
+          <StatTile
+            label={t('pro.statAverageBooking')}
+            value={currencyFormatter(data.average_booking_value)}
+            Icon={Receipt}
+          />
+        </Reveal>
+        <Reveal delay={150}>
+          <StatTile
+            label={t('pro.statCompletionRate')}
+            value={`${data.completion_rate}%`}
+            Icon={CheckCircle2}
+          />
+        </Reveal>
       </div>
 
-      <div className={styles.section}>
+      <Reveal as="section" className={styles.section} delay={80}>
         <div className={styles.periodTabs}>
           {PERIODS.map(({ key, labelKey }) => (
             <button
@@ -121,7 +129,7 @@ function AnalyticsTabContent({
             totalLabel={currencyFormatter(points.reduce((s, p) => s + p.revenue, 0))}
           />
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Calendar, Phone, CheckCircle2, FileDown } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Spinner, EmptyResults } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, Reveal } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useConfirmBooking, useMyGuideBookings, useReceivedBookings } from '../hooks/useGuideBookings';
@@ -142,8 +142,9 @@ export function BookingsTab({ source, establishmentName, logoUrl }: BookingsTabP
 
       {!isLoading && bookings && bookings.length > 0 && (
         <div className={styles.list}>
-          {bookings.map((booking) => (
-            <div key={booking.id} className={styles.card}>
+          {bookings.map((booking, i) => (
+            <Reveal key={booking.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.card}>
               <div className={styles.cardHeader}>
                 <div>
                   <div className={styles.customerName}>{booking.customer_name ?? t('pro.unknownCustomer')}</div>
@@ -179,6 +180,7 @@ export function BookingsTab({ source, establishmentName, logoUrl }: BookingsTabP
                 </Button>
               )}
             </div>
+            </Reveal>
           ))}
         </div>
       )}

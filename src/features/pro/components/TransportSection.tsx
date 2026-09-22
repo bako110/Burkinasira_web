@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Building } from 'lucide-react';
 
-import { Button, Spinner, Modal, ConfirmDialog } from '../../../shared/ui';
+import { Button, Spinner, Modal, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import type { TransportProviderDetail } from '../../mobility/types';
@@ -64,8 +64,9 @@ export function TransportSection() {
         </div>
       ) : (
         <div className={styles.list}>
-          {providers.map((provider) => (
-            <div key={provider.id} className={styles.listItemWrap}>
+          {providers.map((provider, i) => (
+            <Reveal key={provider.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.listItemWrap}>
               <EstablishmentListItem
                 name={provider.name}
                 photo={undefined}
@@ -88,6 +89,7 @@ export function TransportSection() {
                 onDelete={() => setPendingDelete(provider)}
               />
             </div>
+            </Reveal>
           ))}
         </div>
       )}

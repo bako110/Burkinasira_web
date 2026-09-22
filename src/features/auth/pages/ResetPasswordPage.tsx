@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 
-import { Button, Card, PasswordInput, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, PasswordInput, DetailBackButton, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { resetPassword } from '../api/auth.api';
@@ -59,6 +59,7 @@ export function ResetPasswordPage() {
       <div className={styles.split}>
         <AuthBrandPanel textKey="auth.brandTextLogin" />
         <div className={styles.formSide}>
+      <Reveal delay={0}>
       <Card className={styles.card}>
         <DetailBackButton fallbackTo="/login" variant="link">
           {t('common.back')}
@@ -119,6 +120,7 @@ export function ResetPasswordPage() {
           </form>
         )}
       </Card>
+      </Reveal>
         </div>
       </div>
     </div>

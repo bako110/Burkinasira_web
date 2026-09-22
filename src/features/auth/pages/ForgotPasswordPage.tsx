@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { MailCheck } from 'lucide-react';
 
-import { Button, Card, Input, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, Input, DetailBackButton, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { requestPasswordReset } from '../api/auth.api';
 import { AuthHeader } from '../components/AuthHeader';
@@ -36,6 +36,7 @@ export function ForgotPasswordPage() {
       <div className={styles.split}>
         <AuthBrandPanel textKey="auth.brandTextLogin" />
         <div className={styles.formSide}>
+          <Reveal delay={0}>
           <Card className={styles.card}>
             <DetailBackButton fallbackTo="/login" variant="link">
               {t('common.back')}
@@ -70,6 +71,7 @@ export function ForgotPasswordPage() {
               </form>
             )}
           </Card>
+          </Reveal>
         </div>
       </div>
     </div>

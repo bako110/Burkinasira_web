@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { Button, Card } from '../../../shared/ui';
+import { Button, Card, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { AuthHeader } from '../components/AuthHeader';
@@ -74,6 +74,7 @@ export function GoogleRolePage() {
       <div className={styles.split}>
         <AuthBrandPanel textKey="auth.brandTextRegister" />
         <div className={styles.formSide}>
+      <Reveal delay={0}>
       <Card className={styles.card}>
         <AuthHeader title={t('auth.googleRoleTitle')} subtitle={t('auth.googleRoleSubtitle')} />
 
@@ -129,6 +130,7 @@ export function GoogleRolePage() {
           </Button>
         </form>
       </Card>
+      </Reveal>
         </div>
       </div>
     </div>

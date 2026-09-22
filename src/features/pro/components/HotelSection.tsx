@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, Building } from 'lucide-react';
 
-import { Button, Spinner, Modal, ConfirmDialog } from '../../../shared/ui';
+import { Button, Spinner, Modal, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import type { HotelDetail } from '../../hotels/types';
@@ -64,13 +64,14 @@ export function HotelSection() {
         </div>
       ) : (
         <div className={styles.list}>
-          {hotels.map((hotel) => {
+          {hotels.map((hotel, i) => {
             const prices = hotel.room_types.map((rt) => rt.price_per_night);
             const minPrice = prices.length > 0 ? Math.min(...prices) : undefined;
             const currency = hotel.room_types[0]?.currency ?? 'XOF';
 
             return (
-              <div key={hotel.id} className={styles.listItemWrap}>
+              <Reveal key={hotel.id} delay={Math.min(i, 8) * 50}>
+              <div className={styles.listItemWrap}>
                 <EstablishmentListItem
                   name={hotel.name}
                   photo={hotel.photos[0]}
@@ -89,6 +90,7 @@ export function HotelSection() {
                   onDelete={() => setPendingDelete(hotel)}
                 />
               </div>
+              </Reveal>
             );
           })}
         </div>

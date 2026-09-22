@@ -11,6 +11,7 @@ import {
   DetailBackButton,
   Tabs,
   RegionProvinceFilter,
+  Reveal,
 } from '../../../shared/ui';
 import type { TabItem } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
@@ -128,7 +129,7 @@ export function PlannerPage() {
       <div className={styles.body}>
         <div className={styles.mainCol}>
           {/* --- Paramètres du voyage --- */}
-          <div className={styles.paramsCard}>
+          <Reveal as="div" className={styles.paramsCard} delay={0}>
             <div className={styles.paramRow}>
               <label className={styles.paramLabel}>
                 <Users size={15} strokeWidth={2} />
@@ -186,13 +187,17 @@ export function PlannerPage() {
                 ))}
               </select>
             </div>
-          </div>
+          </Reveal>
 
           {/* --- Budget (mobile : ici ; desktop : colonne latérale) --- */}
-          {budget && <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} className={styles.budgetMobile} />}
+          {budget && (
+            <Reveal delay={80}>
+              <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} className={styles.budgetMobile} />
+            </Reveal>
+          )}
 
           {/* --- Explorer la zone --- */}
-          <div className={styles.exploreHeader}>
+          <Reveal as="div" className={styles.exploreHeader} delay={140}>
             <h2 className={styles.exploreTitle}>
               <MapPin size={16} strokeWidth={2} />
               {t('planner.exploreZone')}
@@ -206,7 +211,7 @@ export function PlannerPage() {
                 setProvince(p);
               }}
             />
-          </div>
+          </Reveal>
 
           <Tabs items={tabs} active={tab} onChange={(k) => setTab(k as ResourceTab)} />
 
@@ -262,7 +267,9 @@ export function PlannerPage() {
         {/* --- Colonne latérale (desktop) --- */}
         <aside className={styles.sideCol}>
           {budget && (
-            <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} />
+            <Reveal delay={0}>
+              <BudgetCard budget={budget} onRecap={() => navigate(`/trips/${tripId}/recap`)} />
+            </Reveal>
           )}
           <TravelAdvice collapsedByDefault />
         </aside>
@@ -405,12 +412,12 @@ function HotelList({ region, province, comfort, disabled, added, onAdd }: ListPr
 
   return (
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
-      {items.map((h) => {
+      {items.map((h, i) => {
         const key = `hotel:${h.id}`;
         const cost = h.min_price ?? COMFORT_SCALES[comfort].nuitee;
         return (
+          <Reveal key={key} delay={Math.min(i, 8) * 50}>
           <ResourceRow
-            key={key}
             photo={h.photo}
             title={h.name}
             subtitle={[h.city, h.region].filter(Boolean).join(' · ')}
@@ -441,6 +448,7 @@ function HotelList({ region, province, comfort, disabled, added, onAdd }: ListPr
               />
             }
           />
+          </Reveal>
         );
       })}
     </ListShell>
@@ -453,11 +461,11 @@ function RestaurantList({ region, province, comfort, disabled, added, onAdd }: L
 
   return (
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
-      {items.map((r) => {
+      {items.map((r, i) => {
         const key = `restaurant:${r.id}`;
         return (
+          <Reveal key={key} delay={Math.min(i, 8) * 50}>
           <ResourceRow
-            key={key}
             photo={r.photo}
             title={r.name}
             subtitle={[r.cuisine_style, r.city, r.region].filter(Boolean).join(' · ')}
@@ -482,6 +490,7 @@ function RestaurantList({ region, province, comfort, disabled, added, onAdd }: L
               />
             }
           />
+          </Reveal>
         );
       })}
     </ListShell>
@@ -495,12 +504,12 @@ function GuideList({ region, province, comfort, disabled, added, onAdd }: ListPr
 
   return (
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
-      {items.map((g) => {
+      {items.map((g, i) => {
         const key = `guide:${g.id}`;
         const cost = g.daily_rate ?? COMFORT_SCALES[comfort].guideJour;
         return (
+          <Reveal key={key} delay={Math.min(i, 8) * 50}>
           <ResourceRow
-            key={key}
             photo={g.photo_url}
             title={g.display_name}
             subtitle={g.specialties.slice(0, 2).join(' · ')}
@@ -530,6 +539,7 @@ function GuideList({ region, province, comfort, disabled, added, onAdd }: ListPr
               />
             }
           />
+          </Reveal>
         );
       })}
     </ListShell>
@@ -544,12 +554,12 @@ function TransportList({ region, province, comfort, disabled, added, onAdd }: Li
 
   return (
     <ListShell isLoading={isLoading} isError={isError} empty={items.length === 0}>
-      {items.map((p) => {
+      {items.map((p, i) => {
         const key = `transport:${p.id}`;
         const cost = p.price_estimate ?? COMFORT_SCALES[comfort].transportJour;
         return (
+          <Reveal key={key} delay={Math.min(i, 8) * 50}>
           <ResourceRow
-            key={key}
             photo={p.photo}
             title={p.name}
             subtitle={[p.city, p.region].filter(Boolean).join(' · ')}
@@ -580,6 +590,7 @@ function TransportList({ region, province, comfort, disabled, added, onAdd }: Li
               />
             }
           />
+          </Reveal>
         );
       })}
     </ListShell>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, ShoppingBag } from 'lucide-react';
 
-import { Button, Spinner, Modal, ConfirmDialog } from '../../../shared/ui';
+import { Button, Spinner, Modal, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import type { ProductDetail } from '../../market/types';
@@ -103,8 +103,9 @@ export function ArtisanMarketSection() {
         </div>
       ) : (
         <div className={styles.list}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.listItemWrap}>
+          {products.map((product, i) => (
+            <Reveal key={product.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.listItemWrap}>
               <EstablishmentListItem
                 name={product.name}
                 photo={product.photos[0]}
@@ -123,6 +124,7 @@ export function ArtisanMarketSection() {
                 onDelete={() => setPendingDelete(product)}
               />
             </div>
+            </Reveal>
           ))}
         </div>
       )}

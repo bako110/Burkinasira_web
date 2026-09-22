@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, LogOut, Home, Compass, Map, Ticket, Bell, MessageCircle, IdCard, User } from 'lucide-react';
 import clsx from 'clsx';
@@ -34,6 +34,7 @@ const DRAWER_COLLAPSED_COUNT = 5;
 
 export function AppLayout() {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -215,7 +216,9 @@ export function AppLayout() {
       </aside>
 
       <main className={styles.main}>
-        <Outlet />
+        <div key={pathname} className={styles.pageTransition}>
+          <Outlet />
+        </div>
       </main>
 
       <Footer />

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Building2, UtensilsCrossed, Car, ShoppingBag } from 'lucide-react';
 
-import { Spinner } from '../../../shared/ui';
+import { Spinner, Reveal } from '../../../shared/ui';
 import {
   useMyHotels,
   useMyRestaurants,
@@ -82,16 +82,18 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
       </div>
 
       <div className={styles.categoryGrid}>
-        {ownedCategories.map(({ key, label, count }) => {
+        {ownedCategories.map(({ key, label, count }, i) => {
           const Icon = CATEGORY_ICONS[key as keyof typeof CATEGORY_ICONS];
           return (
-            <button key={key} type="button" className={styles.categoryCard} onClick={() => onNavigate(key)}>
-              <span className={styles.categoryIcon}>
-                <Icon size={20} strokeWidth={1.75} />
-              </span>
-              <span className={styles.categoryLabel}>{label}</span>
-              <span className={styles.categoryCount}>{count}</span>
-            </button>
+            <Reveal key={key} delay={Math.min(i, 8) * 50}>
+              <button type="button" className={styles.categoryCard} onClick={() => onNavigate(key)}>
+                <span className={styles.categoryIcon}>
+                  <Icon size={20} strokeWidth={1.75} />
+                </span>
+                <span className={styles.categoryLabel}>{label}</span>
+                <span className={styles.categoryCount}>{count}</span>
+              </button>
+            </Reveal>
           );
         })}
       </div>

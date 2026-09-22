@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import clsx from 'clsx';
 
-import { Button, Card, Input, PasswordInput, DetailBackButton } from '../../../shared/ui';
+import { Button, Card, Input, PasswordInput, DetailBackButton, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useRegister } from '../hooks/useRegister';
 import { AuthHeader } from '../components/AuthHeader';
@@ -86,6 +86,7 @@ export function RegisterPage() {
       <div className={styles.split}>
         <AuthBrandPanel textKey="auth.brandTextRegister" />
         <div className={styles.formSide}>
+      <Reveal delay={0}>
       <Card className={styles.card}>
         <DetailBackButton fallbackTo="/" variant="link">
           {t('common.back')}
@@ -264,6 +265,7 @@ export function RegisterPage() {
           </Link>
         </p>
       </Card>
+      </Reveal>
         </div>
       </div>
     </div>

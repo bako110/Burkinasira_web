@@ -2,7 +2,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Upload, CheckCircle2, Lightbulb, AlertTriangle } from 'lucide-react';
 
-import { Button, Card, Spinner } from '../../../shared/ui';
+import { Button, Card, Spinner, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useUploadMedia } from '../../../shared/hooks/useUploadMedia';
 import { useToastStore } from '../../../store/toast.store';
@@ -96,7 +96,7 @@ export function PendingVerificationPage() {
           <p className={styles.anytimeNotice}>{t('pro.pendingAnytimeNotice')}</p>
         </div>
 
-        <div className={styles.infoSection}>
+        <Reveal as="div" className={styles.infoSection} delay={0}>
           <h2 className={styles.infoTitle}>
             <CheckCircle2 size={18} strokeWidth={2} />
             {t('pro.requirementsTitle')}
@@ -109,9 +109,9 @@ export function PendingVerificationPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className={styles.tipSection}>
+        <Reveal as="div" className={styles.tipSection} delay={60}>
           <h2 className={styles.tipTitle}>
             <Lightbulb size={18} strokeWidth={2} />
             {t('pro.tipsTitle')}
@@ -124,9 +124,9 @@ export function PendingVerificationPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <section className={styles.zone}>
+        <Reveal as="section" className={styles.zone} delay={120}>
           <span className={styles.stepBadge}>
             <span className={styles.stepNumber}>1</span>
             {t('pro.editProfileZone')}
@@ -134,11 +134,11 @@ export function PendingVerificationPage() {
           <h2 className={styles.listTitle}>{isGuide ? t('pro.guideProfileTitle') : t('pro.providerProfileTitle')}</h2>
           <p className={styles.zoneHint}>{t('pro.editProfileZoneHint')}</p>
           {isGuide ? <GuideProfileForm /> : <ProviderProfileForm />}
-        </section>
+        </Reveal>
 
         <hr className={styles.divider} />
 
-        <section className={styles.zone}>
+        <Reveal as="section" className={styles.zone} delay={160}>
           <span className={styles.stepBadge}>
             <span className={styles.stepNumber}>2</span>
             {t('pro.submitDocumentTitle')}
@@ -188,11 +188,11 @@ export function PendingVerificationPage() {
               {isSubmitting ? <Spinner size={18} /> : t('pro.submitDocument')}
             </Button>
           </form>
-        </section>
+        </Reveal>
 
         <hr className={styles.divider} />
 
-        <section className={styles.zone}>
+        <Reveal as="section" className={styles.zone} delay={200}>
           <span className={styles.stepBadge}>
             <span className={styles.stepNumber}>3</span>
             {t('pro.submittedDocuments')}
@@ -208,8 +208,9 @@ export function PendingVerificationPage() {
 
           {!isLoading && requests && requests.length > 0 && (
             <div className={styles.requestList}>
-              {requests.map((r) => (
-                <div key={r.id} className={`${styles.requestItem} ${REQUEST_ITEM_CLASS[r.status]}`}>
+              {requests.map((r, i) => (
+                <Reveal key={r.id} delay={Math.min(i, 8) * 50}>
+                <div className={`${styles.requestItem} ${REQUEST_ITEM_CLASS[r.status]}`}>
                   <div className={styles.requestItemRow}>
                     <span className={styles.requestType}>
                       {t(DOCUMENT_TYPES.find((d) => d.value === r.document_type)?.labelKey ?? 'pro.docAutre')}
@@ -225,10 +226,11 @@ export function PendingVerificationPage() {
                     </p>
                   )}
                 </div>
+                </Reveal>
               ))}
             </div>
           )}
-        </section>
+        </Reveal>
 
         <div className={styles.logoutRow}>
           <button type="button" className={styles.logoutButton} onClick={clearSession}>

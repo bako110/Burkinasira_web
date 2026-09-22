@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UserPlus, Trash2, Users } from 'lucide-react';
 
-import { Button, Spinner, ConfirmDialog } from '../../../shared/ui';
+import { Button, Spinner, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useToastStore } from '../../../store/toast.store';
 import { useTeamMembers, useInviteTeamMember, useRemoveTeamMember } from '../hooks/useTeamMembers';
@@ -133,8 +133,9 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
         </div>
       ) : (
         <div className={styles.list}>
-          {members.map((member) => (
-            <div key={member.id} className={styles.memberRow}>
+          {members.map((member, i) => (
+            <Reveal key={member.id} delay={Math.min(i, 8) * 50}>
+            <div className={styles.memberRow}>
               <div className={styles.memberInfo}>
                 <span className={styles.memberEmail}>{member.email}</span>
                 <span className={styles.memberMeta}>
@@ -151,6 +152,7 @@ export function TeamManagementSection({ itemType, itemId }: TeamManagementSectio
                 <Trash2 size={16} strokeWidth={2} />
               </button>
             </div>
+            </Reveal>
           ))}
         </div>
       )}

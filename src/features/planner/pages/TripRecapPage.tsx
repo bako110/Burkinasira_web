@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Download, Wallet, CalendarDays, MapPin, Users, Plane } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, Reveal } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 
 import { useTripDetail } from '../../trips/hooks/useTripDetail';
@@ -123,7 +123,7 @@ export function TripRecapPage() {
       </section>
 
       <div className={styles.body}>
-        <div className={styles.metaGrid}>
+        <Reveal as="div" className={styles.metaGrid} delay={0}>
           {(trip.start_date || trip.end_date) && (
             <span className={styles.metaItem}>
               <CalendarDays size={15} strokeWidth={2} />
@@ -152,10 +152,10 @@ export function TripRecapPage() {
             <Users size={15} strokeWidth={2} />
             {t('recap.travelersCount', { count: travelers })}
           </span>
-        </div>
+        </Reveal>
 
         {/* Réglages */}
-        <div className={styles.settingsRow}>
+        <Reveal as="div" className={styles.settingsRow} delay={80}>
           <div className={styles.setting}>
             <span className={styles.settingLabel}>{t('planner.travelers')}</span>
             <div className={styles.stepper}>
@@ -200,10 +200,10 @@ export function TripRecapPage() {
               ))}
             </select>
           </div>
-        </div>
+        </Reveal>
 
         {/* Budget détaillé */}
-        <div className={styles.card}>
+        <Reveal as="div" className={styles.card} delay={160}>
           <h2 className={styles.cardTitle}>
             <Wallet size={17} strokeWidth={2} />
             {t('planner.budgetTitle')}
@@ -237,10 +237,10 @@ export function TripRecapPage() {
               repas: formatXof(COMFORT_SCALES[comfort].repas),
             })}
           </p>
-        </div>
+        </Reveal>
 
         {/* Itinéraire */}
-        <div className={styles.card}>
+        <Reveal as="div" className={styles.card} delay={240}>
           <h2 className={styles.cardTitle}>
             <CalendarDays size={17} strokeWidth={2} />
             {t('recap.itineraryTitle')}
@@ -249,8 +249,9 @@ export function TripRecapPage() {
             <p className={styles.empty}>{t('recap.noPlan')}</p>
           ) : (
             <div className={styles.days}>
-              {trip.days.map((day) => (
-                <div key={day.date} className={styles.day}>
+              {trip.days.map((day, i) => (
+                <Reveal key={day.date} delay={Math.min(i, 8) * 50}>
+                <div className={styles.day}>
                   <p className={styles.dayDate}>
                     {new Date(day.date).toLocaleDateString(i18n.language, {
                       weekday: 'long',
@@ -275,10 +276,11 @@ export function TripRecapPage() {
                     </ul>
                   )}
                 </div>
+                </Reveal>
               ))}
             </div>
           )}
-        </div>
+        </Reveal>
 
         <Button fullWidth onClick={handleExport} disabled={exporting}>
           {exporting ? (

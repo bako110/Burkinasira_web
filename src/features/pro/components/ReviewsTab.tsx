@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Star } from 'lucide-react';
 
-import { Spinner, EmptyResults } from '../../../shared/ui';
+import { Spinner, EmptyResults, Reveal } from '../../../shared/ui';
 import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useMyGuideReviews, useReplyToReview, useReviewsForTarget } from '../hooks/useGuideReviews';
@@ -102,7 +102,7 @@ export function ReviewsTab({ source }: ReviewsTabProps) {
 
       {!isLoading && data && data.total > 0 && (
         <>
-          <div className={styles.summary}>
+          <Reveal as="section" className={styles.summary} delay={0}>
             <div className={styles.averageBlock}>
               <span className={styles.averageValue}>{data.average_rating.toFixed(1)}</span>
               <Stars rating={Math.round(data.average_rating)} size={16} />
@@ -127,11 +127,12 @@ export function ReviewsTab({ source }: ReviewsTabProps) {
                 );
               })}
             </div>
-          </div>
+          </Reveal>
 
           <div className={styles.reviewList}>
-            {data.items.map((review) => (
-              <div key={review.id} className={styles.reviewCard}>
+            {data.items.map((review, i) => (
+              <Reveal key={review.id} delay={Math.min(i, 8) * 50}>
+              <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <span className={styles.authorName}>{review.author_name ?? t('pro.anonymousAuthor')}</span>
                   <span className={styles.reviewDate}>{new Date(review.created_at).toLocaleDateString()}</span>
@@ -148,6 +149,7 @@ export function ReviewsTab({ source }: ReviewsTabProps) {
                   <ReplyForm reviewId={review.id} />
                 )}
               </div>
+              </Reveal>
             ))}
           </div>
         </>

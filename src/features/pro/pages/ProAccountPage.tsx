@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { User, Lock, ChevronRight, LogOut } from 'lucide-react';
 
-import { Card, Avatar, ConfirmDialog } from '../../../shared/ui';
+import { Card, Avatar, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { useAuthStore } from '../../../store/auth.store';
 import { useLogoutConfirm } from '../../../shared/hooks/useLogoutConfirm';
 import { ProPageHeader } from '../components/ProPageHeader';
@@ -27,15 +27,17 @@ export function ProAccountPage() {
     <div className={wrapperStyles.page}>
       <ProPageHeader title={t('pro.tab_account')} />
 
-      <Card className={styles.identityCard}>
-        <Avatar src={user.avatar_url} name={user.full_name} size={56} />
-        <div className={styles.identityText}>
-          <span className={styles.name}>{user.full_name}</span>
-          <span className={styles.email}>{user.email}</span>
-        </div>
-      </Card>
+      <Reveal delay={0}>
+        <Card className={styles.identityCard}>
+          <Avatar src={user.avatar_url} name={user.full_name} size={56} />
+          <div className={styles.identityText}>
+            <span className={styles.name}>{user.full_name}</span>
+            <span className={styles.email}>{user.email}</span>
+          </div>
+        </Card>
+      </Reveal>
 
-      <div className={styles.links}>
+      <Reveal as="div" className={styles.links} delay={80}>
         <NavLink to={`${base}/info`} className={styles.link}>
           <User size={18} strokeWidth={2} className={styles.linkIcon} />
           <span>{t('profile.editTitle')}</span>
@@ -46,7 +48,7 @@ export function ProAccountPage() {
           <span>{t('profile.passwordTitle')}</span>
           <ChevronRight size={16} strokeWidth={2} className={styles.chevron} />
         </NavLink>
-      </div>
+      </Reveal>
 
       <button type="button" className={styles.logoutButton} onClick={requestLogout}>
         <LogOut size={16} strokeWidth={2} />
