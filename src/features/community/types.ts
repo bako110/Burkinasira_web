@@ -163,3 +163,33 @@ export interface ReportContentPayload {
   content_id: string;
   reason: string;
 }
+
+export type LiveSessionStatus = 'live' | 'ended';
+
+export interface LiveSession {
+  id: string;
+  host_id: string;
+  host_name?: string;
+  host_avatar_url?: string;
+  title: string;
+  description?: string;
+  group_id?: string;
+  room_name: string;
+  status: LiveSessionStatus;
+  viewer_count: number;
+  started_at: string;
+  ended_at?: string;
+}
+
+export interface StartLivePayload {
+  title: string;
+  description?: string;
+  group_id?: string;
+}
+
+export interface LiveToken {
+  url: string;
+  token: string;
+  room_name: string;
+  can_publish: boolean;
+}

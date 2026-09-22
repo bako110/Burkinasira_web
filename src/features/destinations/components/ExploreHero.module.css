@@ -3,14 +3,14 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-  padding: calc(var(--space-7) + var(--space-2)) var(--space-4) var(--space-6);
+  padding: calc(var(--space-7) + var(--space-2)) var(--space-4) var(--space-5);
   background: var(--gradient-savanna);
   isolation: isolate;
 }
 
 @media (min-width: 1024px) {
   .hero {
-    padding: calc(var(--space-8) + var(--space-2)) var(--space-4) var(--space-7);
+    padding: calc(var(--space-8) + var(--space-2)) var(--space-4) var(--space-6);
   }
 }
 
@@ -70,14 +70,14 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
   animation: heroRise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (min-width: 1024px) {
   .content {
-    max-width: 760px;
-    gap: var(--space-5);
+    max-width: 720px;
+    gap: var(--space-3);
   }
 }
 
@@ -110,8 +110,8 @@
 
 .title {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
+  font-size: clamp(1.75rem, 4.2vw, 2.75rem);
+  line-height: 1.08;
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.02em;
@@ -119,9 +119,9 @@
 
 .subtitle {
   margin: 0;
-  max-width: 560px;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: clamp(0.9375rem, 1.6vw, 1.125rem);
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.875rem, 1.4vw, 1rem);
   line-height: 1.6;
 }
 
@@ -130,13 +130,20 @@
   align-items: center;
   gap: var(--space-2);
   width: 100%;
-  max-width: 560px;
-  padding: var(--space-2);
+  max-width: 640px;
+  padding: var(--space-3);
   border-radius: var(--radius-full);
   background-color: rgba(255, 255, 255, 0.98);
   box-shadow: var(--shadow-lg);
-  margin-top: var(--space-2);
+  margin-top: var(--space-1);
   animation: floatIn 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+}
+
+@media (min-width: 1024px) {
+  .searchBar {
+    max-width: 720px;
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  }
 }
 
 @keyframes floatIn {
@@ -162,9 +169,9 @@
   border: none;
   outline: none;
   background: transparent;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #1c1a17;
-  height: 40px;
+  height: 44px;
 }
 
 .searchInput::placeholder {
@@ -173,16 +180,22 @@
 
 .searchButton {
   flex-shrink: 0;
-  height: 44px;
-  padding: 0 var(--space-5);
+  height: 48px;
+  padding: 0 var(--space-4);
   border: none;
   border-radius: var(--radius-full);
   background: var(--gradient-sunset);
   color: #fff;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   cursor: pointer;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+@media (min-width: 480px) {
+  .searchButton {
+    padding: 0 var(--space-6);
+  }
 }
 
 .searchButton:hover {

@@ -17,6 +17,9 @@ import type {
   Answer,
   CreateAnswerPayload,
   ReportContentPayload,
+  LiveSession,
+  StartLivePayload,
+  LiveToken,
 } from '../types';
 
 export async function fetchPosts(
@@ -139,4 +142,31 @@ export async function answerQuestion(questionId: string, payload: CreateAnswerPa
 
 export async function reportContent(payload: ReportContentPayload): Promise<void> {
   await apiClient.post('/community/reports', payload);
+}
+
+export async function fetchLiveSessions(groupId?: string): Promise<LiveSession[]> {
+  const { data } = await apiClient.get<LiveSession[]>('/community/live', {
+    params: groupId ? { group_id: groupId } : undefined,
+  });
+  return data;
+}
+
+export async function startLive(payload: StartLivePayload): Promise<LiveSession> {
+  const { data } = await apiClient.post<LiveSession>('/community/live', payload);
+  return data;
+}
+
+export async function fetchLiveSession(sessionId: string): Promise<LiveSession> {
+  const { data } = await apiClient.get<LiveSession>(`/community/live/${sessionId}`);
+  return data;
+}
+
+export async function endLive(sessionId: string): Promise<LiveSession> {
+  const { data } = await apiClient.post<LiveSession>(`/community/live/${sessionId}/end`);
+  return data;
+}
+
+export async function fetchLiveToken(sessionId: string): Promise<LiveToken> {
+  const { data } = await apiClient.post<LiveToken>(`/community/live/${sessionId}/token`);
+  return data;
 }

@@ -32,10 +32,9 @@ export function ExploreHero({ query, onQueryChange, onSubmit }: ExploreHeroProps
         </span>
 
         <h1 className={styles.title}>{t('destinations.title')}</h1>
-        <p className={styles.subtitle}>{t('explore.subtitle')}</p>
 
         <form className={styles.searchBar} onSubmit={handleSubmit} autoComplete="off">
-          <Search size={19} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
+          <Search size={20} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
           <input
             className={styles.searchInput}
             placeholder={t('home.searchPlaceholder')}
@@ -47,6 +46,8 @@ export function ExploreHero({ query, onQueryChange, onSubmit }: ExploreHeroProps
             {t('common.search')}
           </button>
         </form>
+
+        <p className={styles.subtitle}>{t('explore.subtitle')}</p>
       </div>
     </section>
   );

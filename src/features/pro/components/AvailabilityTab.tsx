@@ -102,6 +102,7 @@ export function AvailabilityTab() {
         </div>
       )}
 
+
       <Modal open={modalOpen} onClose={resetAndClose} title={t('pro.addSlot')}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
