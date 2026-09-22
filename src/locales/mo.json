@@ -16,6 +16,9 @@
     "exploreAlso": "Bao n ges woto me",
     "back": "Lebg poore",
     "close": "Ki",
+    "settings": "Minim-y",
+    "language": "Goam",
+    "appearance": "Zĩ-vẽenegre",
     "delete": "Yiisi",
     "previous": "Sɔsg",
     "next": "Poore",
@@ -770,6 +773,8 @@
     "categoriesLabel": "Buud",
     "tabAll": "Fãa",
     "tabUnread": "Sẽn nan-a karem",
+    "unreadCount_one": "{{count}} sẽn nan-a karem",
+    "unreadCount_other": "{{count}} sẽn nan-a karem",
     "categories": {
       "reservation_confirmation": "Reereems kãabgo",
       "rappel_activite": "Tʋʋm tẽesg",

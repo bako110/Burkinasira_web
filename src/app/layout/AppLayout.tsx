@@ -12,6 +12,7 @@ import { Footer } from './Footer';
 import { ExploreMenu } from './ExploreMenu';
 import { DiscoverMenu, DISCOVER_LINKS, PRACTICAL_LINKS } from './DiscoverMenu';
 import { AccountMenu } from './AccountMenu';
+import { SettingsMenu } from './SettingsMenu';
 import { DrawerNavSection } from './DrawerNavSection';
 import { NotificationBell } from '../../features/notifications/components/NotificationBell';
 import { CartButton } from '../../features/market/components/CartButton';
@@ -74,28 +75,32 @@ export function AppLayout() {
               {t('nav.home')}
             </NavLink>
             <ExploreMenu />
+            <DiscoverMenu />
             <NavLink
               to="/itineraries"
               className={({ isActive }) => clsx(styles.navLink, isActive && styles.navLinkActive)}
             >
               {t('nav.itineraries')}
             </NavLink>
-            <DiscoverMenu />
           </nav>
 
           <div className={styles.actionsDesktop}>
-            <LanguageSwitcher />
-            <ThemeToggle />
-            <CartButton />
+            <SettingsMenu />
+
             {isAuthenticated ? (
               <>
+                <span className={styles.actionsDivider} aria-hidden="true" />
+                <CartButton />
                 <NotificationBell />
                 <AccountMenu />
               </>
             ) : (
-              <NavLink to="/login" className={styles.loginLink}>
-                {t('auth.login')}
-              </NavLink>
+              <>
+                <CartButton />
+                <NavLink to="/login" className={styles.loginLink}>
+                  {t('auth.login')}
+                </NavLink>
+              </>
             )}
           </div>
 

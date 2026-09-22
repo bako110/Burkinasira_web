@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check, Settings } from 'lucide-react';
+import { Bell, Check, Settings } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, Reveal } from '../../../shared/ui';
@@ -39,79 +39,87 @@ export function NotificationsPage() {
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo={fallbackTo} variant="link">
-        {t('common.back')}
-      </DetailBackButton>
-
-      <Reveal as="section" className={styles.headerRow}>
-        <div className={styles.headerText}>
-          <span className={styles.kicker}>{t('nav.notifications')}</span>
-          <h1 className={styles.title}>{t('notifications.title')}</h1>
-        </div>
-        <div className={styles.headerActions}>
+      <section className={styles.hero}>
+        <div className={styles.heroMesh} aria-hidden="true" />
+        <DetailBackButton fallbackTo={fallbackTo} className={styles.backBtn} />
+        <div className={styles.heroContent}>
+          <span className={styles.heroIcon}>
+            <Bell size={26} strokeWidth={1.75} />
+          </span>
+          <h1 className={styles.heroTitle}>{t('notifications.title')}</h1>
           {unreadCount > 0 && (
-            <Button variant="ghost" size="sm" onClick={() => markAllRead()} disabled={isMarkingAll}>
-              <Check size={15} strokeWidth={2} />
-              {t('notifications.markAllRead')}
-            </Button>
+            <p className={styles.heroSubtitle}>{t('notifications.unreadCount', { count: unreadCount })}</p>
           )}
-          <Button
-            variant={showPrefs ? 'secondary' : 'ghost'}
-            size="sm"
-            onClick={() => setShowPrefs((v) => !v)}
-            aria-expanded={showPrefs}
-          >
-            <Settings size={15} strokeWidth={2} />
-            {t('notifications.preferences')}
-          </Button>
         </div>
-      </Reveal>
+      </section>
 
-      {showPrefs && (
-        <Reveal>
-          <NotificationPreferencesPanel />
-        </Reveal>
-      )}
+      <div className={styles.body}>
+        <div className={styles.toolbar}>
+          <div className={styles.tabs}>
+            <button
+              type="button"
+              className={clsx(styles.tab, tab === 'all' && styles.tabActive)}
+              onClick={() => setTab('all')}
+            >
+              {t('notifications.tabAll')}
+            </button>
+            <button
+              type="button"
+              className={clsx(styles.tab, tab === 'unread' && styles.tabActive)}
+              onClick={() => setTab('unread')}
+            >
+              {t('notifications.tabUnread')}
+              {unreadCount > 0 && <span className={styles.tabBadge}>{unreadCount > 99 ? '99+' : unreadCount}</span>}
+            </button>
+          </div>
 
-      <div className={styles.tabs}>
-        <button
-          type="button"
-          className={clsx(styles.tab, tab === 'all' && styles.tabActive)}
-          onClick={() => setTab('all')}
-        >
-          {t('notifications.tabAll')}
-        </button>
-        <button
-          type="button"
-          className={clsx(styles.tab, tab === 'unread' && styles.tabActive)}
-          onClick={() => setTab('unread')}
-        >
-          {t('notifications.tabUnread')}
-          {unreadCount > 0 && <span className={styles.tabBadge}>{unreadCount > 99 ? '99+' : unreadCount}</span>}
-        </button>
+          <div className={styles.toolbarActions}>
+            {unreadCount > 0 && (
+              <Button variant="ghost" size="sm" onClick={() => markAllRead()} disabled={isMarkingAll}>
+                <Check size={15} strokeWidth={2} />
+                {t('notifications.markAllRead')}
+              </Button>
+            )}
+            <Button
+              variant={showPrefs ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setShowPrefs((v) => !v)}
+              aria-expanded={showPrefs}
+            >
+              <Settings size={15} strokeWidth={2} />
+              {t('notifications.preferences')}
+            </Button>
+          </div>
+        </div>
+
+        {showPrefs && (
+          <Reveal>
+            <NotificationPreferencesPanel />
+          </Reveal>
+        )}
+
+        {isLoading && (
+          <div className={styles.center}>
+            <Spinner size={28} />
+          </div>
+        )}
+
+        {!isLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
+
+        {!isLoading && !isError && (!notifications || notifications.length === 0) && (
+          <EmptyResults variant="empty" title={t('notifications.empty')} text={t('notifications.emptyText')} />
+        )}
+
+        {!isLoading && !isError && notifications && notifications.length > 0 && (
+          <div className={styles.list}>
+            {notifications.map((notification, index) => (
+              <Reveal key={notification.id} delay={Math.min(index, 8) * 60}>
+                <NotificationItem notification={notification} onMarkRead={markRead} onDelete={handleDelete} />
+              </Reveal>
+            ))}
+          </div>
+        )}
       </div>
-
-      {isLoading && (
-        <div className={styles.center}>
-          <Spinner size={28} />
-        </div>
-      )}
-
-      {!isLoading && isError && <EmptyResults variant="error" onRetry={() => refetch()} />}
-
-      {!isLoading && !isError && (!notifications || notifications.length === 0) && (
-        <EmptyResults variant="empty" title={t('notifications.empty')} text={t('notifications.emptyText')} />
-      )}
-
-      {!isLoading && !isError && notifications && notifications.length > 0 && (
-        <div className={styles.list}>
-          {notifications.map((notification, index) => (
-            <Reveal key={notification.id} delay={Math.min(index, 8) * 60}>
-              <NotificationItem notification={notification} onMarkRead={markRead} onDelete={handleDelete} />
-            </Reveal>
-          ))}
-        </div>
-      )}
     </div>
   );
 }

@@ -16,6 +16,9 @@
     "exploreAlso": "Explorez aussi",
     "back": "Retour",
     "close": "Fermer",
+    "settings": "Réglages",
+    "language": "Langue",
+    "appearance": "Apparence",
     "delete": "Supprimer",
     "previous": "Précédent",
     "next": "Suivant",
@@ -770,6 +773,8 @@
     "categoriesLabel": "Catégories",
     "tabAll": "Toutes",
     "tabUnread": "Non lues",
+    "unreadCount_one": "{{count}} non lue",
+    "unreadCount_other": "{{count}} non lues",
     "categories": {
       "reservation_confirmation": "Confirmation de réservation",
       "rappel_activite": "Rappel d'activité",

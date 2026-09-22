@@ -160,6 +160,13 @@
   }
 }
 
+.actionsDivider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
 .loginLink {
   height: 38px;
   display: inline-flex;

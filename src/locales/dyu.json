@@ -16,6 +16,9 @@
     "exploreAlso": "I mana ɲini fana",
     "back": "Kɔsegin",
     "close": "A datugu",
+    "settings": "Labɛnw",
+    "language": "Kan",
+    "appearance": "A yenjɛ cogo",
     "delete": "A bɔ",
     "previous": "Ka taa kɔfɛ",
     "next": "Ka taa ɲɛfɛ",
@@ -770,6 +773,8 @@
     "categoriesLabel": "Suguyaw",
     "tabAll": "Bɛɛ",
     "tabUnread": "Kalanbaliw",
+    "unreadCount_one": "{{count}} ma kalan",
+    "unreadCount_other": "{{count}} ma kalan",
     "categories": {
       "reservation_confirmation": "Sigiyɔrɔ dandanni",
       "rappel_activite": "Baara hakili jigin",
