@@ -34,6 +34,7 @@ export function RestaurantSection() {
         itemId={analyticsRestaurant.id}
         name={analyticsRestaurant.name}
         status={analyticsRestaurant.status}
+        logoUrl={analyticsRestaurant.photos[0]}
         onBack={() => setAnalyticsRestaurant(undefined)}
       />
     );

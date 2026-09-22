@@ -2,17 +2,24 @@
   position: relative;
   width: 100%;
   min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
 }
 
 .row {
   display: flex;
-  flex-direction: column;
   gap: var(--space-2);
+  padding-bottom: 2px;
 }
 
 .chip {
-  width: 100%;
-  display: flex;
+  flex-shrink: 0;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   height: 40px;

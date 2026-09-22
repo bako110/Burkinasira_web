@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Phone, CheckCircle2 } from 'lucide-react';
+import { Calendar, Phone, CheckCircle2, FileDown } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Button, Spinner, EmptyResults } from '../../../shared/ui';
@@ -8,7 +8,15 @@ import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { useConfirmBooking, useMyGuideBookings, useReceivedBookings } from '../hooks/useGuideBookings';
 import type { BookingStatus, ProviderItemType } from '../types';
+import { generateBookingsPdf } from '../bookingsPdf';
 import styles from './BookingsTab.module.css';
+
+const ITEM_TYPE_LABEL_KEY: Record<ProviderItemType, string> = {
+  hotel: 'nav.hotels',
+  restaurant: 'nav.restaurants',
+  transport: 'nav.mobility',
+  product: 'nav.market',
+};
 
 const STATUS_FILTERS: { value: BookingStatus | 'all'; labelKey: string }[] = [
   { value: 'all', labelKey: 'pro.filterAll' },
@@ -28,6 +36,8 @@ const BADGE_CLASS: Record<BookingStatus, string> = {
 
 interface BookingsTabProps {
   source?: { itemType: ProviderItemType; itemId: string | undefined };
+  establishmentName?: string;
+  logoUrl?: string;
 }
 
 function useBookingsSource(filter: BookingStatus | 'all', source?: BookingsTabProps['source']) {
@@ -37,10 +47,11 @@ function useBookingsSource(filter: BookingStatus | 'all', source?: BookingsTabPr
   return source ? providerQuery : guideQuery;
 }
 
-export function BookingsTab({ source }: BookingsTabProps) {
+export function BookingsTab({ source, establishmentName, logoUrl }: BookingsTabProps) {
   const { t } = useTranslation();
   const push = useToastStore((s) => s.push);
   const [filter, setFilter] = useState<BookingStatus | 'all'>('all');
+  const [isExporting, setIsExporting] = useState(false);
   const { data: bookings, isLoading } = useBookingsSource(filter, source);
   const confirmBooking = useConfirmBooking();
 
@@ -51,19 +62,76 @@ export function BookingsTab({ source }: BookingsTabProps) {
     });
   }
 
+  async function handleExportPdf() {
+    if (!bookings || !establishmentName || !source) return;
+    setIsExporting(true);
+    try {
+      await generateBookingsPdf({
+        establishmentName,
+        establishmentTypeLabel: t(ITEM_TYPE_LABEL_KEY[source.itemType]),
+        logoUrl,
+        bookings,
+        labels: {
+          documentTitle: t('pro.pdfDocumentTitle'),
+          generatedOn: `${t('pro.pdfGeneratedOn')} ${new Date().toLocaleDateString('fr-FR', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          })}`,
+          documentRef: t('pro.pdfDocumentRef'),
+          authenticityNotice: t('pro.pdfAuthenticityNotice'),
+          columnCustomer: t('pro.pdfColumnCustomer'),
+          columnReference: t('pro.pdfColumnReference'),
+          columnDate: t('pro.pdfColumnDate'),
+          columnAmount: t('pro.pdfColumnAmount'),
+          columnStatus: t('pro.pdfColumnStatus'),
+          totalBookings: t('pro.pdfTotalBookings'),
+          statusLabels: {
+            pending: t('pro.bookingStatus_pending'),
+            confirmed: t('pro.bookingStatus_confirmed'),
+            cancelled: t('pro.bookingStatus_cancelled'),
+            completed: t('pro.bookingStatus_completed'),
+            refunded: t('pro.bookingStatus_refunded'),
+          },
+          unknownCustomer: t('pro.unknownCustomer'),
+          noBookings: t('pro.noBookings'),
+        },
+      });
+      push({ variant: 'success', message: t('pro.exportPdfSuccess') });
+    } catch {
+      push({ variant: 'error', message: t('pro.exportPdfError') });
+    } finally {
+      setIsExporting(false);
+    }
+  }
+
   return (
     <div className={styles.container}>
-      <div className={styles.filters}>
-        {STATUS_FILTERS.map((f) => (
-          <button
-            key={f.value}
-            type="button"
-            className={clsx(styles.filterButton, filter === f.value && styles.filterButtonActive)}
-            onClick={() => setFilter(f.value)}
+      <div className={styles.toolbar}>
+        <div className={styles.filters}>
+          {STATUS_FILTERS.map((f) => (
+            <button
+              key={f.value}
+              type="button"
+              className={clsx(styles.filterButton, filter === f.value && styles.filterButtonActive)}
+              onClick={() => setFilter(f.value)}
+            >
+              {t(f.labelKey)}
+            </button>
+          ))}
+        </div>
+
+        {establishmentName && (
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleExportPdf}
+            disabled={isExporting || !bookings || bookings.length === 0}
           >
-            {t(f.labelKey)}
-          </button>
-        ))}
+            <FileDown size={15} strokeWidth={2} />
+            {isExporting ? t('pro.exportPdfGenerating') : t('pro.exportPdf')}
+          </Button>
+        )}
       </div>
 
       {isLoading && <Spinner size={22} />}

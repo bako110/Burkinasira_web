@@ -34,6 +34,7 @@ export function HotelSection() {
         itemId={analyticsHotel.id}
         name={analyticsHotel.name}
         status={analyticsHotel.status}
+        logoUrl={analyticsHotel.photos[0]}
         onBack={() => setAnalyticsHotel(undefined)}
       />
     );

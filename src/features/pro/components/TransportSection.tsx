@@ -34,6 +34,7 @@ export function TransportSection() {
         itemId={analyticsProvider.id}
         name={analyticsProvider.name}
         status={analyticsProvider.status}
+        logoUrl={analyticsProvider.photos[0]}
         onBack={() => setAnalyticsProvider(undefined)}
       />
     );

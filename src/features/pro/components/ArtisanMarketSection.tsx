@@ -56,6 +56,7 @@ export function ArtisanMarketSection() {
         itemId={analyticsProduct.id}
         name={analyticsProduct.name}
         status={analyticsProduct.status}
+        logoUrl={analyticsProduct.photos[0]}
         onBack={() => setAnalyticsProduct(undefined)}
       />
     );

@@ -24,10 +24,18 @@ interface EstablishmentDetailPanelProps {
   itemId: string;
   name: string;
   status?: string;
+  logoUrl?: string;
   onBack: () => void;
 }
 
-export function EstablishmentDetailPanel({ itemType, itemId, name, status, onBack }: EstablishmentDetailPanelProps) {
+export function EstablishmentDetailPanel({
+  itemType,
+  itemId,
+  name,
+  status,
+  logoUrl,
+  onBack,
+}: EstablishmentDetailPanelProps) {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<DetailTabKey>('analytics');
 
@@ -65,7 +73,9 @@ export function EstablishmentDetailPanel({ itemType, itemId, name, status, onBac
       </div>
 
       {activeTab === 'analytics' && <AnalyticsTab source={source} />}
-      {activeTab === 'bookings' && <BookingsTab source={source} />}
+      {activeTab === 'bookings' && (
+        <BookingsTab source={source} establishmentName={name} logoUrl={logoUrl} />
+      )}
       {activeTab === 'reviews' && <ReviewsTab source={source} />}
     </div>
   );
