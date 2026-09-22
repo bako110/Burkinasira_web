@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Plus, Users, Image, HelpCircle, Heart, UsersRound, Handshake } from 'lucide-react';
+import { Plus, Users, Image, HelpCircle, Heart, UsersRound, Handshake, Radio } from 'lucide-react';
 import clsx from 'clsx';
 
 import {
@@ -33,10 +33,13 @@ import { FavoriteListCard } from '../components/FavoriteListCard';
 import { CreateFavoriteListModal } from '../components/CreateFavoriteListModal';
 import { GroupCard } from '../components/GroupCard';
 import { CreateGroupModal } from '../components/CreateGroupModal';
+import { LiveCard } from '../components/LiveCard';
+import { StartLiveModal } from '../components/StartLiveModal';
+import { useLiveSessions } from '../hooks/useLive';
 import { GROUP_THEMES, type Post, type Question } from '../types';
 import styles from './CommunityPage.module.css';
 
-type Tab = 'posts' | 'questions' | 'favorites' | 'groups' | 'localMeet';
+type Tab = 'posts' | 'questions' | 'favorites' | 'groups' | 'localMeet' | 'live';
 
 /** Types d'expériences relevant du tourisme communautaire (touriste ↔ habitant). */
 const LOCAL_MEET_TYPES: ExperienceType[] = [
@@ -81,6 +84,9 @@ export function CommunityPage() {
   const [pendingDeleteListId, setPendingDeleteListId] = useState<string | undefined>(undefined);
   const { data: favoriteLists, isLoading: isLoadingLists } = useMyFavoriteLists();
   const { mutate: deleteList } = useDeleteFavoriteList();
+
+  const [startLiveOpen, setStartLiveOpen] = useState(false);
+  const { data: liveSessions, isLoading: isLoadingLive } = useLiveSessions();
 
   const [createGroupOpen, setCreateGroupOpen] = useState(false);
   const [groupRegion, setGroupRegion] = useState<string | undefined>(undefined);
@@ -169,6 +175,15 @@ export function CommunityPage() {
           >
             <Handshake size={16} strokeWidth={2} />
             {t('experiences.localMeetTab')}
+          </button>
+          <button
+            type="button"
+            className={clsx(styles.tabBtn, tab === 'live' && styles.tabBtnActive)}
+            onClick={() => setTab('live')}
+          >
+            <Radio size={16} strokeWidth={2} />
+            {t('community.tabLive')}
+            {(liveSessions?.length ?? 0) > 0 && <span className={styles.liveDot} aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -384,9 +399,44 @@ export function CommunityPage() {
             )}
           </div>
         )}
+
+        {tab === 'live' && (
+          <div className={styles.tabContent}>
+            <div className={styles.tabHeader}>
+              <Button
+                variant="secondary"
+                onClick={() => requireAuth(() => setStartLiveOpen(true), t('community.startLiveRequiresAuth'))}
+              >
+                <Radio size={16} strokeWidth={2} />
+                {t('community.startLiveCta')}
+              </Button>
+            </div>
+
+            {isLoadingLive && (
+              <div className={styles.center}>
+                <Spinner size={24} />
+              </div>
+            )}
+
+            {!isLoadingLive && (!liveSessions || liveSessions.length === 0) && (
+              <EmptyResults variant="empty" title={t('community.noLive')} text={t('community.noLiveText')} />
+            )}
+
+            {!isLoadingLive && liveSessions && liveSessions.length > 0 && (
+              <div className={styles.grid}>
+                {liveSessions.map((session, i) => (
+                  <Reveal key={session.id} delay={i * 60}>
+                    <LiveCard session={session} />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <CreatePostModal open={createPostOpen} onClose={() => setCreatePostOpen(false)} />
+      <StartLiveModal open={startLiveOpen} onClose={() => setStartLiveOpen(false)} />
       <AskQuestionModal open={askOpen} onClose={() => setAskOpen(false)} />
       <QuestionDetailModal question={activeQuestion} onClose={() => setActiveQuestion(null)} />
       <CreateFavoriteListModal open={createListOpen} onClose={() => setCreateListOpen(false)} />

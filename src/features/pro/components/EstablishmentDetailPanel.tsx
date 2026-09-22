@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeft, Clock, ChartColumn, CalendarCheck, Star } from 'lucide-react';
+import clsx from 'clsx';
 
-import { Tabs } from '../../../shared/ui';
 import type { ProviderItemType } from '../types';
 import { AnalyticsTab } from './AnalyticsTab';
 import { BookingsTab } from './BookingsTab';
 import { ReviewsTab } from './ReviewsTab';
-import styles from './HotelSection.module.css';
+import styles from './EstablishmentDetailPanel.module.css';
 import formStyles from './GuideProfileForm.module.css';
 
-const DETAIL_TAB_KEYS = ['analytics', 'bookings', 'reviews'] as const;
-type DetailTabKey = (typeof DETAIL_TAB_KEYS)[number];
+const DETAIL_TABS = [
+  { key: 'analytics', Icon: ChartColumn },
+  { key: 'bookings', Icon: CalendarCheck },
+  { key: 'reviews', Icon: Star },
+] as const;
+type DetailTabKey = (typeof DETAIL_TABS)[number]['key'];
 
 const UNPUBLISHED_STATUSES = new Set(['draft', 'pending']);
 
@@ -27,19 +31,17 @@ export function EstablishmentDetailPanel({ itemType, itemId, name, status, onBac
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<DetailTabKey>('analytics');
 
-  const tabs = DETAIL_TAB_KEYS.map((key) => ({ key, label: t(`pro.tab_${key}`) }));
   const source = { itemType, itemId };
   const isUnpublished = status ? UNPUBLISHED_STATUSES.has(status) : false;
 
   return (
     <div className={styles.section}>
-      <div className={styles.detailHeader}>
-        <button type="button" className={styles.backBtn} onClick={onBack}>
-          <ArrowLeft size={16} strokeWidth={2} />
-          {t('pro.backToList')}
+      <div className={styles.header}>
+        <button type="button" className={styles.backBtn} onClick={onBack} aria-label={t('pro.backToList')}>
+          <ArrowLeft size={18} strokeWidth={2} />
         </button>
+        <h3 className={styles.headerTitle}>{name}</h3>
       </div>
-      <h3 className={styles.headerTitle}>{name}</h3>
 
       {isUnpublished && (
         <div className={`${formStyles.statusBanner} ${formStyles.statusPending}`}>
@@ -48,7 +50,19 @@ export function EstablishmentDetailPanel({ itemType, itemId, name, status, onBac
         </div>
       )}
 
-      <Tabs items={tabs} active={activeTab} onChange={(key) => setActiveTab(key as DetailTabKey)} />
+      <div className={styles.tabs}>
+        {DETAIL_TABS.map(({ key, Icon }) => (
+          <button
+            key={key}
+            type="button"
+            className={clsx(styles.tab, activeTab === key && styles.tabActive)}
+            onClick={() => setActiveTab(key)}
+          >
+            <Icon size={15} strokeWidth={2} />
+            {t(`pro.tab_${key}`)}
+          </button>
+        ))}
+      </div>
 
       {activeTab === 'analytics' && <AnalyticsTab source={source} />}
       {activeTab === 'bookings' && <BookingsTab source={source} />}

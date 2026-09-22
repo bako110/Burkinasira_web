@@ -218,11 +218,31 @@
   right: var(--space-3);
 }
 
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-danger);
+  animation: liveDotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tabBtn,
   .tabBtn svg,
   .tabBtn::after {
     transition: none;
+  }
+  .liveDot {
+    animation: none;
   }
 }
 

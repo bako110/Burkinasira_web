@@ -54,6 +54,7 @@ import { TripDetailPage } from '../../features/trips/pages/TripDetailPage';
 import { NotificationsPage } from '../../features/notifications/pages/NotificationsPage';
 import { CommunityPage } from '../../features/community/pages/CommunityPage';
 import { GroupDetailPage } from '../../features/community/pages/GroupDetailPage';
+import { LiveDetailPage } from '../../features/community/pages/LiveDetailPage';
 import { MessagesPage } from '../../features/messaging/pages/MessagesPage';
 import { ProfilePage } from '../../features/profile/pages/ProfilePage';
 import { PersonalInfoPage } from '../../features/profile/pages/PersonalInfoPage';
@@ -130,6 +131,7 @@ export const router = createBrowserRouter([
           { path: '/emergency', element: <EmergencyPage /> },
           { path: '/community', element: <CommunityPage /> },
           { path: '/community/groups/:groupId', element: <GroupDetailPage /> },
+          { path: '/community/live/:sessionId', element: <LiveDetailPage /> },
           { path: '/weather', element: <WeatherPage /> },
           { path: '/finance', element: <FinancePage /> },
           { path: '/finance/:id', element: <MoneyServiceDetailPage /> },

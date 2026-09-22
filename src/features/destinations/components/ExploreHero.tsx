@@ -2,7 +2,7 @@ import { type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Compass } from 'lucide-react';
 
-import { DetailBackButton } from '../../../shared/ui';
+import { DetailBackButton, FloatingFlags } from '../../../shared/ui';
 import styles from './ExploreHero.module.css';
 
 interface ExploreHeroProps {
@@ -23,6 +23,7 @@ export function ExploreHero({ query, onQueryChange, onSubmit }: ExploreHeroProps
     <section className={styles.hero}>
       <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.pattern} aria-hidden="true" />
+      <FloatingFlags tone="bold" />
       <DetailBackButton fallbackTo="/" className={styles.backBtn} />
 
       <div className={styles.content}>
@@ -32,22 +33,23 @@ export function ExploreHero({ query, onQueryChange, onSubmit }: ExploreHeroProps
         </span>
 
         <h1 className={styles.title}>{t('destinations.title')}</h1>
-
-        <form className={styles.searchBar} onSubmit={handleSubmit} autoComplete="off">
-          <Search size={20} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
-          <input
-            className={styles.searchInput}
-            placeholder={t('home.searchPlaceholder')}
-            value={query}
-            onChange={(e) => onQueryChange(e.target.value)}
-            aria-label={t('common.search')}
-          />
-          <button type="submit" className={styles.searchButton}>
-            {t('common.search')}
-          </button>
-        </form>
-
         <p className={styles.subtitle}>{t('explore.subtitle')}</p>
+
+        <div className={styles.searchPanel}>
+          <form className={styles.searchBar} onSubmit={handleSubmit} autoComplete="off">
+            <Search size={20} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
+            <input
+              className={styles.searchInput}
+              placeholder={t('home.searchPlaceholder')}
+              value={query}
+              onChange={(e) => onQueryChange(e.target.value)}
+              aria-label={t('common.search')}
+            />
+            <button type="submit" className={styles.searchButton}>
+              {t('common.search')}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
