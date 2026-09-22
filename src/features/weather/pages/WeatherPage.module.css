@@ -14,7 +14,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: calc(var(--space-5) + 36px) var(--space-3) var(--space-4);
+    padding: calc(var(--space-4) + 36px) var(--space-3) var(--space-3);
   }
 }
 
@@ -79,6 +79,19 @@
   color: #fff;
 }
 
+@media (max-width: 480px) {
+  .heroIcon {
+    width: 32px;
+    height: 32px;
+    margin-top: 0;
+  }
+
+  .heroIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .heroTitle {
   margin: var(--space-1) 0 0;
   font-size: clamp(1.375rem, 3.4vw, 1.875rem);
@@ -86,6 +99,12 @@
   color: #fff;
   letter-spacing: -0.02em;
   line-height: 1.1;
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.125rem;
+  }
 }
 
 .heroSubtitle {

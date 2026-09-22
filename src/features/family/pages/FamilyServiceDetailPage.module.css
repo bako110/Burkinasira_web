@@ -33,7 +33,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: calc(var(--space-5) + 32px) var(--space-4) var(--space-5);
+    padding: calc(var(--space-4) + 36px) var(--space-4) var(--space-4);
   }
 }
 
