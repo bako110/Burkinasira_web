@@ -3,6 +3,7 @@
 }
 
 .trigger {
+  flex-shrink: 0;
   height: 38px;
   display: flex;
   align-items: center;
@@ -16,6 +17,18 @@
   font-size: 0.8125rem;
   cursor: pointer;
   transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+@media (max-width: 400px) {
+  .trigger {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .code {
+    display: none;
+  }
 }
 
 .trigger:hover,

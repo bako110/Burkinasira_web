@@ -40,7 +40,7 @@
   letter-spacing: -0.01em;
   text-decoration: none;
   color: var(--color-text);
-  flex-shrink: 0;
+  flex-shrink: 1;
   min-width: 0;
   transition: opacity var(--transition-fast);
 }
