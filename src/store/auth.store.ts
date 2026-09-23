@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import type { UserPublic } from '../shared/api/types';
+import { queryClient } from '../shared/queryClient';
 
 interface AuthState {
   accessToken: string | null;
@@ -29,6 +30,10 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: readStoredUser(),
   isAuthenticated: Boolean(localStorage.getItem(TOKEN_KEY)),
   setSession: (accessToken, user) => {
+    // Un nouveau compte peut se connecter juste après un autre (tests, poste
+    // partagé) : on vide le cache pour ne jamais montrer les établissements/
+    // réservations du compte précédent le temps que les requêtes se rechargent.
+    queryClient.clear();
     localStorage.setItem(TOKEN_KEY, accessToken);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
     set({ accessToken, user, isAuthenticated: true });
@@ -38,6 +43,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ user });
   },
   clearSession: () => {
+    queryClient.clear();
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
     set({ accessToken: null, user: null, isAuthenticated: false });
