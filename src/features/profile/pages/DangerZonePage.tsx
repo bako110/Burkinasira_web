@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Trash2, AlertTriangle } from 'lucide-react';
 
 import { Card, Button, DetailBackButton } from '../../../shared/ui';
@@ -13,6 +14,7 @@ import styles from './ProfileSubPage.module.css';
 
 export function DangerZonePage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const clearSession = useAuthStore((s) => s.clearSession);
   const push = useToastStore((s) => s.push);
   const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
@@ -23,6 +25,7 @@ export function DangerZonePage() {
       onSuccess: () => {
         push({ variant: 'success', message: t('profile.deleteSuccess') });
         clearSession();
+        navigate('/', { replace: true });
       },
       onError: (err) => {
         push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) });

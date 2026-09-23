@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '../../store/auth.store';
 import { useToastStore } from '../../store/toast.store';
 
 export function useLogoutConfirm() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const clearSession = useAuthStore((s) => s.clearSession);
   const push = useToastStore((s) => s.push);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -22,6 +24,7 @@ export function useLogoutConfirm() {
     setConfirmOpen(false);
     clearSession();
     push({ variant: 'info', message: t('auth.logoutSuccess') });
+    navigate('/', { replace: true });
   }
 
   return { confirmOpen, requestLogout, cancelLogout, confirmLogout };

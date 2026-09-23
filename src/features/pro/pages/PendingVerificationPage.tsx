@@ -1,5 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, Upload, CheckCircle2, Lightbulb, AlertTriangle } from 'lucide-react';
 
 import { Button, Card, Spinner, Reveal } from '../../../shared/ui';
@@ -42,10 +43,16 @@ const REQUEST_ITEM_CLASS: Record<VerificationStatus, string> = {
 
 export function PendingVerificationPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const push = useToastStore((s) => s.push);
   const user = useAuthStore((s) => s.user);
   const clearSession = useAuthStore((s) => s.clearSession);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function handleLogout() {
+    clearSession();
+    navigate('/', { replace: true });
+  }
 
   const isGuide = user?.role === 'guide';
   const requirements = isGuide ? GUIDE_REQUIREMENTS : PROVIDER_REQUIREMENTS;
@@ -233,7 +240,7 @@ export function PendingVerificationPage() {
         </Reveal>
 
         <div className={styles.logoutRow}>
-          <button type="button" className={styles.logoutButton} onClick={clearSession}>
+          <button type="button" className={styles.logoutButton} onClick={handleLogout}>
             {t('auth.logout')}
           </button>
         </div>

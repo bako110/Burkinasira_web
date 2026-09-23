@@ -1,6 +1,6 @@
 import { type FormEvent, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import {
   LogOut,
@@ -50,6 +50,7 @@ const SETTINGS_LINKS: { to: string; labelKey: string; Icon: typeof User; danger?
 
 export function ProfilePage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const clearSession = useAuthStore((s) => s.clearSession);
   const { confirmOpen, requestLogout, cancelLogout, confirmLogout } = useLogoutConfirm();
@@ -115,6 +116,7 @@ export function ProfilePage() {
       onSuccess: () => {
         push({ variant: 'success', message: t('profile.deleteSuccess') });
         clearSession();
+        navigate('/', { replace: true });
       },
       onError: (err) => {
         push({ variant: 'error', message: extractApiErrorMessage(err, t('common.error')) });
