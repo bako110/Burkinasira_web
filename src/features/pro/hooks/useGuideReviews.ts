@@ -3,10 +3,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchMyGuideReviews, fetchReviewsForTarget, replyToReview } from '../api/guideReviews.api';
 import type { ReplyReviewPayload, ReviewTargetType } from '../types';
 
-export function useMyGuideReviews(page = 1, pageSize = 20) {
+export function useMyGuideReviews(page = 1, pageSize = 20, enabled = true) {
   return useQuery({
     queryKey: ['my-guide-reviews', page, pageSize],
     queryFn: () => fetchMyGuideReviews(page, pageSize),
+    enabled,
   });
 }
 

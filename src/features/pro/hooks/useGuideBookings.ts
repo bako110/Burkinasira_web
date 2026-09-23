@@ -3,10 +3,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchMyGuideBookings, fetchReceivedBookings, confirmBooking } from '../api/guideBookings.api';
 import type { BookingStatus, ProviderItemType } from '../types';
 
-export function useMyGuideBookings(statusFilter?: BookingStatus) {
+export function useMyGuideBookings(statusFilter?: BookingStatus, enabled = true) {
   return useQuery({
     queryKey: ['my-guide-bookings', statusFilter],
     queryFn: () => fetchMyGuideBookings(statusFilter),
+    enabled,
   });
 }
 

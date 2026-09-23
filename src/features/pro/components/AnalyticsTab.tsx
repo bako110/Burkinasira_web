@@ -40,7 +40,7 @@ interface AnalyticsTabProps {
 }
 
 function useAnalyticsSource(source?: AnalyticsTabProps['source']) {
-  const guideQuery = useMyGuideAnalytics();
+  const guideQuery = useMyGuideAnalytics(!source);
   const providerQuery = useMyProviderAnalytics(source?.itemType ?? 'hotel', source?.itemId);
   return source ? providerQuery : guideQuery;
 }

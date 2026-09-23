@@ -82,7 +82,7 @@ interface ReviewsTabProps {
 }
 
 function useReviewsSource(source?: ReviewsTabProps['source']) {
-  const guideQuery = useMyGuideReviews();
+  const guideQuery = useMyGuideReviews(1, 20, !source);
   const targetType = source ? ITEM_TYPE_TO_REVIEW_TARGET[source.itemType] : 'hotel';
   const providerQuery = useReviewsForTarget(targetType, source?.itemId);
   return source ? providerQuery : guideQuery;

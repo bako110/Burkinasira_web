@@ -43,7 +43,7 @@ interface BookingsTabProps {
 
 function useBookingsSource(filter: BookingStatus | 'all', source?: BookingsTabProps['source']) {
   const statusFilter = filter === 'all' ? undefined : filter;
-  const guideQuery = useMyGuideBookings(statusFilter);
+  const guideQuery = useMyGuideBookings(statusFilter, !source);
   const providerQuery = useReceivedBookings(source?.itemType ?? 'hotel', source?.itemId, statusFilter);
   return source ? providerQuery : guideQuery;
 }

@@ -3,10 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchMyGuideAnalytics, fetchMyProviderAnalytics } from '../api/guideAnalytics.api';
 import type { ProviderItemType } from '../types';
 
-export function useMyGuideAnalytics() {
+export function useMyGuideAnalytics(enabled = true) {
   return useQuery({
     queryKey: ['my-guide-analytics'],
     queryFn: fetchMyGuideAnalytics,
+    enabled,
   });
 }
 
