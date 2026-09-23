@@ -332,6 +332,17 @@
     "healthServices": "Services offered",
     "healthServicesPlaceholder": "Emergency care, On-duty pharmacy, Laboratory...",
     "isOnDuty": "On-duty facility",
+    "viewReceivedOrders": "View received orders",
+    "receivedOrdersTitle": "Received orders",
+    "receivedOrdersSubtitle": "All orders placed on your products, in every status.",
+    "noOrdersReceived": "No orders received",
+    "noOrdersReceivedText": "Orders placed on your products will appear here.",
+    "orderStatusUpdated": "Order status updated",
+    "orderCancel": "Cancel",
+    "orderAdvanceTo_confirmed": "Confirm",
+    "orderAdvanceTo_handed_to_agency": "Hand to agency",
+    "orderAdvanceTo_in_delivery": "Mark out for delivery",
+    "orderAdvanceTo_delivered": "Mark delivered",
     "editEstablishment": "Edit",
     "deleteEstablishmentConfirmTitle": "Delete this establishment?",
     "deleteEstablishmentConfirmMessage": "This action cannot be undone. All associated data will be deleted.",
@@ -807,7 +818,8 @@
       "evenement_proximite": "Nearby event",
       "promotion_personnalisee": "Personalized promotion",
       "message_prestataire": "Message from a provider",
-      "rappel_voyage": "Trip reminder"
+      "rappel_voyage": "Trip reminder",
+      "commande_artisanale": "Craft order"
     }
   },
   "experiences": {
@@ -1353,7 +1365,11 @@
     "orderStatus": {
       "pending": "Pending",
       "confirmed": "Confirmed",
+      "handed_to_agency": "Handed to agency",
+      "in_delivery": "Out for delivery",
+      "delivered": "Delivered",
       "cancelled": "Cancelled",
+      "returned": "Returned",
       "completed": "Completed",
       "refunded": "Refunded"
     },

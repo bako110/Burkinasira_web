@@ -8,7 +8,8 @@ export type NotificationCategory =
   | 'evenement_proximite'
   | 'promotion_personnalisee'
   | 'message_prestataire'
-  | 'rappel_voyage';
+  | 'rappel_voyage'
+  | 'commande_artisanale';
 
 export interface AppNotification {
   id: string;
@@ -44,4 +45,5 @@ export const ALL_NOTIFICATION_CATEGORIES: NotificationCategory[] = [
   'promotion_personnalisee',
   'message_prestataire',
   'rappel_voyage',
+  'commande_artisanale',
 ];

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus, ShoppingBag } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Plus, ShoppingBag, PackageSearch } from 'lucide-react';
 
 import { Button, Spinner, Modal, ConfirmDialog, Reveal } from '../../../shared/ui';
 import { extractApiErrorMessage } from '../../../shared/api/client';
@@ -15,6 +16,7 @@ import styles from './ArtisanMarketSection.module.css';
 
 export function ArtisanMarketSection() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const push = useToastStore((s) => s.push);
   const { data: artisanProfile, isLoading: isProfileLoading } = useMyArtisanProfile();
   const { data: products, isLoading: isProductsLoading } = useMyProducts();
@@ -74,9 +76,15 @@ export function ArtisanMarketSection() {
             </span>
           )}
         </div>
-        <Button size="sm" variant="secondary" onClick={() => setProfileFormOpen(true)}>
-          {t('pro.editEstablishment')}
-        </Button>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <Button size="sm" variant="secondary" onClick={() => navigate('/pro/provider/artisan/orders')}>
+            <PackageSearch size={15} strokeWidth={2} />
+            {t('pro.viewReceivedOrders')}
+          </Button>
+          <Button size="sm" variant="secondary" onClick={() => setProfileFormOpen(true)}>
+            {t('pro.editEstablishment')}
+          </Button>
+        </div>
       </div>
 
       <div className={styles.headerRow}>

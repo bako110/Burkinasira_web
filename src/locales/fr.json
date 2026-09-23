@@ -332,6 +332,17 @@
     "healthServices": "Services proposés",
     "healthServicesPlaceholder": "Urgences, Pharmacie de garde, Laboratoire...",
     "isOnDuty": "Établissement de garde",
+    "viewReceivedOrders": "Voir les commandes reçues",
+    "receivedOrdersTitle": "Commandes reçues",
+    "receivedOrdersSubtitle": "Toutes les commandes passées sur vos produits, tous statuts confondus.",
+    "noOrdersReceived": "Aucune commande reçue",
+    "noOrdersReceivedText": "Les commandes passées sur vos produits apparaîtront ici.",
+    "orderStatusUpdated": "Statut de la commande mis à jour",
+    "orderCancel": "Annuler",
+    "orderAdvanceTo_confirmed": "Confirmer",
+    "orderAdvanceTo_handed_to_agency": "Remettre à l'agence",
+    "orderAdvanceTo_in_delivery": "Marquer en livraison",
+    "orderAdvanceTo_delivered": "Marquer livrée",
     "editEstablishment": "Modifier",
     "deleteEstablishmentConfirmTitle": "Supprimer cet établissement ?",
     "deleteEstablishmentConfirmMessage": "Cette action est irréversible. Toutes les données associées seront supprimées.",
@@ -807,7 +818,8 @@
       "evenement_proximite": "Événement à proximité",
       "promotion_personnalisee": "Promotion personnalisée",
       "message_prestataire": "Message d'un prestataire",
-      "rappel_voyage": "Rappel de voyage"
+      "rappel_voyage": "Rappel de voyage",
+      "commande_artisanale": "Commande artisanale"
     }
   },
   "experiences": {
@@ -1353,7 +1365,11 @@
     "orderStatus": {
       "pending": "En attente",
       "confirmed": "Confirmée",
+      "handed_to_agency": "Remise à l'agence",
+      "in_delivery": "En livraison",
+      "delivered": "Livrée",
       "cancelled": "Annulée",
+      "returned": "Retournée",
       "completed": "Terminée",
       "refunded": "Remboursée"
     },

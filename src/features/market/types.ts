@@ -80,6 +80,22 @@ export interface ProductDetail {
 
 export type OrderStatus = string;
 
+export type ArtisanOrderStatus =
+  | 'pending'
+  | 'confirmed'
+  | 'handed_to_agency'
+  | 'in_delivery'
+  | 'delivered'
+  | 'cancelled'
+  | 'returned';
+
+export interface OrderStatusEvent {
+  status: string;
+  at: string;
+  by: string;
+  note?: string;
+}
+
 export interface Order {
   id: string;
   buyer_id: string;
@@ -94,11 +110,24 @@ export interface Order {
   delivery_provider?: string;
   delivery_eta_days_min?: number;
   delivery_eta_days_max?: number;
+  tracking_number?: string;
+  carrier_note?: string;
+  estimated_delivery_date?: string;
+  settlement_status?: string;
+  status_history?: OrderStatusEvent[];
   total_price: number;
   currency: string;
   fulfillment_mode: FulfillmentMode;
   status: OrderStatus;
   created_at: string;
+  updated_at?: string;
+}
+
+export interface UpdateOrderStatusPayload {
+  status: ArtisanOrderStatus;
+  tracking_number?: string;
+  carrier_note?: string;
+  note?: string;
 }
 
 /**

@@ -10,6 +10,7 @@ import type {
   ProductDetail,
   ProductFilters,
   ProductSummary,
+  UpdateOrderStatusPayload,
 } from '../types';
 
 export async function fetchProducts(filters: ProductFilters = {}): Promise<PaginatedResponse<ProductSummary>> {
@@ -46,5 +47,17 @@ export async function quoteDeliveryFee(payload: DeliveryFeeQuoteRequest): Promis
 
 export async function fetchMyOrders(): Promise<Order[]> {
   const { data } = await apiClient.get<Order[]>('/market/orders/me');
+  return data;
+}
+
+export async function fetchReceivedOrders(status?: string): Promise<Order[]> {
+  const { data } = await apiClient.get<Order[]>('/market/orders/received', {
+    params: status ? { status } : undefined,
+  });
+  return data;
+}
+
+export async function updateOrderStatus(orderId: string, payload: UpdateOrderStatusPayload): Promise<Order> {
+  const { data } = await apiClient.patch<Order>(`/market/orders/${orderId}/status`, payload);
   return data;
 }

@@ -332,6 +332,17 @@
     "healthServices": "Baara minnu bɛ kɛ",
     "healthServicesPlaceholder": "Kɔrɔbara teliya, Fura feerekɛyɔrɔ garditɔn, Laboratwari...",
     "isOnDuty": "Gardi yɔrɔ",
+    "viewReceivedOrders": "Kɔmandiw lajɛ minnu sera",
+    "receivedOrdersTitle": "Kɔmandiw minnu sera",
+    "receivedOrdersSubtitle": "Kɔmandi bɛɛ minnu kɛra i ka fɛnw kan, jateminɛ bɛɛ la.",
+    "noOrdersReceived": "Kɔmandi si ma se",
+    "noOrdersReceivedText": "Kɔmandi minnu kɛra i ka fɛnw kan bɛna bɔ yan.",
+    "orderStatusUpdated": "Kɔmandi jateminɛ yɛlɛmana",
+    "orderCancel": "A dabɔ",
+    "orderAdvanceTo_confirmed": "A dafara",
+    "orderAdvanceTo_handed_to_agency": "A di sɔnnikɛlaw ma",
+    "orderAdvanceTo_in_delivery": "A tigɛ ko a bɛ sɔnni la",
+    "orderAdvanceTo_delivered": "A tigɛ ko a sera",
     "editEstablishment": "Yɛlɛma",
     "deleteEstablishmentConfirmTitle": "I bɛna baarayɔrɔ in bɔ wa?",
     "deleteEstablishmentConfirmMessage": "Nin baara tɛ se ka kɛ fɛ tugun. A ka kunnafoni bɛɛ bɛna bɔ.",
@@ -807,7 +818,8 @@
       "evenement_proximite": "Waati-kun i gɛrɛfɛ",
       "promotion_personnalisee": "I yɛrɛ ye fɛɛrɛ",
       "message_prestataire": "Baarakɛla bataki",
-      "rappel_voyage": "Taama hakili jigin"
+      "rappel_voyage": "Taama hakili jigin",
+      "commande_artisanale": "Baarakɛminɛn kɔmandi"
     }
   },
   "experiences": {
@@ -1353,7 +1365,11 @@
     "orderStatus": {
       "pending": "A bɛ makɔnɔ",
       "confirmed": "A dafara",
+      "handed_to_agency": "A dira sɔnnikɛlaw ma",
+      "in_delivery": "A bɛ sɔnni la",
+      "delivered": "A sera",
       "cancelled": "A dabɔra",
+      "returned": "A seginna",
       "completed": "A banna",
       "refunded": "Wari seginna"
     },

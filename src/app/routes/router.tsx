@@ -82,6 +82,7 @@ import { ProHotelPage } from '../../features/pro/pages/ProHotelPage';
 import { ProRestaurantPage } from '../../features/pro/pages/ProRestaurantPage';
 import { ProTransportPage } from '../../features/pro/pages/ProTransportPage';
 import { ProArtisanPage } from '../../features/pro/pages/ProArtisanPage';
+import { ArtisanOrdersPage } from '../../features/pro/pages/ArtisanOrdersPage';
 import { ProHealthPage } from '../../features/pro/pages/ProHealthPage';
 import { ProTeamPage } from '../../features/pro/pages/ProTeamPage';
 import { GuideAnalyticsPage } from '../../features/pro/pages/GuideAnalyticsPage';
@@ -210,6 +211,7 @@ export const router = createBrowserRouter([
           { path: '/pro/provider/restaurant', element: <ProRestaurantPage /> },
           { path: '/pro/provider/transport', element: <ProTransportPage /> },
           { path: '/pro/provider/artisan', element: <ProArtisanPage /> },
+          { path: '/pro/provider/artisan/orders', element: <ArtisanOrdersPage /> },
           { path: '/pro/provider/health', element: <ProHealthPage /> },
           { path: '/pro/provider/reports', element: <ProReportsPage /> },
           { path: '/pro/provider/team', element: <ProTeamPage /> },

@@ -332,6 +332,17 @@
     "healthServices": "Tʋʋm sẽn kõt",
     "healthServicesPlaceholder": "Yell-lekd, Pharmasi sẽn get, Laboratwar...",
     "isOnDuty": "Tʋʋm-zĩig sẽn get",
+    "viewReceivedOrders": "Ges kommand sẽn deeg",
+    "receivedOrdersTitle": "Kommand sẽn deeg",
+    "receivedOrdersSubtitle": "Kommand fãa sẽn maan f bũmbu wã zugu.",
+    "noOrdersReceived": "Kommand ka be ye",
+    "noOrdersReceivedText": "Kommand sẽn maan f bũmbu wã na n pukd gẽnẽ.",
+    "orderStatusUpdated": "Kommand a yɩlemd fabga",
+    "orderCancel": "Basa",
+    "orderAdvanceTo_confirmed": "Kɩt",
+    "orderAdvanceTo_handed_to_agency": "Kõ sondrã",
+    "orderAdvanceTo_in_delivery": "Kɩt t'a be sondr pʋgẽ",
+    "orderAdvanceTo_delivered": "Kɩt t'a ta zãmaanẽ",
     "editEstablishment": "Fabg",
     "deleteEstablishmentConfirmTitle": "Yiisg tʋʋm-zĩig kãngã?",
     "deleteEstablishmentConfirmMessage": "Bũmb-kãng ka tõe n le maane ye. Bũmb nins fãa sẽn loe ne-a na sãame.",
@@ -807,7 +818,8 @@
       "evenement_proximite": "Kibs sẽn be f nengẽ",
       "promotion_personnalisee": "Koodo sẽn maan-a foom yĩnga",
       "message_prestataire": "Tʋm-tʋmd koees",
-      "rappel_voyage": "Sore-yalg tẽesgo"
+      "rappel_voyage": "Sore-yalg tẽesgo",
+      "commande_artisanale": "Tʋm-tʋmd kommand"
     }
   },
   "experiences": {
@@ -1353,7 +1365,11 @@
     "orderStatus": {
       "pending": "Gũusg pʋgẽ",
       "confirmed": "Kɩtame",
+      "handed_to_agency": "Kõ-b sondrã",
+      "in_delivery": "Sondr pʋgẽ",
+      "delivered": "Ta zãmaanẽ",
       "cancelled": "Basame",
+      "returned": "Lebsa",
       "completed": "Sɛba",
       "refunded": "Lebs ligdã"
     },

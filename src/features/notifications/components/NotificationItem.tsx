@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
   CalendarCheck,
   Clock,
@@ -10,12 +11,15 @@ import {
   Tag,
   MessageCircle,
   Plane,
+  ShoppingBag,
   Bell,
   Trash2,
   Check,
 } from 'lucide-react';
 import clsx from 'clsx';
 
+import { useAuthStore } from '../../../store/auth.store';
+import { getPostLoginPath } from '../../pro/utils/postLoginRedirect';
 import type { AppNotification, NotificationCategory } from '../types';
 import styles from './NotificationItem.module.css';
 
@@ -30,6 +34,15 @@ const CATEGORY_ICONS: Record<NotificationCategory, typeof Bell> = {
   promotion_personnalisee: Tag,
   message_prestataire: MessageCircle,
   rappel_voyage: Plane,
+  commande_artisanale: ShoppingBag,
+};
+
+// Où atterrir en cliquant une notification : les réservations/commandes reçues
+// se consultent depuis le tableau de bord pro (pas de page de détail dédiée),
+// les échanges depuis la messagerie, les autres restent sur place (info seule).
+const CATEGORY_LINKS: Partial<Record<NotificationCategory, string>> = {
+  commande_artisanale: '/pro/provider/artisan',
+  message_prestataire: '/messages',
 };
 
 interface NotificationItemProps {
@@ -40,18 +53,27 @@ interface NotificationItemProps {
 
 export function NotificationItem({ notification, onMarkRead, onDelete }: NotificationItemProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const user = useAuthStore((s) => s.user);
   const Icon = CATEGORY_ICONS[notification.category] ?? Bell;
+  const targetPath = CATEGORY_LINKS[notification.category];
+
+  function handleClick() {
+    if (!notification.is_read) onMarkRead(notification.id);
+    if (!targetPath) return;
+    // Les liens vers l'espace pro doivent passer par /pro/pending si le compte
+    // n'est pas encore vérifié, sinon la garde de route renvoie sur l'accueil.
+    const isProLink = targetPath.startsWith('/pro/');
+    const isVerifiedPro = Boolean(user && (user.role === 'guide' || user.role === 'provider') && user.is_verified);
+    navigate(isProLink && !isVerifiedPro && user ? getPostLoginPath(user, targetPath) : targetPath);
+  }
 
   return (
     <div className={clsx(styles.card, !notification.is_read && styles.cardUnread)}>
       <span className={clsx(styles.iconWrap, !notification.is_read && styles.iconWrapUnread)} aria-hidden="true">
         <Icon size={17} strokeWidth={2} />
       </span>
-      <button
-        type="button"
-        className={styles.content}
-        onClick={() => !notification.is_read && onMarkRead(notification.id)}
-      >
+      <button type="button" className={styles.content} onClick={handleClick}>
         <div className={styles.header}>
           <span className={styles.category}>{t(`notifications.categories.${notification.category}`)}</span>
           {!notification.is_read && <span className={styles.unreadDot} aria-hidden="true" />}
