@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Clock, ChartColumn, CalendarCheck, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Clock, ChartColumn, CalendarCheck, PackageSearch, Star } from 'lucide-react';
 import clsx from 'clsx';
 
 import type { ProviderItemType } from '../types';
@@ -16,6 +17,11 @@ const DETAIL_TABS = [
   { key: 'reviews', Icon: Star },
 ] as const;
 type DetailTabKey = (typeof DETAIL_TABS)[number]['key'];
+
+// Les commandes artisanales vivent dans un système séparé (artisan_orders, avec
+// livraison/retrait) : l'onglet "Réservations" générique (collection bookings)
+// n'y trouve jamais rien. Un produit a son propre écran dédié à la place.
+const TABS_WITHOUT_BOOKINGS = DETAIL_TABS.filter((tab) => tab.key !== 'bookings');
 
 const UNPUBLISHED_STATUSES = new Set(['draft', 'pending']);
 
@@ -37,10 +43,13 @@ export function EstablishmentDetailPanel({
   onBack,
 }: EstablishmentDetailPanelProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<DetailTabKey>('analytics');
 
   const source = { itemType, itemId };
   const isUnpublished = status ? UNPUBLISHED_STATUSES.has(status) : false;
+  const isProduct = itemType === 'product';
+  const tabs = isProduct ? TABS_WITHOUT_BOOKINGS : DETAIL_TABS;
 
   return (
     <div className={styles.section}>
@@ -49,6 +58,17 @@ export function EstablishmentDetailPanel({
           <ArrowLeft size={18} strokeWidth={2} />
         </button>
         <h3 className={styles.headerTitle}>{name}</h3>
+        {isProduct && (
+          <button
+            type="button"
+            className={styles.tab}
+            style={{ marginLeft: 'auto', backgroundColor: 'var(--color-bg-inset)' }}
+            onClick={() => navigate('/pro/provider/artisan/orders')}
+          >
+            <PackageSearch size={15} strokeWidth={2} />
+            {t('pro.viewReceivedOrders')}
+          </button>
+        )}
       </div>
 
       {isUnpublished && (
@@ -59,7 +79,7 @@ export function EstablishmentDetailPanel({
       )}
 
       <div className={styles.tabs}>
-        {DETAIL_TABS.map(({ key, Icon }) => (
+        {tabs.map(({ key, Icon }) => (
           <button
             key={key}
             type="button"
