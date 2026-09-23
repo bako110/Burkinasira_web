@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Camera, Images, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, Images, Play, ArrowRight } from 'lucide-react';
 
 import { Spinner, Reveal, Button } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -41,8 +42,11 @@ export function MemoriesSection({ targetType, targetId }: MemoriesSectionProps) 
     });
   }
 
-  const items = data?.items ?? [];
+  const PREVIEW_LIMIT = 9;
+  const allItems = data?.items ?? [];
   const total = data?.total ?? 0;
+  const items = allItems.slice(0, PREVIEW_LIMIT);
+  const hasMoreThanPreview = total > PREVIEW_LIMIT;
 
   return (
     <Reveal as="section" className={styles.section}>
@@ -118,6 +122,13 @@ export function MemoriesSection({ targetType, targetId }: MemoriesSectionProps) 
             </button>
           ))}
         </div>
+      )}
+
+      {hasMoreThanPreview && targetId && (
+        <Link to={`/memories/${targetType}/${targetId}`} className={styles.seeAllLink}>
+          {t('memories.seeAll', { count: total })}
+          <ArrowRight size={15} strokeWidth={2} />
+        </Link>
       )}
 
       {activeIndex !== null && items[activeIndex] && (

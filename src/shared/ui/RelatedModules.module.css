@@ -3,8 +3,15 @@
   flex-direction: column;
   gap: var(--space-3);
   padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
   margin-top: var(--space-5);
   border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding-bottom: var(--space-8);
+  }
 }
 
 .label {
@@ -16,27 +23,38 @@
 }
 
 .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-3);
-}
-
-.card {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-raised);
-  border: 1px solid var(--color-border);
-  text-decoration: none;
-  color: var(--color-text);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
-.card:hover {
-  border-color: var(--color-brand);
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--gradient-sunset);
+  text-decoration: none;
+  color: #fff;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.chip[data-tone='tone2'] {
+  background: var(--gradient-earth);
+}
+
+.chip[data-tone='tone3'] {
+  background: linear-gradient(135deg, #2563eb, #0f9b8e);
+}
+
+.chip[data-tone='tone4'] {
+  background: linear-gradient(135deg, #d97706, #7c2d12);
+}
+
+.chip:hover {
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .icon {
@@ -44,26 +62,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: var(--color-brand-surface);
-  color: var(--color-brand);
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
 }
 
 .text {
-  flex: 1;
-  min-width: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   line-height: 1.25;
+  white-space: nowrap;
 }
 
 .arrow {
   flex-shrink: 0;
-  color: var(--color-text-subtle);
+  color: rgba(255, 255, 255, 0.75);
+  transition: transform var(--transition-fast);
 }
 
-.card:hover .arrow {
-  color: var(--color-brand);
+.chip:hover .arrow {
+  transform: translateX(2px);
+  color: #fff;
 }

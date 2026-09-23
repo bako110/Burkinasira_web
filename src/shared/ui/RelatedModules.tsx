@@ -5,6 +5,8 @@ import { ArrowRight } from 'lucide-react';
 import { getRelatedModules } from '../config/modules';
 import styles from './RelatedModules.module.css';
 
+const TONES = ['tone1', 'tone2', 'tone3', 'tone4'] as const;
+
 export function RelatedModules({ currentPath }: { currentPath: string }) {
   const { t } = useTranslation();
   const links = getRelatedModules(currentPath);
@@ -15,13 +17,13 @@ export function RelatedModules({ currentPath }: { currentPath: string }) {
     <div className={styles.wrap}>
       <span className={styles.label}>{t('common.exploreAlso')}</span>
       <div className={styles.row}>
-        {links.map(({ to, labelKey, Icon }) => (
-          <Link key={to} to={to} className={styles.card}>
+        {links.map(({ to, labelKey, Icon }, i) => (
+          <Link key={to} to={to} className={styles.chip} data-tone={TONES[i % TONES.length]}>
             <span className={styles.icon}>
-              <Icon size={18} strokeWidth={1.75} />
+              <Icon size={16} strokeWidth={1.75} />
             </span>
             <span className={styles.text}>{t(labelKey)}</span>
-            <ArrowRight size={15} strokeWidth={2} className={styles.arrow} />
+            <ArrowRight size={14} strokeWidth={2} className={styles.arrow} />
           </Link>
         ))}
       </div>

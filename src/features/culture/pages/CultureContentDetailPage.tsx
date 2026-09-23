@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ImageOff, User, MapPin } from 'lucide-react';
 
-import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
+import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal, ExpandableText } from '../../../shared/ui';
 import { DestinationCard } from '../../destinations/components/DestinationCard';
 import { useCultureContentDetail } from '../hooks/useCultureContentDetail';
 import { useRelatedDestinations } from '../hooks/useRelatedDestinations';
@@ -91,14 +91,14 @@ export function CultureContentDetailPage() {
           {content.summary && (
             <Reveal as="section" className={styles.section}>
               <span className={styles.sectionKicker}>{t('culture.detailKickerSummary')}</span>
-              <p className={styles.summary}>{content.summary}</p>
+              <ExpandableText text={content.summary} lines={4} textClassName={styles.summary} />
             </Reveal>
           )}
 
           {content.content && (
             <Reveal as="section" className={styles.section}>
               <span className={styles.sectionKicker}>{t('culture.detailKickerStory')}</span>
-              <p className={styles.contentText}>{content.content}</p>
+              <ExpandableText text={content.content} lines={8} textClassName={styles.contentText} />
             </Reveal>
           )}
 

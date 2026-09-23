@@ -14,7 +14,6 @@ import {
   Wifi,
   ScrollText,
   ShoppingBasket,
-  CloudSun,
   Users,
   Handshake,
   GraduationCap,
@@ -51,7 +50,6 @@ export const PRACTICAL_LINKS = [
   { to: '/emergency', key: 'emergency', Icon: ShieldAlert },
   { to: '/finance', key: 'finance', Icon: Landmark },
   { to: '/connectivity', key: 'connectivity', Icon: Wifi },
-  { to: '/weather', key: 'weather', Icon: CloudSun },
 ] as const;
 
 const CLOSE_DELAY_MS = 150;
