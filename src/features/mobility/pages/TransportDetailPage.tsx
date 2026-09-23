@@ -33,6 +33,7 @@ const TYPE_ICON: Record<TransportType, typeof Car> = {
   transport_touristique_prive: Compass,
 };
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useTransportProviderDetail } from '../hooks/useTransportProviderDetail';
 import styles from './TransportDetailPage.module.css';
@@ -200,6 +201,8 @@ export function TransportDetailPage() {
       </div>
 
       <ReviewsSection targetType="transport" targetId={provider.id} />
+
+      <MemoriesSection targetType="transport" targetId={provider.id} />
 
       <RelatedModules currentPath="/mobility" />
 

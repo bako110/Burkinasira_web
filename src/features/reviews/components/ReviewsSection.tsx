@@ -1,21 +1,47 @@
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThumbsUp } from 'lucide-react';
+import { ThumbsUp, Star } from 'lucide-react';
 
-import { Spinner, Avatar, Reveal } from '../../../shared/ui';
-import { useMarkReviewHelpful, useReviewsForTarget } from '../hooks';
+import { Button, Spinner, Avatar, Reveal } from '../../../shared/ui';
+import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
+import { useAuthStore } from '../../../store/auth.store';
+import { useMyBookings } from '../../bookings/hooks/useMyBookings';
+import { useMarkReviewHelpful, useReviewedBookingIds, useReviewsForTarget } from '../hooks';
 import type { ReviewTargetType } from '../types';
 import { StarRating } from './StarRating';
+import { ReviewModal } from './ReviewModal';
 import styles from './ReviewsSection.module.css';
 
 interface ReviewsSectionProps {
   targetType: ReviewTargetType;
   targetId: string | undefined;
+  /** Nom du lieu/prestataire noté, affiché dans la modale d'avis. */
+  itemTitle?: string;
 }
 
-export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
+export function ReviewsSection({ targetType, targetId, itemTitle }: ReviewsSectionProps) {
   const { t, i18n } = useTranslation();
+  const requireAuth = useRequireAuth();
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const { data, isLoading } = useReviewsForTarget(targetType, targetId);
   const markHelpful = useMarkReviewHelpful();
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+
+  // Une réservation ne peut être notée que si elle correspond à ce lieu précis,
+  // est terminée, et n'a pas déjà reçu d'avis.
+  const { data: bookings } = useMyBookings('completed');
+  const reviewedBookingIds = useReviewedBookingIds();
+  const reviewableBooking = useMemo(
+    () =>
+      bookings?.find(
+        (b) => b.item_type === targetType && b.item_id === targetId && !reviewedBookingIds.has(b.id),
+      ),
+    [bookings, targetType, targetId, reviewedBookingIds],
+  );
+
+  function handleLeaveReview() {
+    requireAuth(() => setReviewModalOpen(true), t('reviews.leaveReviewRequiresAuth'));
+  }
 
   if (isLoading) {
     return (
@@ -34,8 +60,24 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
 
   return (
     <Reveal as="section" className={styles.section}>
-      <span className={styles.sectionKicker}>{t('reviews.sectionKicker')}</span>
-      <h2 className={styles.title}>{t('reviews.sectionTitle')}</h2>
+      <div className={styles.sectionHeader}>
+        <div>
+          <span className={styles.sectionKicker}>{t('reviews.sectionKicker')}</span>
+          <h2 className={styles.title}>{t('reviews.sectionTitle')}</h2>
+        </div>
+        {reviewableBooking && (
+          <Button variant="secondary" size="sm" onClick={handleLeaveReview}>
+            <Star size={15} strokeWidth={2} />
+            {t('reviews.leaveReview')}
+          </Button>
+        )}
+      </div>
+
+      {!reviewableBooking && (!isAuthenticated || total === 0) && (
+        <p className={styles.reviewHint}>
+          {isAuthenticated ? t('reviews.needCompletedBooking') : t('reviews.needCompletedBookingLoggedOut')}
+        </p>
+      )}
 
       {total === 0 ? (
         <p className={styles.empty}>{t('reviews.none')}</p>
@@ -118,6 +160,15 @@ export function ReviewsSection({ targetType, targetId }: ReviewsSectionProps) {
             ))}
           </ul>
         </>
+      )}
+
+      {reviewableBooking && (
+        <ReviewModal
+          open={reviewModalOpen}
+          onClose={() => setReviewModalOpen(false)}
+          bookingId={reviewableBooking.id}
+          itemTitle={itemTitle ?? reviewableBooking.item_title}
+        />
       )}
     </Reveal>
   );

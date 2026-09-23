@@ -1895,6 +1895,10 @@
     "rateThisStay": "Fo kẽndã yɩɩ wãn?",
     "sectionKicker": "Sõsdba sẽn yetã",
     "sectionTitle": "Tagsg-dãmba",
+    "leaveReview": "Bas-y f tagsgo",
+    "leaveReviewRequiresAuth": "Kẽ sanem n bas f tagsgo",
+    "needCompletedBooking": "F gũusame bũmb kãnga yĩnga sɩda? Da f gõeem sẽn sɛka, f na tõe n bas f tagsgo f gũusg-rãmbã pʋgẽ.",
+    "needCompletedBookingLoggedOut": "Kẽ sanem n bas f tagsgo yaa f sẽn gũus la f minim bũmb kãnga poore.",
     "none": "Tagsg baa a ye ka be ye.",
     "count_one": "tagsg {{count}}",
     "count_other": "tagsg {{count}}",
@@ -1902,5 +1906,22 @@
     "proReply": "Tʋm-tʋmda leokre",
     "helpful": "A bee sõngre",
     "sortBest": "Sẽn tar geelg n yɩɩda"
+  },
+  "memories": {
+    "sectionKicker": "Sõsdba fotowã",
+    "sectionTitle": "Tẽegre",
+    "shareCta": "Tar tẽegre",
+    "shareRequiresAuth": "Kẽ n tar tẽegre",
+    "shareTitle": "Tar tẽegre",
+    "publicNotice": "Tẽegr kãngã na n yɩɩ fãa yĩnga : neb nins fãa sẽn wat seb-kãngã zugu tõe n gesame.",
+    "pickFile": "Yãk foto bɩ video",
+    "titleLabel": "Yʋʋr (pa tɩlae)",
+    "titlePlaceholder": "Wala : Wĩntoog sẽn lʋɩ",
+    "descriptionLabel": "Togs-vaeeg (pa tɩlae)",
+    "descriptionPlaceholder": "Togs kaset-kãngã yell...",
+    "shared": "Tẽegr taare",
+    "none": "Tẽegr ka be ye. Yɩ pipi n tar-a!",
+    "mute": "Pʋg kãabg wã",
+    "unmute": "Puk kãabg wã"
   }
 }

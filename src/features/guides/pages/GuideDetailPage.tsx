@@ -6,6 +6,7 @@ import { MapPin, Star, ShieldCheck, User, ArrowLeft, Award, Languages, CheckCirc
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useGuideDetail } from '../hooks/useGuideDetail';
@@ -166,6 +167,8 @@ export function GuideDetailPage() {
       </div>
 
       <ReviewsSection targetType="guide" targetId={guide.id} />
+
+      <MemoriesSection targetType="guide" targetId={guide.id} />
 
       <RelatedModules currentPath="/guides" />
 

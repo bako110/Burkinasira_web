@@ -1895,6 +1895,10 @@
     "rateThisStay": "Comment s’est passé votre séjour ?",
     "sectionKicker": "Ce qu'en disent les voyageurs",
     "sectionTitle": "Avis",
+    "leaveReview": "Laisser un avis",
+    "leaveReviewRequiresAuth": "Connectez-vous pour laisser un avis",
+    "needCompletedBooking": "Vous avez déjà réservé ce service ? Une fois votre séjour terminé, vous pourrez laisser un avis depuis vos réservations.",
+    "needCompletedBookingLoggedOut": "Connectez-vous pour laisser un avis après avoir réservé et profité de ce service.",
     "none": "Aucun avis pour le moment.",
     "count_one": "{{count}} avis",
     "count_other": "{{count}} avis",
@@ -1902,5 +1906,22 @@
     "proReply": "Réponse du professionnel",
     "helpful": "Utile",
     "sortBest": "Mieux notés"
+  },
+  "memories": {
+    "sectionKicker": "Galerie des voyageurs",
+    "sectionTitle": "Souvenirs",
+    "shareCta": "Partager un souvenir",
+    "shareRequiresAuth": "Connectez-vous pour partager un souvenir",
+    "shareTitle": "Partager un souvenir",
+    "publicNotice": "Ce souvenir sera public : tous les visiteurs de cette page pourront le voir.",
+    "pickFile": "Choisir une photo ou une vidéo",
+    "titleLabel": "Titre (optionnel)",
+    "titlePlaceholder": "Ex. Coucher de soleil sur le site",
+    "descriptionLabel": "Description (optionnelle)",
+    "descriptionPlaceholder": "Racontez ce moment en quelques mots…",
+    "shared": "Souvenir partagé",
+    "none": "Aucun souvenir pour le moment. Soyez le premier à en partager un !",
+    "mute": "Couper le son",
+    "unmute": "Activer le son"
   }
 }

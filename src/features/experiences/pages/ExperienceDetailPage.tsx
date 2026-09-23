@@ -16,6 +16,7 @@ import {
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
+import { MemoriesSection } from '../../memories';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useExperienceDetail } from '../hooks/useExperienceDetail';
@@ -209,6 +210,8 @@ export function ExperienceDetailPage() {
           <ReportErrorButton itemType="experience" itemId={experience.id} className={styles.reportBtn} />
         </aside>
       </div>
+
+      <MemoriesSection targetType="experience" targetId={experience.id} />
 
       <RelatedModules currentPath="/experiences" />
 

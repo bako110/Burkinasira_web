@@ -1895,6 +1895,10 @@
     "rateThisStay": "I ka taama kɛra cogo di?",
     "sectionKicker": "Taamalaw ka fɔlen",
     "sectionTitle": "Hakilinaw",
+    "leaveReview": "Hakilina to yen",
+    "leaveReviewRequiresAuth": "I ka don sanni ka hakilina to yen",
+    "needCompletedBooking": "I ye ko in lakodɔn wa? Ni i ka jigi banna, i bɛ se ka hakilina to yen i ka lakodɔnw kɔnɔ.",
+    "needCompletedBookingLoggedOut": "I ka don walasa ka hakilina to yen ni i ye ko in lakodɔn ka a kɛ.",
     "none": "Hakilina si tɛ yen fɔlɔ.",
     "count_one": "hakilina {{count}}",
     "count_other": "hakilina {{count}}",
@@ -1902,5 +1906,22 @@
     "proReply": "Baarakɛla ka jaabi",
     "helpful": "A ye nafa lase",
     "sortBest": "Jateminɛ ɲuman"
+  },
+  "memories": {
+    "sectionKicker": "Taamalaw ka fotow",
+    "sectionTitle": "Hakilijigin",
+    "shareCta": "Hakilijigin di",
+    "shareRequiresAuth": "I ka don walasa ka hakilijigin di",
+    "shareTitle": "Hakilijigin di",
+    "publicNotice": "Hakilijigin in bɛna kɛ bɛɛ ta ye : mɔgɔ bɛɛ min bɛ na ɲɛ in kan bɛ se k'a ye.",
+    "pickFile": "Foto walima video sugandi",
+    "titleLabel": "Tɔgɔ (wajibi tɛ)",
+    "titlePlaceholder": "Misali la : Tile binbin",
+    "descriptionLabel": "Ɲɛfɔli (wajibi tɛ)",
+    "descriptionPlaceholder": "Waati in fɔ kuma damadɔ la…",
+    "shared": "Hakilijigin dira",
+    "none": "Hakilijigin si tɛ yen fɔlɔ. I ka kɛ fɔlɔ min bɛ di!",
+    "mute": "Mankan datugu",
+    "unmute": "Mankan dayɛlɛ"
   }
 }

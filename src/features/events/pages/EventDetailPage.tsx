@@ -6,6 +6,7 @@ import { MapPin, Calendar, ImageOff, ArrowLeft, ExternalLink, Ticket, Clock } fr
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { useEventDetail } from '../hooks/useEventDetail';
@@ -211,6 +212,8 @@ export function EventDetailPage() {
       </div>
 
       <ReviewsSection targetType="event" targetId={event.id} />
+
+      <MemoriesSection targetType="event" targetId={event.id} />
 
       <RelatedModules currentPath="/events" />
 

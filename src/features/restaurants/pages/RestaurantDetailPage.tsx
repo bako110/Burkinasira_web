@@ -6,6 +6,7 @@ import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLi
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { ContactModal } from '../../messaging/components/ContactModal';
 import { useRestaurantDetail } from '../hooks/useRestaurantDetail';
@@ -247,6 +248,8 @@ export function RestaurantDetailPage() {
       </div>
 
       <ReviewsSection targetType="restaurant" targetId={restaurant.id} />
+
+      <MemoriesSection targetType="restaurant" targetId={restaurant.id} />
 
       <RelatedModules currentPath="/restaurants" />
 

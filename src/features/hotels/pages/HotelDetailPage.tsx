@@ -6,6 +6,7 @@ import { MapPin, Star, Phone, Mail, ShieldCheck, ImageOff, ArrowLeft, ExternalLi
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, PanoramaViewer, Reveal } from '../../../shared/ui';
 import { ReportErrorButton } from '../../dataQuality/components/ReportErrorButton';
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { ContactModal } from '../../messaging/components/ContactModal';
@@ -264,6 +265,8 @@ export function HotelDetailPage() {
       </div>
 
       <ReviewsSection targetType="hotel" targetId={hotel.id} />
+
+      <MemoriesSection targetType="hotel" targetId={hotel.id} />
 
       <RelatedModules currentPath="/hotels" />
 

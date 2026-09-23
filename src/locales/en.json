@@ -1895,6 +1895,10 @@
     "rateThisStay": "How was your experience?",
     "sectionKicker": "What travellers say",
     "sectionTitle": "Reviews",
+    "leaveReview": "Leave a review",
+    "leaveReviewRequiresAuth": "Log in to leave a review",
+    "needCompletedBooking": "Already booked this service? Once your stay is over, you can leave a review from your bookings.",
+    "needCompletedBookingLoggedOut": "Log in to leave a review after booking and enjoying this service.",
     "none": "No reviews yet.",
     "count_one": "{{count}} review",
     "count_other": "{{count}} reviews",
@@ -1902,5 +1906,22 @@
     "proReply": "Owner reply",
     "helpful": "Helpful",
     "sortBest": "Top rated"
+  },
+  "memories": {
+    "sectionKicker": "Traveller gallery",
+    "sectionTitle": "Memories",
+    "shareCta": "Share a memory",
+    "shareRequiresAuth": "Log in to share a memory",
+    "shareTitle": "Share a memory",
+    "publicNotice": "This memory will be public: every visitor of this page will be able to see it.",
+    "pickFile": "Choose a photo or video",
+    "titleLabel": "Title (optional)",
+    "titlePlaceholder": "E.g. Sunset over the site",
+    "descriptionLabel": "Description (optional)",
+    "descriptionPlaceholder": "Tell us about this moment…",
+    "shared": "Memory shared",
+    "none": "No memories yet. Be the first to share one!",
+    "mute": "Mute",
+    "unmute": "Unmute"
   }
 }

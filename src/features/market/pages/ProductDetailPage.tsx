@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Star, Truck, Package, MessageCircle, Maximize2, ShoppingCart, Check } from 'lucide-react';
 
 import { Button, Spinner, EmptyResults, DetailBackButton, RelatedModules, ImmersiveGallery, Reveal } from '../../../shared/ui';
+import { MemoriesSection } from '../../memories';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
 import { useCartStore } from '../../../store/cart.store';
 import { useToastStore } from '../../../store/toast.store';
@@ -219,6 +220,8 @@ export function ProductDetailPage() {
           )}
         </div>
       </div>
+
+      <MemoriesSection targetType="artisan_product" targetId={product.id} />
 
       <RelatedModules currentPath="/market" />
 

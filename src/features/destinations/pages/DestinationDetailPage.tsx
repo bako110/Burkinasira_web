@@ -32,6 +32,7 @@ import { useToastStore } from '../../../store/toast.store';
 import { extractApiErrorMessage } from '../../../shared/api/client';
 import { BookingModal } from '../../bookings/components/BookingModal';
 import { ReviewsSection } from '../../reviews';
+import { MemoriesSection } from '../../memories';
 import { useCreateTrip } from '../../trips/hooks/useCreateTrip';
 import { useDestinationDetail } from '../hooks/useDestinationDetail';
 import styles from './DestinationDetailPage.module.css';
@@ -305,6 +306,8 @@ export function DestinationDetailPage() {
       </div>
 
       <ReviewsSection targetType="destination" targetId={destination.id} />
+
+      <MemoriesSection targetType="destination" targetId={destination.id} />
 
       <RelatedModules currentPath="/explore" />
 
