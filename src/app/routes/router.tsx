@@ -52,6 +52,7 @@ import { MyBookingsPage } from '../../features/bookings/pages/MyBookingsPage';
 import { MyTripsPage } from '../../features/trips/pages/MyTripsPage';
 import { TripDetailPage } from '../../features/trips/pages/TripDetailPage';
 import { NotificationsPage } from '../../features/notifications/pages/NotificationsPage';
+import { MemoryGalleryPage } from '../../features/memories/pages/MemoryGalleryPage';
 import { CommunityPage } from '../../features/community/pages/CommunityPage';
 import { GroupDetailPage } from '../../features/community/pages/GroupDetailPage';
 import { LiveDetailPage } from '../../features/community/pages/LiveDetailPage';
@@ -81,6 +82,7 @@ import { ProHotelPage } from '../../features/pro/pages/ProHotelPage';
 import { ProRestaurantPage } from '../../features/pro/pages/ProRestaurantPage';
 import { ProTransportPage } from '../../features/pro/pages/ProTransportPage';
 import { ProArtisanPage } from '../../features/pro/pages/ProArtisanPage';
+import { ProHealthPage } from '../../features/pro/pages/ProHealthPage';
 import { ProTeamPage } from '../../features/pro/pages/ProTeamPage';
 import { GuideAnalyticsPage } from '../../features/pro/pages/GuideAnalyticsPage';
 import { GuideProfilePage } from '../../features/pro/pages/GuideProfilePage';
@@ -141,6 +143,7 @@ export const router = createBrowserRouter([
           { path: '/culture/:id', element: <CultureContentDetailPage /> },
           { path: '/market', element: <MarketPage /> },
           { path: '/market/:id', element: <ProductDetailPage /> },
+          { path: '/memories/:targetType/:targetId', element: <MemoryGalleryPage /> },
           { path: '/privacy', element: <PrivacyPolicyPage /> },
           { path: '/confidentialite', element: <PrivacyPolicyPage /> },
           { path: '/terms', element: <TermsOfServicePage /> },
@@ -207,6 +210,7 @@ export const router = createBrowserRouter([
           { path: '/pro/provider/restaurant', element: <ProRestaurantPage /> },
           { path: '/pro/provider/transport', element: <ProTransportPage /> },
           { path: '/pro/provider/artisan', element: <ProArtisanPage /> },
+          { path: '/pro/provider/health', element: <ProHealthPage /> },
           { path: '/pro/provider/reports', element: <ProReportsPage /> },
           { path: '/pro/provider/team', element: <ProTeamPage /> },
           { path: '/pro/provider/messages', element: <ProMessagesPage /> },

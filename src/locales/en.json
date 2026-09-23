@@ -315,6 +315,7 @@
     "tab_restaurant": "Restaurant",
     "tab_transport": "Transport",
     "tab_artisan": "Craft",
+    "tab_health": "Health",
     "overviewTitle": "Overview",
     "overviewSubtitle": "Manage all your establishments from a single dashboard.",
     "statTotalEstablishments": "Establishments",
@@ -327,6 +328,10 @@
     "addTransport": "Add a transport service",
     "addArtisanProfile": "Create my craft profile",
     "addProduct": "Add a product",
+    "addHealthFacility": "Add a health facility",
+    "healthServices": "Services offered",
+    "healthServicesPlaceholder": "Emergency care, On-duty pharmacy, Laboratory...",
+    "isOnDuty": "On-duty facility",
     "editEstablishment": "Edit",
     "deleteEstablishmentConfirmTitle": "Delete this establishment?",
     "deleteEstablishmentConfirmMessage": "This action cannot be undone. All associated data will be deleted.",
@@ -1925,6 +1930,10 @@
     "shared": "Memory shared",
     "none": "No memories yet. Be the first to share one!",
     "mute": "Mute",
-    "unmute": "Unmute"
+    "unmute": "Unmute",
+    "seeAll_one": "See the memory ({{count}})",
+    "seeAll_other": "See all memories ({{count}})",
+    "galleryCount_one": "{{count}} memory shared by travellers",
+    "galleryCount_other": "{{count}} memories shared by travellers"
   }
 }

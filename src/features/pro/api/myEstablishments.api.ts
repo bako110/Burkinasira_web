@@ -3,12 +3,14 @@ import type { HotelDetail } from '../../hotels/types';
 import type { RestaurantDetail } from '../../restaurants/types';
 import type { TransportProviderDetail } from '../../mobility/types';
 import type { ArtisanSummary, ProductDetail } from '../../market/types';
+import type { HealthFacilityDetail } from '../../health/types';
 import type {
   CreateHotelPayload,
   CreateRestaurantPayload,
   CreateTransportProviderPayload,
   CreateArtisanProfilePayload,
   CreateProductPayload,
+  CreateHealthFacilityPayload,
 } from '../types';
 
 async function getOrNull<T>(url: string): Promise<T | null> {
@@ -120,4 +122,26 @@ export async function updateMyProduct(id: string, payload: Partial<CreateProduct
 
 export async function deleteMyProduct(id: string): Promise<void> {
   await apiClient.delete(`/market/products/${id}`);
+}
+
+export async function fetchMyHealthFacilities(): Promise<HealthFacilityDetail[]> {
+  const { data } = await apiClient.get<HealthFacilityDetail[]>('/health-facilities/me/list');
+  return data;
+}
+
+export async function createMyHealthFacility(payload: CreateHealthFacilityPayload): Promise<HealthFacilityDetail> {
+  const { data } = await apiClient.post<HealthFacilityDetail>('/health-facilities', payload);
+  return data;
+}
+
+export async function updateMyHealthFacility(
+  id: string,
+  payload: Partial<CreateHealthFacilityPayload>,
+): Promise<HealthFacilityDetail> {
+  const { data } = await apiClient.patch<HealthFacilityDetail>(`/health-facilities/${id}`, payload);
+  return data;
+}
+
+export async function deleteMyHealthFacility(id: string): Promise<void> {
+  await apiClient.delete(`/health-facilities/${id}`);
 }

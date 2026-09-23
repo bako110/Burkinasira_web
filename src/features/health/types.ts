@@ -39,8 +39,11 @@ export interface OpeningHours {
   closed: boolean;
 }
 
+export type HealthFacilityStatus = 'draft' | 'published' | 'archived';
+
 export interface HealthFacilityDetail {
   id: string;
+  owner_id?: string;
   name: string;
   slug: string;
   type: HealthFacilityType;
@@ -54,4 +57,5 @@ export interface HealthFacilityDetail {
   is_on_duty?: boolean;
   services: string[];
   contact_phone?: string;
+  status?: HealthFacilityStatus;
 }

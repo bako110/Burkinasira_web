@@ -18,6 +18,7 @@ import {
   UtensilsCrossed,
   Car,
   ShoppingBag,
+  HeartPulse,
   Users,
   IdCard,
   Flag,
@@ -36,6 +37,7 @@ import {
   useMyRestaurants,
   useMyTransportProviders,
   useMyArtisanProfile,
+  useMyHealthFacilities,
 } from '../../features/pro/hooks/useMyEstablishments';
 import styles from './ProLayout.module.css';
 
@@ -56,6 +58,7 @@ const PROVIDER_CATEGORY_ITEMS = [
   { to: '/pro/provider/restaurant', key: 'restaurant', Icon: UtensilsCrossed, owned: (o: OwnedCategories) => o.restaurant },
   { to: '/pro/provider/transport', key: 'transport', Icon: Car, owned: (o: OwnedCategories) => o.transport },
   { to: '/pro/provider/artisan', key: 'artisan', Icon: ShoppingBag, owned: (o: OwnedCategories) => o.artisan },
+  { to: '/pro/provider/health', key: 'health', Icon: HeartPulse, owned: (o: OwnedCategories) => o.health },
 ] as const;
 
 interface OwnedCategories {
@@ -63,6 +66,7 @@ interface OwnedCategories {
   restaurant: boolean;
   transport: boolean;
   artisan: boolean;
+  health: boolean;
 }
 
 export function ProLayout() {
@@ -81,11 +85,13 @@ export function ProLayout() {
   const { data: restaurants } = useMyRestaurants();
   const { data: transportProviders } = useMyTransportProviders();
   const { data: artisanProfile } = useMyArtisanProfile();
+  const { data: healthFacilities } = useMyHealthFacilities();
   const ownedCategories: OwnedCategories = {
     hotel: (hotels?.length ?? 0) > 0,
     restaurant: (restaurants?.length ?? 0) > 0,
     transport: (transportProviders?.length ?? 0) > 0,
     artisan: Boolean(artisanProfile),
+    health: (healthFacilities?.length ?? 0) > 0,
   };
 
   // Pas d'entrée « Vue d'ensemble » : /pro/provider redirige directement vers

@@ -154,7 +154,7 @@ export interface GuideAnalyticsSummary {
   yearly: AnalyticsTimeSeriesPoint[];
 }
 
-export type ProviderItemType = 'hotel' | 'restaurant' | 'transport' | 'product';
+export type ProviderItemType = 'hotel' | 'restaurant' | 'transport' | 'product' | 'health';
 
 export interface GeoPointPayload {
   latitude: number;
@@ -249,6 +249,21 @@ export interface CreateArtisanProfilePayload {
   region: string;
   province?: string;
   city?: string;
+}
+
+export interface CreateHealthFacilityPayload {
+  name: string;
+  type: string;
+  description?: string;
+  region: string;
+  province?: string;
+  city?: string;
+  location: GeoPointPayload;
+  address?: string;
+  opening_hours?: OpeningHoursPayload[];
+  is_on_duty?: boolean;
+  services?: string[];
+  contact_phone?: string;
 }
 
 export interface CreateProductPayload {

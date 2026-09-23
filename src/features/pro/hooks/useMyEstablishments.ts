@@ -20,8 +20,18 @@ import {
   createMyProduct,
   updateMyProduct,
   deleteMyProduct,
+  fetchMyHealthFacilities,
+  createMyHealthFacility,
+  updateMyHealthFacility,
+  deleteMyHealthFacility,
 } from '../api/myEstablishments.api';
-import type { CreateHotelPayload, CreateRestaurantPayload, CreateTransportProviderPayload, CreateProductPayload } from '../types';
+import type {
+  CreateHotelPayload,
+  CreateRestaurantPayload,
+  CreateTransportProviderPayload,
+  CreateProductPayload,
+  CreateHealthFacilityPayload,
+} from '../types';
 
 export function useMyHotels() {
   return useQuery({ queryKey: ['my-hotels'], queryFn: fetchMyHotels });
@@ -154,5 +164,34 @@ export function useDeleteMyProduct() {
   return useMutation({
     mutationFn: (id: string) => deleteMyProduct(id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-products'] }),
+  });
+}
+
+export function useMyHealthFacilities() {
+  return useQuery({ queryKey: ['my-health-facilities'], queryFn: fetchMyHealthFacilities });
+}
+
+export function useCreateMyHealthFacility() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: CreateHealthFacilityPayload) => createMyHealthFacility(payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-health-facilities'] }),
+  });
+}
+
+export function useUpdateMyHealthFacility() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: Partial<CreateHealthFacilityPayload> }) =>
+      updateMyHealthFacility(id, payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-health-facilities'] }),
+  });
+}
+
+export function useDeleteMyHealthFacility() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => deleteMyHealthFacility(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['my-health-facilities'] }),
   });
 }

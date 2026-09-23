@@ -9,6 +9,7 @@ import {
   useMyRestaurants,
   useMyTransportProviders,
   useMyArtisanProfile,
+  useMyHealthFacilities,
 } from '../hooks/useMyEstablishments';
 import styles from './ProPageWrapper.module.css';
 
@@ -26,8 +27,9 @@ export function ProOverviewPage() {
   const { data: restaurants, isLoading: l2 } = useMyRestaurants();
   const { data: transport, isLoading: l3 } = useMyTransportProviders();
   const { data: artisanProfile, isLoading: l4 } = useMyArtisanProfile();
+  const { data: healthFacilities, isLoading: l5 } = useMyHealthFacilities();
 
-  if (l1 || l2 || l3 || l4) {
+  if (l1 || l2 || l3 || l4 || l5) {
     return (
       <div className={styles.page}>
         <Spinner size={24} />
@@ -40,6 +42,7 @@ export function ProOverviewPage() {
   if ((restaurants?.length ?? 0) > 0) owned.push('restaurant');
   if ((transport?.length ?? 0) > 0) owned.push('transport');
   if (artisanProfile) owned.push('artisan');
+  if ((healthFacilities?.length ?? 0) > 0) owned.push('health');
 
   if (owned.length === 1) {
     return <Navigate to={`/pro/provider/${owned[0]}`} replace />;

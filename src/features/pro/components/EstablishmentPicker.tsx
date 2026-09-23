@@ -7,6 +7,7 @@ import {
   useMyRestaurants,
   useMyTransportProviders,
   useMyProducts,
+  useMyHealthFacilities,
 } from '../hooks/useMyEstablishments';
 import type { ProviderItemType } from '../types';
 import styles from './EstablishmentPicker.module.css';
@@ -27,8 +28,9 @@ export function EstablishmentPicker({ children }: EstablishmentPickerProps) {
   const { data: restaurants, isLoading: loadingRestaurants } = useMyRestaurants();
   const { data: transportProviders, isLoading: loadingTransport } = useMyTransportProviders();
   const { data: products, isLoading: loadingProducts } = useMyProducts();
+  const { data: healthFacilities, isLoading: loadingHealth } = useMyHealthFacilities();
 
-  const isLoading = loadingHotels || loadingRestaurants || loadingTransport || loadingProducts;
+  const isLoading = loadingHotels || loadingRestaurants || loadingTransport || loadingProducts || loadingHealth;
 
   const options: EstablishmentOption[] = [
     ...(hotels ?? []).map((h) => ({ itemType: 'hotel' as const, itemId: h.id, label: `${t('pro.tab_hotel')} — ${h.name}` })),
@@ -46,6 +48,11 @@ export function EstablishmentPicker({ children }: EstablishmentPickerProps) {
       itemType: 'product' as const,
       itemId: p.id,
       label: `${t('pro.tab_artisan')} — ${p.name}`,
+    })),
+    ...(healthFacilities ?? []).map((h) => ({
+      itemType: 'health' as const,
+      itemId: h.id,
+      label: `${t('pro.tab_health')} — ${h.name}`,
     })),
   ];
 

@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Building, UtensilsCrossed, Car, ShoppingBag, Clock, CheckCircle2 } from 'lucide-react';
+import { Building, UtensilsCrossed, Car, ShoppingBag, HeartPulse, Clock, CheckCircle2 } from 'lucide-react';
 import clsx from 'clsx';
 
 import { Spinner } from '../../../shared/ui';
-import { useMyHotels, useMyRestaurants, useMyTransportProviders, useMyArtisanProfile } from '../hooks/useMyEstablishments';
+import {
+  useMyHotels,
+  useMyRestaurants,
+  useMyTransportProviders,
+  useMyArtisanProfile,
+  useMyHealthFacilities,
+} from '../hooks/useMyEstablishments';
 import { HotelForm } from './HotelForm';
 import { RestaurantForm } from './RestaurantForm';
 import { TransportProviderForm } from './TransportProviderForm';
 import { ArtisanProfileForm } from './ArtisanProfileForm';
+import { HealthFacilityForm } from './HealthFacilityForm';
 import styles from './ProviderProfileForm.module.css';
 
-type EstablishmentKind = 'hotel' | 'restaurant' | 'transport' | 'artisan';
+type EstablishmentKind = 'hotel' | 'restaurant' | 'transport' | 'artisan' | 'health';
 
 const KIND_OPTIONS: { value: EstablishmentKind; labelKey: string; Icon: typeof Building }[] = [
   { value: 'hotel', labelKey: 'pro.tab_hotel', Icon: Building },
   { value: 'restaurant', labelKey: 'pro.tab_restaurant', Icon: UtensilsCrossed },
   { value: 'transport', labelKey: 'pro.tab_transport', Icon: Car },
   { value: 'artisan', labelKey: 'pro.tab_artisan', Icon: ShoppingBag },
+  { value: 'health', labelKey: 'pro.tab_health', Icon: HeartPulse },
 ];
 
 export function ProviderProfileForm() {
@@ -28,10 +36,16 @@ export function ProviderProfileForm() {
   const { data: restaurants, isLoading: isLoadingRestaurants } = useMyRestaurants();
   const { data: transportProviders, isLoading: isLoadingTransport } = useMyTransportProviders();
   const { data: artisanProfile, isLoading: isLoadingArtisan } = useMyArtisanProfile();
+  const { data: healthFacilities, isLoading: isLoadingHealth } = useMyHealthFacilities();
 
   const submittedCount =
-    (hotels?.length ?? 0) + (restaurants?.length ?? 0) + (transportProviders?.length ?? 0) + (artisanProfile ? 1 : 0);
-  const isLoadingAny = isLoadingHotels || isLoadingRestaurants || isLoadingTransport || isLoadingArtisan;
+    (hotels?.length ?? 0) +
+    (restaurants?.length ?? 0) +
+    (transportProviders?.length ?? 0) +
+    (artisanProfile ? 1 : 0) +
+    (healthFacilities?.length ?? 0);
+  const isLoadingAny =
+    isLoadingHotels || isLoadingRestaurants || isLoadingTransport || isLoadingArtisan || isLoadingHealth;
 
   // Un prestataire n'a qu'un seul type d'établissement : dès qu'on connaît lequel,
   // on va directement à son formulaire sans lui faire choisir un onglet.
@@ -44,7 +58,9 @@ export function ProviderProfileForm() {
           ? 'transport'
           : artisanProfile
             ? 'artisan'
-            : null;
+            : (healthFacilities?.length ?? 0) > 0
+              ? 'health'
+              : null;
 
   useEffect(() => {
     if (!isLoadingAny && knownKind && kind === null) {
@@ -89,6 +105,7 @@ export function ProviderProfileForm() {
           {activeKind === 'restaurant' && <RestaurantForm onSaved={() => {}} onCancel={() => {}} />}
           {activeKind === 'transport' && <TransportProviderForm onSaved={() => {}} onCancel={() => {}} />}
           {activeKind === 'artisan' && <ArtisanProfileForm profile={artisanProfile ?? undefined} onSaved={() => {}} />}
+          {activeKind === 'health' && <HealthFacilityForm onSaved={() => {}} onCancel={() => {}} />}
         </div>
       )}
 
@@ -135,6 +152,12 @@ export function ProviderProfileForm() {
                 />
               </div>
             )}
+            {healthFacilities?.map((h) => (
+              <div key={h.id} className={styles.submittedItem}>
+                <span className={styles.submittedName}>{h.name}</span>
+                <StatusBadge status={h.status ?? 'published'} />
+              </div>
+            ))}
           </div>
         )}
       </div>

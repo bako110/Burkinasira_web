@@ -9,11 +9,14 @@ import { useMyGuideReviews, useReplyToReview, useReviewsForTarget } from '../hoo
 import type { ProviderItemType } from '../types';
 import styles from './ReviewsTab.module.css';
 
+// La santé n'a pas (encore) de ReviewTargetType côté backend : ce type d'établissement
+// n'emprunte jamais ce composant (cf. HealthFacilitySection, qui n'a pas d'onglet avis).
 const ITEM_TYPE_TO_REVIEW_TARGET: Record<ProviderItemType, 'hotel' | 'restaurant' | 'transport' | 'artisan_product'> = {
   hotel: 'hotel',
   restaurant: 'restaurant',
   transport: 'transport',
   product: 'artisan_product',
+  health: 'hotel',
 };
 
 function Stars({ rating, size = 14 }: { rating: number; size?: number }) {

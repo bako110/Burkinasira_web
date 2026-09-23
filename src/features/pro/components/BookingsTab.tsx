@@ -16,6 +16,7 @@ const ITEM_TYPE_LABEL_KEY: Record<ProviderItemType, string> = {
   restaurant: 'nav.restaurants',
   transport: 'nav.mobility',
   product: 'nav.market',
+  health: 'nav.health',
 };
 
 const STATUS_FILTERS: { value: BookingStatus | 'all'; labelKey: string }[] = [

@@ -315,6 +315,7 @@
     "tab_restaurant": "Restora",
     "tab_transport": "Sondrs",
     "tab_artisan": "Tʋm-tʋmd",
+    "tab_health": "Laafi",
     "overviewTitle": "Yɩlemd",
     "overviewSubtitle": "Get f tʋʋm-zĩis fãa yaa tʋʋm-zĩig a yembre.",
     "statTotalEstablishments": "Tʋʋm-zĩisi",
@@ -327,6 +328,10 @@
     "addTransport": "Paas sondr-tʋmd",
     "addArtisanProfile": "Naan mam tʋm-tʋmd konte",
     "addProduct": "Paas bũmb",
+    "addHealthFacility": "Paas laafi tʋʋm-zĩig",
+    "healthServices": "Tʋʋm sẽn kõt",
+    "healthServicesPlaceholder": "Yell-lekd, Pharmasi sẽn get, Laboratwar...",
+    "isOnDuty": "Tʋʋm-zĩig sẽn get",
     "editEstablishment": "Fabg",
     "deleteEstablishmentConfirmTitle": "Yiisg tʋʋm-zĩig kãngã?",
     "deleteEstablishmentConfirmMessage": "Bũmb-kãng ka tõe n le maane ye. Bũmb nins fãa sẽn loe ne-a na sãame.",
@@ -1925,6 +1930,10 @@
     "shared": "Tẽegr taare",
     "none": "Tẽegr ka be ye. Yɩ pipi n tar-a!",
     "mute": "Pʋg kãabg wã",
-    "unmute": "Puk kãabg wã"
+    "unmute": "Puk kãabg wã",
+    "seeAll_one": "Ges tẽegre ({{count}})",
+    "seeAll_other": "Ges tẽegs fãa ({{count}})",
+    "galleryCount_one": "Tẽegr {{count}} sõsdba sẽn tar-a",
+    "galleryCount_other": "Tẽegs {{count}} sõsdba sẽn tar-ba"
   }
 }

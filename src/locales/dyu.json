@@ -315,6 +315,7 @@
     "tab_restaurant": "Dumunikɛyɔrɔ",
     "tab_transport": "Taama minɛn",
     "tab_artisan": "Baarakɛminɛn dilanni",
+    "tab_health": "Kɛnɛya",
     "overviewTitle": "Fɔlɔ ɲɛfɔli",
     "overviewSubtitle": "I ka baarayɔrɔw bɛɛ mara yɔrɔ kelen na.",
     "statTotalEstablishments": "Baarayɔrɔw",
@@ -327,6 +328,10 @@
     "addTransport": "Taama minɛn baara dilan",
     "addArtisanProfile": "N ka baarakɛla jatebɔ dilan",
     "addProduct": "Fɛn dilan",
+    "addHealthFacility": "Kɛnɛya yɔrɔ dilan",
+    "healthServices": "Baara minnu bɛ kɛ",
+    "healthServicesPlaceholder": "Kɔrɔbara teliya, Fura feerekɛyɔrɔ garditɔn, Laboratwari...",
+    "isOnDuty": "Gardi yɔrɔ",
     "editEstablishment": "Yɛlɛma",
     "deleteEstablishmentConfirmTitle": "I bɛna baarayɔrɔ in bɔ wa?",
     "deleteEstablishmentConfirmMessage": "Nin baara tɛ se ka kɛ fɛ tugun. A ka kunnafoni bɛɛ bɛna bɔ.",
@@ -1925,6 +1930,10 @@
     "shared": "Hakilijigin dira",
     "none": "Hakilijigin si tɛ yen fɔlɔ. I ka kɛ fɔlɔ min bɛ di!",
     "mute": "Mankan datugu",
-    "unmute": "Mankan dayɛlɛ"
+    "unmute": "Mankan dayɛlɛ",
+    "seeAll_one": "Hakilijigin lajɛ ({{count}})",
+    "seeAll_other": "Hakilijiginw bɛɛ lajɛ ({{count}})",
+    "galleryCount_one": "Hakilijigin {{count}} taamalaw ye min lase",
+    "galleryCount_other": "Hakilijigin {{count}} taamalaw ye minnu lase"
   }
 }

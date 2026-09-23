@@ -14,7 +14,7 @@ interface EstablishmentListItemProps {
   reviewCount?: number;
   status?: string;
   statusLabel?: string;
-  onViewAnalytics: () => void;
+  onViewAnalytics?: () => void;
   onEdit: () => void;
   onDelete?: () => void;
 }
@@ -62,9 +62,11 @@ export function EstablishmentListItem({
         </div>
       </div>
       <div className={styles.actions}>
-        <button type="button" className={styles.actionBtn} onClick={onViewAnalytics} aria-label="Analytics">
-          <BarChart3 size={16} strokeWidth={2} />
-        </button>
+        {onViewAnalytics && (
+          <button type="button" className={styles.actionBtn} onClick={onViewAnalytics} aria-label="Analytics">
+            <BarChart3 size={16} strokeWidth={2} />
+          </button>
+        )}
         <button type="button" className={styles.actionBtn} onClick={onEdit} aria-label="Modifier">
           <Pencil size={16} strokeWidth={2} />
         </button>

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Building2, UtensilsCrossed, Car, ShoppingBag } from 'lucide-react';
+import { Building2, UtensilsCrossed, Car, ShoppingBag, HeartPulse } from 'lucide-react';
 
 import { Spinner, Reveal } from '../../../shared/ui';
 import {
@@ -8,6 +8,7 @@ import {
   useMyTransportProviders,
   useMyProducts,
   useMyArtisanProfile,
+  useMyHealthFacilities,
 } from '../hooks/useMyEstablishments';
 import { StatTile } from './StatTile';
 import styles from './OverviewTab.module.css';
@@ -16,7 +17,13 @@ interface OverviewTabProps {
   onNavigate: (tabKey: string) => void;
 }
 
-const CATEGORY_ICONS = { hotel: Building2, restaurant: UtensilsCrossed, transport: Car, artisan: ShoppingBag };
+const CATEGORY_ICONS = {
+  hotel: Building2,
+  restaurant: UtensilsCrossed,
+  transport: Car,
+  artisan: ShoppingBag,
+  health: HeartPulse,
+};
 
 export function OverviewTab({ onNavigate }: OverviewTabProps) {
   const { t } = useTranslation();
@@ -25,8 +32,14 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
   const { data: transportProviders, isLoading: loadingTransport } = useMyTransportProviders();
   const { data: artisanProfile, isLoading: loadingArtisanProfile } = useMyArtisanProfile();
   const { data: products, isLoading: loadingProducts } = useMyProducts();
+  const { data: healthFacilities, isLoading: loadingHealth } = useMyHealthFacilities();
   const isLoading =
-    loadingHotels || loadingRestaurants || loadingTransport || loadingArtisanProfile || loadingProducts;
+    loadingHotels ||
+    loadingRestaurants ||
+    loadingTransport ||
+    loadingArtisanProfile ||
+    loadingProducts ||
+    loadingHealth;
 
   if (isLoading) {
     return <Spinner size={22} />;
@@ -40,7 +53,11 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
   ].filter((item) => (item.review_count ?? 0) > 0);
 
   const totalEstablishments =
-    (hotels?.length ?? 0) + (restaurants?.length ?? 0) + (transportProviders?.length ?? 0) + (products?.length ?? 0);
+    (hotels?.length ?? 0) +
+    (restaurants?.length ?? 0) +
+    (transportProviders?.length ?? 0) +
+    (products?.length ?? 0) +
+    (healthFacilities?.length ?? 0);
 
   const averageRating =
     ratedItems.length > 0
@@ -52,7 +69,8 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
     ...(hotels ?? []),
     ...(restaurants ?? []),
     ...(transportProviders ?? []),
-  ].filter((item) => UNPUBLISHED_STATUSES.has(item.status)).length;
+    ...(healthFacilities ?? []),
+  ].filter((item) => UNPUBLISHED_STATUSES.has(item.status ?? '')).length;
 
   const ownedCategories = [
     { key: 'hotel', label: t('pro.tab_hotel'), count: hotels?.length ?? 0, owned: (hotels?.length ?? 0) > 0 },
@@ -69,6 +87,12 @@ export function OverviewTab({ onNavigate }: OverviewTabProps) {
       owned: (transportProviders?.length ?? 0) > 0,
     },
     { key: 'artisan', label: t('pro.tab_artisan'), count: products?.length ?? 0, owned: Boolean(artisanProfile) },
+    {
+      key: 'health',
+      label: t('pro.tab_health'),
+      count: healthFacilities?.length ?? 0,
+      owned: (healthFacilities?.length ?? 0) > 0,
+    },
   ].filter((c) => c.owned);
 
   return (
