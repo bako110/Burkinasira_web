@@ -58,10 +58,12 @@ export function LiveDetailPage() {
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo="/community" />
+      <div className={styles.topBar}>
+        <DetailBackButton fallbackTo="/community" className={styles.backBtn} />
+      </div>
 
       <div className={styles.header}>
-        <Avatar src={session.host_avatar_url} name={session.host_name ?? ''} size={44} />
+        <Avatar src={session.host_avatar_url} name={session.host_name ?? ''} size={44} className={styles.avatar} />
         <div className={styles.headerText}>
           <div className={styles.titleRow}>
             <h1 className={styles.title}>{session.title}</h1>
@@ -79,7 +81,7 @@ export function LiveDetailPage() {
         </div>
 
         {isHost && isLive && (
-          <Button variant="danger" onClick={handleEnd} disabled={isEnding}>
+          <Button variant="danger" className={styles.endBtn} onClick={handleEnd} disabled={isEnding}>
             <Square size={15} strokeWidth={2} />
             {isEnding ? t('common.loading') : t('community.endLive')}
           </Button>

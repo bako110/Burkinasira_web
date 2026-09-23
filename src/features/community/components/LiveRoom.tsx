@@ -9,7 +9,7 @@ import {
   type RemoteTrack,
   type RemoteTrackPublication,
 } from 'livekit-client';
-import { Mic, MicOff, Video, VideoOff, Send, Users } from 'lucide-react';
+import { Mic, MicOff, Video, VideoOff, Send, Users, CameraOff, WifiOff, RotateCcw } from 'lucide-react';
 
 import { Spinner } from '../../../shared/ui';
 import { useAuthStore } from '../../../store/auth.store';
@@ -40,12 +40,15 @@ export function LiveRoom({ liveToken, isHost }: LiveRoomProps) {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  const [connectionState, setConnectionState] = useState<'connecting' | 'connected' | 'disconnected'>('connecting');
+  const [connectionState, setConnectionState] = useState<
+    'connecting' | 'connected' | 'disconnected' | 'permission-denied'
+  >('connecting');
   const [micEnabled, setMicEnabled] = useState(true);
   const [camEnabled, setCamEnabled] = useState(true);
   const [viewerCount, setViewerCount] = useState(0);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState('');
+  const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -106,10 +109,19 @@ export function LiveRoom({ liveToken, isHost }: LiveRoomProps) {
       .then(async () => {
         if (cancelled) return;
         if (isHost) {
-          const tracks = await createLocalTracks({ audio: true, video: true });
-          for (const track of tracks) {
-            await room.localParticipant.publishTrack(track);
-            if (track.kind === Track.Kind.Video) attachTrack(track);
+          try {
+            const tracks = await createLocalTracks({ audio: true, video: true });
+            if (cancelled) return;
+            for (const track of tracks) {
+              await room.localParticipant.publishTrack(track);
+              if (track.kind === Track.Kind.Video) attachTrack(track);
+            }
+          } catch {
+            // La connexion LiveKit a réussi, seule la capture caméra/micro a échoué
+            // (permission refusée ou aucun périphérique) : on le distingue d'une
+            // vraie coupure réseau pour afficher un message actionnable.
+            if (!cancelled) setConnectionState('permission-denied');
+            return;
           }
         }
       })
@@ -122,7 +134,7 @@ export function LiveRoom({ liveToken, isHost }: LiveRoomProps) {
       room.disconnect();
       roomRef.current = null;
     };
-  }, [liveToken.url, liveToken.token, isHost]);
+  }, [liveToken.url, liveToken.token, isHost, retryKey]);
 
   useEffect(() => {
     chatBottomRef.current?.scrollIntoView({ block: 'end' });
@@ -162,12 +174,32 @@ export function LiveRoom({ liveToken, isHost }: LiveRoomProps) {
           {connectionState === 'connecting' && (
             <div className={styles.overlay}>
               <Spinner size={28} />
-              <span>{t('community.liveConnecting')}</span>
+              <span className={styles.overlayText}>{t('community.liveConnecting')}</span>
             </div>
           )}
           {connectionState === 'disconnected' && (
             <div className={styles.overlay}>
-              <span>{t('community.liveDisconnected')}</span>
+              <span className={styles.overlayIcon}>
+                <WifiOff size={24} strokeWidth={1.75} />
+              </span>
+              <span className={styles.overlayText}>{t('community.liveDisconnected')}</span>
+              <button type="button" className={styles.retryBtn} onClick={() => setRetryKey((k) => k + 1)}>
+                <RotateCcw size={14} strokeWidth={2} />
+                {t('community.liveRetry')}
+              </button>
+            </div>
+          )}
+          {connectionState === 'permission-denied' && (
+            <div className={styles.overlay}>
+              <span className={styles.overlayIcon}>
+                <CameraOff size={24} strokeWidth={1.75} />
+              </span>
+              <span className={styles.overlayText}>{t('community.livePermissionDenied')}</span>
+              <p className={styles.overlayHint}>{t('community.livePermissionDeniedHint')}</p>
+              <button type="button" className={styles.retryBtn} onClick={() => setRetryKey((k) => k + 1)}>
+                <RotateCcw size={14} strokeWidth={2} />
+                {t('community.liveRetry')}
+              </button>
             </div>
           )}
         </div>
