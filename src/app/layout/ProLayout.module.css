@@ -48,6 +48,8 @@
   padding: var(--space-4);
   border-bottom: 1px solid var(--color-border);
   min-height: 64px;
+  /* Espace pour la barre de statut / encoche (appli mobile) */
+  padding-top: calc(var(--space-4) + env(safe-area-inset-top));
 }
 
 .brand {
@@ -252,10 +254,13 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  height: 56px;
   padding: 0 var(--space-4);
   background-color: var(--color-bg-raised);
   border-bottom: 1px solid var(--color-border);
+  /* Espace pour la barre de statut / encoche (appli mobile) */
+  height: calc(56px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  box-sizing: content-box;
 }
 
 @media (min-width: 768px) {
@@ -327,6 +332,7 @@
   box-shadow: var(--shadow-lg);
   overflow-y: auto;
   overscroll-behavior: contain;
+  padding-top: env(safe-area-inset-top);
   transform: translateX(-100%);
   visibility: hidden;
   transition: transform var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear var(--transition-base);

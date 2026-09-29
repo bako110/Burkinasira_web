@@ -1661,7 +1661,17 @@
     },
     "ctaTitle": "Fo sɩd n dat n ges Burkina Faso?",
     "ctaText": "Wa naan BurkinaSira n sɔsg n bao zĩis la nedbã sẽn zĩnd tẽngã pʋgẽ.",
-    "ctaButton": "Sɔsg baorã"
+    "ctaButton": "Sɔsg baorã",
+    "awards": {
+      "badge": "Distinction",
+      "title": "Lauréat du SITHO 2025 et 2026",
+      "text": "BurkinaSira a été récompensé lors des éditions 2025 et 2026 du Salon International du Tourisme et de l'Hôtellerie de Ouagadougou.",
+      "alt": "Remise de prix SITHO {{year}}"
+    },
+    "partners": {
+      "badge": "Partenaires",
+      "title": "Nos partenaires"
+    }
   },
   "footer": {
     "tagline": "Zĩig sẽn tigim Burkina Faso sã-tʋʋmd fãa: zĩis, zaka-kɩʋʋg, sor-tʋmdb la tʋʋmd.",

@@ -1661,7 +1661,17 @@
     },
     "ctaTitle": "I labɛnnen don ka Burkina Faso lajɛ wa?",
     "ctaText": "I don BurkinaSira la walasa ka yɔrɔ sɛbɛw ni ko caman lajɛ.",
-    "ctaButton": "Ɲini daminɛ"
+    "ctaButton": "Ɲini daminɛ",
+    "awards": {
+      "badge": "Distinction",
+      "title": "Lauréat du SITHO 2025 et 2026",
+      "text": "BurkinaSira a été récompensé lors des éditions 2025 et 2026 du Salon International du Tourisme et de l'Hôtellerie de Ouagadougou.",
+      "alt": "Remise de prix SITHO {{year}}"
+    },
+    "partners": {
+      "badge": "Partenaires",
+      "title": "Nos partenaires"
+    }
   },
   "footer": {
     "tagline": "Platform min bɛ Burkina Faso taama-baara bɛɛ lajɛ: yɔrɔw, sigi-yɔrɔw, ɲɛminɛbagaw ni baaraw.",
