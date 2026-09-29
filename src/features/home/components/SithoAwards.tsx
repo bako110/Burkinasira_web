@@ -35,7 +35,7 @@ export function SithoAwards() {
           {copies.map((copy) =>
             photos.map((p) => (
               <figure key={`${copy}-${p.id}`} className={styles.card} aria-hidden={copy > 0}>
-                <img src={p.url} alt={t('home.awards.alt', { year: p.edition ?? '' })} loading="lazy" />
+                <img src={p.url} alt={t('home.awards.alt', { year: p.edition ?? '' })} />
                 {p.edition && <figcaption>SITHO {p.edition}</figcaption>}
               </figure>
             )),
