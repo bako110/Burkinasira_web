@@ -6,7 +6,6 @@ import { FeaturedDestinations } from '../components/FeaturedDestinations';
 import { StatsBand } from '../components/StatsBand';
 import { WhyBurkinaSira } from '../components/WhyBurkinaSira';
 import { SithoAwards } from '../components/SithoAwards';
-import { Partners } from '../components/Partners';
 import { FinalCta } from '../components/FinalCta';
 
 export function HomePage() {
@@ -21,7 +20,6 @@ export function HomePage() {
       <WhyBurkinaSira />
       <FinalCta />
       <SithoAwards />
-      <Partners />
     </>
   );
 }
