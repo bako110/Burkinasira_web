@@ -1050,7 +1050,23 @@
     },
     "filters": {
       "all": "Tous"
-    }
+    },
+    "hub": {
+      "discover": "Découvrir",
+      "contentCount_one": "{{count}} contenu",
+      "contentCount_other": "{{count}} contenus",
+      "upcomingCount_one": "{{count}} rencontre à venir",
+      "upcomingCount_other": "{{count}} rencontres à venir",
+      "meetupsTitle": "Rencontres de la communauté",
+      "meetupsSubtitle": "Retrouvez d'autres membres de la diaspora, ou organisez votre propre rencontre.",
+      "past": "Passée",
+      "cancelled": "Annulée",
+      "today": "Aujourd'hui",
+      "inDays_one": "Dans {{count}} jour",
+      "inDays_other": "Dans {{count}} jours"
+    },
+    "participantCount_one": "{{count}} participant",
+    "participantCount_other": "{{count}} participants"
   },
   "business": {
     "title": "Tourisme d'affaires",
@@ -1129,6 +1145,44 @@
         "in_review": "Examen",
         "quoted": "Devis",
         "decision": "Décision"
+      }
+    },
+    "detail": {
+      "sentOn": "Demande envoyée le {{date}}",
+      "quotedTitle": "Vous avez reçu un devis",
+      "quotedText": "Acceptez-le pour valider votre événement, ou refusez-le si l'offre ne vous convient pas.",
+      "accept": "Accepter le devis",
+      "decline": "Refuser",
+      "waiting": {
+        "submitted": {
+          "title": "Demande envoyée",
+          "text": "Votre demande a bien été enregistrée. Un prestataire va l'examiner."
+        },
+        "in_review": {
+          "title": "Demande en cours d'examen",
+          "text": "Un prestataire étudie votre demande. Vous serez informé dès qu'un devis sera disponible."
+        }
+      },
+      "acceptedTitle": "Devis accepté",
+      "acceptedText": "Vous avez accepté ce devis. Ajoutez vos participants ci-dessous.",
+      "declinedTitle": "Devis refusé",
+      "declinedText": "Vous avez refusé ce devis. Vous pouvez faire une nouvelle demande à tout moment.",
+      "confirmAcceptTitle": "Accepter ce devis ?",
+      "confirmAcceptMessage": "Vous acceptez le montant de {{amount}} proposé pour {{company}}.",
+      "confirmDeclineTitle": "Refuser ce devis ?",
+      "confirmDeclineMessage": "Cette décision est définitive pour cette demande.",
+      "responded": "Votre réponse a été enregistrée",
+      "participantsProgress": "{{count}} sur {{total}} renseignés",
+      "participantsEmpty": "Aucun participant renseigné pour l'instant.",
+      "eventTitle": "Votre événement",
+      "invoicesTitle": "Factures",
+      "dueOn": "Échéance : {{date}}",
+      "noDue": "Sans échéance",
+      "invoiceStatus": {
+        "draft": "Brouillon",
+        "sent": "Envoyée",
+        "paid": "Payée",
+        "overdue": "En retard"
       }
     }
   },

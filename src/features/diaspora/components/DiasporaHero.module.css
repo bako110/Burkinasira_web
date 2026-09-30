@@ -3,14 +3,14 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-  padding: calc(var(--space-7) + var(--space-2)) var(--space-4) var(--space-6);
+  padding: calc(var(--space-7) + var(--space-2)) var(--space-4) calc(var(--space-8) + var(--space-6));
   background: var(--gradient-savanna);
   isolation: isolate;
 }
 
 @media (min-width: 1024px) {
   .hero {
-    padding: calc(var(--space-8) + var(--space-2)) var(--space-4) var(--space-7);
+    padding: calc(var(--space-8) + var(--space-2)) var(--space-4) calc(var(--space-8) + var(--space-7));
   }
 }
 
@@ -196,4 +196,11 @@
   .searchBar {
     animation: none;
   }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
 }

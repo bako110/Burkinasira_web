@@ -1050,7 +1050,23 @@
     },
     "filters": {
       "all": "All"
-    }
+    },
+    "hub": {
+      "discover": "Discover",
+      "contentCount_one": "{{count}} item",
+      "contentCount_other": "{{count}} items",
+      "upcomingCount_one": "{{count}} upcoming meetup",
+      "upcomingCount_other": "{{count}} upcoming meetups",
+      "meetupsTitle": "Community meetups",
+      "meetupsSubtitle": "Meet other members of the diaspora, or organise your own meetup.",
+      "past": "Past",
+      "cancelled": "Cancelled",
+      "today": "Today",
+      "inDays_one": "In {{count}} day",
+      "inDays_other": "In {{count}} days"
+    },
+    "participantCount_one": "{{count}} participant",
+    "participantCount_other": "{{count}} participants"
   },
   "business": {
     "title": "Business tourism",
@@ -1129,6 +1145,44 @@
         "in_review": "Review",
         "quoted": "Quote",
         "decision": "Decision"
+      }
+    },
+    "detail": {
+      "sentOn": "Request sent on {{date}}",
+      "quotedTitle": "You received a quote",
+      "quotedText": "Accept it to confirm your event, or decline it if the offer doesn't suit you.",
+      "accept": "Accept quote",
+      "decline": "Decline",
+      "waiting": {
+        "submitted": {
+          "title": "Request sent",
+          "text": "Your request has been recorded. A provider will review it."
+        },
+        "in_review": {
+          "title": "Request under review",
+          "text": "A provider is reviewing your request. You'll be informed as soon as a quote is available."
+        }
+      },
+      "acceptedTitle": "Quote accepted",
+      "acceptedText": "You accepted this quote. Add your participants below.",
+      "declinedTitle": "Quote declined",
+      "declinedText": "You declined this quote. You can make a new request at any time.",
+      "confirmAcceptTitle": "Accept this quote?",
+      "confirmAcceptMessage": "You are accepting the amount of {{amount}} proposed for {{company}}.",
+      "confirmDeclineTitle": "Decline this quote?",
+      "confirmDeclineMessage": "This decision is final for this request.",
+      "responded": "Your answer has been saved",
+      "participantsProgress": "{{count}} of {{total}} listed",
+      "participantsEmpty": "No participants listed yet.",
+      "eventTitle": "Your event",
+      "invoicesTitle": "Invoices",
+      "dueOn": "Due: {{date}}",
+      "noDue": "No due date",
+      "invoiceStatus": {
+        "draft": "Draft",
+        "sent": "Sent",
+        "paid": "Paid",
+        "overdue": "Overdue"
       }
     }
   },

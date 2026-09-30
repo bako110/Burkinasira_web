@@ -1,4 +1,4 @@
-import { type FormEvent } from 'react';
+import { type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Users } from 'lucide-react';
 
@@ -9,9 +9,11 @@ interface DiasporaHeroProps {
   query: string;
   onQueryChange: (value: string) => void;
   onSubmit: () => void;
+  /** Puces de résumé affichées sous la recherche (nombre de contenus, de rencontres…). */
+  stats?: ReactNode;
 }
 
-export function DiasporaHero({ query, onQueryChange, onSubmit }: DiasporaHeroProps) {
+export function DiasporaHero({ query, onQueryChange, onSubmit, stats }: DiasporaHeroProps) {
   const { t } = useTranslation();
 
   function handleSubmit(e: FormEvent) {
@@ -47,6 +49,8 @@ export function DiasporaHero({ query, onQueryChange, onSubmit }: DiasporaHeroPro
             {t('common.search')}
           </button>
         </form>
+
+        {stats && <div className={styles.stats}>{stats}</div>}
       </div>
     </section>
   );
