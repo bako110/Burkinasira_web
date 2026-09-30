@@ -138,7 +138,7 @@ export function MarketPage() {
             <aside className={styles.sidebar}>
               <div className={styles.sidebarInner}>
                 <span className={styles.sidebarKicker}>{t('explore.filtersLabel')}</span>
-                <ProductFilters active={urlCategory} onChange={applyCategory} />
+                <ProductFilters active={urlCategory} onChange={applyCategory} layout="stack" />
               </div>
             </aside>
 

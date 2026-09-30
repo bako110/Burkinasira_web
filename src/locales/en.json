@@ -792,6 +792,48 @@
       "guide": "Guide",
       "transport": "Transport",
       "autre": "Other"
+    },
+    "dash": {
+      "days": "Days planned",
+      "activities": "Activities",
+      "datesTbd": "Dates to be set",
+      "startsIn_one": "day until departure",
+      "startsIn_other": "days until departure",
+      "finished": "Trip completed",
+      "ongoing": "Trip day",
+      "overBudget": "Over budget by {{amount}} {{currency}}",
+      "budgetUsed": "{{pct}}% of {{total}} {{currency}}",
+      "estimated": "Estimated cost",
+      "dayNav": "Day navigation",
+      "dayShort": "D{{n}}",
+      "today": "Today",
+      "activityCount_one": "{{count}} activity",
+      "activityCount_other": "{{count}} activities",
+      "addDayTitle": "Extend the trip",
+      "addDayHint": "Pick a date to add a new day."
+    },
+    "list": {
+      "filters": "Filter trips",
+      "filter": {
+        "all": "All",
+        "upcoming": "Upcoming",
+        "ongoing": "Ongoing",
+        "past": "Completed",
+        "draft": "Drafts"
+      },
+      "badgeOngoing": "Ongoing",
+      "badgeIn_one": "In {{count}} day",
+      "badgeIn_other": "In {{count}} days",
+      "featuredOngoing": "Trip in progress",
+      "featuredNext": "Next trip",
+      "duration_one": "{{count}} day",
+      "duration_other": "{{count}} days",
+      "total_one": "{{count}} trip",
+      "total_other": "{{count}} trips",
+      "upcomingCount_one": "{{count}} upcoming",
+      "upcomingCount_other": "{{count}} upcoming",
+      "ongoingCount_one": "{{count}} ongoing",
+      "ongoingCount_other": "{{count}} ongoing"
     }
   },
   "notifications": {
@@ -1050,6 +1092,44 @@
       "restauration_groupe": "Group catering",
       "prestataire_evenementiel": "Event provider",
       "photographie_audiovisuel": "Photography & audiovisual"
+    },
+    "form": {
+      "stepCompany": "Your company",
+      "stepEvent": "Your event",
+      "companyPlaceholder": "E.g. Faso Events Ltd",
+      "regionPlaceholder": "E.g. Hauts-Bassins",
+      "notesPlaceholder": "Tell us what you need: duration, venue, budget, constraints…",
+      "selectedCount_one": "{{count}} selected",
+      "selectedCount_other": "{{count}} selected",
+      "increase": "Increase",
+      "decrease": "Decrease",
+      "summaryTitle": "Request summary",
+      "progress": "{{done}}/{{total}} steps completed",
+      "notSet": "Not specified",
+      "dateLabel": "Date",
+      "regionLabel": "Region"
+    },
+    "list": {
+      "filters": "Filter requests",
+      "filter": {
+        "all": "All",
+        "pending": "Pending",
+        "quoted": "Quotes received",
+        "accepted": "Accepted",
+        "declined": "Declined"
+      },
+      "total_one": "{{count}} request",
+      "total_other": "{{count}} requests",
+      "quotedCount_one": "{{count}} quote received",
+      "quotedCount_other": "{{count}} quotes received",
+      "emptyText": "Describe your event: a provider will reply with a quote.",
+      "progress": "Request progress",
+      "step": {
+        "submitted": "Sent",
+        "in_review": "Review",
+        "quoted": "Quote",
+        "decision": "Decision"
+      }
     }
   },
   "international": {

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThumbsUp, Star } from 'lucide-react';
+import { ThumbsUp, Star, MessageSquareText } from 'lucide-react';
 
 import { Button, Spinner, Avatar, Reveal } from '../../../shared/ui';
 import { useRequireAuth } from '../../../shared/hooks/useRequireAuth';
@@ -80,7 +80,12 @@ export function ReviewsSection({ targetType, targetId, itemTitle }: ReviewsSecti
       )}
 
       {total === 0 ? (
-        <p className={styles.empty}>{t('reviews.none')}</p>
+        <div className={styles.emptyState}>
+          <span className={styles.emptyIcon}>
+            <MessageSquareText size={22} strokeWidth={1.5} />
+          </span>
+          <p className={styles.empty}>{t('reviews.none')}</p>
+        </div>
       ) : (
         <>
           <div className={styles.summary}>

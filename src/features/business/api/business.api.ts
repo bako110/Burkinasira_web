@@ -3,6 +3,7 @@ import type {
   AddEventParticipantPayload,
   CreateQuotePayload,
   EventParticipant,
+  Invoice,
   QuoteRequest,
 } from '../types';
 
@@ -36,4 +37,14 @@ export async function fetchEventParticipants(quoteId: string): Promise<EventPart
 
 export async function removeEventParticipant(participantId: string): Promise<void> {
   await apiClient.delete(`/business/participants/${participantId}`);
+}
+
+export async function fetchInvoicesForQuote(quoteId: string): Promise<Invoice[]> {
+  const { data } = await apiClient.get<Invoice[]>(`/business/quotes/${quoteId}/invoices`);
+  return data;
+}
+
+export async function respondToQuote(quoteId: string, accept: boolean): Promise<QuoteRequest> {
+  const { data } = await apiClient.post<QuoteRequest>(`/business/quotes/${quoteId}/respond`, { accept });
+  return data;
 }

@@ -792,6 +792,48 @@
       "guide": "Sore-taoor soaba",
       "transport": "Sore",
       "autre": "A to"
+    },
+    "dash": {
+      "days": "Jours planifiés",
+      "activities": "Activités",
+      "datesTbd": "Dates à définir",
+      "startsIn_one": "jour avant le départ",
+      "startsIn_other": "jours avant le départ",
+      "finished": "Voyage terminé",
+      "ongoing": "Voyage en cours (jour)",
+      "overBudget": "Dépassement de {{amount}} {{currency}}",
+      "budgetUsed": "{{pct}} % de {{total}} {{currency}}",
+      "estimated": "Coût estimé",
+      "dayNav": "Navigation par jour",
+      "dayShort": "J{{n}}",
+      "today": "Aujourd'hui",
+      "activityCount_one": "{{count}} activité",
+      "activityCount_other": "{{count}} activités",
+      "addDayTitle": "Prolonger le voyage",
+      "addDayHint": "Choisissez une date pour ajouter une nouvelle journée."
+    },
+    "list": {
+      "filters": "Filtrer les voyages",
+      "filter": {
+        "all": "Tous",
+        "upcoming": "À venir",
+        "ongoing": "En cours",
+        "past": "Terminés",
+        "draft": "Brouillons"
+      },
+      "badgeOngoing": "En cours",
+      "badgeIn_one": "Dans {{count}} jour",
+      "badgeIn_other": "Dans {{count}} jours",
+      "featuredOngoing": "Voyage en cours",
+      "featuredNext": "Prochain voyage",
+      "duration_one": "{{count}} jour",
+      "duration_other": "{{count}} jours",
+      "total_one": "{{count}} voyage",
+      "total_other": "{{count}} voyages",
+      "upcomingCount_one": "{{count}} à venir",
+      "upcomingCount_other": "{{count}} à venir",
+      "ongoingCount_one": "{{count}} en cours",
+      "ongoingCount_other": "{{count}} en cours"
     }
   },
   "notifications": {
@@ -1050,6 +1092,44 @@
       "restauration_groupe": "Sull rɩɩb kõre",
       "prestataire_evenementiel": "Kibar tʋm-tʋmda",
       "photographie_audiovisuel": "Fototãka la wilgr"
+    },
+    "form": {
+      "stepCompany": "Votre entreprise",
+      "stepEvent": "Votre événement",
+      "companyPlaceholder": "Ex. : Société Faso Events",
+      "regionPlaceholder": "Ex. : Hauts-Bassins",
+      "notesPlaceholder": "Précisez vos besoins : durée, lieu souhaité, budget, contraintes…",
+      "selectedCount_one": "{{count}} sélectionné",
+      "selectedCount_other": "{{count}} sélectionnés",
+      "increase": "Augmenter",
+      "decrease": "Diminuer",
+      "summaryTitle": "Récapitulatif de la demande",
+      "progress": "{{done}}/{{total}} étapes complétées",
+      "notSet": "Non précisé",
+      "dateLabel": "Date",
+      "regionLabel": "Région"
+    },
+    "list": {
+      "filters": "Filtrer les demandes",
+      "filter": {
+        "all": "Toutes",
+        "pending": "En attente",
+        "quoted": "Devis reçus",
+        "accepted": "Acceptées",
+        "declined": "Refusées"
+      },
+      "total_one": "{{count}} demande",
+      "total_other": "{{count}} demandes",
+      "quotedCount_one": "{{count}} devis reçu",
+      "quotedCount_other": "{{count}} devis reçus",
+      "emptyText": "Décrivez votre événement : un prestataire vous répondra avec un devis.",
+      "progress": "Progression de la demande",
+      "step": {
+        "submitted": "Envoyée",
+        "in_review": "Examen",
+        "quoted": "Devis",
+        "decision": "Décision"
+      }
     }
   },
   "international": {

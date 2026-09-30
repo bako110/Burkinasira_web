@@ -47,3 +47,15 @@ export interface EventParticipant {
   email?: string;
   phone?: string;
 }
+
+export type InvoiceStatus = 'draft' | 'sent' | 'paid' | 'overdue';
+
+export interface Invoice {
+  id: string;
+  quote_request_id: string;
+  amount: number;
+  currency: string;
+  status: InvoiceStatus;
+  due_date?: string;
+  created_at: string;
+}

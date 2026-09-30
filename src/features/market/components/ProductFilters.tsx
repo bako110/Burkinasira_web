@@ -20,14 +20,16 @@ const CATEGORIES: { key: string; value: ProductCategory | undefined; Icon: typeo
 interface ProductFiltersProps {
   active: ProductCategory | undefined;
   onChange: (value: ProductCategory | undefined) => void;
+  /** 'stack' : liste verticale alignée (colonne latérale) ; 'scroll' : ligne défilante (mobile). */
+  layout?: 'scroll' | 'stack';
 }
 
-export function ProductFilters({ active, onChange }: ProductFiltersProps) {
+export function ProductFilters({ active, onChange, layout = 'scroll' }: ProductFiltersProps) {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.scroller}>
-      <div className={styles.row}>
+    <div className={clsx(styles.scroller, layout === 'stack' && styles.scrollerStack)}>
+      <div className={clsx(styles.row, layout === 'stack' && styles.rowStack)}>
         {CATEGORIES.map(({ key, value, Icon }) => {
           const isActive = active === value;
           return (

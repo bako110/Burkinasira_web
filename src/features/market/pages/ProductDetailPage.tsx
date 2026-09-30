@@ -93,7 +93,7 @@ export function ProductDetailPage() {
 
   return (
     <div className={styles.page}>
-      <DetailBackButton fallbackTo="/market" variant="link">
+      <DetailBackButton fallbackTo="/market" variant="link" className={styles.backLink}>
         {t('common.back')}
       </DetailBackButton>
 

@@ -324,3 +324,9 @@
   font-weight: 800;
   letter-spacing: -0.01em;
 }
+
+/* Espace entre « Retour » et l'image, pour que le lien ne colle plus à la galerie. */
+.backLink {
+  min-height: 40px;
+  margin-bottom: var(--space-4);
+}

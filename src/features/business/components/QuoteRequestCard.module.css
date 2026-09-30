@@ -1,133 +1,268 @@
 .link {
   display: block;
   height: 100%;
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
+/* La couleur de la carte suit l'état de la demande. */
 .card {
-  padding: var(--space-4);
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.13);
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
   height: 100%;
+  padding: var(--space-5);
+  padding-left: calc(var(--space-5) + 5px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-raised);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--accent);
+}
+
+.status_in_review {
+  --accent: #d97706;
+  --accent-soft: rgba(217, 119, 6, 0.16);
+}
+
+.status_quoted {
+  --accent: #dc5c0a;
+  --accent-soft: rgba(220, 92, 10, 0.14);
+}
+
+.status_accepted {
+  --accent: #16a34a;
+  --accent-soft: rgba(22, 163, 74, 0.14);
+}
+
+.status_declined {
+  --accent: #dc2626;
+  --accent-soft: rgba(220, 38, 38, 0.12);
 }
 
 .link:hover .card {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--color-border-strong);
+  border-color: var(--accent);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
 }
 
 .iconWrap {
-  display: inline-flex;
+  flex-shrink: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-md);
-  background-color: var(--color-brand-surface);
-  color: var(--color-brand);
-  flex-shrink: 0;
+  background-color: var(--accent-soft);
+  color: var(--accent);
 }
 
-.cardHeader {
+.headerText {
+  flex: 1;
+  min-width: 0;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-2);
+  flex-direction: column;
+  gap: 2px;
 }
 
 .companyName {
   margin: 0;
-  font-size: 0.9375rem;
-  font-weight: 700;
+  font-size: 1.0625rem;
+  font-weight: 800;
   letter-spacing: -0.01em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
 }
 
 .statusBadge {
   flex-shrink: 0;
-  padding: 3px var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px var(--space-3);
   border-radius: var(--radius-full);
+  background-color: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-weight: 800;
   white-space: nowrap;
 }
 
-.status_submitted {
-  background-color: color-mix(in srgb, var(--color-warning) 16%, transparent);
-  color: var(--color-warning);
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
-.status_in_review {
-  background-color: var(--color-brand-surface);
-  color: var(--color-brand);
+.status_in_review .statusDot {
+  animation: pulse 1.6s ease-in-out infinite;
 }
 
-.status_quoted {
-  background-color: color-mix(in srgb, var(--color-info) 16%, transparent);
-  color: var(--color-info);
-}
-
-.status_accepted {
-  background-color: color-mix(in srgb, var(--color-success) 16%, transparent);
-  color: var(--color-success);
-}
-
-.status_declined {
-  background-color: color-mix(in srgb, var(--color-danger) 16%, transparent);
-  color: var(--color-danger);
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
 }
 
 .serviceTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
 }
 
 .serviceTag {
-  padding: 2px var(--space-2);
+  padding: 3px var(--space-2);
   border-radius: var(--radius-full);
   background-color: var(--color-bg-inset);
   color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Progression : 4 étapes reliées par un trait */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-subtle);
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: calc(50% + 10px);
+  right: calc(-50% + 10px);
+  height: 2px;
+  background-color: var(--color-border);
+}
+
+.stepReached:not(:last-child)::after {
+  background-color: var(--accent);
+}
+
+.stepDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-strong);
+  background-color: var(--color-bg-raised);
+  color: #fff;
+}
+
+.stepReached .stepDot {
+  border-color: var(--accent);
+  background-color: var(--accent);
+}
+
+.stepCurrent .stepDot {
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.stepLabel {
   font-size: 0.6875rem;
   font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.stepReached .stepLabel {
+  color: var(--color-text);
+  font-weight: 700;
 }
 
 .metaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
 }
 
-.cardRow {
+.metaItem {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-size: 0.8125rem;
   color: var(--color-text-muted);
 }
 
-.cardRow svg {
-  flex-shrink: 0;
-  color: var(--color-text-subtle);
+.amountBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-soft), transparent);
+  border: 1px solid var(--accent-soft);
 }
 
-.quotedAmount {
-  margin-top: auto;
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--color-border);
-  font-size: 0.9375rem;
+.amountLabel {
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-text-muted);
+}
+
+.amountValue {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.amountValue small {
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;
+  }
+
+  .status_in_review .statusDot {
+    animation: none;
   }
 
   .link:hover .card {
