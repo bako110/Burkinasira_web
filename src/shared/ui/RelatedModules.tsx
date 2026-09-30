@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 import { getRelatedModules } from '../config/modules';
 import styles from './RelatedModules.module.css';
@@ -14,19 +14,28 @@ export function RelatedModules({ currentPath }: { currentPath: string }) {
   if (links.length === 0) return null;
 
   return (
-    <div className={styles.wrap}>
-      <span className={styles.label}>{t('common.exploreAlso')}</span>
-      <div className={styles.row}>
+    <section className={styles.wrap} aria-labelledby="related-modules-title">
+      <div className={styles.head}>
+        <h2 id="related-modules-title" className={styles.title}>
+          {t('common.exploreAlso')}
+        </h2>
+        <p className={styles.subtitle}>{t('common.exploreAlsoSubtitle')}</p>
+      </div>
+
+      <div className={styles.grid}>
         {links.map(({ to, labelKey, Icon }, i) => (
-          <Link key={to} to={to} className={styles.chip} data-tone={TONES[i % TONES.length]}>
-            <span className={styles.icon}>
-              <Icon size={16} strokeWidth={1.75} />
+          <Link key={to} to={to} className={styles.tile} data-tone={TONES[i % TONES.length]}>
+            <Icon size={96} strokeWidth={1} className={styles.watermark} aria-hidden="true" />
+            <span className={styles.iconWrap}>
+              <Icon size={22} strokeWidth={1.75} />
             </span>
-            <span className={styles.text}>{t(labelKey)}</span>
-            <ArrowRight size={14} strokeWidth={2} className={styles.arrow} />
+            <span className={styles.arrow} aria-hidden="true">
+              <ArrowUpRight size={18} strokeWidth={2.25} />
+            </span>
+            <span className={styles.label}>{t(labelKey)}</span>
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
