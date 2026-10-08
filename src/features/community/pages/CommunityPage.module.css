@@ -22,6 +22,7 @@
 
 @media (min-width: 1024px) {
   .hero {
+    width: calc(100% - var(--space-6));
     max-width: 1200px;
     margin: var(--space-4) auto 0;
     padding: calc(var(--space-8) + var(--space-4)) var(--space-6) var(--space-7);

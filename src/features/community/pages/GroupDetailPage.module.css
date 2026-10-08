@@ -16,6 +16,8 @@
 
 .hero {
   position: relative;
+  margin: var(--space-3) var(--space-3) 0;
+  border-radius: 32px;
   overflow: hidden;
   height: min(46vh, 380px);
   min-height: 260px;
@@ -23,6 +25,14 @@
   align-items: flex-end;
   background: var(--gradient-savanna);
   isolation: isolate;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    width: calc(100% - var(--space-6));
+    max-width: 1200px;
+    margin: var(--space-4) auto 0;
+  }
 }
 
 @media (min-width: 768px) {
