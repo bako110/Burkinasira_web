@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-3);
-  height: 44px;
-  border-radius: var(--radius-md);
+  height: 48px;
+  border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
   color: var(--color-text);

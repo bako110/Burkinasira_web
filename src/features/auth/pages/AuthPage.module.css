@@ -2,17 +2,12 @@
   position: relative;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-4);
   background-color: var(--color-bg-subtle);
 }
 
 @media (min-width: 1024px) {
   .page {
     align-items: stretch;
-    justify-content: stretch;
-    padding: 0;
   }
 }
 
@@ -20,14 +15,18 @@
   display: flex;
   width: 100%;
   min-height: 100dvh;
+  min-width: 0;
 }
 
 .formSide {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: var(--space-4);
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  /* Centré dans l'écran, en tenant compte de l'encoche / barre système */
+  padding: calc(var(--space-4) + env(safe-area-inset-top)) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom));
 }
 
 @media (min-width: 1024px) {
@@ -172,7 +171,8 @@
 
 .card {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  margin: 0 auto;
   padding: var(--space-6);
   border-radius: 28px;
   box-shadow: var(--shadow-md);
@@ -415,4 +415,37 @@
 
 .forgotLink:hover {
   text-decoration: underline;
+}
+
+/* Champs et boutons en pilule, cohérents avec le header flottant */
+.form input {
+  height: 48px;
+  padding-left: var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border);
+}
+
+.form input:focus {
+  background-color: var(--color-bg-raised);
+}
+
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+  box-shadow: 0 0 0 100px var(--color-bg-subtle) inset;
+  caret-color: var(--color-text);
+}
+
+.form > button[type='submit'] {
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-bg);
+  box-shadow: none;
+}
+
+.form > button[type='submit']:hover:not(:disabled) {
+  opacity: 0.88;
 }

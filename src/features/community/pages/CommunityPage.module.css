@@ -7,6 +7,8 @@
 .hero {
   position: relative;
   overflow: hidden;
+  margin: var(--space-3) var(--space-3) 0;
+  border-radius: 32px;
   padding: calc(var(--space-8) + var(--space-2)) var(--space-4) var(--space-7);
   background: var(--gradient-savanna);
   isolation: isolate;
@@ -20,6 +22,8 @@
 
 @media (min-width: 1024px) {
   .hero {
+    max-width: 1200px;
+    margin: var(--space-4) auto 0;
     padding: calc(var(--space-8) + var(--space-4)) var(--space-6) var(--space-7);
   }
 }
@@ -147,31 +151,35 @@
   }
 }
 
-/* Barre d'onglets : sticky sous le header, scrollable horizontalement
-   sur mobile, soulignement animé cohérent avec la nav de AppLayout. */
+/* Barre d'onglets en pilule flottante : sticky sous le header, scrollable
+   horizontalement sur mobile. L'onglet actif est une pastille sombre. */
 .tabBar {
   position: sticky;
-  top: 64px;
+  top: 80px;
   z-index: 10;
-  background-color: var(--color-bg-raised);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  padding: var(--space-3) var(--space-3) 0;
+  pointer-events: none;
 }
 
 @media (min-width: 1024px) {
   .tabBar {
-    top: 72px;
+    top: 88px;
   }
 }
 
 .tabBarInner {
+  pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  max-width: 1080px;
-  width: 100%;
+  gap: var(--space-1);
+  width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: var(--space-2);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -180,66 +188,38 @@
   display: none;
 }
 
-@media (min-width: 1024px) {
-  .tabBarInner {
-    padding: 0 var(--space-6);
-    gap: var(--space-3);
-  }
-}
-
 .tabBtn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   flex-shrink: 0;
-  padding: var(--space-4) var(--space-3);
+  height: 42px;
+  padding: 0 var(--space-4);
   border: none;
+  border-radius: var(--radius-full);
   background: transparent;
   color: var(--color-text-muted);
   font-weight: 600;
   font-size: 0.875rem;
   white-space: nowrap;
   cursor: pointer;
-  transition: color var(--transition-base);
+  transition: color var(--transition-base), background-color var(--transition-base);
 }
 
 .tabBtn svg {
   flex-shrink: 0;
-  color: var(--color-text-subtle);
   transition: color var(--transition-base);
-}
-
-.tabBtn::after {
-  content: '';
-  position: absolute;
-  left: var(--space-3);
-  right: calc(100% - var(--space-3));
-  bottom: 0;
-  height: 2px;
-  border-radius: var(--radius-full);
-  background: var(--gradient-sunset);
-  transition: right var(--transition-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tabBtn:hover {
   color: var(--color-text);
+  background-color: var(--color-bg-inset);
 }
 
-.tabBtn:hover::after {
-  right: var(--space-3);
-}
-
-.tabBtnActive {
-  color: var(--color-text);
-}
-
-.tabBtnActive svg {
-  color: var(--color-brand);
-}
-
-.tabBtnActive::after {
-  right: var(--space-3);
+.tabBtnActive,
+.tabBtnActive:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
 }
 
 .liveDot {

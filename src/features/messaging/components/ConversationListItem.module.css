@@ -6,9 +6,8 @@
   width: 100%;
   padding: var(--space-3);
   border: none;
-  border-left: 3px solid transparent;
   background: transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   cursor: pointer;
   text-align: left;
   transition: background-color var(--transition-fast), border-color var(--transition-fast);
@@ -19,12 +18,11 @@
 }
 
 .itemActive {
-  background-color: var(--color-brand-surface);
-  border-left-color: var(--color-brand);
+  background-color: var(--color-bg-inset);
 }
 
 .itemActive:hover {
-  background-color: var(--color-brand-surface);
+  background-color: var(--color-bg-inset);
 }
 
 .icon {
