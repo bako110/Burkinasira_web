@@ -8,25 +8,32 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background-color: var(--color-bg-raised);
-  border-bottom: 1px solid var(--color-border);
+  /* Barre flottante en pilule : le conteneur est transparent */
+  background-color: transparent;
+  pointer-events: none;
   /* Espace pour la barre de statut / encoche (appli mobile) */
-  padding-top: env(safe-area-inset-top);
+  padding: calc(env(safe-area-inset-top) + var(--space-3)) var(--space-3) 0;
 }
 
 .headerInner {
+  pointer-events: auto;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--space-4);
-  height: 64px;
+  padding: 0 var(--space-3);
+  height: 60px;
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  background-color: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
 }
 
 @media (min-width: 1024px) {
   .headerInner {
-    height: 72px;
+    height: 68px;
+    padding: 0 var(--space-4);
     gap: var(--space-6);
   }
 }
@@ -66,8 +73,9 @@
 .nav {
   display: none;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-6);
   flex: 1;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -80,8 +88,8 @@
   position: relative;
   text-decoration: none;
   color: var(--color-text-muted);
-  font-weight: 600;
-  font-size: 0.9125rem;
+  font-weight: 500;
+  font-size: 0.95rem;
   letter-spacing: 0.005em;
   padding: var(--space-2) 0;
   transition: color var(--transition-base);
@@ -167,24 +175,37 @@
   flex-shrink: 0;
 }
 
-.loginLink {
-  height: 38px;
+.loginLink,
+.registerLink {
+  height: 42px;
   display: inline-flex;
   align-items: center;
   padding: 0 var(--space-5);
   border-radius: var(--radius-full);
-  background: var(--gradient-sunset);
-  color: var(--color-text-on-brand);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 0.8125rem;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-size: 0.875rem;
   white-space: nowrap;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.loginLink {
+  background-color: var(--color-bg-raised);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
 .loginLink:hover {
+  background-color: var(--color-bg-inset);
+}
+
+.registerLink {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  border: 1px solid var(--color-text);
+}
+
+.registerLink:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -226,14 +247,13 @@
   align-items: center;
   padding: 0 var(--space-4);
   border-radius: var(--radius-full);
-  background: var(--gradient-sunset);
-  color: var(--color-text-on-brand);
+  background-color: var(--color-text);
+  color: var(--color-bg);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.75rem;
   white-space: nowrap;
   flex-shrink: 0;
-  box-shadow: var(--shadow-sm);
 }
 
 /* Drawer (mobile menu) */
@@ -432,10 +452,10 @@
   width: 100%;
   height: 44px;
   border-radius: var(--radius-full);
-  background: var(--gradient-sunset);
-  color: var(--color-text-on-brand);
+  background-color: var(--color-text);
+  color: var(--color-bg);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.875rem;
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);

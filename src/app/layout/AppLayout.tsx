@@ -103,6 +103,9 @@ export function AppLayout() {
                 <NavLink to="/login" className={styles.loginLink}>
                   {t('auth.login')}
                 </NavLink>
+                <NavLink to="/register" className={styles.registerLink}>
+                  {t('auth.register')}
+                </NavLink>
               </>
             )}
           </div>
