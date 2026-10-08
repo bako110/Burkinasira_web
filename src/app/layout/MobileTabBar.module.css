@@ -1,16 +1,19 @@
 .bar {
-  --tab-bar-height: 56px;
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--tab-bar-height);
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: calc(env(safe-area-inset-bottom) + var(--space-3));
+  height: 64px;
   z-index: var(--z-header);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
   background-color: var(--color-bg-raised);
-  border-top: 1px solid var(--color-border);
-  padding-bottom: env(safe-area-inset-bottom);
-  box-sizing: content-box;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
 }
 
 @media (min-width: 768px) {
@@ -20,31 +23,37 @@
 }
 
 .tab {
-  flex: 1;
+  flex: 0 0 auto;
+  height: 46px;
+  min-width: 46px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: var(--space-2) 0 var(--space-1);
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
   text-decoration: none;
-  color: var(--color-text-subtle);
-  transition: color var(--transition-fast);
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .tabIcon {
-  transition: transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
+/* Le libelle n'apparait que sur l'onglet actif : plus de chevauchement */
 .tabLabel {
-  font-size: 0.6875rem;
+  display: none;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .tabActive {
-  color: var(--color-brand);
+  background-color: var(--color-text);
+  color: var(--color-bg);
 }
 
-.tabActive .tabIcon {
-  transform: translateY(-1px);
+.tabActive .tabLabel {
+  display: inline;
 }

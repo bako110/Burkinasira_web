@@ -502,7 +502,7 @@
    sa hauteur ici pour que le contenu ne passe pas dessous. */
 @media (max-width: 767px) {
   .main {
-    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
   }
 }
 
